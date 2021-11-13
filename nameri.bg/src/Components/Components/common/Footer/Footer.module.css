@@ -8,7 +8,7 @@ h5 {
 
 .socialIcon {
     color: black;
-    size: 100px !important;
+    size: 100px;
 }
 
 .mainFooter {
@@ -19,7 +19,7 @@ h5 {
     padding-bottom: 20px;
     padding-top: 20px;
     align-items: center;
-    position: fixed;
+    position: relative;
     border-top: 1px solid black;
     bottom: 0;
     left: 0;

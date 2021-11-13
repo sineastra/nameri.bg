@@ -1,11 +1,12 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
+import HeadPageBanner from "../../Components/HeadPageBanner/HeadPageBanner.jsx"
 
 
 const HomePage = () => {
 
 	return (
 		<MainPageLayout>
-			<section>BANNER</section>
+			<HeadPageBanner/>
 			<main>
 				<section>POPULR CATEGORIES</section>
 				<section>
