@@ -1,6 +1,6 @@
 import styles from './HeadPageBanner.module.css'
 import { FaSearch } from "react-icons/fa"
-import Carousel from "../BannerCarousel/Carousel/Carousel.jsx"
+import Carousel from "./BannerCarousel/Carousel/Carousel.jsx"
 
 
 const HeadPageBanner = () => {
@@ -22,7 +22,6 @@ const HeadPageBanner = () => {
 						</button>
 					</div>
 				</div>
-				<div></div>
 			</section>
 			<Carousel className={styles.mainBannerSection}/>
 		</section>
