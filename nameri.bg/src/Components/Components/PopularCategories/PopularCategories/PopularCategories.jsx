@@ -1,20 +1,19 @@
-import SingleCategory from "../SingleCategory/SingleCategory.jsx"
-import popularCat1 from "../../../../assets/images/popular-cat1.jpg"
-import popularCat2 from "../../../../assets/images/popular-cat2.jpg"
-import popularCat3 from "../../../../assets/images/popular-cat3.jpg"
-import popularCat4 from "../../../../assets/images/popular-cat4.jpg"
+import styles from "./PopularCategories.module.css"
+import PopularCategoriesRow from "../PopularCategoriesRow/PopularCategoriesRow.jsx"
 
 
-const PopularCategories = ({ wrapperClass }) => {
-
-	return (
-		<section className={wrapperClass}>
-			<SingleCategory img={popularCat1} name={'Category 1'}/>
-			<SingleCategory img={popularCat2} name={'Category 2'}/>
-			<SingleCategory img={popularCat3} name={'Category 3'}/>
-			<SingleCategory img={popularCat4} name={'Category 4'}/>
+const PopularCategories = () => {
+	return <section className={styles.popularCategoriesCont}>
+		<div className={styles.headingsWrapper}>
+			<h1 className={styles.mainHeader}>Популярни Категории</h1>
+			<p className={styles.subHeader}>От дизайн на лого до поправка на оградата на баба ти
+				Пенка - имаме всичко!</p>
+		</div>
+		<section className={styles.popularWrapper}>
+			<PopularCategoriesRow wrapperClass={styles.popularCategories}/>
+			<PopularCategoriesRow wrapperClass={styles.popularCategories}/>
 		</section>
-	)
+	</section>
 }
 
 export default PopularCategories
