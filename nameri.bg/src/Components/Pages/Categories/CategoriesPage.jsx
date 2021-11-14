@@ -116,7 +116,7 @@ const CategoriesPage = (props) => {
 		<MainPageLayout>
 			<section className={styles.outerSection}>
 				<div className={styles.innerSection}>
-					<CategoriesPagesHeader categoryName={"Всички Категории"} className={styles.headingWrapper}/>
+					<CategoriesPagesHeader categoryName={"Всички Категории"}/>
 					<section className={styles.cardsWrapper}>
 						{fakeDbData.map(x => (
 							<CategoryCard key={x.categoryName} categoryName={x.categoryName} categoryImg={x.categoryImg}
