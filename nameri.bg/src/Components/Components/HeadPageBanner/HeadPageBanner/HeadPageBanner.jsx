@@ -1,6 +1,6 @@
 import styles from './HeadPageBanner.module.css'
-import { FaSearch } from "react-icons/fa"
-import Carousel from "./BannerCarousel/Carousel/Carousel.jsx"
+import Carousel from "../BannerCarousel/Carousel/Carousel.jsx"
+import SearchBar from "../../SearchBar/SearchBar.jsx"
 
 
 const HeadPageBanner = () => {
@@ -15,12 +15,7 @@ const HeadPageBanner = () => {
 					<h2 className={styles.smallHeader}>Намери подходящият човек за всяка една твоя идея.</h2>
 				</div>
 				<div className={styles.fullWidth}>
-					<div className={styles.searchContainer}>
-						<input type="search" placeholder='Опитай с "Пешо" или "Сийка"' className={styles.searchInput}/>
-						<button className={`${styles.searchBtn}`}>
-							<FaSearch/>
-						</button>
-					</div>
+					<SearchBar placeholder="Опитай с Пешо или Сийка!"/>
 				</div>
 			</section>
 			<Carousel className={styles.mainBannerSection}/>

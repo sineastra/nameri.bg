@@ -1,5 +1,5 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import HeadPageBanner from "../../Components/HeadPageBanner/HeadPageBanner.jsx"
+import HeadPageBanner from "../../Components/HeadPageBanner/HeadPageBanner/HeadPageBanner.jsx"
 import SiteAdvertBanner from "../../Components/SiteAdvertBanner/SiteAdvertBanner.jsx"
 import PopularCategories from "../../Components/PopularCategories/PopularCategories/PopularCategories.jsx"
 import CategoriesList from "../../Components/CategoriesList/CategoriesList/CategoriesList.jsx"
