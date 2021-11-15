@@ -42,19 +42,6 @@ h5 {
     justify-content: space-between;
 }
 
-.footerBtn {
-    text-decoration: none;
-    width: 150px;
-    min-height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    border: 1px solid black;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    box-sizing: border-box;
-}
 
 .categoriesHeading {
     margin-bottom: 10px;

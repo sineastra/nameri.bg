@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import sineastraLogo from "../../../../assets/images/letter-s-between-straight-parenthesis-symbol.svg"
 import styles from './Footer.module.css'
 import { IconContext } from "react-icons"
+import StyledBtn from "../../StyledBtn/StyledBtn.jsx"
 
 
 const Footer = () => {
@@ -41,8 +42,8 @@ const Footer = () => {
 				<h5>Въпроси</h5>
 			</section>
 			<section className={styles.footerSection}>
-				<Link className={styles.footerBtn} to="/sign-up">Регистрирай се</Link>
-				<Link className={styles.footerBtn} to="/categories">Виж обявите</Link>
+				<StyledBtn href="/sign-up" text="Регистрирай се"/>
+				<StyledBtn href="/categories" text="Виж обявите"/>
 			</section>
 		</footer>
 	)
