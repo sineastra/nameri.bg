@@ -1,7 +1,7 @@
 import AuthHeader from "../AuthHeader/AuthHeader.jsx"
 import logo from "../../../assets/images/n-letter-png-transparent-images-76708.svg"
 import styles from "./AuthInputsSection.module.css"
-import StyledBtn from "../StyledBtn/StyledBtn.jsx"
+import StyledLinkBtn from "../StyledBtn/StyledLinkBtn.jsx"
 import { useState } from "react"
 
 
@@ -53,7 +53,7 @@ const AuthInputsSection = ({
 			<div className={styles.inputsCont}>
 				<h1 className={styles.mainHeader}>{headerText}</h1>
 				<Inputs inputsData={inputsData} className={styles.inputFieldsCont}/>
-				<StyledBtn text={btnText} onClick={processFormData} className={styles.submitBtn}/>
+				<StyledLinkBtn text={btnText} onClick={processFormData} className={styles.submitBtn}/>
 				{conditionsField ? <RadioBtn onClick={updateRadio}/> : ""}
 			</div>
 		</section>

@@ -1,5 +1,5 @@
 import styles from "./AuthHeader.module.css"
-import StyledBtn from "../StyledBtn/StyledBtn.jsx"
+import StyledLinkBtn from "../StyledBtn/StyledLinkBtn.jsx"
 
 
 const AuthHeader = ({ logo, linkText, href, className }) => {
@@ -11,9 +11,9 @@ const AuthHeader = ({ logo, linkText, href, className }) => {
 			</div>
 			<div>
 
-				<StyledBtn className={styles.link} href={href} text={linkText}>
+				<StyledLinkBtn className={styles.link} href={href} text={linkText}>
 
-				</StyledBtn>
+				</StyledLinkBtn>
 
 			</div>
 		</div>

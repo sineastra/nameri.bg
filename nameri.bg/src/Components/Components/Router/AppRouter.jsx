@@ -6,6 +6,7 @@ import Subcategories from "../../Pages/Subcategories/Subcategories.jsx"
 import CustomerServices from "../../Pages/CustomerServices/CustomerServices.jsx"
 import Register from "../../Pages/Register/Register.jsx"
 import Login from "../../Pages/Login/Login.jsx"
+import AddService from "../../Pages/AddService/AddService.jsx"
 
 
 const AppRouter = () => {
@@ -17,6 +18,7 @@ const AppRouter = () => {
 			<Route path="/categories/:cId/subcategories/:sId" element={<CustomerServices/>}/>
 			<Route path="/sign-up" element={<Register/>}/>
 			<Route path="/sign-in" element={<Login/>}/>
+			<Route path="/add-service" element={<AddService/>}/>
 		</Routes>
 	)
 }
