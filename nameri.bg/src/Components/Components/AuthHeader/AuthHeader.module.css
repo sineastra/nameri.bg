@@ -4,6 +4,12 @@
     justify-content: space-around;
     max-width: 100%;
     box-sizing: border-box;
+    box-shadow: 5px 9px 15px 5px rgba(0, 0, 0, 0.2);
+    padding: 2%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: aliceblue;
 }
 
 .logoImg {

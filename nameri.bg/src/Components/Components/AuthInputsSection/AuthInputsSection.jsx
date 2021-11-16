@@ -48,7 +48,7 @@ const AuthInputsSection = ({
 	}
 
 	return (
-		<section className={`${className} ${styles.mainWrapper}`}>
+		<section className={`${styles.mainWrapper} ${className}`}>
 			<AuthHeader linkText={pageType} logo={logo} className={styles.headingCustomized}/>
 			<div className={styles.inputsCont}>
 				<h1 className={styles.mainHeader}>{headerText}</h1>

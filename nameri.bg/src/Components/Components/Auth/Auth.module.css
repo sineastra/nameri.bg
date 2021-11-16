@@ -1,12 +1,8 @@
-.benefitsSection {
+section .benefitsSection {
     width: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-.inputsSection {
+section .inputsSection {
     width: 60%;
 }
 

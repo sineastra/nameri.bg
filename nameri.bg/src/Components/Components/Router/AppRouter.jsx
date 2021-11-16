@@ -4,8 +4,8 @@ import HomePage from "../../Pages/HomePage/HomePage.jsx"
 import CategoriesPage from "../../Pages/Categories/CategoriesPage.jsx"
 import Subcategories from "../../Pages/Subcategories/Subcategories.jsx"
 import CustomerServices from "../../Pages/CustomerServices/CustomerServices.jsx"
-import Auth from "../Auth/Auth.jsx"
 import Register from "../../Pages/Register/Register.jsx"
+import Login from "../../Pages/Login/Login.jsx"
 
 
 const AppRouter = () => {
@@ -16,7 +16,7 @@ const AppRouter = () => {
 			<Route path="/categories/:id" element={<Subcategories/>}/>
 			<Route path="/categories/:cId/subcategories/:sId" element={<CustomerServices/>}/>
 			<Route path="/sign-up" element={<Register/>}/>
-			<Route path="/sign-in" element={<Auth authType="login"/>}/>
+			<Route path="/sign-in" element={<Login/>}/>
 		</Routes>
 	)
 }

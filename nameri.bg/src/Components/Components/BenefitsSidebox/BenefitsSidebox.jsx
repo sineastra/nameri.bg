@@ -5,7 +5,7 @@ import { IconContext } from "react-icons"
 
 const Benefits = ({ benefits }) => {
 	return (
-		<div>
+		<div className={styles.benefitsWrapper}>
 			{benefits.map(x => (
 				<IconContext.Provider value={{ color: "green", size: '1.8em' }}>
 					<div className={styles.benefitDiv}>
@@ -23,7 +23,7 @@ const Benefits = ({ benefits }) => {
 const BenefitsSidebox = ({ benefitsHeaderText, benefitsArr, className }) => {
 
 	return (
-		<section className={`${styles.wrapper} ${className}`}>
+		<section className={`${className} ${styles.wrapper}`}>
 			<h1 className={styles.header}>{benefitsHeaderText}</h1>
 			<Benefits benefits={benefitsArr}/>
 		</section>
