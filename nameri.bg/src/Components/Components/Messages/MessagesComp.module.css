@@ -1,0 +1,27 @@
+.outerWrapper {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.mainWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.mainHeader {
+    width: 100%;
+    font-family: 'Balsamiq Sans', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+
+.bigCont {
+    width: 60%;
+}
+
+.smallCont {
+    width: 35%;
+}
