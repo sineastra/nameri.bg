@@ -8,6 +8,7 @@ import Register from "../../Pages/Register/Register.jsx"
 import Login from "../../Pages/Login/Login.jsx"
 import AddService from "../../Pages/AddService/AddService.jsx"
 import Messages from "../../Pages/Messages/Messages.jsx"
+import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails.jsx"
 
 
 const AppRouter = () => {
@@ -21,6 +22,7 @@ const AppRouter = () => {
 			<Route path="/sign-in" element={<Login/>}/>
 			<Route path="/add-service" element={<AddService/>}/>
 			<Route path="/messages" element={<Messages/>}/>
+			<Route path="/details/:id" element={<ServiceDetails/>}/>
 		</Routes>
 	)
 }
