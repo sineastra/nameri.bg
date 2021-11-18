@@ -1,6 +1,7 @@
 .mainWrapper {
     width: 100%;
     min-height: 70%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,6 +9,11 @@
     padding: 5%;
     box-sizing: border-box;
     background-color: aliceblue;
+    gap: 50px;
+}
+
+hr {
+    width: 100%;
 }
 
 .headingWrapper {

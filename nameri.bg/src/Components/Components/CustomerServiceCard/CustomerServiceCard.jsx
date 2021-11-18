@@ -15,7 +15,7 @@ const CustomerServiceCard = ({ user, service, className }) => {
 			<h2 className={styles.serviceHeading}>{service.title}</h2>
 			<div className={styles.profileInfoWrapper}>
 				<div className={styles.profileImageWrapper}>
-					<img src={user.profilePic} alt="User Profile Image" className={styles.profilePic}/>
+					<img src={user.profilePic} alt="User ProfilePage Image" className={styles.profilePic}/>
 					<div className={styles.comfortaa}>{user.fullName}</div>
 				</div>
 				<div className={styles.priceE}>{priceString}</div>

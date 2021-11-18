@@ -42,7 +42,7 @@ const Slide = ({ img, user, activeId }) => {
 				<img src={img} alt="Service Front Image"/>
 			</ImageSection>
 			<UserSection>
-				<StyledProfileImg src={user.profileImg} alt="User Profile Image"/>
+				<StyledProfileImg src={user.profileImg} alt="User ProfilePage Image"/>
 				<div>
 					<h3>{user.profession}</h3>
 				</div>

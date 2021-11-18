@@ -53,7 +53,7 @@ const Certificate = ({ data }) => {
 	)
 }
 
-const ProfileSideCard = (props) => {
+const ProfileSideCard = ({ className }) => {
 	const dataFromContext = {
 		isOwn: false,
 		premiumPlan: 2,
@@ -80,10 +80,10 @@ const ProfileSideCard = (props) => {
 	const shouldSeeContacts = dataFromContext.isOwn || Number(dataFromContext.premiumPlan) >= 2
 
 	return (
-		<div className={ styles.mainWrapper }>
+		<div className={ `${ styles.mainWrapper } ${ className }` }>
 			<div className={ styles.headingWrapper }>
 				<div className={ styles.mainHeading }>{ dataFromContext.user.fullName }</div>
-				<RatingBox user={ dataFromContext.user }/>
+				<RatingBox user={ dataFromContext.user } showVotes={ true }/>
 			</div>
 			{ dataFromContext.isOwn ? <EditProfile/> : '' }
 

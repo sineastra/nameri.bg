@@ -81,7 +81,8 @@ const similarServicesFetch = [{
 	{
 		user: { fullName: 'Непотребния Йоцо', profilePic: profilePic3 },
 		service: { town: 'Яифос', цена: 'По Договаряне', title: "Булки за женене", mainImg: serviceImg3 },
-	}]
+	},
+]
 
 const ServiceDetailsBig = ({ service }) => {
 
