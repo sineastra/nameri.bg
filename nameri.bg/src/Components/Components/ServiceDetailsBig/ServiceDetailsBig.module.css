@@ -1,0 +1,68 @@
+.mainSection {
+    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
+    height: 90vh;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    box-sizing: border-box;
+}
+
+.carouselSection {
+    width: 60%;
+    max-width: 60%;
+    min-width: 60%;
+    border: none;
+    box-sizing: border-box;
+}
+
+.sideSection {
+    width: 35%;
+
+}
+
+.serviceDetails {
+    margin-top: 1%;
+    width: 80%;
+    margin-left: 10%;
+    background-color: aliceblue;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2% 2%;
+    margin-bottom: 5%;
+}
+
+.innerDetails {
+    background-color: white;
+    border-radius: 20px;
+    white-space: pre-wrap;
+    width: 100%;
+    padding: 20px;
+}
+
+.detailsHeader {
+    padding: 0.5% 1% 1%;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: white;
+}
+
+.similarServices {
+    width: 80%;
+    box-sizing: border-box;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.similarService {
+    width: 30%;
+}

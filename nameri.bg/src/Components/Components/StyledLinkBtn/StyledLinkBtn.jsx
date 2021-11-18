@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import styles from "./StyledBtn.module.css"
+import styles from "./StyledLinkBtn.module.css"
 
 
 function StyledLinkBtn ({ className, text, href = "", onClick, children }) {

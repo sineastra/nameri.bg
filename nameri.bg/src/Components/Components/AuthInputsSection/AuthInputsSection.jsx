@@ -1,7 +1,7 @@
 import AuthHeader from "../AuthHeader/AuthHeader.jsx"
 import logo from "../../../assets/images/n-letter-png-transparent-images-76708.svg"
 import styles from "./AuthInputsSection.module.css"
-import StyledLinkBtn from "../StyledBtn/StyledLinkBtn.jsx"
+import StyledLinkBtn from "../StyledLinkBtn/StyledLinkBtn.jsx"
 import { useState } from "react"
 
 

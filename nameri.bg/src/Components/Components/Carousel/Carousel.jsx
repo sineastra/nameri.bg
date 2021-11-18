@@ -1,5 +1,6 @@
 import styles from "./Carousel.module.css"
 import { useRef, useState } from "react"
+import CarouselSingleSlider from "./CarouselSingleSlider/CarouselSingleSlider.jsx"
 
 
 const createSlidesArr = (data, imgsPerSlide) => {
@@ -28,20 +29,6 @@ const createSlidesArr = (data, imgsPerSlide) => {
 	return slideArr
 }
 
-const CarouselSlider = ({ slideData, setActiveImgIndx, isActive }) => {
-
-	return (
-		<div className={`${styles.slidersInnerWrapper} ${isActive ? styles.activeSlide : styles.inactiveSlide}`}>
-			{slideData.map(x => (
-				<div id={x.id} key={x.id} onClick={() => setActiveImgIndx(x.id)}
-				     className={styles.sliderSingleImgContainer}>
-					<img src={x.img} alt="" className={styles.sliderSingleImg}/>
-				</div>
-			))}
-		</div>
-	)
-}
-
 const Carousel = ({ data, imgsPerSlide = 3 }) => {
 	const [activeImgIndx, setActiveImgIndx] = useState(0)
 	const slideArray = createSlidesArr(data, imgsPerSlide)
@@ -49,8 +36,11 @@ const Carousel = ({ data, imgsPerSlide = 3 }) => {
 
 	const goNextSlide = () => {
 		sliderRef.current.scrollBy(sliderRef.current.clientWidth, 0)
+		console.dir(sliderRef.current)
 
-		if (sliderRef.current.scrollLeft + sliderRef.current.clientWidth === sliderRef.current.scrollWidth) {
+		console.log(sliderRef.current.scrollLeft, sliderRef.current.clientWidth, sliderRef.current.scrollWidth)
+
+		if (Math.abs(sliderRef.current.scrollWidth - (sliderRef.current.scrollLeft + sliderRef.current.clientWidth)) < 10) {
 			sliderRef.current.scrollLeft = 0
 		}
 	}
@@ -64,22 +54,25 @@ const Carousel = ({ data, imgsPerSlide = 3 }) => {
 	}
 
 	return (
-		<div className={styles.mainWrapper}>
-			<div className={styles.mainImgWrapper}>
-				<img src={data[activeImgIndx].img} alt="Main Service" className={styles.mainImg}/>
-			</div>
-			<section className={styles.slidersOuterWrapper}>
-				<span className={`${styles.navArrow} ${styles.leftArrow}`} onClick={goPrevSlide}>&lt;</span>
+		<div className={ styles.mainWrapper }>
 
-				{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/}
-				<div className={styles.carouselWrapper} ref={sliderRef}>
-					{slideArray.map((slideData, i) => (
-						<CarouselSlider {...{ slideData, setActiveImgIndx }}/>
-					))}
+			<div className={ styles.mainImgWrapper }>
+				<img src={ data[activeImgIndx].img } alt="Main Service" className={ styles.mainImg }/>
+			</div>
+
+			<section className={ styles.slidersOuterWrapper }>
+				<span className={ `${ styles.navArrow } ${ styles.leftArrow }` } onClick={ goPrevSlide }>&lt;</span>
+
+				{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/ }
+				<div className={ styles.carouselWrapper } ref={ sliderRef }>
+					{ slideArray.map(slideData => (
+						<CarouselSingleSlider { ...{ slideData, setActiveImgIndx, key: slideData[0].id } }/>
+					)) }
 				</div>
 
-				<span className={`${styles.navArrow} ${styles.rightArrow}`} onClick={goNextSlide}>&gt;</span>
+				<span className={ `${ styles.navArrow } ${ styles.rightArrow }` } onClick={ goNextSlide }>&gt;</span>
 			</section>
+
 		</div>
 	)
 }

@@ -18,6 +18,7 @@
     box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 25px;
+    cursor: pointer;
 }
 
 .townDiv {

@@ -8,7 +8,7 @@ import styles from "./CustomerServices.module.css"
 import CustomerServiceCard from "../../Components/CustomerServiceCard/CustomerServiceCard.jsx"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import CategoriesPagesHeader from "../../Components/CategoriesPagesHeader/CategoriesPagesHeader.jsx"
-import StyledLinkBtn from "../../Components/StyledBtn/StyledLinkBtn.jsx"
+import StyledLinkBtn from "../../Components/StyledLinkBtn/StyledLinkBtn.jsx"
 
 
 const fakeData = [

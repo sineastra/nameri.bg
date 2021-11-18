@@ -1,5 +1,5 @@
 import styles from "./AuthHeader.module.css"
-import StyledLinkBtn from "../StyledBtn/StyledLinkBtn.jsx"
+import StyledLinkBtn from "../StyledLinkBtn/StyledLinkBtn.jsx"
 
 
 const AuthHeader = ({ logo, linkText, href, className }) => {

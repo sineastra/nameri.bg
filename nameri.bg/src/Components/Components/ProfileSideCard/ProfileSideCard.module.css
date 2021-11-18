@@ -1,0 +1,86 @@
+.mainWrapper {
+    width: 100%;
+    min-height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 5%;
+    box-sizing: border-box;
+    background-color: aliceblue;
+}
+
+.headingWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainHeading {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.aboutWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 5px;
+}
+
+.singleSkillInnerWrapper {
+    display: flex;
+    padding: 6%;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    border-radius: 15%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    background-color: white;
+}
+
+.skillsInnerWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+.singleSkillOuterWrapper {
+    width: 30%;
+}
+
+.singleCertifInnerWrapper {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5%;
+    padding: 3% 4%;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 400;
+}
+
+.singleCertifOuterWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.certifEntryWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bolderNunito {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+}
+
+.certifSingleRow {
+    width: 50%;
+    justify-content: flex-start;
+}

@@ -1,0 +1,23 @@
+.slidersInnerWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+.sliderSingleImgContainer {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sliderSingleImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
