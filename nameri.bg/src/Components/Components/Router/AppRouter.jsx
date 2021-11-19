@@ -10,6 +10,7 @@ import AddService from "../../Pages/AddService/AddService.jsx"
 import Messages from "../../Pages/Messages/Messages.jsx"
 import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails.jsx"
 import ProfilePage from "../../Pages/ProfilePage/ProfilePage.jsx"
+import ProfileEdit from "../../Pages/ProfileEdit/ProfileEdit.jsx"
 
 
 const AppRouter = () => {
@@ -25,6 +26,7 @@ const AppRouter = () => {
 			<Route path="/messages" element={ <Messages/> }/>
 			<Route path="/details/:id" element={ <ServiceDetails/> }/>
 			<Route path="/profile/:id" element={ <ProfilePage/> }/>
+			<Route path="/profile-edit" element={ <ProfileEdit/> }/>
 		</Routes>
 	)
 }
