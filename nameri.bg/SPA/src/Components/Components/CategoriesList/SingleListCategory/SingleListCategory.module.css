@@ -1,0 +1,15 @@
+.singleCatCont {
+    background-color: darkred;
+    color: aliceblue;
+    border: 1px solid transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.singleCatCont:hover {
+    border-inline: 3px dashed black;
+}

@@ -1,0 +1,30 @@
+.mainWrapper {
+    width: 80%;
+    margin-left: 10%;
+    box-sizing: border-box;
+}
+
+.innerWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.servicesSection {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.serviceCard {
+    width: 40%;
+}
+
+.profileSideCardWrapper {
+    height: 100%;
+    width: 35%;
+}

@@ -1,0 +1,21 @@
+.headingOuter {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.headingInner {
+    width: 50%;
+}
+
+.headingInnerSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBarWrapper {
+    width: 60%;
+}

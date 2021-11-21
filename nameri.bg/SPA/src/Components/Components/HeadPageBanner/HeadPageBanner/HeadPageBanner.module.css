@@ -1,0 +1,35 @@
+.mainBanner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: aliceblue;
+}
+
+.mainBannerSection {
+    width: 30%;
+}
+
+.mainBannerHeaderSection {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.bigHeader {
+    font-size: 3.5em;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Balsamiq Sans', cursive;
+    color: darkred;
+}
+
+.smallHeader {
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+}

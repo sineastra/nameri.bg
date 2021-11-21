@@ -1,0 +1,69 @@
+.mainWrapper {
+    background-color: aliceblue;
+    padding: 2%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.innerWrapper {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.innerWrapperEmpty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+
+.noPostWrapper {
+    font-size: 20px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 400;
+    align-items: center;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+}
+
+h2 {
+    margin: 0 0 0 2%;
+}
+
+.userNameHeader {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    padding: 2%;
+    background-color: white;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.07);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.messagesContainer {
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.singleMsgWrapper {
+    padding: 10px;
+}
+
+.singleMsg {
+    display: inline-block;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    background-color: aliceblue;
+}

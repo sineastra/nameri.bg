@@ -1,0 +1,23 @@
+.grey {
+    color: grey;
+}
+
+.outerContainer {
+    border-radius: 10px;
+    box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+}
+
+.countContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subCatHeader {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 300;
+}
+
+.darkRedColor {
+    color: darkred;
+}

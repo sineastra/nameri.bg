@@ -1,0 +1,37 @@
+.categContainer {
+    position: relative;
+    width: 23%;
+    cursor: pointer;
+}
+
+.categHeading {
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translate(-50%);
+    color: white;
+    z-index: 2;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.categContainer:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    transition: opacity .3s;
+    opacity: 1;
+    z-index: 1;
+}
+
+.categContainer:hover:after {
+    opacity: 0;
+}

@@ -1,0 +1,23 @@
+.categoryCard {
+    width: 20%;
+    height: 250px;
+    margin-bottom: 30px;
+}
+
+.cardsWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.outerSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.innerSection {
+    width: 80%;
+}
