@@ -1,0 +1,24 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/SPA/node_modules
+/SPA/pnp
+/SPA/pnp.js
+
+# testing
+/SPA/coverage
+
+# production
+/SPA/build
+
+# misc
+/SPA/DS_Store
+/SPA/env.local
+/SPA/env.development.local
+/SPA/env.test.local
+/SPA/env.production.local
+
+/SPA/npm-debug.log*
+/SPA/yarn-debug.log*
+/SPA/yarn-error.log*
+/REST API/node_modules/
