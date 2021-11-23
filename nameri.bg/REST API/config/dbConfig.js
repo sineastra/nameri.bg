@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 module.exports = app => {
-    new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // runValidators tells mongoose to run validations on update operations, which are off by default:
         // findOneAndUpdate(), updateOne(), etc.
         mongoose.set("runValidators", true)
@@ -16,6 +16,7 @@ module.exports = app => {
 
         // the connection object we took now has various states. It is a push collection, which means it is an equivalent to
         // the EventEmitter. Or a RxJS observable. Kinda.. It emits (pushes) on various events, on which we can hook.
+        // all events on the docs: https://mongoosejs.com/docs/connections.html#connection-events
         db.on("disconnected", msg => {
             console.log(`Connection terminated. Reason: (${msg})`)
         })
