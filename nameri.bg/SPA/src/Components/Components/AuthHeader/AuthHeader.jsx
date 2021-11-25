@@ -2,19 +2,19 @@ import styles from "./AuthHeader.module.css"
 import StyledLinkBtn from "../StyledLinkBtn/StyledLinkBtn.jsx"
 
 
-const AuthHeader = ({ logo, linkText, href, className }) => {
+const AuthHeader = ({ logo, href, className, authType }) => {
+	const linkText = authType === 'login' ? "Влез" : "Регистрация"
 
 	return (
-		<div className={`${styles.mainWrapper} ${className}`}>
+		<div className={ `${ styles.mainWrapper } ${ className }` }>
 			<div>
-				<img src={logo} alt="Site Logo" className={styles.logoImg}/>
+				<img src={ logo } alt="Site Logo" className={ styles.logoImg }/>
 			</div>
 			<div>
 
-				<StyledLinkBtn className={styles.link} href={href} text={linkText}>
+				<StyledLinkBtn className={ styles.link } href={ href } text={ linkText }>
 
 				</StyledLinkBtn>
-
 			</div>
 		</div>
 	)
