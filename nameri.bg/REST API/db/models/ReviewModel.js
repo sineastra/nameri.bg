@@ -8,4 +8,6 @@ const ReviewSchema = new mongoose.Schema({
     timeCreated: { type: Date, required: true, default: Date.now },
 })
 
-const Review = mongoose.model("Review", ReviewSchema)
+const ReviewModel = mongoose.model("Review", ReviewSchema)
+
+module.exports = ReviewModel

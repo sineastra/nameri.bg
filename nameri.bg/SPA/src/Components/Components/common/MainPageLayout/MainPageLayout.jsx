@@ -3,11 +3,10 @@ import Footer from "../Footer/Footer.jsx"
 
 
 const MainPageLayout = ({ children }) => {
-
 	return (
 		<>
 			<Header/>
-			{children}
+			{ children }
 			<Footer/>
 		</>
 	)

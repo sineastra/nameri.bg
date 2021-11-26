@@ -1,0 +1,19 @@
+.errorNotif {
+    position: fixed;
+    top: 200px;
+    right: 50px;
+    background-color: rgba(183, 0, 0, 0.9);
+    border: 1px solid lightgray;
+    border-radius: 20px 0 20px 0px;
+    padding: 30px 40px;
+    z-index: 2;
+
+}
+
+.closeBtn {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}

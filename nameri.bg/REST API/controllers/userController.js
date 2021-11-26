@@ -4,18 +4,20 @@ const bcrypt = require("bcrypt")
 const router = require("express").Router()
 const { body, validationResult } = require("express-validator")
 
-const login = async (req, res) => {
+const signIn = async (req, res) => {
     const errors = validationResult(req)
 
+    console.log(req.body)
+
     if (errors.isEmpty()) {
-        const user = await req.dbServices.user.getByEmail(req.body.email)
+        const user = await req.dbServices.userServices.getByEmail(req.body.email)
 
         if (user && (await bcrypt.compare(req.body.password, user.hashedPassword))) {
             const token = jwt.sign(
                 {
                     _id: user._id,
                     email: user.email,
-                    nickname: user.nickname,
+                    nameAndSurname: user.nameAndSurname,
                 },
                 process.env.TOKEN_SECRET
             )
@@ -25,7 +27,6 @@ const login = async (req, res) => {
                 secure: true,
             })
 
-            console.log(cookie)
             res.json({ ok: true, status: 200, statusCode: "OK", token })
         } else {
             res.status(401).json({
@@ -43,29 +44,28 @@ const login = async (req, res) => {
             ...errors,
         })
     }
+
+    //TODO: add check for already logged in user.
 }
 
-const register = async (req, res, next) => {
+const signUp = async (req, res, next) => {
     const errors = validationResult(req)
 
     if (errors.isEmpty()) {
         const hashedPassword = await bcrypt.hash(req.body.password, 8)
-        const isExsiting = await req.dbServices.user.getByEmail(req.body.email)
+        const isExsiting = await req.dbServices.userServices.getByEmail(req.body.email)
 
         if (isExsiting === null) {
             const newUser = {
-                nickname: req.body.nickname,
+                nameAndSurname: req.body.nameAndSurname,
                 email: req.body.email,
                 hashedPassword,
-                nickname: req.body.nickname,
-                wishlist: [],
+                profilePic: "",
+                listings: [],
                 reviews: [],
-                purchases: [],
-                profilePicture: "",
-                coverPicture: "",
             }
 
-            await req.dbServices.user.createNew(newUser)
+            await req.dbServices.userServices.createNew(newUser)
 
             next()
         } else {
@@ -86,7 +86,7 @@ const register = async (req, res, next) => {
     }
 }
 
-router.get("/login", login)
-router.get("/register", register)
+router.post("/sign-in", signIn)
+router.post("/sign-up", signUp, signIn)
 
 module.exports = router

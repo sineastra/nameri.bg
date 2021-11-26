@@ -8,7 +8,7 @@ import styles from "./CustomerServices.module.css"
 import CustomerServiceCard from "../../Components/CustomerServiceCard/CustomerServiceCard.jsx"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import CategoriesPagesHeader from "../../Components/CategoriesPagesHeader/CategoriesPagesHeader.jsx"
-import StyledLinkBtn from "../../Components/StyledLinkBtn/StyledLinkBtn.jsx"
+import StyledBtn from "../../Components/StyledLinkBtn/StyledBtn.jsx"
 
 
 const fakeData = [
@@ -60,7 +60,7 @@ const CustomerServices = () => {
 						<CustomerServiceCard user={x.user} service={x.service} className={styles.customerServiceCard}/>
 					))}
 				</section>
-				<StyledLinkBtn onClick={() => {}} text="Зареди Още"/>
+				<StyledBtn onClick={() => {}} text="Зареди Още"/>
 			</section>
 		</MainPageLayout>
 	)

@@ -4,6 +4,8 @@ const processAuth = (req, res, next) => {
     const cookieName = process.env.COOKIE_NAME
     const token = req.cookies[cookieName]
 
+    console.log(token)
+
     if (token) {
         try {
             const userData = jwt.verify(token, process.env.TOKEN_SECRET)

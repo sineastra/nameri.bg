@@ -1,6 +1,7 @@
 const express = require("express")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
+const bodyParser = require("body-parser")
 
 // first adding the folder from which express will get the static files.
 

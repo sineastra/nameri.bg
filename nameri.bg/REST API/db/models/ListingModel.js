@@ -14,4 +14,6 @@ const ListingSchema = new mongoose.Schema({
     timeCreated: { type: Date, required: true, default: Date.now },
 })
 
-const Listing = mongoose.model("Listing", ListingSchema)
+const ListingModel = mongoose.model("Listing", ListingSchema)
+
+module.exports = ListingModel
