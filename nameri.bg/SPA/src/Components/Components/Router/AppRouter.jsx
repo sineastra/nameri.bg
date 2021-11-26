@@ -19,7 +19,7 @@ const AppRouter = () => {
 			<Route exact path="/" element={ <HomePage/> }/>
 			<Route path="/categories" element={ <CategoriesPage/> }/>
 			<Route path="/categories/:id" element={ <Subcategories/> }/>
-			<Route path="/categories/:cId/subcategories/:sId" element={ <CustomerServices/> }/>
+			<Route path="subcategories/:Id" element={ <CustomerServices/> }/>
 			<Route path="/sign-up" element={ <Auth authType={ "register" }/> }/>
 			<Route path="/sign-in" element={ <Auth authType={ "login" }/> }/>
 			<Route path="/add-service" element={ <AddService/> }/>

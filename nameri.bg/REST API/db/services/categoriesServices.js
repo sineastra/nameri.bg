@@ -9,10 +9,10 @@ const categoriesServices = {
             .populate("subcategories")
             .exec(),
     getWithMostSubs: async count =>
-        await SubcategoryModel.find({})
-            .sort({ listings: -1 })
+        await CategoryModel.find({})
+            .sort({ subcategories: -1 })
             .limit(count)
-            .populate("listings")
+            .populate("subcategories")
             .exec(),
 }
 

@@ -64,3 +64,8 @@ h1, h2 {
     font-size: 40px;
     font-family: 'Balsamiq Sans', cursive;
 }
+
+.linkBtn {
+    color: white;
+    text-decoration: none;
+}

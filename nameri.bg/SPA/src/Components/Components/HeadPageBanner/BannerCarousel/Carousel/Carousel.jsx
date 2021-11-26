@@ -67,11 +67,10 @@ const Carousel = () => {
 	useEffect(async () => {
 		try {
 			const data = await listingsServices.getBest(2)
-			console.log(data)
 			setCarouselData(data)
 			setActiveId(1)
 		} catch (e) {
-			navigate("error", {
+			navigate("/error", {
 				state: {
 					statusCode: e.statusCode,
 					status: e.status,

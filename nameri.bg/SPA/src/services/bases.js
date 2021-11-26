@@ -7,7 +7,7 @@ const baseFetch = async (url, body) => {
 		fetch(`${ baseUrl }${ url }`, body)
 			.then(data => data.json())
 			.then(data => resolve(data))
-			.catch(e => reject(e))
+			.catch(e => reject({ status: e.status, statusCode: e.statusCode }))
 
 	})
 }
@@ -20,7 +20,7 @@ const baseRequest = async (url) => {
 			}
 
 			resolve(response.data)
-		}).catch(e => reject(e))
+		}).catch(e => reject({ status: e.status, statusCode: e.statusCode }))
 	})
 }
 

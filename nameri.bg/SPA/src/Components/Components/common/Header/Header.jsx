@@ -14,10 +14,10 @@ const Header = () => {
 					</Link>
 					<Link to={ '/categories' } className={ styles.mainNavLink }>Категории</Link>
 					<Link to={ '/about' } className={ styles.mainNavLink }>За Платформата</Link>
-					<Link to={ '/users-top' } className={ styles.mainNavLink }>Топ Потребители</Link>
+					<Link to={ '/top-users' } className={ styles.mainNavLink }>Топ Потребители</Link>
 				</section>
 				<section className={ `${ styles.logoContainer } ${ styles.rightNavCont }` }>
-					<Link to={ '/login' } className={ styles.mainNavLink }>Влез</Link>
+					<Link to={ '/sign-in' } className={ styles.mainNavLink }>Влез</Link>
 				</section>
 			</nav>
 		</header>

@@ -1,13 +1,14 @@
 import styles from "./SingleListCategory.module.css"
+import { Link } from "react-router-dom"
 
 
-const SingleListCategory = ({ className = '', heading, servicesCount }) => {
+const SingleListCategory = ({ _id, name, listings, className = '' }) => {
 
 	return (
-		<div className={ `${ styles.singleCatCont } ${ className }` }>
-			<div>{ heading }</div>
-			<div>{ servicesCount }</div>
-		</div>
+		<Link className={ `${ styles.singleCatCont } ${ className }` } to={ `/subcategories/${ _id }` }>
+			<div>{ name }</div>
+			<div>{ listings.length }</div>
+		</Link>
 	)
 }
 
