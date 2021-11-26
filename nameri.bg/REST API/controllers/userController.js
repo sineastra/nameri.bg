@@ -1,4 +1,3 @@
-const User = require("../db/models/UserModel")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const router = require("express").Router()
@@ -6,8 +5,6 @@ const { body, validationResult } = require("express-validator")
 
 const signIn = async (req, res) => {
     const errors = validationResult(req)
-
-    console.log(req.body)
 
     if (errors.isEmpty()) {
         const user = await req.dbServices.userServices.getByEmail(req.body.email)

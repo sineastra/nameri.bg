@@ -10,6 +10,7 @@ import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails.jsx"
 import ProfilePage from "../../Pages/ProfilePage/ProfilePage.jsx"
 import ProfileEdit from "../../Pages/ProfileEdit/ProfileEdit.jsx"
 import Auth from "../../Pages/Auth/Auth.jsx"
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage.jsx"
 
 
 const AppRouter = () => {
@@ -26,6 +27,7 @@ const AppRouter = () => {
 			<Route path="/details/:id" element={ <ServiceDetails/> }/>
 			<Route path="/profile/:id" element={ <ProfilePage/> }/>
 			<Route path="/profile-edit" element={ <ProfileEdit/> }/>
+			<Route path="/error" element={ <ErrorPage/> }/>
 		</Routes>
 	)
 }

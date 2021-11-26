@@ -1,13 +1,14 @@
 import styles from "./SingleCategory.module.css"
+import { Link } from "react-router-dom"
 
 
-const SingleCategory = ({ img, name }) => {
+const SingleCategory = ({ _id, img, name }) => {
 
 	return (
-		<div className={styles.categContainer}>
-			<img className={styles.image} src={img} alt="Popular Category Image"/>
-			<h3 className={styles.categHeading}>{name}</h3>
-		</div>
+		<Link className={ styles.categContainer } to={ `/details/${ _id }` }>
+			<img className={ styles.image } src={ img } alt="Popular Category Image"/>
+			<h3 className={ styles.categHeading }>{ name }</h3>
+		</Link>
 	)
 }
 

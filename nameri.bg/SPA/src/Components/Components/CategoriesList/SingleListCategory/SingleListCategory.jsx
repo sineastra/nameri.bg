@@ -1,12 +1,12 @@
 import styles from "./SingleListCategory.module.css"
 
 
-const SingleListCategory = ({ className = '', categoryName, servicesCount }) => {
+const SingleListCategory = ({ className = '', heading, servicesCount }) => {
 
 	return (
-		<div className={`${styles.singleCatCont} ${className}`}>
-			<div>{categoryName}</div>
-			<div>{servicesCount}</div>
+		<div className={ `${ styles.singleCatCont } ${ className }` }>
+			<div>{ heading }</div>
+			<div>{ servicesCount }</div>
 		</div>
 	)
 }

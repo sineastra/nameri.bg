@@ -5,6 +5,7 @@
     vertical-align: middle;
     border: none;
     width: 85%;
+    max-width: 85%;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
     padding: 30px;
@@ -14,6 +15,7 @@
     height: 60px;
     box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    display: flex;
 }
 
 
@@ -21,6 +23,7 @@
     height: 60px;
     border: none;
     width: 15%;
+    min-width: 15%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     vertical-align: middle;

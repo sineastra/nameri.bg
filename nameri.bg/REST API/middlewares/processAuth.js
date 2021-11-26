@@ -10,8 +10,6 @@ const processAuth = (req, res, next) => {
         try {
             const userData = jwt.verify(token, process.env.TOKEN_SECRET)
 
-            console.log(userData)
-
             req.user = userData
         } catch (e) {
             res.clearCookie(cookieName)
