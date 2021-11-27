@@ -27,8 +27,17 @@ input, textarea, select {
 
 textarea {
     resize: none;
+    height: 80%;
+    margin-bottom: 0;
+}
+
+.textareaWrapper {
     width: 90%;
-    height: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .smallInputs {
@@ -68,4 +77,18 @@ textarea {
 .headingWrapper {
     width: 100%;
     text-align: center;
+}
+
+.invalidInput {
+    border: 2px solid red;
+}
+
+.errorElement {
+    color: red;
+}
+
+.priceWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }

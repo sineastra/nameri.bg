@@ -4,7 +4,7 @@ import HomePage from "../../Pages/HomePage/HomePage.jsx"
 import CategoriesPage from "../../Pages/Categories/CategoriesPage.jsx"
 import Subcategories from "../../Pages/Subcategories/Subcategories.jsx"
 import SubcategoryListings from "../../Pages/SubcategoryListings/SubcategoryListings.jsx"
-import AddService from "../../Pages/AddService/AddService.jsx"
+import AddListing from "../../Pages/AddListing/AddListing.jsx"
 import Messages from "../../Pages/Messages/Messages.jsx"
 import ListingDetails from "../../Pages/ListingDetails/ListingDetails.jsx"
 import ProfilePage from "../../Pages/ProfilePage/ProfilePage.jsx"
@@ -22,7 +22,7 @@ const AppRouter = () => {
 			<Route path="/categories/subcategories/:id" element={ <SubcategoryListings/> }/>
 			<Route path="/sign-up" element={ <Auth authType={ "register" }/> }/>
 			<Route path="/sign-in" element={ <Auth authType={ "login" }/> }/>
-			<Route path="/add-service" element={ <AddService/> }/>
+			<Route path="/add-listing" element={ <AddListing/> }/>
 			<Route path="/messages" element={ <Messages/> }/>
 			<Route path="/details/:id" element={ <ListingDetails/> }/>
 			<Route path="/profile/:id" element={ <ProfilePage/> }/>
