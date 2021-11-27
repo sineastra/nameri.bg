@@ -8,6 +8,7 @@ const CategoriesList = () => {
 	const [subCats, setSubCats] = useState([])
 
 	useEffect(async () => {
+		// TODO: this is for refactoring into custom Hook
 		const data = await categoriesService.getWithMostSubCats(2)
 
 		setSubCats(data)
@@ -21,11 +22,12 @@ const CategoriesList = () => {
 						<h1 className={ styles.mainHeader }>{ category.name }</h1>
 						<div className={ styles.innerRandom } key={ category.name }>
 							{ category.subcategories.map(subCat => (
-								<SingleListCategory key={ subCat._id }
-								                    _id={ subCat._id }
-								                    name={ subCat.name }
-								                    listings={ subCat.listings }
-								                    className={ `${ styles.singleCat } ${ styles.subHeader }` }
+								<SingleListCategory
+									key={ subCat._id }
+									_id={ subCat._id }
+									name={ subCat.name }
+									listings={ subCat.listings }
+									className={ `${ styles.singleCat } ${ styles.subHeader }` }
 								/>))
 							}
 						</div>

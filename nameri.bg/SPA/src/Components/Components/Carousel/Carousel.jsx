@@ -63,8 +63,12 @@ const Carousel = ({ data, imgsPerSlide = 3 }) => {
 				{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/ }
 				<div className={ styles.carouselWrapper } ref={ sliderRef }>
 					{ slideArray.map(slideData => (
-						<CarouselSingleSlider { ...{ slideData, setActiveImgIndx, key: slideData[0].id } }/>
-					)) }
+						<CarouselSingleSlider
+							slideData={ slideData }
+							setActiveImgIndx={ setActiveImgIndx }
+							key={ slideData[0] }
+						/>))
+					}
 				</div>
 
 				<span className={ `${ styles.navArrow } ${ styles.rightArrow }` } onClick={ goNextSlide }>&gt;</span>

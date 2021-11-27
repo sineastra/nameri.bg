@@ -59,6 +59,7 @@ const SubcategoryListings = () => {
 	const params = useParams()
 
 	useEffect(() => {
+		// TODO: this is for refactoring into custom Hook
 		const fetchData = async () => {
 			const result = await categoriesService.getSubCatListings(params.id)
 

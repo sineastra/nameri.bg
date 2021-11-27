@@ -12,12 +12,12 @@ const UserRatingHeading = ({
 
 	return (
 		<div className={ `${ styles.userInfoHeadings } ${ wrapperClassName }` }>
-			<div className={styles.imageWrapper}>
+			<div className={ styles.imageWrapper }>
 				<img src={ user.profileImg } alt="ProfilePage"
 				     className={ `${ styles.profileImg } ${ profileImgClassName }` }/>
 			</div>
 			<div className={ `${ styles.userFullName } ${ headingClassName }` }>
-				{ user.fullName }
+				{ user.nameAndSurname }
 			</div>
 			<div>
 				<RatingBox { ...{ user, showVotes } }/>

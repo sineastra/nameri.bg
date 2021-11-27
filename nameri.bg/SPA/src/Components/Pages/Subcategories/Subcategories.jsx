@@ -13,6 +13,7 @@ const Subcategories = (props) => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
+		// TODO: this is for refactoring into custom Hook
 		const fetchData = async () => {
 			try {
 				const result = await categoriesService.getSubCategories(params.id)

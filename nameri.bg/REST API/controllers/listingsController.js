@@ -7,9 +7,18 @@ router.get("/best", async (req, res) => {
     await abstractGetRequest(req, res, dbService)
 })
 
-router.get("/:id", async (req, res) => {
+router.get("/details/:id", async (req, res) => {
     const _id = req.params.id
-    const dbService = (req) => req.dbServices.listingsServices.getListing(_id)
+
+    const dbService = async req => {
+        const listing = await req.dbServices.listingsServices.getListing(_id)
+        const similar = await req.dbServices.listingsServices.getSimilar(
+            listing.tags,
+            listing._id
+        )
+
+        return { listing, similar }
+    }
 
     await abstractGetRequest(req, res, dbService)
 })
