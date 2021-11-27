@@ -8,18 +8,15 @@ const listingsServices = {
             .sort({ rating: "desc" })
             .limit(count)
             .exec(),
-    getListing: async _id => await ListingModel.findById(_id).populate("user").populate('reviews').exec(),
+    getListing: async _id =>
+        await ListingModel.findById(_id).populate("user").populate("reviews").exec(),
     getSimilar: async (tags, listingId) =>
-        await ListingModel
-        .find({
-            $and: [
-                { _id: { $ne: listingId } }, 
-                { tags: { $in: tags } }
-            ],
+        await ListingModel.find({
+            $and: [{ _id: { $ne: listingId } }, { tags: { $in: tags } }],
         })
-        .populate("user")
-        .populate("reviews")
-        .exec(),
+            .populate("user")
+            .populate("reviews")
+            .exec(),
 }
 
 module.exports = listingsServices

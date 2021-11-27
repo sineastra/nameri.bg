@@ -28,4 +28,10 @@ router.get("/subcategories/:id", async (req, res) => {
     await abstractGetRequest(req, res, dbService)
 })
 
+router.get("/", async (req, res) => {
+    const dbService = req => req.dbServices.categoriesServices.getAll()
+
+    await abstractGetRequest(req, res, dbService)
+})
+
 module.exports = router

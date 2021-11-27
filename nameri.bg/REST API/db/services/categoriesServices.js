@@ -28,6 +28,8 @@ const categoriesServices = {
                 },
             })
             .exec(),
+
+    getAll: async () => await CategoryModel.find({}).populate('subcategories').exec(),
 }
 
 module.exports = categoriesServices
