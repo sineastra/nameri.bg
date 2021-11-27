@@ -6,7 +6,7 @@ import profilePic2 from "../../../assets/images/profile-pic2.webp"
 import serviceImg2 from "../../../assets/images/service2.jpg"
 import profilePic3 from "../../../assets/images/profile-pic3.webp"
 import serviceImg3 from "../../../assets/images/service3.jpg"
-import CustomerServiceCard from "../CustomerServiceCard/CustomerServiceCard.jsx"
+import ListingCard from "../ListingCard/ListingCard.jsx"
 
 
 const similarServicesFetch = [{
@@ -46,7 +46,7 @@ const ProfileSection = () => {
 			<div className={ styles.innerWrapper }>
 				<section className={ styles.servicesSection }>
 					{ similarServicesFetch.map(x => (
-						<CustomerServiceCard service={ x.service } user={ x.user } className={ styles.serviceCard }/>
+						<ListingCard service={ x.service } user={ x.user } className={ styles.serviceCard }/>
 					)) }
 				</section>
 				<div className={styles.profileSideCardWrapper}>

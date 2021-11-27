@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const ListingSchema = new mongoose.Schema({
     heading: { type: String, required: true },
-    prices: [{ type: Number }],
+    prices: [{ type: String }],
     images: [{ type: String }],
     mainImg: { type: String },
     tags: [{ type: String }],

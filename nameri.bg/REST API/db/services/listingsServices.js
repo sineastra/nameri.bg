@@ -5,9 +5,10 @@ const listingsServices = {
         await ListingModel.find({ premium: true })
             .populate("reviews")
             .populate("user")
-            .sort({'rating': 'desc'})
+            .sort({ rating: "desc" })
             .limit(count)
             .exec(),
+    getListing: async _id => await ListingModel.findById(_id).populate("user").exec(),
 }
 
 module.exports = listingsServices

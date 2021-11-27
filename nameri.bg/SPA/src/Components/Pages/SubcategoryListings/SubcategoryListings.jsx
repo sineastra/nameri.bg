@@ -4,11 +4,15 @@ import profilePic3 from "../../../assets/images/profile-pic3.webp"
 import serviceImg1 from "../../../assets/images/service1.png"
 import serviceImg2 from "../../../assets/images/service2.jpg"
 import serviceImg3 from "../../../assets/images/service3.jpg"
-import styles from "./CustomerServices.module.css"
-import CustomerServiceCard from "../../Components/CustomerServiceCard/CustomerServiceCard.jsx"
+import styles from "./SubcategoryListings.module.css"
+import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import CategoriesPagesHeader from "../../Components/CategoriesPagesHeader/CategoriesPagesHeader.jsx"
 import StyledBtn from "../../Components/StyledLinkBtn/StyledBtn.jsx"
+import { useEffect, useState } from "react"
+import listingsServices from "../../../services/listingsServices.js"
+import categoriesService from "../../../services/categoriesService.js"
+import { Link, useParams } from "react-router-dom"
 
 
 const fakeData = [
@@ -50,20 +54,41 @@ const fakeData = [
 	},
 ]
 
-const CustomerServices = () => {
+const SubcategoryListings = () => {
+	const [subcategory, setSubcategory] = useState()
+	const params = useParams()
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await categoriesService.getSubCatListings(params.id)
+
+			setSubcategory(result)
+		}
+
+		fetchData()
+	}, [params])
+
 	return (
-		<MainPageLayout>
-			<section className={styles.wrapper}>
-				<CategoriesPagesHeader categoryName="Субкатегория"/>
-				<section className={styles.servicesContainer}>
-					{fakeData.map(x => (
-						<CustomerServiceCard user={x.user} service={x.service} className={styles.customerServiceCard}/>
-					))}
+		subcategory
+			? <MainPageLayout>
+				<section className={ styles.wrapper }>
+					<CategoriesPagesHeader categoryName={ subcategory.name }/>
+					<section className={ styles.servicesContainer }>
+						{ subcategory.listings.map(listing => (
+							<Link to={ `/details/${ listing._id }` } key={ listing._id }>
+								<ListingCard
+									className={ styles.customerServiceCard }
+									listing={ listing }
+									user={ listing.user }
+								/>
+							</Link>
+						)) }
+					</section>
+					<StyledBtn onClick={ () => {} } text="Зареди Още"/>
 				</section>
-				<StyledBtn onClick={() => {}} text="Зареди Още"/>
-			</section>
-		</MainPageLayout>
+			</MainPageLayout>
+			: null
 	)
 }
 
-export default CustomerServices
+export default SubcategoryListings

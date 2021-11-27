@@ -1,10 +1,11 @@
-import { baseRequest } from "./bases.js"
+import { abstractRequest } from "./abstracts.js"
 
 
 const categoriesService = {
-	getPopular: (count = 5) => baseRequest(`/categories/popular?count=${ count }`),
-	getWithMostSubCats: (count = 1) => baseRequest(`/categories/with-most-sub-cats?count=${ count }`),
-	getSubCategories: (categoryId) => baseRequest(`/categories/${ categoryId }`),
+	getPopular: (count = 5) => abstractRequest(`/categories/popular?count=${ count }`),
+	getWithMostSubCats: (count = 1) => abstractRequest(`/categories/with-most-sub-cats?count=${ count }`),
+	getSubCategories: (id) => abstractRequest(`/categories/${ id }`),
+	getSubCatListings: (id) => abstractRequest(`/categories/subcategories/${ id }`),
 }
 
 export default categoriesService

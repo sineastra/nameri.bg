@@ -4,43 +4,54 @@ import SubcategoryCard from "../../Components/SubcategoryCard/SubcategoryCard.js
 import styles from "./Subcategories.module.css"
 import { useEffect, useState } from "react"
 import categoriesService from "../../../services/categoriesService.js"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 
 const Subcategories = (props) => {
-	const [subCats, setSubCats] = useState([])
+	const [category, setCategory] = useState()
 	const params = useParams()
 	const navigate = useNavigate()
 
-	useEffect(async () => {
-		try {
-			const result = await categoriesService.getSubCategories(params.id)
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const result = await categoriesService.getSubCategories(params.id)
 
-			setSubCats(result.subcategories)
-		} catch (e) {
-			navigate("/error", {
-				state: {
-					statusCode: e.statusCode,
-					status: e.status,
-				},
-			})
+				setCategory(result)
+			} catch (e) {
+				navigate("/error", {
+					state: {
+						statusCode: e.statusCode,
+						status: e.status,
+					},
+				})
+			}
 		}
-	}, [])
+
+		fetchData()
+	}, [params])
 
 	return (
-		<MainPageLayout>
-			<div className={ styles.wrapper }>
-				<CategoriesPagesHeader categoryName={ 'Субкатегория' }/>
-				<section className={ styles.subCatsInner }>
-					{ subCats.map(subCategory => (
-						<div className={ styles.subCatCardWrapper }>
-							<SubcategoryCard categoryName={ subCategory.name }
-							                 subCatsCount={ subCategory.listings.length } key={ subCategory._id }/>
-						</div>
-					)) }
-				</section>
-			</div>
-		</MainPageLayout>
+		category
+			? <MainPageLayout>
+				<div className={ styles.wrapper }>
+					<CategoriesPagesHeader categoryName={ category.name }/>
+					<section className={ styles.subCatsInner }>
+						{ category.subcategories.map(subCategory => (
+							<div className={ styles.subCatCardWrapper } key={ subCategory._id }>
+								<Link to={ `/categories/subcategories/${ subCategory._id }` }>
+									<SubcategoryCard
+										categoryName={ subCategory.name }
+										subCatsCount={ subCategory.listings.length }
+									/>
+								</Link>
+							</div>
+						)) }
+					</section>
+				</div>
+			</MainPageLayout>
+			: null
+
 	)
 }
 

@@ -18,6 +18,16 @@ const categoriesServices = {
 
     getSubcategories: async _id =>
         await CategoryModel.findOne({ _id }).populate("subcategories").exec(),
+
+    getSubCatListings: async _id =>
+        await SubcategoryModel.findOne({ _id })
+            .populate({
+                path: "listings",
+                populate: {
+                    path: "user",
+                },
+            })
+            .exec(),
 }
 
 module.exports = categoriesServices

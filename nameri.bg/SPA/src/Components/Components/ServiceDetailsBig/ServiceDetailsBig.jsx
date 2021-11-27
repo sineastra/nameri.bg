@@ -16,7 +16,7 @@ import profilePic2 from "../../../assets/images/profile-pic2.webp"
 import serviceImg2 from "../../../assets/images/service2.jpg"
 import profilePic3 from "../../../assets/images/profile-pic3.webp"
 import serviceImg3 from "../../../assets/images/service3.jpg"
-import CustomerServiceCard from "../CustomerServiceCard/CustomerServiceCard.jsx"
+import ListingCard from "../ListingCard/ListingCard.jsx"
 
 
 const fakeData = [
@@ -108,7 +108,7 @@ const ServiceDetailsBig = ({ service }) => {
 
 			<section className={ styles.similarServices }>
 				{ similarServicesFetch.map(x => (
-					<CustomerServiceCard service={ x.service } user={ x.user } className={ styles.similarService }/>
+					<ListingCard service={ x.service } user={ x.user } className={ styles.similarService }/>
 				)) }
 			</section>
 		</>

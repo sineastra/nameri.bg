@@ -2,7 +2,7 @@ import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayou
 import ServiceDetailsBig from "../../Components/ServiceDetailsBig/ServiceDetailsBig.jsx"
 
 
-const ServiceDetails = (props) => {
+const ListingDetails = (props) => {
 
 	const service = {
 		details: `НМ ФРЕШ СТИЛ" предлага:
@@ -32,4 +32,4 @@ const ServiceDetails = (props) => {
 	)
 }
 
-export default ServiceDetails
+export default ListingDetails
