@@ -9,7 +9,6 @@ const CategoriesList = () => {
 
 	useEffect(async () => {
 		const data = await categoriesService.getWithMostSubCats(2)
-		console.log(data)
 
 		setSubCats(data)
 	}, [])

@@ -36,9 +36,6 @@ const Carousel = ({ data, imgsPerSlide = 3 }) => {
 
 	const goNextSlide = () => {
 		sliderRef.current.scrollBy(sliderRef.current.clientWidth, 0)
-		console.dir(sliderRef.current)
-
-		console.log(sliderRef.current.scrollLeft, sliderRef.current.clientWidth, sliderRef.current.scrollWidth)
 
 		if (Math.abs(sliderRef.current.scrollWidth - (sliderRef.current.scrollLeft + sliderRef.current.clientWidth)) < 10) {
 			sliderRef.current.scrollLeft = 0
