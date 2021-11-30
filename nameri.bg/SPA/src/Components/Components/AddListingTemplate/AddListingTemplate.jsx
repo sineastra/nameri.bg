@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 
 const AddListingTemplate = () => {
-	const [data, setData] = useState()
+	const [data, setData] = useState({ towns: null, categories: null })
 	const [validFormData, setValidFormData] = useState(null)
 	const [errors, setErrors] = useState({})
 	const navigate = useNavigate()
@@ -28,8 +28,7 @@ const AddListingTemplate = () => {
 	}, [])
 
 	useEffect(() => {
-		console.log(validFormData)
-		// TODO: to put post fetch
+		// TODO: to send the request once the file uploading logic is created for the CLOUD storaging on express.
 		if (validFormData !== null) {
 			navigate("/")
 		}
@@ -69,7 +68,7 @@ const AddListingTemplate = () => {
 	}
 
 	return (
-		data
+		data.towns
 			? <form className={ styles.mainWrapper } method="POST" onSubmit={ submitHandler }>
 				<div className={ styles.upperWrapper }>
 					<div className={ styles.headingWrapper }>
@@ -83,7 +82,7 @@ const AddListingTemplate = () => {
 							className={ errors.headingError ? styles.invalidInput : '' }
 						/>
 						{ errors.headingError &&
-						<div className={ styles.errorElement }>Заглавието трябва да е поне 5 символа!</div> }
+							<div className={ styles.errorElement }>Заглавието трябва да е поне 5 символа!</div> }
 						{/*End of Heading Input*/ }
 
 					</div>
@@ -96,7 +95,7 @@ const AddListingTemplate = () => {
 							className={ errors.detailsError ? styles.invalidInput : '' }
 						/>
 						{ errors.detailsError &&
-						<div className={ styles.errorElement }>Описанието трябва да е поне 10 символа!</div> }
+							<div className={ styles.errorElement }>Описанието трябва да е поне 10 символа!</div> }
 					</div>
 					{/*End of Details Textarea*/ }
 

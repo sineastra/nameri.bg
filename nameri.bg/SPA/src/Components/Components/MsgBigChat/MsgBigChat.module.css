@@ -57,13 +57,25 @@ h2 {
 
 .singleMsgWrapper {
     padding: 10px;
+    position: relative;
 }
 
 .singleMsg {
     display: inline-block;
     padding: 10px 20px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.singleMsgNotOwn {
+    background-color: aliceblue;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
-    background-color: aliceblue;
+}
+
+.singleMsgOwn {
+    float: right;
+    background-color: blue;
+    color: white;
+    border-top-left-radius: 35px;
+    border-bottom-right-radius: 35px;
 }

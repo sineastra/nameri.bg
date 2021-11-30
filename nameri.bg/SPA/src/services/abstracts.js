@@ -12,7 +12,7 @@ const abstractFetch = async (url, body) => {
 	})
 }
 
-const abstractRequest = async (url) => {
+const abstractGetRequest = async (url) => {
 	return new Promise((resolve, reject) => {
 		abstractFetch(url).then(response => {
 			if (response.data === undefined) {
@@ -24,4 +24,4 @@ const abstractRequest = async (url) => {
 	})
 }
 
-export { abstractFetch, abstractRequest }
+export { abstractFetch, abstractGetRequest }

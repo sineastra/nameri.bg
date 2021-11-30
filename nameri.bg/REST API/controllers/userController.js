@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const router = require("express").Router()
 const { body, validationResult } = require("express-validator")
+const { abstractGetRequest } = require("./abstractRequests")
 
 const signIn = async (req, res) => {
     const errors = validationResult(req)
@@ -85,5 +86,19 @@ const signUp = async (req, res, next) => {
 
 router.post("/sign-in", signIn)
 router.post("/sign-up", signUp, signIn)
+
+router.get("/:id/messages", async (req, res) => {
+    console.log('here')
+    const userId = req.params.id
+    const dbService = req => req.dbServices.userServices.getAllUserMessages(userId)
+
+    await abstractGetRequest(req, res, dbService)
+})
+router.get("/message/:id", async (req, res) => {
+    const messageId = req.params.id
+    const dbService = req => req.dbServices.userServices.getSingleMessage(messageId)
+
+    await abstractGetRequest(req, res, dbService)
+})
 
 module.exports = router

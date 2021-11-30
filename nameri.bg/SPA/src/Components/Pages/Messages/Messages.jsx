@@ -1,6 +1,9 @@
 import MessagesComp from "../../Components/Messages/MessagesComp.jsx"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styled from "styled-components"
+import { useContext, useEffect, useState } from "react"
+import userServices from "../../../services/userServices.js"
+import UserContext from "../../../Contexts/UserContext.jsx"
 
 
 const PageSection = styled.section`
@@ -10,75 +13,31 @@ const PageSection = styled.section`
 `
 
 const Messages = (props) => {
-	const messages = [
-		{
-			id: 0,
-			messages: [
-				{ text: 'ASAM GOSHO' },
-				{ text: 'TOKA LESE' },
-				{ text: 'AKO NE SE TOKA GADE SUM' },
-				{ text: 'ПРАЗНО САОБШТЕНИЕ' },
-			],
-			sender: { fullName: 'Сийка' },
-		},
-		{
-			id: 1,
-			messages: [
-				{ text: 'ASAM GOSHO' },
-				{ text: 'TOKA LESE' },
-				{ text: 'AKO NE SE TOKA GADE SUM' },
-				{ text: 'пълно съобщение' },
-			],
-			sender: { fullName: 'Пешо Тъмното' },
-		},
-		{
-			id: 2,
-			messages: [
-				{ text: 'ASAM GOSHO' },
-				{ text: 'TOKA LESE' },
-				{ text: 'AKO NE SE TOKA GADE SUM' },
-				{ text: 'ПРАЗНО САОБШТЕНИЕ' },
-			],
-			sender: { fullName: 'Сийка' },
-		},
-		{
-			id: 3,
-			messages: [
-				{ text: 'ASAM GOSHO' },
-				{ text: 'TOKA LESE' },
-				{ text: 'AKO NE SE TOKA GADE SUM' },
-				{ text: 'пълно съобщение' },
-			],
-			sender: { fullName: 'Пешо Тъмното' },
-		},
-		{
-			id: 4,
-			messages: [
-				{ text: 'ASAM GOSHO' },
-				{ text: 'TOKA LESE' },
-				{ text: 'AKO NE SE TOKA GADE SUM' },
-				{ text: 'ПРАЗНО САОБШТЕНИЕ' },
-			],
-			sender: { fullName: 'Сийка' },
-		},
-		{
-			id: 5,
-			messages: [
-				{ text: 'ASAM GOSHO' },
-				{ text: 'TOKA LESE' },
-				{ text: 'AKO NE SE TOKA GADE SUM' },
-				{ text: 'пълно съобщение' },
-			],
-			sender: { fullName: 'Сийка2' },
-		},
-	]
+	const [user, _] = useContext(UserContext)
+	const [conversations, setConversations] = useState(null)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const { conversations } = await userServices.getAllUserMessages(user._id)
+
+			console.log(conversations)
+
+			setConversations(conversations)
+		}
+
+		if (user) {
+			fetchData()
+		}
+	}, [user])
 
 	return (
-		<MainPageLayout>
-			<PageSection>
-				<MessagesComp {...{ messages }}/>
-			</PageSection>
-		</MainPageLayout>
+		conversations
+			? <MainPageLayout>
+				<PageSection>
+					<MessagesComp messages={ conversations }/>
+				</PageSection>
+			</MainPageLayout>
+			: null
 	)
 }
 

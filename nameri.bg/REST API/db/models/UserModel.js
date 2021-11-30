@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
     profileImg: { type: String },
     listings: [{ type: "ObjectId", ref: "Listing", default: [] }],
     reviews: [{ type: "ObjectId", ref: "Review", default: [] }],
+    conversations: [{ type: "ObjectId", ref: "Conversation", default: [] }],
 })
 
 const UserModel = mongoose.model("User", UserSchema)
