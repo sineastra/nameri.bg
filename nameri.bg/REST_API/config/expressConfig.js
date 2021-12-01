@@ -18,7 +18,7 @@ const bodyParser = require("body-parser")
 // sixth for parsing cookies into req.cookie
 
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://nameri-bg-rest-api.herokuapp.com"],
+    origin: ["http://localhost:3000", "https://nameri-bg.vercel.app"],
     credentials: true,
 }
 
