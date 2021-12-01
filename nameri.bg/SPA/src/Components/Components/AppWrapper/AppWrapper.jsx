@@ -39,10 +39,10 @@ function AppWrapper (props) {
 			<ErrorContext.Provider value={ [error, setError] }>
 
 				{ error &&
-				<div className={ styles.errorNotif }>
-					{ error }
-					<span className={ styles.closeBtn } onClick={ closeNotif }>X</span>
-				</div> }
+					<div className={ styles.errorNotif }>
+						{ error }
+						<span className={ styles.closeBtn } onClick={ closeNotif }>X</span>
+					</div> }
 				<AppRouter/>
 
 			</ErrorContext.Provider>

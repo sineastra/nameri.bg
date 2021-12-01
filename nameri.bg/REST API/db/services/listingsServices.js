@@ -17,6 +17,15 @@ const listingsServices = {
             .populate("user")
             .populate("reviews")
             .exec(),
+    getUserListings: async userId => {
+        const result = await ListingModel.find({ user: userId }).exec()
+
+        console.log(typeof result[0].user)
+        console.log(typeof userId)
+        console.log(result[0].user === userId)
+
+        return result
+    },
 }
 
 module.exports = listingsServices

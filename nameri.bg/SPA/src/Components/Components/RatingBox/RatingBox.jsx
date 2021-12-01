@@ -11,7 +11,7 @@ const RatingBox = ({ user, showVotes }) => {
 				<FaStar/>
 			</div>
 			{ showVotes && <div>
-				{ user.votedUsers } гласа
+				{ user.reviews.length } гласа
 			</div> }
 		</div>
 	)

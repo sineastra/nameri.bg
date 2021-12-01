@@ -2,6 +2,8 @@ import styles from "./ProfileSideCard.module.css"
 import { FaCheck } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import RatingBox from "../RatingBox/RatingBox.jsx"
+import { useContext } from "react"
+import UserContext from "../../../Contexts/UserContext.jsx"
 
 
 const ContactsInfo = ({ user }) => {
@@ -53,52 +55,33 @@ const Certificate = ({ data }) => {
 	)
 }
 
-const ProfileSideCard = ({ className }) => {
-	const dataFromContext = {
-		isOwn: false,
-		premiumPlan: 2,
-		user: {
-			fullName: 'Pesho Kalibrata',
-			votedUsers: 1500,
-			rating: 1.1,
-			ratingTitle: 'Not Cool Guy',
-			about: 'I am not cool guy. I am hot guy.',
-			phone: '111',
-			email: 'asd@asd.asd',
-			address: 'Pesho str',
-			website: 'abv.bg',
-			skills: ['peshizum', 'ciklizum', 'traktorizum'],
-			diplomasAndCertifs: [{
-				heading: 'Peshov Certificat',
-				institution: 'Peshova Instituciq',
-				from: '11.11.1111',
-				to: '12.11.1111',
-			}],
-		},
-	}
+const ProfileSideCard = ({ className, user }) => {
+	const loggedUser = useContext(UserContext)
+	const isOwn = loggedUser && loggedUser._id === user._id
+	console.log(user)
 
-	const shouldSeeContacts = dataFromContext.isOwn || Number(dataFromContext.premiumPlan) >= 2
+	const shouldSeeContacts = isOwn || Number(user.premiumPlan) >= 2
 
 	return (
 		<div className={ `${ styles.mainWrapper } ${ className }` }>
 			<div className={ styles.headingWrapper }>
-				<div className={ styles.mainHeading }>{ dataFromContext.user.fullName }</div>
-				<RatingBox user={ dataFromContext.user } showVotes={ true }/>
+				<div className={ styles.mainHeading }>{ user.nameAndSurname }</div>
+				<RatingBox user={ user } showVotes={ true }/>
 			</div>
-			{ dataFromContext.isOwn ? <EditProfile/> : '' }
+			{ isOwn ? <EditProfile/> : '' }
 
 			<div className={ styles.aboutWrapper }>
 				<div className={ styles.mainHeading }>За Мен</div>
-				{ shouldSeeContacts && <ContactsInfo user={ dataFromContext.user }/> }
+				{ shouldSeeContacts && <ContactsInfo user={ user }/> }
 				<div>Съобщение</div>
 				<hr/>
-				<div>{ dataFromContext.user.about }</div>
+				<div>{ user.about }</div>
 			</div>
 
 			<div className={ styles.skillsOuterWrapper }>
 				<div className={ styles.mainHeading }>Умения:</div>
 				<div className={ styles.skillsInnerWrapper }>
-					{ dataFromContext.user.skills.map(skillName => {
+					{ user.skills.map(skillName => {
 
 						return (
 							<div className={ styles.singleSkillOuterWrapper }>
@@ -111,7 +94,7 @@ const ProfileSideCard = ({ className }) => {
 
 			<div className={ styles.singleCertifOuterWrapper }>
 				<div className={ styles.mainHeading }>Дипломи и Сертификати</div>
-				{ dataFromContext.user.diplomasAndCertifs.map(data => <Certificate data={ data }/>) }
+				{ user.diplomasAndCertifs.map(data => <Certificate data={ data }/>) }
 			</div>
 		</div>
 	)

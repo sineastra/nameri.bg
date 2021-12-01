@@ -9,5 +9,6 @@ const userServices = {
 		await abstractFetch(`/user/sign-up`, stringifyFetchBody(formData, "POST")),
 	getAllUserMessages: async (userId) => await abstractGetRequest(`/user/${ userId }/messages`),
 	getSingleMessage: async (messageId) => await abstractGetRequest(`/user/message/${ messageId }`),
+	getUser: async (userId) => await abstractGetRequest(`/user/${ userId }`),
 }
 export default userServices

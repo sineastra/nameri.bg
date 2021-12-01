@@ -55,12 +55,20 @@ const signUp = async (req, res, next) => {
 
         if (isExsiting === null) {
             const newUser = {
-                nameAndSurname: req.body.nameAndSurname,
                 email: req.body.email,
+                nameAndSurname: req.body.nameAndSurname,
                 hashedPassword,
-                profilePic: "",
+                profileImg: "",
                 listings: [],
                 reviews: [],
+                conversations: [],
+                premiumPlan: 0,
+                phone: null,
+                address: null,
+                website: null,
+                skills: [],
+                diplomasAndCertifs: [],
+                rating: 0,
             }
 
             await req.dbServices.userServices.createNew(newUser)
@@ -88,7 +96,7 @@ router.post("/sign-in", signIn)
 router.post("/sign-up", signUp, signIn)
 
 router.get("/:id/messages", async (req, res) => {
-    console.log('here')
+    console.log("here")
     const userId = req.params.id
     const dbService = req => req.dbServices.userServices.getAllUserMessages(userId)
 
@@ -97,6 +105,12 @@ router.get("/:id/messages", async (req, res) => {
 router.get("/message/:id", async (req, res) => {
     const messageId = req.params.id
     const dbService = req => req.dbServices.userServices.getSingleMessage(messageId)
+
+    await abstractGetRequest(req, res, dbService)
+})
+router.get("/:id", async (req, res) => {
+    const userId = req.params.id
+    const dbService = req => req.dbServices.userServices.getUser(userId)
 
     await abstractGetRequest(req, res, dbService)
 })

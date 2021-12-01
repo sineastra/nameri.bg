@@ -1,59 +1,47 @@
 import styles from "./ProfileSection.module.css"
 import ProfileSideCard from "../ProfileSideCard/ProfileSideCard.jsx"
-import profilePic1 from "../../../assets/images/profile-pic1.webp"
-import serviceImg1 from "../../../assets/images/service1.png"
-import profilePic2 from "../../../assets/images/profile-pic2.webp"
-import serviceImg2 from "../../../assets/images/service2.jpg"
-import profilePic3 from "../../../assets/images/profile-pic3.webp"
-import serviceImg3 from "../../../assets/images/service3.jpg"
 import ListingCard from "../ListingCard/ListingCard.jsx"
+import { useEffect, useState } from "react"
+import listingsServices from "../../../services/listingsServices.js"
+import userServices from "../../../services/userServices.js"
+import { useParams } from "react-router-dom"
 
-
-const similarServicesFetch = [{
-	user: { fullName: 'Потребителя Пенка', profilePic: profilePic1 },
-	service: { town: 'Пешово', цена: 40, title: "Дръвчета за садене", mainImg: serviceImg1 },
-},
-	{
-		user: { fullName: 'Потребителя Пешо', profilePic: profilePic2 },
-		service: { town: 'Гошово', цена: 140, title: "Семки за льопане", mainImg: serviceImg2 },
-	},
-	{
-		user: { fullName: 'Непотребния Йоцо', profilePic: profilePic3 },
-		service: { town: 'Яифос', цена: 'По Договаряне', title: "Булки за женене", mainImg: serviceImg3 },
-	},
-	{
-		user: { fullName: 'Потребителя Пешо', profilePic: profilePic2 },
-		service: { town: 'Гошово', цена: 140, title: "Семки за льопане", mainImg: serviceImg2 },
-	},
-	{
-		user: { fullName: 'Непотребния Йоцо', profilePic: profilePic3 },
-		service: { town: 'Яифос', цена: 'По Договаряне', title: "Булки за женене", mainImg: serviceImg3 },
-	},
-	{
-		user: { fullName: 'Потребителя Пешо', profilePic: profilePic2 },
-		service: { town: 'Гошово', цена: 140, title: "Семки за льопане", mainImg: serviceImg2 },
-	},
-	{
-		user: { fullName: 'Непотребния Йоцо', profilePic: profilePic3 },
-		service: { town: 'Яифос', цена: 'По Договаряне', title: "Булки за женене", mainImg: serviceImg3 },
-	},
-]
 
 const ProfileSection = () => {
+	const params = useParams()
+	const [state, setState] = useState({ user: null, listings: [] })
+	console.log(state)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const user = await userServices.getUser(params.id)
+			const listings = await listingsServices.getUserListings(user._id)
+
+			setState({ user, listings })
+		}
+
+		fetchData()
+	}, [])
 
 	return (
-		<div className={ styles.mainWrapper }>
-			<div className={ styles.innerWrapper }>
-				<section className={ styles.servicesSection }>
-					{ similarServicesFetch.map(x => (
-						<ListingCard service={ x.service } user={ x.user } className={ styles.serviceCard }/>
-					)) }
-				</section>
-				<div className={styles.profileSideCardWrapper}>
-					<ProfileSideCard className={ styles.className }/>
+		state.user
+			? <div className={ styles.mainWrapper }>
+				<div className={ styles.innerWrapper }>
+					<section className={ styles.servicesSection }>
+						{ state.listings.map(listing => (
+							<ListingCard
+								listing={ listing }
+								user={ state.user }
+								className={ styles.serviceCard }
+							/>))
+						}
+					</section>
+					<div className={ styles.profileSideCardWrapper }>
+						<ProfileSideCard user={ state.user }/>
+					</div>
 				</div>
 			</div>
-		</div>
+			: null
 	)
 }
 

@@ -18,28 +18,23 @@ const routesConfig = app => {
     app.use("/api/towns", townsController)
     app.use("/", async (req, res) => {
         const data = {
-            messages: [
-                {
-                    sender: "61a63e07e7cfabb412d88fb1",
-                    text: "zdr bepce",
-                },
-                {
-                    sender: "61a63e07e7cfabb412d88fb1",
-                    text: "kasi",
-                },
-                {
-                    sender: "61a63e07e7cfabb412d88fb1",
-                    text: "ai sa zapoznaim",
-                },
-                {
-                    sender: "61a63e38e7cfabb412d88fb2",
-                    text: "begi ot tuka e galosh",
-                },
+            heading: "Listing asdasdasdasd",
+            prices: [4, 5, 6],
+            images: [
+                "../../../assets/images/service1.png",
+                "../../../assets/images/service2.png",
+                "../../../assets/images/service3.png",
             ],
-            user: "61a63e38e7cfabb412d88fb2",
-            participants: ["61a63e07e7cfabb412d88fb1"],
+            mainImg: "../../../assets/images/service2.png",
+            tags: ["new"],
+            premiumType: true,
+            reviews: ["61a113fdb4ad6014e993a2c6", "61a113fdb4ad6014e993a2c7"],
+            details: "This is the second listing",
+            city: "Sofia",
+            user: "61a6a0afed501169b4aaf66e",
+            rating: "5",
         }
-        await ConversationModel.collection.insertOne(data)
+        await ListingModel.collection.insertOne(data)
     })
 }
 

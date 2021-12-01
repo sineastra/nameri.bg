@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { useContext, useEffect, useState } from "react"
 import userServices from "../../../services/userServices.js"
 import UserContext from "../../../Contexts/UserContext.jsx"
+import { Navigate } from "react-router-dom"
 
 
 const PageSection = styled.section`
@@ -14,15 +15,13 @@ const PageSection = styled.section`
 
 const Messages = (props) => {
 	const [user, _] = useContext(UserContext)
-	const [conversations, setConversations] = useState(null)
+	const [conversations, setConversations] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const { conversations } = await userServices.getAllUserMessages(user._id)
+			const data = await userServices.getAllUserMessages(user._id)
 
-			console.log(conversations)
-
-			setConversations(conversations)
+			setConversations(data.conversations)
 		}
 
 		if (user) {
@@ -31,13 +30,13 @@ const Messages = (props) => {
 	}, [user])
 
 	return (
-		conversations
+		user
 			? <MainPageLayout>
 				<PageSection>
 					<MessagesComp messages={ conversations }/>
 				</PageSection>
 			</MainPageLayout>
-			: null
+			: <Navigate to="/sign-in"/>
 	)
 }
 

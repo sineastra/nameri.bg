@@ -15,6 +15,7 @@ const userServices = {
             .exec(),
     getSingleMessage: async messageId =>
         await ConversationModel.findById(messageId).exec(),
+    getUser: async userId => await UserModel.findById(userId).populate("listings").exec(),
 }
 
 module.exports = userServices

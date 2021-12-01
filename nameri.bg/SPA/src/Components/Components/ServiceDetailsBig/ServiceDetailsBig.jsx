@@ -8,7 +8,7 @@ import listingsServices from "../../../services/listingsServices.js"
 
 
 const ServiceDetailsBig = (props) => {
-	const [data, setData] = useState()
+	const [data, setData] = useState({ listing: null, similarListings: null })
 	const params = useParams()
 	const navigate = useNavigate()
 
@@ -25,7 +25,7 @@ const ServiceDetailsBig = (props) => {
 	}, [])
 
 	return (
-		data
+		data.listing
 			? <>
 				<section className={ styles.mainSection }>
 					<section className={ styles.carouselSection }>
