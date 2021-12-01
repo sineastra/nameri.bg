@@ -92,3 +92,11 @@ input, textarea {
     justify-self: center;
     align-items: center;
 }
+
+.invalidInput {
+    border: 2px solid red;
+}
+
+.errorElement {
+    color: red;
+}

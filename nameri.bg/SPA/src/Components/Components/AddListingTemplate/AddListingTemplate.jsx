@@ -12,8 +12,6 @@ const AddListingTemplate = () => {
 	const [errors, setErrors] = useState({})
 	const navigate = useNavigate()
 
-	console.log('render')
-
 	useEffect(() => {
 		const fetchData = async () => {
 			const [categories, towns] = await Promise.all([
@@ -31,6 +29,7 @@ const AddListingTemplate = () => {
 		// TODO: to send the request once the file uploading logic is created for the CLOUD storaging on express.
 		if (validFormData !== null) {
 			navigate("/")
+			// this is just for testing, delete the if after creating the logic
 		}
 	}, [validFormData])
 
@@ -46,23 +45,24 @@ const AddListingTemplate = () => {
 	const formValidation = (formData) => {
 		const resultObj = {}
 
+		// every check returns true if there is error, false if there is none.
 		const validationObj = {
-			categorySelect: (value) => value !== "Избери категория",
-			townSelect: (value) => value !== "Избери град",
-			imagesUpload: () => true,
-			price: (value) => !isNaN(value) && value !== '' && value > 0,
+			categorySelect: (value) => value === "Избери категория",
+			townSelect: (value) => value === "Избери град",
+			imagesUpload: () => false,
+			price: (value) => isNaN(value) || value === '' || value < 0,
 			priceNegotiation: (value) => Boolean(value),
-			listingDescription: (value) => value.length >= 10,
-			listingHeading: value => value.length >= 5,
+			listingDescription: (value) => value.length < 10,
+			listingHeading: value => value.length < 5,
 		}
 
 		Object.entries(formData).forEach(field => {
 			resultObj[field[0]] = validationObj[field[0]](field[1])
 		})
 
-		resultObj.price = (Boolean(resultObj.priceNegotiation) !== resultObj.price)
+		resultObj.price = (Boolean(resultObj.priceNegotiation) === resultObj.price)
 
-		Object.entries(resultObj).every(([key, value]) => value === true)
+		Object.entries(resultObj).every(([key, value]) => value === false)
 			? setValidFormData(formData)
 			: setErrors(resultObj)
 	}

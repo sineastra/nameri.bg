@@ -69,6 +69,7 @@ const signUp = async (req, res, next) => {
                 skills: [],
                 diplomasAndCertifs: [],
                 rating: 0,
+                about: "",
             }
 
             await req.dbServices.userServices.createNew(newUser)
