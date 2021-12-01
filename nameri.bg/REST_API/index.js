@@ -3,8 +3,7 @@ const mainConfig = require("./config/mainConfig")
 const app = express()
 
 const start = async app => {
-    // const port = process.env.expressPORT || "3030" - to uncomment when restarting pc, changed it.
-    const port = "3030"
+    const port = process.env.PORT || "3030"
 
     await mainConfig(app)
 
