@@ -20,14 +20,14 @@ const CategoriesList = () => {
 				{ subCats.map(category => (
 					<div className={ styles.randomCatsSingleCont }>
 						<h1 className={ styles.mainHeader }>{ category.name }</h1>
-						<div className={ styles.innerRandom } key={ category.name }>
+						<div className={ styles.innerRandom } key={ category._id }>
 							{ category.subcategories.map(subCat => (
 								<SingleListCategory
 									key={ subCat._id }
 									_id={ subCat._id }
 									name={ subCat.name }
 									listings={ subCat.listings }
-									className={ `${ styles.singleCat } ${ styles.subHeader }` }
+									className={ styles.singleCat }
 								/>))
 							}
 						</div>

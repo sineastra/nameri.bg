@@ -4,17 +4,20 @@ h1, h2 {
 
 .mainSection {
     width: 100%;
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 100px;
     margin-bottom: 100px;
-    padding-left: 10%;
+    /*padding-left: 10%;*/
+    box-sizing: border-box;
 }
 
 .innerSection {
-    width: 80%;
+    width: 90%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -24,6 +27,7 @@ h1, h2 {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    height: 70%;
 }
 
 .innerCheckMarkCont {
@@ -58,14 +62,32 @@ h1, h2 {
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
     margin-top: 40px;
+    align-self: flex-start;
+    transition: all ease 0.5s;
+}
+
+.registerBtn:hover {
+    border-radius: 5px;
+    box-shadow: 0 14px 13px -10px #000000;
+    transform: translate(0, 2px) scale(1.03);
+    transition: all ease 0.5s;
 }
 
 .mainHeading {
-    font-size: 40px;
+    font-size: 35px;
     font-family: 'Balsamiq Sans', cursive;
 }
 
 .linkBtn {
     color: white;
     text-decoration: none;
+}
+
+.bannerImg {
+    height: 70%;
+}
+
+.headingsOuterContainer {
+    height: 100%;
+    width: 40%;
 }

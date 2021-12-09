@@ -17,7 +17,7 @@ const Header = () => {
 					<Link to={ '/top-users' } className={ styles.mainNavLink }>Топ Потребители</Link>
 				</section>
 				<section className={ `${ styles.logoContainer } ${ styles.rightNavCont }` }>
-					<Link to={ '/sign-in' } className={ styles.mainNavLink }>Влез</Link>
+					<Link to={ '/sign-in' } className={ `${ styles.mainNavLink } ${ styles.black }` }>Влез</Link>
 				</section>
 			</nav>
 		</header>

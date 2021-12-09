@@ -23,4 +23,4 @@ It is not finished as at present:
 - CSS is only written as far as having basic idea of the site layout, TODO - Complete the CSS and add responsive css.
 - Add file uploading to AWS S3 logic on the Express App
 - Add search logic and a page.
-- Testing
+- Code testing and testing on different browsers.

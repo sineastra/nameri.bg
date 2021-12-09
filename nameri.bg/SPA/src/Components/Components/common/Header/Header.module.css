@@ -25,8 +25,7 @@
 
 .mainNav {
     height: 120px;
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(191,191,191,0.9) 50%, rgba(255,255,255,1) 100%);
+    background: white;
     box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.5);
     width: 100%;
     display: flex;
@@ -38,7 +37,7 @@
 
 .header {
     height: 180px;
-    background: aliceblue;
+    background-color: #fafafa;
     color: black;
     display: flex;
     align-items: flex-end;
@@ -47,10 +46,21 @@
 
 .mainNavLink {
     text-decoration: none;
-    color: #494949;
     font-size: 21px;
     white-space: nowrap;
     font-family: 'Mulish', sans-serif;
     font-weight: bolder;
     padding-right: 40px;
+    color: #ff7200;
+    transition: all ease 0.3s;
+}
+
+.mainNavLink:hover {
+    text-shadow: 2px 2px 2px rgba(150, 150, 150, 0.5);
+    transform: translate(0, -2px) scale(1.02);
+    transition: all ease 0.3s;
+}
+
+.black {
+    color: black;
 }

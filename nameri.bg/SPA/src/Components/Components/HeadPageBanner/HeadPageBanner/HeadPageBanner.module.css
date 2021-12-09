@@ -4,7 +4,7 @@
     justify-content: space-evenly;
     align-items: center;
     align-content: center;
-    background: aliceblue;
+    background-color: #fafafa;
     height: 500px;
 }
 
@@ -29,7 +29,7 @@
     font-weight: 700;
     margin: 0;
     font-family: 'Balsamiq Sans', cursive;
-    color: darkred;
+    color: #ff7200;
 }
 
 .smallHeader {

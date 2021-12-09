@@ -8,7 +8,7 @@ const ContainerSection = styled.section`
   transition: opacity 1s ease-in-out;
   width: 100%;
   opacity: ${ props => props.active ? 1 : 0 };
-  height: ${ props => props.active ? 'auto' : 0 };
+  height: ${ props => props.active ? '100%' : 0 };
   overflow: ${ props => props.active ? 'auto' : 'hidden' };
 `
 
@@ -17,7 +17,7 @@ const StyledFaStar = styled(FaStar)`
 
 const UserLink = styled(Link)`
   z-index: 1;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   width: 25%;
   height: 20%;
@@ -32,6 +32,8 @@ const UserLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   color: #1c1c1c;
+  margin-right: 10px;
+  margin-bottom: 10px;
 `
 
 const ImageSection = styled.section`
@@ -47,8 +49,6 @@ const StyledCarouselImg = styled.img`
   width: 100%;
   height: 100%;`
 
-const UserHeading = styled.h5`
-  margin: 0;`
 const Slide = ({ listing, activeId }) => {
 	const profileImg = listing.user.profileImg === "" ? "profile.svg" : listing.user.profileImg
 

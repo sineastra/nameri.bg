@@ -1,15 +1,26 @@
 .singleCatCont {
-    background-color: darkred;
-    color: aliceblue;
-    border: 1px solid transparent;
+    background-color: #ff7200;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 5px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    text-decoration: none;
+    transition: all ease 0.3s;
+    border: 1px solid transparent;
 }
 
 .singleCatCont:hover {
-    border-inline: 3px dashed black;
+    border-radius: 5px;
+    box-shadow: 0 14px 13px -10px #000000;
+    transform: translate(0, 2px) scale(1.03);
+    transition: all ease 0.3s;
+    background-color: white;
+    border: 1px solid lightgray;
+    color: black;
 }

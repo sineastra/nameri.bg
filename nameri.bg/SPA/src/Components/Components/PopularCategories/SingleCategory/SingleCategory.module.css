@@ -4,11 +4,14 @@
     cursor: pointer;
 }
 
+.categContainer:hover {
+    border-top-left-radius: 20px;
+}
+
 .categHeading {
     position: absolute;
-    bottom: 1%;
-    left: 50%;
-    transform: translate(-50%);
+    bottom: 5px;
+    left: 10px;
     color: white;
     z-index: 2;
 }
@@ -17,6 +20,8 @@
     width: 100%;
     height: 100%;
     position: relative;
+    border-top-left-radius: 20px;
+    object-fit: cover;
 }
 
 .categContainer:after {
@@ -26,10 +31,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     transition: opacity .3s;
     opacity: 1;
     z-index: 1;
+    border-top-left-radius: 20px;
 }
 
 .categContainer:hover:after {
