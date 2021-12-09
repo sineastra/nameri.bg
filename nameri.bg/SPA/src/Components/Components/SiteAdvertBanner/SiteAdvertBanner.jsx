@@ -35,7 +35,7 @@ const SiteAdvertBanner = ({ className = "" }) => {
 			</div>
 			<div>
 				<button className={ styles.registerBtn }>
-					<Link to="sign-up" className={ styles.linkBtn }>START NOW FOR FREE</Link>
+					<Link to="/sign-up" className={ styles.linkBtn }>START NOW FOR FREE</Link>
 				</button>
 			</div>
 		</section>

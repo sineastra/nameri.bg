@@ -12,13 +12,28 @@ const ConversationModel = require("../db/models/ConversationModel")
 // import all controllers for each routes
 
 const routesConfig = app => {
-    app.use("/api/user", userController)
-    app.use("/api/categories", categoryController)
-    app.use("/api/listings", listingsController)
-    app.use("/api/towns", townsController)
-    app.use("/", async (req, res) => {
-        res.send("server working. make requests at /api")
-    })
+	app.use("/api/user", userController)
+	app.use("/api/categories", categoryController)
+	app.use("/api/listings", listingsController)
+	app.use("/api/towns", townsController)
+	app.use("/add", async (req, res) => {
+		// const data = [
+		// 	{
+		// 		name: "Адвокат",
+		// 		listings: [],
+		// 		category: "61a0f00f229cb4690d2b88d2",
+		// 	},
+		// 	{
+		// 		name: "Нотариус",
+		// 		listings: [],
+		// 		category: "61a0f00f229cb4690d2b88d2",
+		// 	},
+		// ]
+		//
+		// await SubcategoryModel.insertMany(data)
+
+		// res.send("server working. make requests at /api")
+	})
 }
 
 module.exports = routesConfig

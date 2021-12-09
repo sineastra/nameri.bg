@@ -2,7 +2,6 @@
     width: 20%;
 }
 
-
 .logoImg {
     width: 100%;
     height: 100px;
@@ -25,8 +24,9 @@
 }
 
 .mainNav {
-    height: 100px;
-    background: #ececec;
+    height: 120px;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(191,191,191,0.9) 50%, rgba(255,255,255,1) 100%);
     box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.5);
     width: 100%;
     display: flex;
@@ -37,7 +37,7 @@
 }
 
 .header {
-    height: 160px;
+    height: 180px;
     background: aliceblue;
     color: black;
     display: flex;

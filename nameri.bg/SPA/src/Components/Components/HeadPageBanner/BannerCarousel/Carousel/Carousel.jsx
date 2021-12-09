@@ -33,42 +33,17 @@ const NavDotsInnerCont = styled.ul`
   justify-content: space-around;
 `
 
-const fakeDb = {
-	users: [{
-		id: 1,
-		profileImg: profPic1,
-		profession: 'Patladjan',
-		fullName: "Pesho Kalibrata",
-		rating: 4.5,
-		votedUsers: 100,
-	}, {
-		id: 2,
-		profileImg: profPic2,
-		profession: 'Patladjan',
-		fullName: "Gosho",
-		rating: 4.5,
-		votedUsers: 100,
-	}, {
-		id: 3,
-		profileImg: profPic3,
-		profession: 'Patladjan',
-		fullName: "Siika",
-		rating: 4.5,
-		votedUsers: 100,
-	}],
-	banners: [banner1, banner2, banner3],
-}
-
-const Carousel = () => {
+const Carousel = ({ className }) => {
 	const navigate = useNavigate()
 	const [activeId, setActiveId] = useState(0)
 	const [carouselData, setCarouselData] = useState([])
 
 	useEffect(async () => {
 		try {
-			const data = await listingsServices.getBest(2)
-			setCarouselData(data)
-			setActiveId(1)
+			const listingData = await listingsServices.getBest(2)
+
+			setCarouselData(listingData)
+			setActiveId(listingData[0]._id)
 		} catch (e) {
 			navigate("/error", {
 				state: {
@@ -81,22 +56,21 @@ const Carousel = () => {
 	}, [])
 
 	return (
-		<section>
+		<section className={ className }>
 			{ carouselData.map(listing =>
 				<Slide
-					user={ listing.user }
-					img={ listing.mainImg }
+					listing={ listing }
 					key={ listing._id }
 					activeId={ activeId }
 				/>)
 			}
 			<NavDotsContainer>
 				<NavDotsInnerCont>
-					{ carouselData.map(({ user }) => (
+					{ carouselData.map((listing) => (
 						<StyledLi>
 							<StyledNavDot
-								key={ user._id }
-								id={ user._id }
+								key={ listing._id }
+								id={ listing._id }
 								activeId={ activeId }
 								changeId={ setActiveId }
 							/>
