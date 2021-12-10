@@ -37,7 +37,7 @@ const SiteAdvertBanner = ({ className = "" }) => {
 						</button>
 					</div>
 				</IconContext.Provider>
-				<div>
+				<div className={ styles.bannerImgCont }>
 					<img src={ bannerImg } alt="" className={ styles.bannerImg }/>
 				</div>
 			</div>

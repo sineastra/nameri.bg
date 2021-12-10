@@ -1,6 +1,5 @@
 The repo includes the back-end and the front-end of a React JS app.
 
-
 The React JS SPA app is written with absolute minimal dependencies besides the one whcih come with the Create-React-App.
 Those are:
 
@@ -17,10 +16,11 @@ The idea was to write the entire app by myself. Using an external library is the
 
 The Express is a usual express REST API.
 
-
-It is not finished as at present: 
+It is not finished as at present:
 
 - CSS is only written as far as having basic idea of the site layout, TODO - Complete the CSS and add responsive css.
 - Add file uploading to AWS S3 logic on the Express App
 - Add search logic and a page.
 - Code testing and testing on different browsers.
+
+hosted at <a href="https://nameri-bg.vercel.app/"/>https://nameri-bg.vercel.app

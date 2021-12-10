@@ -1,58 +1,71 @@
 .logoLink {
     width: 20%;
+    height: 80px;
 }
 
 .logoImg {
-    width: 100%;
-    height: 100px;
+    height: 100%;
+    transition: height 1s ease;
 }
 
 .logoContainer {
+    height: 100px;
+    width: 20%;
+    min-width: 20%;
     display: flex;
-    align-items: flex-end;
-    color: white;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .leftNavCont {
-    justify-content: flex-start;
+    display: flex;
+    justify-content: center;
+    transition: width 1s ease;
     width: 60%;
+    height: 100%;
+    align-items: flex-end;
 }
 
 .rightNavCont {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
     justify-content: flex-end;
+    align-items: flex-end;
     width: 20%;
+    box-sizing: border-box;
 }
 
 .mainNav {
-    height: 120px;
+    height: 100px;
     background: white;
     box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.5);
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 30px;
+    padding: 20px 20px 10px;
 }
 
 .header {
-    height: 180px;
+    height: 120px;
     background-color: #fafafa;
     color: black;
     display: flex;
     align-items: flex-end;
     padding-bottom: 20px;
+    transition: height 1s ease;
 }
 
 .mainNavLink {
     text-decoration: none;
-    font-size: 21px;
+    font-size: 1.1em;
     white-space: nowrap;
     font-family: 'Mulish', sans-serif;
     font-weight: bolder;
     padding-right: 40px;
     color: #ff7200;
     transition: all ease 0.3s;
+    box-sizing: border-box;
 }
 
 .mainNavLink:hover {
@@ -63,4 +76,61 @@
 
 .black {
     color: black;
+}
+
+.mobileNavIcon {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.mobileNav {
+
+}
+
+@media screen and (max-width: 800px) {
+    .header {
+        height: 60px;
+    }
+
+    .logoContainer {
+        height: 40px;
+    }
+
+    .logoLink {
+        height: 40px;
+    }
+
+    .mainNav {
+        height: 40px;
+    }
+
+    .leftNavCont {
+        display: none;
+    }
+
+    .rightNavCont {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .userNavContainer {
+        width: 60%;
+    }
+
+    .mainNavLink {
+        width: 100%;
+        font-size: 1.3em;
+        background-color: #ff7200;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 0;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        border-radius: 10px;
+        color: white;
+        font-weight: normal;
+    }
 }

@@ -9,7 +9,7 @@ const ContainerSection = styled.section`
   width: 100%;
   opacity: ${ props => props.active ? 1 : 0 };
   height: ${ props => props.active ? '100%' : 0 };
-  overflow: ${ props => props.active ? 'auto' : 'hidden' };
+  overflow: hidden;
 `
 
 const StyledFaStar = styled(FaStar)`
@@ -47,7 +47,9 @@ const StyledProfileImg = styled.img`
 
 const StyledCarouselImg = styled.img`
   width: 100%;
-  height: 100%;`
+  height: 100%;
+  object-fit: fill;
+`
 
 const Slide = ({ listing, activeId }) => {
 	const profileImg = listing.user.profileImg === "" ? "profile.svg" : listing.user.profileImg

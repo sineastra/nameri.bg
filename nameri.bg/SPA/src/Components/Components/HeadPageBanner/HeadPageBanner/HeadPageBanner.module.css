@@ -11,6 +11,7 @@
 .mainBannerSection {
     width: 35%;
     height: 80%;
+    transition: width 1s ease;
 }
 
 .mainBannerHeaderSection {
@@ -35,4 +36,11 @@
 .smallHeader {
     margin: 0;
     font-family: 'Rubik', sans-serif;
+}
+
+@media screen and (max-width: 1200px) {
+    .mainBannerSection {
+        width: 45%;
+        transition: width 1s ease;
+    }
 }

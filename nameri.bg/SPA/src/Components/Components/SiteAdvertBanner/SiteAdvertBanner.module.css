@@ -83,8 +83,15 @@ h1, h2 {
     text-decoration: none;
 }
 
-.bannerImg {
+.bannerImgCont {
     height: 70%;
+    width: 40%;
+}
+
+.bannerImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .headingsOuterContainer {
