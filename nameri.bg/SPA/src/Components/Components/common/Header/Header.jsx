@@ -3,15 +3,32 @@ import logoImg from '../../../../assets/images/n-letter-png-transparent-images-7
 import { Link } from "react-router-dom"
 import { FaBars } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const Header = () => {
-	const [sideBarVisibility, setSideBarVisibility] = useState(false)
+	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
+	const [windowWidth, setWindowWidth] = useState(0)
 
 	const showSideBar = () => {
-		setSideBarVisibility(oldState => !oldState)
+		setSideBarVisibility(oldState => oldState === 'hidden' ? 'visible' : 'hidden')
 	}
+
+	const handleResize = () => {
+		setWindowWidth(window.innerWidth)
+
+		if (window.innerWidth > 800) {
+			setSideBarVisibility('hidden')
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener('resize', handleResize)
+
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
+	const mobileSideBarClass = windowWidth <= 800 ? styles[sideBarVisibility] : styles.hidden
 
 	return (
 		<header className={ styles.header }>
@@ -30,7 +47,7 @@ const Header = () => {
 					<IconContext.Provider value={ { size: '2em', color: 'lightgray' } }>
 						<div className={ styles.userNavContainer }>
 							<Link to={ '/sign-in' }
-							      className={ `${ styles.mainNavLink } ${ styles.black }` }>Влез</Link>
+							      className={ `${ styles.mainNavLink } ${ styles.authLink }` }>Влез</Link>
 						</div>
 						<div className={ styles.mobileNavIcon } onClick={ showSideBar }>
 							<FaBars/>
@@ -38,8 +55,8 @@ const Header = () => {
 					</IconContext.Provider>
 				</section>
 			</nav>
-			<aside className={styles.mobileNav}>
-
+			<aside className={ `${ styles.mobileNav } ${ mobileSideBarClass }` }>
+				<button onClick={ showSideBar }>CLICK ME</button>
 			</aside>
 		</header>
 	)
