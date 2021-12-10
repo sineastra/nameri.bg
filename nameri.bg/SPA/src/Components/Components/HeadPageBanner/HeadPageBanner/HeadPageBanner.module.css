@@ -21,26 +21,65 @@
     align-items: center;
 }
 
-.fullWidth {
+.headingsSectionPart {
     width: 100%;
 }
 
 .bigHeader {
     font-size: 3em;
-    font-weight: 700;
+    font-weight: 900;
     margin: 0;
-    font-family: 'Balsamiq Sans', cursive;
+    font-family: 'Nunito', sans-serif;
     color: #ff7200;
 }
 
 .smallHeader {
     margin: 0;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Bellota Text', cursive;
 }
 
 @media screen and (max-width: 1200px) {
     .mainBannerSection {
         width: 45%;
         transition: width 1s ease;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mainBannerSection {
+        width: 80%;
+        transition: width 1s ease;
+    }
+
+    .mainBannerHeaderSection {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .mainBannerCarouselSection {
+        margin-top: 80px;
+    }
+
+    .headingsSectionPart {
+        margin-top: 20px;
+    }
+
+    .mainBanner {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    .bigHeader {
+        font-size: 1.8em;
+    }
+
+    .smallHeader {
+        font-size: 1.1em;
+    }
+
+    .searchBarContainer {
+        margin-top: 50px;
     }
 }

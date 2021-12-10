@@ -80,7 +80,7 @@
 }
 
 .mobileNavIcon {
-    width: 50%;
+    width: 20%;
     cursor: pointer;
     display: none;
 }
@@ -124,6 +124,7 @@
     }
 
     .rightNavCont {
+        width: 150px;
         align-items: center;
         justify-content: space-between;
     }
