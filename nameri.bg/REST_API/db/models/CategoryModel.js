@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const CategorySchema = new mongoose.Schema({
     name: { type: String, required: true },
     img: { type: String },
+    icon: { type: String },
     subcategories: [{ type: "ObjectId", ref: "Subcategory", required: true }],
 })
 

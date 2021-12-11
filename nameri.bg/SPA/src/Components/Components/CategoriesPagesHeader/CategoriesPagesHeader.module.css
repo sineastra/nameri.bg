@@ -8,6 +8,8 @@
 
 .headingInner {
     width: 50%;
+    font-size: 1.5rem;
+    font-family: 'Balsamiq Sans', cursive
 }
 
 .headingInnerSearch {
@@ -18,4 +20,20 @@
 
 .searchBarWrapper {
     width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+    .headingOuter {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .headingInner {
+        width: 100%;
+        text-align: center;
+    }
+
+    .searchBarWrapper {
+        width: 100%;
+    }
 }

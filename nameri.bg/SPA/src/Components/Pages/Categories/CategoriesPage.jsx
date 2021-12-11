@@ -15,6 +15,7 @@ const CategoriesPage = (props) => {
 
 			setCategories(data)
 		}
+
 		fetchData()
 	}, [])
 
@@ -29,7 +30,7 @@ const CategoriesPage = (props) => {
 								<CategoryCard
 									key={ category._id }
 									categoryName={ category.name }
-									categoryImg={ category.img }
+									categoryIcon={ category.icon }
 									subCategories={ category.subcategories }
 									className={ styles.categoryCard }
 								/>

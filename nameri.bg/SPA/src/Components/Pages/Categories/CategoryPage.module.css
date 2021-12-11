@@ -5,6 +5,7 @@
 }
 
 .cardsWrapper {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-content: space-evenly;
@@ -20,4 +21,24 @@
 
 .innerSection {
     width: 80%;
+}
+
+@media screen and (max-width: 1200px) {
+    .categoryCard {
+        width: 40%;
+    }
+
+    .innerSection {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .innerSection {
+        width: 90%;
+    }
+
+    .categoryCard {
+        width: 100%;
+    }
 }
