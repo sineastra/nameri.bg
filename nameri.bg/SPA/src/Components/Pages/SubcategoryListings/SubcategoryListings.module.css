@@ -2,19 +2,34 @@
     width: 80%;
     margin-left: 10%;
     display: flex;
+    min-height: 60vh;
     flex-direction: column;
     align-items: center;
     margin-bottom: 5%;
 }
 
-.customerServiceCard {
-    width: 28%;
-    margin-bottom: 4%;
-    cursor: pointer;
+div.customerServiceCard {
+    height: 400px;
+    max-width: 100%;
 }
 
 .servicesContainer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 60px;
+    row-gap: 50px;
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1300px) {
+    .servicesContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .servicesContainer {
+        grid-template-columns: auto
+    }
 }

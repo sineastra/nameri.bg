@@ -2,18 +2,18 @@ import styles from "./SubcategoryCard.module.css"
 import { FaGreaterThan } from "react-icons/fa"
 
 
-const SubcategoryCard = ({ categoryName, subCatsCount }) => {
+const SubcategoryCard = ({ categoryName, subCatsCount, className = '' }) => {
 	return (
-		<section className={styles.outerContainer}>
+		<section className={ `${ styles.outerContainer } ${ className }` }>
 			<div>
-				<h2 className={styles.subCatHeader}>{categoryName || "Категория"}</h2>
+				<h2 className={ styles.subCatHeader }>{ categoryName || "Категория" }</h2>
 			</div>
-			<div className={styles.countContainer}>
+			<div className={ styles.countContainer }>
 				<div>
-					<span className={styles.grey}>Брой обяви: </span><span
-					className={styles.darkRedColor}>{subCatsCount}</span>
+					<span className={ styles.grey }>Брой обяви: </span><span
+					className={ styles.darkRedColor }>{ subCatsCount }</span>
 				</div>
-				<div className={styles.darkRedColor}>
+				<div className={ styles.darkRedColor }>
 					<FaGreaterThan/>
 				</div>
 			</div>

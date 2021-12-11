@@ -123,7 +123,7 @@ const Slide = ({ listing, activeId }) => {
 		</ImageSection>
 		<UserProfileSection>
 			<UserLink to={ `/profile/${ listing.user._id }` }>
-				<StyledProfileImg src={ profileImg } alt="User ProfilePage Image"/>
+				<StyledProfileImg src={ `/${ profileImg }` } alt="User ProfilePage Image"/>
 				<StyledUserSectionDiv>
 					<ListingsNumberHeader>{ listing.user.listings.length } обяви</ListingsNumberHeader>
 				</StyledUserSectionDiv>

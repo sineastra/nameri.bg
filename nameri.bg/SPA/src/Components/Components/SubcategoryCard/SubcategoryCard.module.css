@@ -6,6 +6,8 @@
     border-radius: 10px;
     box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.2);
     padding: 20px 30px;
+    border: 1px solid transparent;
+    transition: all 0.5s ease;
 }
 
 .countContainer {
@@ -16,8 +18,18 @@
 .subCatHeader {
     font-family: 'Comfortaa', cursive;
     font-weight: 300;
+    font-size: 1.2em;
+    margin: 0;
 }
 
 .darkRedColor {
     color: darkred;
+}
+
+
+.outerContainer:hover {
+    transform: translate(0, -10px);
+    transition: all 0.5s ease;
+    box-shadow: 0 17px 40px -13px #000000;
+    border: 1px solid #f6f6f6;
 }

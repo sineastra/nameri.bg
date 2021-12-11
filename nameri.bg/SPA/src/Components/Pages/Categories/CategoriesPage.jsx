@@ -29,6 +29,7 @@ const CategoriesPage = (props) => {
 							{ categories?.map(category => (
 								<CategoryCard
 									key={ category._id }
+									_id={ category._id }
 									categoryName={ category.name }
 									categoryIcon={ category.icon }
 									subCategories={ category.subcategories }

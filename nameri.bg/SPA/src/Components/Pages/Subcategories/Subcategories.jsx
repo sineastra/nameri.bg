@@ -35,15 +35,16 @@ const Subcategories = (props) => {
 	return (
 		category
 			? <MainPageLayout>
-				<div className={ styles.wrapper }>
+				<div className={ styles.mainWrapper }>
 					<CategoriesPagesHeader categoryName={ category.name }/>
 					<section className={ styles.subCatsInner }>
 						{ category.subcategories.map(subCategory => (
 							<div className={ styles.subCatCardWrapper } key={ subCategory._id }>
-								<Link to={ `/categories/subcategories/${ subCategory._id }` }>
+								<Link to={ `/categories/subcategories/${ subCategory._id }` } className={styles.link}>
 									<SubcategoryCard
 										categoryName={ subCategory.name }
 										subCatsCount={ subCategory.listings.length }
+										className={styles.subCategoryCard}
 									/>
 								</Link>
 							</div>

@@ -23,13 +23,20 @@ const categoriesServices = {
         await SubcategoryModel.findOne({ _id })
             .populate({
                 path: "listings",
-                populate: {
-                    path: "user",
-                },
+                populate: [
+                    {
+                        path: "user",
+                        model: "User",
+                    },
+                    {
+                        path: "town",
+                        model: "Town",
+                    },
+                ],
             })
             .exec(),
 
-    getAll: async () => await CategoryModel.find({}).populate('subcategories').exec(),
+    getAll: async () => await CategoryModel.find({}).populate("subcategories").exec(),
 }
 
 module.exports = categoriesServices
