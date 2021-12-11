@@ -69,6 +69,7 @@
 @media screen and (max-width: 800px) {
     .randomCatsInnerCont {
         flex-direction: column;
+        width: 100%;
     }
 
     .randomCatsSingleCont {
@@ -85,7 +86,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .mainHeader {
         white-space: initial;
     }

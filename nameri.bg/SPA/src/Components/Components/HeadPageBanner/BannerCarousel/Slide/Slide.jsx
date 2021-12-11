@@ -67,7 +67,7 @@ const UserProfileSection = styled.section`
   margin-right: 10px;
   margin-bottom: 10px;
 
-  @media screen and (max-width: 300px) {
+  @media screen and (max-width: 400px) {
     width: 50%;
     height: 50%;
   }
@@ -77,7 +77,7 @@ const ListingsNumberHeader = styled.h5`
   margin: 0;
   font-size: 1em;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 500px) {
     font-size: 0.8em;
   }
 `
@@ -88,7 +88,7 @@ const UserNames = styled.span`
   overflow: hidden;
   font-size: 1em;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 500px) {
     font-size: 50%;
   }
 `
@@ -96,14 +96,14 @@ const UserNames = styled.span`
 const StyledIconProvider = styled(IconProvider)`
   font-size: 1em;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 500px) {
     font-size: 0.8em;
   }
 `
 const StyledSpanVotes = styled.span`
   font-size: 0.8em;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 500px) {
     font-size: 0.6em;
   }
 `

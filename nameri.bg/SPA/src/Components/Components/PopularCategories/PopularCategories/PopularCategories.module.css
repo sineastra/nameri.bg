@@ -56,4 +56,18 @@
         width: 90%;
         height: 400px;
     }
+
+    .headingsWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subHeader {
+        width: 90%;
+    }
+
+    .popularWrapper {
+        width: 100%;
+    }
 }
