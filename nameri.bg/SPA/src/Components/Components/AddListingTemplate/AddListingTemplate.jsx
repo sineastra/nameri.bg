@@ -25,6 +25,7 @@ const AddListingTemplate = () => {
 
 	useEffect(() => {
 		// TODO: to send the request once the file uploading logic is created for the CLOUD storaging on express.
+		// TODO: there is one unnecessary rerender (validFormData). Just check the data and send the fetch, dont use useEffect.
 		if (validFormData !== null) {
 			navigate("/")
 			// this is just for testing, delete the if after creating the logic
@@ -72,7 +73,7 @@ const AddListingTemplate = () => {
 			? <form className={ styles.mainWrapper } method="POST" onSubmit={ submitHandler }>
 				<div className={ styles.upperWrapper }>
 					<div className={ styles.headingWrapper }>
-						<h1 className={styles.mainHeading}>Публикуване на нова обява</h1>
+						<h1 className={ styles.mainHeading }>Публикуване на нова обява</h1>
 
 						{/*Start of Heading Input*/ }
 						<input
@@ -100,7 +101,9 @@ const AddListingTemplate = () => {
 					{/*End of Details Textarea*/ }
 
 				</div>
+
 				<div className={ styles.lowerWrapper }>
+					{/*Start of Price Area*/ }
 					<div className={ styles.priceWrapper }>
 						<div className={ styles.halfInputContainer }>
 							<input type="number" name="price" disabled={ isChecked } placeholder="Цена"
@@ -112,6 +115,9 @@ const AddListingTemplate = () => {
 								       className={ styles.checkBoxHolder }/>
 							</div>
 						</div>
+						{/*End of Price Area*/ }
+
+						{/*Start of Town Select*/ }
 						<div className={ styles.halfInputContainer }>
 							<select name="townSelect" className={ styles.halfInput }>
 								<option defaultValue="0">Избери град</option>
@@ -119,17 +125,24 @@ const AddListingTemplate = () => {
 									<option defaultValue={ i + 1 } key={ town._id }>{ town.name }</option>)) }
 							</select>
 						</div>
+						{/*End of Town Select*/ }
 					</div>
+
+					{/*Start of Category Select*/ }
 					<select name="categorySelect" className={ `${ styles.categorySelect } ${ styles.halfInput }` }>
 						<option defaultValue="0">Избери категория</option>
 						{ data?.categories.map((category, i) => (
 							<option defaultValue={ i + 1 } key={ category._id }>{ category.name }</option>)) }
 					</select>
+					{/*End of Category Select*/ }
+
 					<CustomInputFile className={ `${ styles.halfInput } ${ styles.customFileInput }` }/>
+
 					<button type="submit" name="submit" className={ styles.submitBtn }>Изпрати</button>
 				</div>
 			</form>
-			: null)
+			: null
+	)
 }
 
 export default AddListingTemplate
