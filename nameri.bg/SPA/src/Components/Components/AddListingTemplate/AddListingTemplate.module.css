@@ -1,19 +1,37 @@
 .mainWrapper {
     width: 80%;
     margin-left: 10%;
-    padding-left: 10%;
     box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.45);
-    padding-right: 10%;
+    padding: 2% 10% 4%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 90vh;
+    height: 110vh;
     margin-bottom: 5%;
     margin-top: 3%;
     border-radius: 0 100px 20px 100px;
 }
+
+.upperWrapper {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.lowerWrapper {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 5%;
+}
+
 
 input, textarea, select {
     display: block;
@@ -22,6 +40,13 @@ input, textarea, select {
     border-radius: 10px;
     border: 1px solid lightgray;
     box-sizing: border-box;
+}
+
+.mainHeading {
+    font-size: 2rem;
+    margin-bottom: 5%;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
 }
 
 
@@ -40,38 +65,22 @@ textarea {
     align-items: center;
 }
 
-.smallInputs {
-    width: 40%;
-    height: 20%;
+.halfInput {
+    height: 65px;
 }
+
 
 .categorySelect {
     padding: 0 0 0 20px;
     width: 90%;
+    margin-bottom: 3%;
 }
-
-.lowerWrapper {
-    width: 100%;
-    height: 40%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-bottom: 5%;
-}
-
 
 .submitBtn {
     width: 25%;
     border-radius: 5px;
-}
-
-.upperWrapper {
-    height: 60%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    padding: 10px;
+    margin-bottom: 3%;
 }
 
 .headingWrapper {
@@ -89,6 +98,131 @@ textarea {
 
 .priceWrapper {
     display: flex;
-    flex-direction: column;
     width: 100%;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.halfInputContainer {
+    width: 45%;
+}
+
+.priceCheckBoxWrapper {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+
+.checkBoxLabel {
+    width: 80%;
+}
+
+.checkBoxHolder {
+    float: left;
+    width: 10%;
+}
+
+.customFileInput {
+    margin-bottom: 5%;
+}
+
+@media screen and (max-width: 800px) {
+    .priceWrapper {
+        flex-direction: column;
+    }
+
+    .upperWrapper {
+        height: 35%;
+    }
+
+    .lowerWrapper {
+        height: 60%;
+    }
+
+    .priceCheckBoxWrapper {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .halfInputContainer {
+        width: 100%;
+        margin-bottom: 3%;
+    }
+
+    .mainHeading {
+        font-size: 1.5rem;
+    }
+
+    .submitBtn {
+        width: 100%;
+        padding: 0;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .mainWrapper {
+        border-radius: 0 50px 5px 50px;
+        height: 80vh;
+        padding-top: 5%;
+        margin-bottom: 10%;
+    }
+
+    .textareaWrapper {
+        height: 60%;
+    }
+
+    .lowerWrapper {
+        height: 60%
+    }
+
+
+    .priceWrapper {
+        justify-content: center;
+    }
+
+    .upperWrapper {
+        height: 40%;
+    }
+
+    .mainHeading {
+        font-size: 1rem;
+    }
+
+    input {
+        padding: 10px;
+    }
+
+    select {
+        padding: 0;
+    }
+
+    .categorySelect {
+        padding-left: 0;
+        width: 100%;
+    }
+
+    .halfInput {
+        height: 30px;
+    }
+
+    .customFileInput {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .mainWrapper {
+        border-radius: 5px;
+    }
+
+    .mainHeading {
+        font-size: 0.7rem;
+        width: 100%;
+    }
+
+    .customFileInput {
+        font-size: 0.5rem;
+    }
 }

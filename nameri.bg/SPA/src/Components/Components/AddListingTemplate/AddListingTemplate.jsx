@@ -10,14 +10,12 @@ const AddListingTemplate = () => {
 	const [data, setData] = useState({ towns: null, categories: null })
 	const [validFormData, setValidFormData] = useState(null)
 	const [errors, setErrors] = useState({})
+	const [isChecked, setIsChecked] = useState(false)
 	const navigate = useNavigate()
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const [categories, towns] = await Promise.all([
-				categoriesService.getAll(),
-				townsServices.getAll(),
-			])
+			const [categories, towns] = await Promise.all([categoriesService.getAll(), townsServices.getAll()])
 
 			setData({ categories, towns })
 		}
@@ -42,6 +40,10 @@ const AddListingTemplate = () => {
 		formValidation(formDataObj)
 	}
 
+	const handleCheckBox = (e) => {
+		setIsChecked(!!e.target.checked)
+	}
+
 	const formValidation = (formData) => {
 		const resultObj = {}
 
@@ -62,9 +64,7 @@ const AddListingTemplate = () => {
 
 		resultObj.price = (Boolean(resultObj.priceNegotiation) === resultObj.price)
 
-		Object.entries(resultObj).every(([key, value]) => value === false)
-			? setValidFormData(formData)
-			: setErrors(resultObj)
+		Object.entries(resultObj).every(([key, value]) => value === false) ? setValidFormData(formData) : setErrors(resultObj)
 	}
 
 	return (
@@ -72,7 +72,7 @@ const AddListingTemplate = () => {
 			? <form className={ styles.mainWrapper } method="POST" onSubmit={ submitHandler }>
 				<div className={ styles.upperWrapper }>
 					<div className={ styles.headingWrapper }>
-						<h1>Публикуване на нова обява</h1>
+						<h1 className={styles.mainHeading}>Публикуване на нова обява</h1>
 
 						{/*Start of Heading Input*/ }
 						<input
@@ -102,30 +102,34 @@ const AddListingTemplate = () => {
 				</div>
 				<div className={ styles.lowerWrapper }>
 					<div className={ styles.priceWrapper }>
-						<input type="number" name="price" placeholder="Цена" className={ styles.smallInputs }/>
+						<div className={ styles.halfInputContainer }>
+							<input type="number" name="price" disabled={ isChecked } placeholder="Цена"
+							       className={ styles.halfInput }/>
+							<div className={ styles.priceCheckBoxWrapper }>
+								<label htmlFor="priceNegotiation" className={ styles.checkBoxLabel }>По договаряне?</label>
+								<input type="checkbox" name="priceNegotiation" id="priceNegotiation"
+								       checked={ isChecked } onChange={ handleCheckBox }
+								       className={ styles.checkBoxHolder }/>
+							</div>
+						</div>
+						<div className={ styles.halfInputContainer }>
+							<select name="townSelect" className={ styles.halfInput }>
+								<option defaultValue="0">Избери град</option>
+								{ data?.towns.map((town, i) => (
+									<option defaultValue={ i + 1 } key={ town._id }>{ town.name }</option>)) }
+							</select>
+						</div>
 					</div>
-					<div>
-						<label htmlFor="priceNegotiation">По договаряне?</label>
-						<input type="checkbox" name="priceNegotiation" id="priceNegotiation" defaultChecked={ false }/>
-					</div>
-					<select name="townSelect" className={ styles.smallInputs }>
-						<option defaultValue="0">Избери град</option>
-						{ data?.towns.map((town, i) => (
-							<option defaultValue={ i + 1 } key={ town._id }>{ town.name }</option>
-						)) }
-					</select>
-					<select name="categorySelect" className={ `${ styles.categorySelect } ${ styles.smallInputs }` }>
+					<select name="categorySelect" className={ `${ styles.categorySelect } ${ styles.halfInput }` }>
 						<option defaultValue="0">Избери категория</option>
 						{ data?.categories.map((category, i) => (
-							<option defaultValue={ i + 1 } key={ category._id }>{ category.name }</option>
-						)) }
+							<option defaultValue={ i + 1 } key={ category._id }>{ category.name }</option>)) }
 					</select>
-					<CustomInputFile className={ styles.smallInputs }/>
+					<CustomInputFile className={ `${ styles.halfInput } ${ styles.customFileInput }` }/>
 					<button type="submit" name="submit" className={ styles.submitBtn }>Изпрати</button>
 				</div>
 			</form>
-			: null
-	)
+			: null)
 }
 
 export default AddListingTemplate
