@@ -61,3 +61,10 @@
     transition: all ease 0.5s;
     opacity: 1;
 }
+
+@media screen and (max-width: 400px) {
+    .iconClassName {
+        width: 90%;
+    }
+}
+

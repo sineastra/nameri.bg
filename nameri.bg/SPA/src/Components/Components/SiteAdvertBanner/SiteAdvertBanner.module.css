@@ -106,7 +106,7 @@ h1, h2 {
 
 @media screen and (max-width: 1200px) {
     .headingsOuterContainer {
-        width: 60%;
+        width: 55%;
     }
 }
 
@@ -146,5 +146,11 @@ h1, h2 {
 
     .registerBtn {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .mainHeading {
+        font-size: 0.7em;
     }
 }

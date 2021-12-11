@@ -11,7 +11,6 @@
 .mainBannerSection {
     width: 35%;
     height: 80%;
-    transition: width 1s ease;
 }
 
 .mainBannerHeaderSection {
@@ -41,14 +40,12 @@
 @media screen and (max-width: 1200px) {
     .mainBannerSection {
         width: 45%;
-        transition: width 1s ease;
     }
 }
 
 @media screen and (max-width: 800px) {
     .mainBannerSection {
         width: 80%;
-        transition: width 1s ease;
     }
 
     .mainBannerHeaderSection {
@@ -81,5 +78,15 @@
 
     .searchBarContainer {
         margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .bigHeader {
+        font-size: 1.1em;
+    }
+
+    .searchBarIcon {
+        font-size: 0.5em;
     }
 }

@@ -36,14 +36,14 @@ const Footer = () => {
 				<Link to="/services/social" className={styles.footerLink}>Образователни и социални дейности</Link>
 			</section>
 			<section className={styles.footerSection}>
-				<h5>Условия на платформата</h5>
-				<h5>За платформата</h5>
-				<h5>Промо обяви</h5>
-				<h5>Въпроси</h5>
+				<h5 className={styles.footerSmallHeader}>Условия на платформата</h5>
+				<h5 className={styles.footerSmallHeader}>За платформата</h5>
+				<h5 className={styles.footerSmallHeader}>Промо обяви</h5>
+				<h5 className={styles.footerSmallHeader}>Въпроси</h5>
 			</section>
 			<section className={styles.footerSection}>
-				<StyledBtn href="/sign-up" text="Регистрирай се"/>
-				<StyledBtn href="/categories" text="Виж обявите"/>
+				<StyledBtn href="/sign-up" text="Регистрирай се" className={styles.styledBtnClass}/>
+				<StyledBtn href="/categories" text="Виж обявите" className={styles.styledBtnClass}/>
 			</section>
 		</footer>
 	)

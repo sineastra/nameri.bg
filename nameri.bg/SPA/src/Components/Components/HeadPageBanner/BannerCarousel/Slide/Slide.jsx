@@ -1,7 +1,11 @@
 import styled from 'styled-components'
 import { FaStar } from "react-icons/fa"
 import { Link } from "react-router-dom"
+import { IconContext } from "react-icons"
 
+
+const IconProvider = ({ className, children }) => <IconContext.Provider
+	value={ { className } }>{ children }</IconContext.Provider>
 
 const ContainerSection = styled.section`
   position: relative;
@@ -16,34 +20,33 @@ const StyledFaStar = styled(FaStar)`
   color: orange`
 
 const UserLink = styled(Link)`
-  z-index: 1;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  width: 25%;
-  height: 20%;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  right: 0;
-  bottom: 0;
-  padding: 30px 15px;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding: 1%;
+  box-sizing: border-box;
   text-decoration: none;
   color: #1c1c1c;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
 `
 
 const ImageSection = styled.section`
   width: 100%;
   height: 100%;
-  position: relative;`
+  position: relative;
+`
 
 const StyledProfileImg = styled.img`
   border-radius: 200px;
-  width: 40%;`
+  width: 35%;
+
+  @media screen and (max-width: 600px) {
+    width: 25%;
+  }
+`
 
 const StyledCarouselImg = styled.img`
   width: 100%;
@@ -51,32 +54,92 @@ const StyledCarouselImg = styled.img`
   object-fit: fill;
 `
 
+const UserProfileSection = styled.section`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  width: 35%;
+  height: 35%;
+  display: flex;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 300px) {
+    width: 50%;
+    height: 50%;
+  }
+`
+
+const ListingsNumberHeader = styled.h5`
+  margin: 0;
+  font-size: 1em;
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.8em;
+  }
+`
+
+const UserNames = styled.span`
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1em;
+
+  @media screen and (max-width: 400px) {
+    font-size: 70%;
+  }
+`
+
+const StyledIconProvider = styled(IconProvider)`
+  font-size: 1em;
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.8em;
+  }
+`
+const StyledSpanVotes = styled.span`
+  font-size: 0.8em;
+
+  @media screen and (max-width: 400px) {
+    font-size: 0.6em;
+  }
+`
+
+const StyledUserSectionDiv = styled.div`
+  display: flex;
+  align-items: flex-start;
+  max-height: 20%;
+`
+
 const Slide = ({ listing, activeId }) => {
 	const profileImg = listing.user.profileImg === "" ? "profile.svg" : listing.user.profileImg
 
-	return (
-		<ContainerSection active={ activeId === listing._id }>
-			<ImageSection>
-				<StyledCarouselImg src={ listing.mainImg } alt="Service Front Image"/>
-			</ImageSection>
-			<section>
-				<UserLink to={ `/profile/${ listing.user._id }` }>
-					<StyledProfileImg src={ profileImg } alt="User ProfilePage Image"/>
-					<div>
-						<h5>{ listing.user.listings.length } обяви</h5>
-					</div>
-					<div>
-						<span><i>{ listing.user.nameAndSurname }</i></span>
-					</div>
-					<div>
+	return (<ContainerSection active={ activeId === listing._id }>
+		<ImageSection>
+			<StyledCarouselImg src={ listing.mainImg } alt="Service Front Image"/>
+		</ImageSection>
+		<UserProfileSection>
+			<UserLink to={ `/profile/${ listing.user._id }` }>
+				<StyledProfileImg src={ profileImg } alt="User ProfilePage Image"/>
+				<StyledUserSectionDiv>
+					<ListingsNumberHeader>{ listing.user.listings.length } обяви</ListingsNumberHeader>
+				</StyledUserSectionDiv>
+				<StyledUserSectionDiv>
+					<UserNames>{ listing.user.nameAndSurname }</UserNames>
+				</StyledUserSectionDiv>
+				<StyledUserSectionDiv>
+					<StyledIconProvider>
 						<StyledFaStar/>
-						<span>{ listing.user.rating }</span>
-						<span> ({ listing.user.reviews.length } votes)</span>
-					</div>
-				</UserLink>
-			</section>
-		</ContainerSection>
-	)
+					</StyledIconProvider>
+					<StyledSpanVotes>{ listing.user.rating }</StyledSpanVotes>
+					<StyledSpanVotes> ({ listing.user.reviews.length } votes)</StyledSpanVotes>
+				</StyledUserSectionDiv>
+			</UserLink>
+		</UserProfileSection>
+	</ContainerSection>)
 }
 
 export default Slide

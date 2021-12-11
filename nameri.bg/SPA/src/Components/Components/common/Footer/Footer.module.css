@@ -52,3 +52,44 @@ h5 {
     text-decoration: none;
     margin-top: 5px;
 }
+
+@media screen and (max-width: 800px) {
+    .mainFooter {
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    .socialIconHolder {
+        width: 30%;
+        margin-top: 0;
+    }
+
+    .footerSection {
+        width: 40%;
+        align-items: flex-start;
+        min-height: auto;
+        height: 200px;
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .footerSection {
+        width: 100%;
+        align-items: center;
+        font-size: 1em;
+    }
+
+    .footerLink {
+        text-align: center;
+    }
+
+    .footerSmallHeader {
+        text-align: center;
+    }
+
+    .styledBtnClass {
+        max-width: 90%;
+        white-space: initial;
+    }
+}

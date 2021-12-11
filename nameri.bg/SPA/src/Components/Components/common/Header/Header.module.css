@@ -48,6 +48,7 @@
 
 .header {
     height: 120px;
+    width: 100%;
     background-color: #fafafa;
     color: black;
     display: flex;
@@ -166,5 +167,16 @@
 
     .rightNavCont {
         justify-content: flex-end;
+        width: 10%;
     }
+
+    .mobileNavIcon {
+        width: 100%;
+    }
+
+    .visible {
+        width: 100%;
+        transition: all 0.5s ease;
+    }
+
 }

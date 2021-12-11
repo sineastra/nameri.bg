@@ -36,6 +36,8 @@
 .randomCatsSingleCont {
     display: flex;
     width: 40%;
+    min-width: 40%;
+    max-width: 40%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -48,6 +50,8 @@
     cursor: pointer;
     transition: all ease 0.3s;
     white-space: nowrap;
+    font-size: 1em;
+    overflow: hidden;
 }
 
 .mainHeader:hover {
@@ -69,6 +73,9 @@
 
     .randomCatsSingleCont {
         width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        overflow: hidden;
     }
 
     .mainHeader {
