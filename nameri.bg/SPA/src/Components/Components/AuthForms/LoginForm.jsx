@@ -9,7 +9,7 @@ import getToken from "../../../helpers/getToken.js"
 import { Navigate } from "react-router-dom"
 
 
-const LoginForm = ({ className }) => {
+const LoginForm = ({ className = "" }) => {
 	const [_, setError] = useContext(ErrorContext)
 	const [userData, setUserData] = useContext(UserContext)
 
@@ -33,11 +33,11 @@ const LoginForm = ({ className }) => {
 		userData
 			? <Navigate to={ "/" }/>
 			: <div className={ `${ styles.inputsCont } ${ className }` }>
-				<h1 className={ styles.mainHeader }>Влез</h1>
 				<form className={ styles.inputFieldsCont } onSubmit={ submitHandler } method="POST">
+					<h1 className={ styles.mainHeader }>Влез</h1>
 					<input type="text" name="email" placeholder="Потребителско име" className={ styles.inputField }/>
 					<input type="password" name="password" placeholder="Парола" className={ styles.inputField }/>
-					<StyledBtn text="Влез"/>
+					<StyledBtn text="Влез" className={styles.styledBtn}/>
 				</form>
 			</div>
 	)

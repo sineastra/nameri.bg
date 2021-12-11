@@ -1,0 +1,97 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    padding: 0px 0px 50px;
+    background-color: rgba(218, 220, 227, 0.5);
+}
+
+.benefitDiv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    vertical-align: middle;
+    padding: 2% 10px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    width: 30%;
+    margin-bottom: 20px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.header {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    width: 80%;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: 1px solid lightgray;
+    border-top: 1px solid transparent;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #ff7200;
+    color: white;
+
+}
+
+.benefitText {
+    margin-left: 10px;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 400;
+}
+
+.benefitsWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.iconWrapper {
+    width: 10%;
+    color: green;
+}
+
+.benefitText {
+    width: 80%;
+}
+
+@media screen and (max-width: 800px) {
+    .benefitsWrapper {
+        flex-direction: column;
+    }
+
+    .benefitDiv {
+        width: 100%;
+        height: 30px;
+        padding: 5%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .benefitDiv {
+        font-size: 0.7rem;
+        overflow: hidden;
+    }
+
+    .header {
+        font-size: 0.8rem;
+        padding-left: 5%;
+        padding-right: 5%;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .header {
+        font-size: 0.5rem;
+    }
+
+}

@@ -2,6 +2,8 @@ TODO: move all big "wrapper" components into the pages (remove 1 wrapper compone
 TODO: cover the error handling with PARAMS of the request undefined or null or etc.
 TODO: abstract what u can, where you can.
 TODO: Add Edit Listing functionality after main things are done.
+TODO: check why the footer sometimes go upside
+TODO: make some fancy buttons
 
 
 TODO: add credits section:

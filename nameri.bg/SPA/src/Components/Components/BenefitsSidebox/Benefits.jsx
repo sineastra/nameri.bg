@@ -1,27 +1,9 @@
-import styles from "./BenefitsSidebox.module.css"
+import styles from "./Benefits.module.css"
 import { FaCheck } from "react-icons/fa"
 import { IconContext } from "react-icons"
 
 
-const Benefits = ({ benefits }) => {
-
-	return (
-		<div className={ styles.benefitsWrapper }>
-			{ benefits.map(x => (
-				<IconContext.Provider value={ { color: "green", size: '1.8em' } }>
-					<div className={ styles.benefitDiv }>
-						<FaCheck/>
-						<div className={ styles.benefitText }>
-							{ x }
-						</div>
-					</div>
-				</IconContext.Provider>
-			)) }
-		</div>
-	)
-}
-
-const BenefitsSidebox = ({ className, authType }) => {
+const Benefits = ({ className = "", authType }) => {
 	const [benefitsArr, benefitsHeaderText] = authType === 'login'
 		? [
 			["Трупане на бонус точки", "Специални отстъпки", "Връзка със специалисти от цялата страна и света"],
@@ -37,9 +19,20 @@ const BenefitsSidebox = ({ className, authType }) => {
 	return (
 		<div className={ `${ className } ${ styles.mainWrapper }` }>
 			<h1 className={ styles.header }>{ benefitsHeaderText }</h1>
-			<Benefits benefits={ benefitsArr }/>
+			<div className={ styles.benefitsWrapper }>
+				{ benefitsArr.map(x => (
+					<div className={ styles.benefitDiv }>
+						<div className={ styles.iconWrapper }>
+							<FaCheck/>
+						</div>
+						<div className={ styles.benefitText }>
+							{ x }
+						</div>
+					</div>
+				)) }
+			</div>
 		</div>
 	)
 }
 
-export default BenefitsSidebox
+export default Benefits

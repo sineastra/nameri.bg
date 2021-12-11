@@ -2,7 +2,7 @@
 .styledBtn {
     text-decoration: none;
     width: 150px;
-    min-height: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;

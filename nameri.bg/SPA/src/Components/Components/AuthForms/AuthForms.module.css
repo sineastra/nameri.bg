@@ -4,24 +4,28 @@
 }
 
 .inputFieldsCont {
-    margin-bottom: 40px;
-    width: 90%;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .inputsCont {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    justify-content: center;
+    height: 80%;
     width: 100%;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .inputField {
     width: 100%;
-    border: none;
-    border-bottom: 1px solid lightgray;
+    border: 1px solid lightgray;
     padding: 15px 15px 15px 0;
+    text-indent: 20px;
 }
 
 
@@ -40,8 +44,47 @@
 
 .checkBoxDetails {
     width: 95%;
+    text-align: left;
 }
 
 .checkBox {
     width: 5%;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .inputFieldsCont {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mainHeader {
+        font-size: 1.2rem;
+    }
+
+    .checkBoxDetails {
+        font-size: 0.8rem;
+
+    }
+
+    .styledBtn {
+        width: 50%;
+    }
+
+    .inputFieldsCont {
+        width: 100%;
+    }
+
+    .inputField {
+        padding: 5px;
+        text-indent: 5px;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .inputsCont {
+        height: 90%;
+    }
 }
