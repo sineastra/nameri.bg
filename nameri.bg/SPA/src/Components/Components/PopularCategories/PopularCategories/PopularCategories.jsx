@@ -1,7 +1,7 @@
 import styles from "./PopularCategories.module.css"
-import PopularCategoriesRow from "../PopularCategoriesRow/PopularCategoriesRow.jsx"
 import { useEffect, useState } from "react"
 import categoriesService from "../../../../services/categoriesService.js"
+import SingleCategory from "../SingleCategory/SingleCategory.jsx"
 
 
 const PopularCategories = (props) => {
@@ -9,7 +9,6 @@ const PopularCategories = (props) => {
 
 	useEffect(async () => {
 		let popular = await categoriesService.getPopular(8)
-		popular = [popular.slice(0, 4), popular.slice(4)]
 
 		setPopular(popular)
 	}, [])
@@ -24,11 +23,9 @@ const PopularCategories = (props) => {
 			</div>
 
 			<section className={ styles.popularWrapper }>
-				{ popularCategories.map(categoryData => (
-					<PopularCategoriesRow
-						wrapperClass={ styles.popularCategories }
-						data={ categoryData }
-						key={ categoryData[0]._id }/>
+				{ popularCategories.map(x => (
+					<SingleCategory img={ x.img } name={ x.name } key={ x._id } _id={ x._id }
+					                className={ styles.singleCategoryClass }/>
 				)) }
 			</section>
 

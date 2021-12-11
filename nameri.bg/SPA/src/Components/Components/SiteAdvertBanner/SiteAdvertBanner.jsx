@@ -9,7 +9,7 @@ const SiteAdvertBanner = ({ className = "" }) => {
 	return (
 		<section className={ `${ styles.mainSection } ${ className }` }>
 			<div className={ styles.innerSection }>
-				<IconContext.Provider value={ { color: 'green' } }>
+				<IconContext.Provider value={ { className: styles.iconClass } }>
 					<div className={ styles.headingsOuterContainer }>
 						<div className={ styles.headingsContainer }>
 							<h2 className={ styles.mainHeading }>Осъществяването на твой проект професионално никога не

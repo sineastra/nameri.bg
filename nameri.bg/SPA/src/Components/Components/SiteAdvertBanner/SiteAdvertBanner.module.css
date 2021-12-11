@@ -98,3 +98,53 @@ h1, h2 {
     height: 100%;
     width: 40%;
 }
+
+.iconClass {
+    color: green;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .headingsOuterContainer {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mainSection {
+        height: auto;
+    }
+
+    .innerSection {
+        flex-direction: column;
+    }
+
+    .mainHeading {
+        font-size: 1.2em;
+    }
+
+    .headingsOuterContainer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .innerCheckMarkCont {
+        width: 100%;
+    }
+
+    .checkMarkText {
+        font-size: 1.1em;
+        vertical-align: middle;
+        line-height: 1.5em;
+        margin-top: 15px;
+    }
+
+    .bannerImgCont {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .registerBtn {
+        width: 100%;
+    }
+}

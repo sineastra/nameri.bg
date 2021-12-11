@@ -17,8 +17,8 @@
 .popularWrapper {
     width: 80%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .headingsWrapper {
@@ -34,4 +34,26 @@
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
     font-style: italic;
+}
+
+.singleCategoryClass {
+    width: 23%;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1200px) {
+    .singleCategoryClass {
+        width: 40%;
+    }
+
+    .popularWrapper {
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .singleCategoryClass {
+        width: 90%;
+        height: 400px;
+    }
 }

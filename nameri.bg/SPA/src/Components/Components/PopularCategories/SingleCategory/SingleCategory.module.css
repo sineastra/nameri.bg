@@ -1,11 +1,11 @@
 .categContainer {
     position: relative;
-    width: 23%;
     cursor: pointer;
 }
 
 .categContainer:hover {
     border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .categHeading {
@@ -21,6 +21,7 @@
     height: 100%;
     position: relative;
     border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     object-fit: cover;
 }
 
@@ -36,6 +37,7 @@
     opacity: 1;
     z-index: 1;
     border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .categContainer:hover:after {
