@@ -89,7 +89,7 @@ const UserNames = styled.span`
   font-size: 1em;
 
   @media screen and (max-width: 500px) {
-    font-size: 50%;
+    font-size: 70%;
   }
 `
 
