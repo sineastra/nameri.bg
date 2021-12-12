@@ -4,8 +4,6 @@ const abstractGetRequest = async (req, res, dbService) => {
     try {
         const data = await dbService(req, count)
 
-        console.log(data)
-
         res.status(200).json({ ok: true, status: "ok", statusCode: 200, data })
     } catch (e) {
         res.json({
