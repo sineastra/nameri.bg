@@ -17,6 +17,10 @@ function AppWrapper (props) {
 
 	// preserve user state on reloads.
 	useEffect(() => {
+		setTimeout(() => {
+			let cookiesTry = Cookies.get()
+			console.log(cookiesTry)
+		}, 2000)
 		const token = getToken()
 		const deserialized = deserializeJWT(token)
 
