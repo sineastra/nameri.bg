@@ -40,7 +40,7 @@ const Header = () => {
 				</section>
 				<section className={ ` ${ styles.leftNavCont }` }>
 					<Link to={ '/categories' } className={ styles.mainNavLink }>Категории</Link>
-					<Link to={ '/about' } className={ styles.mainNavLink }>За Платформата</Link>
+					<Link to={ '/messages' } className={ styles.mainNavLink }>За Платформата</Link>
 					<Link to={ '/top-users' } className={ styles.mainNavLink }>Топ Потребители</Link>
 				</section>
 				<section className={ styles.rightNavCont }>
