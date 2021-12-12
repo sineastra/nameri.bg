@@ -5,7 +5,7 @@ import ErrorContext from "../../../Contexts/ErrorContext.jsx"
 import UserContext from "../../../Contexts/UserContext.jsx"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import getToken from "../../../helpers/getToken.js"
-import Cookies from "js-cookie"
+import Cookies from "universal-cookie"
 
 
 let timeout = 0
@@ -13,14 +13,11 @@ let timeout = 0
 function AppWrapper (props) {
 	const [error, setError] = useState('')
 	const [userData, setUserData] = useState()
-	const cookies = Cookies.get()
+	const cookies = new Cookies()
 
 	// preserve user state on reloads.
 	useEffect(() => {
-		setInterval(() => {
-			let cookiesTry = Cookies.get()
-			console.log(cookiesTry)
-		}, 2000)
+		console.log(cookies.get('SESSION_DATA'))
 		const token = getToken()
 		const deserialized = deserializeJWT(token)
 
