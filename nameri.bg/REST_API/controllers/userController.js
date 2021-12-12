@@ -22,7 +22,7 @@ const signIn = async (req, res) => {
 
             const cookie = res.cookie(process.env.COOKIE_NAME, token, {
                 sameSite: "none",
-                secure: false,
+                secure: true,
             })
 
             res.json({ ok: true, status: 200, statusCode: "OK", token })
