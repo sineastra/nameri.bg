@@ -25,6 +25,7 @@ const Messages = (props) => {
 		}
 
 		if (user) {
+			console.log('user')
 			fetchData()
 		}
 	}, [user])

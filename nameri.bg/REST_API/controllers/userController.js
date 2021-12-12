@@ -97,8 +97,9 @@ router.post("/sign-in", signIn)
 router.post("/sign-up", signUp, signIn)
 
 router.get("/:id/messages", async (req, res) => {
-    console.log("here")
+    console.log("I AM IN THE REQUEST FOR THE MESSAGES.")
     const userId = req.params.id
+    console.log(req.params)
     const dbService = req => req.dbServices.userServices.getAllUserMessages(userId)
 
     await abstractGetRequest(req, res, dbService)

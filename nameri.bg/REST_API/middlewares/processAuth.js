@@ -13,14 +13,22 @@ const processAuth = (req, res, next) => {
         try {
             const userData = jwt.verify(token, process.env.TOKEN_SECRET)
 
+            console.log("entered try catch")
+            console.log(userData)
+
             req.user = userData
         } catch (e) {
+            console.log("errror")
+            console.log(e)
+
             res.clearCookie(cookieName)
             res.status(401).json({ ok: false, message: "Unauthorized" })
 
             return false
         }
     }
+
+    console.log("will call next")
     next()
 }
 
