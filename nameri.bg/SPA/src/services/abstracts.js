@@ -7,7 +7,7 @@ const abstractFetch = async (url, body) => {
 			'Content-Type': 'application/json',
 			'Access-Control-Allow-Origin': process.env.REACT_APP_ORIGIN,
 		},
-		withCredentials: true,
+		credentials: 'include',
 	}
 	predefinedBody = Object.assign(predefinedBody, body || {})
 
