@@ -20,7 +20,7 @@ function AppWrapper (props) {
 		} catch (e) {
 			setUserData(null)
 		}
-	}, [cookies])
+	}, [])
 
 	useEffect(() => {
 		if (error !== '') {
