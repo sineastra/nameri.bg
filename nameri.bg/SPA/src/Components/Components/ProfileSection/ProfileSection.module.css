@@ -28,3 +28,42 @@
     height: 100%;
     width: 35%;
 }
+
+@media screen and (max-width: 1400px) {
+    .serviceCard {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .servicesSection {
+        width: 40%;
+    }
+
+    .profileSideCardWrapper {
+        width: 50%;
+    }
+
+    .serviceCard {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .innerWrapper {
+        flex-direction: column;
+    }
+
+    .profileSideCardWrapper {
+        order: 0;
+        width: 100%;
+        margin-bottom: 7%;
+    }
+
+    .servicesSection {
+        order: 1;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+}
+

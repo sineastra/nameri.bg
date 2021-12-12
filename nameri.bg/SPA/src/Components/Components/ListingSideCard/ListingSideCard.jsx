@@ -1,10 +1,10 @@
-import styles from "./ServiceSideCard.module.css"
+import styles from "./ListingSideCard.module.css"
 import profileImg from "../../../assets/images/profile-pic1.webp"
 import RatingBox from "../RatingBox/RatingBox.jsx"
 import UserRatingHeading from "../UserRatingHeading/UserRatingHeading.jsx"
 
 
-const ServiceSideCard = ({ listing }) => {
+const ListingSideCard = ({ listing }) => {
 	const reviewsForDisplay = listing.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
 
 	return (
@@ -65,4 +65,4 @@ const ServiceSideCard = ({ listing }) => {
 	)
 }
 
-export default ServiceSideCard
+export default ListingSideCard

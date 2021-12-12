@@ -1,12 +1,12 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import ServiceDetailsBig from "../../Components/ServiceDetailsBig/ServiceDetailsBig.jsx"
+import ListingDetailsBig from "../../Components/ServiceDetailsBig/ListingDetailsBig.jsx"
 
 
 const ListingDetails = (props) => {
 
 	return (
 		<MainPageLayout>
-			<ServiceDetailsBig/>
+			<ListingDetailsBig/>
 		</MainPageLayout>
 	)
 }

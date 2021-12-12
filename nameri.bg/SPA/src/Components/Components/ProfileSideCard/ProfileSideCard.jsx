@@ -22,13 +22,13 @@ const EditProfile = () => {
 	</>
 }
 
-const SingleSkill = ({ skillName }) => {
+const SingleSkill = ({ skillName, title }) => {
 
 	return (
 		<IconContext.Provider value={ { color: "green" } }>
-			<div key={ skillName } className={ styles.singleSkillInnerWrapper }>
-				<FaCheck/>
-				{ skillName }
+			<div key={ skillName } className={ styles.singleSkillInnerWrapper } title={ title }>
+				<div className={ styles.singleSkillIconDiv }><FaCheck/></div>
+				<div className={ styles.singleSkillTextDiv }>{ skillName }</div>
 			</div>
 		</IconContext.Provider>
 	)
@@ -58,7 +58,6 @@ const Certificate = ({ data }) => {
 const ProfileSideCard = ({ className, user }) => {
 	const loggedUser = useContext(UserContext)
 	const isOwn = loggedUser && loggedUser._id === user._id
-	console.log(user)
 
 	const shouldSeeContacts = isOwn || Number(user.premiumPlan) >= 2
 
@@ -73,22 +72,17 @@ const ProfileSideCard = ({ className, user }) => {
 			<div className={ styles.aboutWrapper }>
 				<div className={ styles.mainHeading }>За Мен</div>
 				{ shouldSeeContacts && <ContactsInfo user={ user }/> }
-				<div>Съобщение</div>
+				<button>Съобщение</button>
 				<hr/>
-				<div>{ user.about }</div>
+				<div className={ styles.about }>{ user.about }</div>
 			</div>
 
 			<div className={ styles.skillsOuterWrapper }>
 				<div className={ styles.mainHeading }>Умения:</div>
 				<div className={ styles.skillsInnerWrapper }>
-					{ user.skills.map(skillName => {
-
-						return (
-							<div className={ styles.singleSkillOuterWrapper }>
-								<SingleSkill skillName={ skillName }/>
-							</div>
-						)
-					}) }
+					{ user.skills.map(skillName => (
+						<SingleSkill skillName={ skillName } title={ skillName }/>
+					)) }
 				</div>
 			</div>
 

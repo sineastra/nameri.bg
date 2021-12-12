@@ -17,7 +17,7 @@ const ProfileEdit = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const fetchedUser = await userServices.getUser(loggedInUser._id)
+			const fetchedUser = await userServices.getUserForProfile(loggedInUser._id)
 
 			setUserData(fetchedUser)
 		}

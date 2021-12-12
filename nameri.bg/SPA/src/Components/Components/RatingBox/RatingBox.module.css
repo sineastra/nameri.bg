@@ -6,6 +6,10 @@
 
 .iconWrapper {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
+}
+
+.starIcon {
+    color: orange;
+    width: 60%;
 }

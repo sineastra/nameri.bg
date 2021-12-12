@@ -111,9 +111,9 @@ router.get("/message/:id", async (req, res) => {
 
     await abstractGetRequest(req, res, dbService)
 })
-router.get("/:id", async (req, res) => {
+router.get("/profile/:id", async (req, res) => {
     const userId = req.params.id
-    const dbService = req => req.dbServices.userServices.getUser(userId)
+    const dbService = req => req.dbServices.userServices.getUserForProfile(userId)
 
     await abstractGetRequest(req, res, dbService)
 })

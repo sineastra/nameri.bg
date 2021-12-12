@@ -1,13 +1,13 @@
-import styles from "./ServiceDetailsBig.module.css"
+import styles from "./ListingDetailsBig.module.css"
 import Carousel from "../Carousel/Carousel.jsx"
-import ServiceSideCard from "../ServiceSideCard/ServiceSideCard.jsx"
+import ListingSideCard from "../ListingSideCard/ListingSideCard.jsx"
 import ListingCard from "../ListingCard/ListingCard.jsx"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import listingsServices from "../../../services/listingsServices.js"
 
 
-const ServiceDetailsBig = (props) => {
+const ListingDetailsBig = (props) => {
 	const [data, setData] = useState({ listing: null, similarListings: null })
 	const params = useParams()
 	const navigate = useNavigate()
@@ -27,13 +27,14 @@ const ServiceDetailsBig = (props) => {
 
 	return (
 		data.listing
-			? <section className={styles.outerSection}>
+			? <section className={ styles.outerSection }>
+				<h1 className={ styles.mainHeader }>{ data.listing.heading }</h1>
 				<section className={ styles.mainSection }>
 					<section className={ styles.carouselSection }>
 						<Carousel data={ data.listing.images } imgsPerSlide={ 3 }/>
 					</section>
 					<section className={ styles.sideSection }>
-						<ServiceSideCard listing={ data.listing }/>
+						<ListingSideCard listing={ data.listing }/>
 					</section>
 				</section>
 
@@ -58,4 +59,4 @@ const ServiceDetailsBig = (props) => {
 	)
 }
 
-export default ServiceDetailsBig
+export default ListingDetailsBig

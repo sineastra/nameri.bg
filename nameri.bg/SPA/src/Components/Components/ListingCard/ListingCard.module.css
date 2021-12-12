@@ -42,7 +42,7 @@
     border: none;
 }
 
-.serviceHeading {
+.listingHeading {
     font-family: 'Balsamiq Sans', cursive;
     font-size: 1.4rem;
     margin-top: 5%;
@@ -86,7 +86,7 @@
         padding: 5px;
     }
 
-    .serviceHeading {
+    .listingHeading {
         font-size: 0.8rem;
     }
 

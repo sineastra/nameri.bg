@@ -14,10 +14,10 @@ const ListingCard = ({ className, listing, user }) => {
 					{ listing.town.name }
 				</div>
 			</Link>
-			<Link to={ `/details/${ listing._id }` } className={ styles.serviceHeading }>{ listing.heading }</Link>
+			<Link to={ `/details/${ listing._id }` } className={ styles.listingHeading }>{ listing.heading }</Link>
 			<div className={ styles.profileInfoWrapper }>
 				<Link to={ `/profile/${ user._id }` } className={ styles.profileImageWrapper }>
-					<img src={ `/${ profileImg }` } alt="" className={ styles.profilePic }/>
+					<img src={ profileImg || '/profile.svg' } alt="" className={ styles.profilePic }/>
 					<div className={ `${ styles.comfortaa } ${ styles.nameAndSurname }` }>{ user.nameAndSurname }</div>
 				</Link>
 				<div className={ styles.priceE }>{ listing.prices[0] } лв.</div>

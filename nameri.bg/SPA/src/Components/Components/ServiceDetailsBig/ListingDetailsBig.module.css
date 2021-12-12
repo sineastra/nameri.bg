@@ -77,6 +77,14 @@
     width: 25%;
 }
 
+.mainHeader {
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 3%;
+}
+
 @media screen and (max-width: 1200px) {
     .outerSection {
         width: 90%;
@@ -133,5 +141,9 @@
 
     .innerDetails {
         padding: 5px;
+    }
+
+    .mainHeader {
+        font-size: 1.5rem;
     }
 }

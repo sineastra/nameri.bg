@@ -9,35 +9,33 @@ import { useParams } from "react-router-dom"
 
 const ProfileSection = () => {
 	const params = useParams()
-	const [state, setState] = useState({ user: null, listings: [] })
-	console.log(state)
+	const [userData, setUserData] = useState(null)
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const user = await userServices.getUser(params.id)
-			const listings = await listingsServices.getUserListings(user._id)
+			const data = await userServices.getUserForProfile(params.id)
 
-			setState({ user, listings })
+			setUserData(data)
 		}
 
 		fetchData()
 	}, [])
 
 	return (
-		state.user
+		userData
 			? <div className={ styles.mainWrapper }>
 				<div className={ styles.innerWrapper }>
 					<section className={ styles.servicesSection }>
-						{ state.listings.map(listing => (
+						{ userData.listings.map(listing => (
 							<ListingCard
 								listing={ listing }
-								user={ state.user }
+								user={ userData }
 								className={ styles.serviceCard }
 							/>))
 						}
 					</section>
 					<div className={ styles.profileSideCardWrapper }>
-						<ProfileSideCard user={ state.user }/>
+						<ProfileSideCard user={ userData }/>
 					</div>
 				</div>
 			</div>
