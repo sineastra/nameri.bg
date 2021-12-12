@@ -5,7 +5,7 @@ import userServices from "../../../services/userServices.js"
 import ErrorContext from "../../../Contexts/ErrorContext.jsx"
 import UserContext from "../../../Contexts/UserContext.jsx"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
-import getToken from "../../../helpers/getToken.js"
+import Cookies from "js-cookie"
 import { Navigate } from "react-router-dom"
 
 
@@ -24,6 +24,7 @@ const LoginForm = ({ className = "" }) => {
 		console.log(response)
 		if (response.ok) {
 			const userData = deserializeJWT(response.token)
+			Cookies.set(process.env.REACT_APP_JWT_COOKIE_NAME, response.token)
 
 			setUserData(userData)
 		} else {
