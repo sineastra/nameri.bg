@@ -11,8 +11,22 @@
     justify-content: space-between;
 }
 
+.mainHeader {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+}
+
 .details {
-    text-align: start;
+    text-align: center;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.detailsBig {
+    display: block;
+}
+
+.detailsSmall {
+    display: none;
 }
 
 .halfInputWrapper {
@@ -99,4 +113,26 @@ input, textarea {
 
 .errorElement {
     color: red;
+}
+
+@media screen and (max-width: 800px) {
+    .mainHeader {
+        font-size: 1.2rem;
+    }
+
+    .details {
+        font-size: 0.8rem;
+    }
+
+    .halfInput {
+        width: 95%;
+    }
+
+    .detailsBig {
+        display: none;
+    }
+
+    .detailsSmall {
+        display: block;
+    }
 }

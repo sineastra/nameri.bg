@@ -7,6 +7,36 @@ import UserContext from "../../../Contexts/UserContext.jsx"
 import { Navigate, useNavigate } from "react-router-dom"
 
 
+const DetailsArticle = () => {
+	const p1 = `В полето за "Повече информация за вас" разкажи за твоя професионален опит,
+	а
+по-долу в
+"ДИПЛОМИ И СЕРТИФИКАТИ" можеш да добавиш квалификациите, които имаш. Профилната
+снимка
+говори за
+твоята
+идентичност. Можеш да добавиш нова или да редактираш стара от полето "KAЧИ ПРОФИЛНА
+СНИМКА". `
+	const p2 = `Разбира се контактите са най-важни. Така ще съкратиш връзката между теб и бъдещите си клиенти.`
+	const summary = `С добавянето на повече информация за теб, даваш възможност на товите потенциални клиенти да те опознаят по-добре. `
+
+	return (
+		<>
+			<article className={ `${ styles.details } ${ styles.detailsBig }` }>
+				<p>{ summary + p1 }</p>
+				<p>{ p2 }</p>
+			</article>
+			<article className={ `${ styles.details } ${ styles.detailsSmall }` }>
+				<details>
+					<summary>{ summary }</summary>
+					<p>{ p1 }</p>
+					<p>{ p2 }</p>
+				</details>
+			</article>
+		</>
+	)
+}
+
 const ProfileEdit = () => {
 	const skippedInitialEffect = useRef(false)
 	const [loggedInUser, setLoggedInUser] = useContext(UserContext)
@@ -77,27 +107,11 @@ const ProfileEdit = () => {
 
 					<form className={ styles.mainWrapper } onSubmit={ submitForm } method="POST">
 						<section className={ styles.smallerWrapper20 }>
-							<h1>РЕДАКТИРАЙ ПРОФИЛ</h1>
-							<article className={ styles.details }>
-								<p>С добавянето на повече информация за теб, даваш възможност на товите потенциални
-									клиенти
-									да
-									те
-									опознаят
-									по-добре. В полето за "Повече информация за вас" разкажи за твоя професионален опит,
-									а
-									по-долу в
-									"ДИПЛОМИ И СЕРТИФИКАТИ" можеш да добавиш квалификациите, които имаш. Профилната
-									снимка
-									говори за
-									твоята
-									идентичност. Можеш да добавиш нова или да редактираш стара от полето "KAЧИ ПРОФИЛНА
-									СНИМКА". </p>
-
-								<p>Разбира се контактите са най-важни. Така ще съкратиш връзката между теб и бъдещите си
-									клиенти.</p>
-							</article>
+							<h1 className={ styles.mainHeader }>РЕДАКТИРАЙ ПРОФИЛ</h1>
+							<DetailsArticle/>
 							<section className={ styles.smallerWrapper }>
+
+								{/*Name Input Section*/ }
 								<input type="text" placeholder="Име и фамилия" name="nameAndSurname"
 								       defaultValue={ userData.nameAndSurname }
 								       className={ errors.nameAndSurname ? styles.invalidInput : '' }/>
@@ -105,7 +119,10 @@ const ProfileEdit = () => {
 									<div className={ styles.errorElement }>
 										Името и Фамилията трябва да са поне 6 знака.
 									</div> }
+								{/*End of Name Input Section*/ }
+
 								<div className={ styles.halfInputWrapper }>
+									{/*Phone Section*/ }
 									<input type="text" placeholder="Телефон" name="phone"
 									       className={ `${ styles.halfInput } ${ errors.phone ? styles.invalidInput : '' }` }
 									       defaultValue={ userData.phone }/>
@@ -114,6 +131,9 @@ const ProfileEdit = () => {
 											Телефона тряба да започва с +359 или с 0 и да е 9 символа след това (Валиден
 											телефон за България)
 										</div> }
+									{/*End of Phone Section*/ }
+
+									{/*Website Section*/ }
 									<input type="text" placeholder="Уебсайт" name="website"
 									       className={ `${ styles.halfInput } ${ errors.website ? styles.invalidInput : '' }` }
 									       defaultValue={ userData.website }/>
@@ -121,6 +141,9 @@ const ProfileEdit = () => {
 										<div className={ styles.errorElement }>
 											Валиден уеб сайт, моля.
 										</div> }
+									{/*End of Website Section*/ }
+
+									{/*Email Section*/ }
 									<input type="text" placeholder="Имейл" name="email"
 									       className={ `${ styles.halfInput } ${ errors.email ? styles.invalidInput : '' }` }
 									       defaultValue={ userData.email }/>
@@ -128,6 +151,9 @@ const ProfileEdit = () => {
 										<div className={ styles.errorElement }>
 											Невалиден имейл.
 										</div> }
+									{/*End of Email Section*/ }
+
+									{/*Address Section*/ }
 									<input type="text" placeholder="Адрес" name="address"
 									       className={ `${ styles.halfInput } ${ errors.address ? styles.invalidInput : '' }` }
 									       defaultValue={ userData.address }/>
@@ -135,14 +161,26 @@ const ProfileEdit = () => {
 										<div className={ styles.errorElement }>
 											Адреса трябва да е поне 5 символа.
 										</div> }
+									{/*End of Address Section*/ }
 								</div>
-								<input type="text" name="skills" placeholder="Умения" defaultValue={ userData.skills }/>
+
+								{/*Skills Section*/ }
+								<input type="text" name="skills" placeholder="Умения"
+								       defaultValue={ userData.skills?.join(', ') }/>
+
+								{/*About me TextArea*/ }
 								<textarea name="about" id="aboutTextarea" placeholder="За мен..."
 								          className={ styles.textArea } defaultValue={ userData.about }/>
+
+								{/*Pics Upload*/ }
 								<CustomInputFile className={ styles.customInput }/>
+
+								{/*New Password Section*/ }
 								<div>
 									<h1>Промени парола</h1>
 									<div className={ styles.halfInputWrapper }>
+
+										{/*First Input*/ }
 										<input type="password"
 										       className={ `${ styles.halfInput } ${ errors.password ? styles.invalidInput : '' }` }
 										       name="password"
@@ -151,6 +189,8 @@ const ProfileEdit = () => {
 											<div className={ styles.errorElement }>
 												Паролата трябва да е поне 5 символа.
 											</div> }
+
+										{/*Second Input*/ }
 										<input type="password"
 										       className={ `${ styles.halfInput } ${ errors.repeatPassword ? styles.invalidInput : '' }` }
 										       name="repeatPassword"
@@ -161,6 +201,8 @@ const ProfileEdit = () => {
 											</div> }
 									</div>
 								</div>
+								{/*End of New Password Section*/ }
+
 							</section>
 						</section>
 						<div className={ styles.submitBtnWrapper }>
