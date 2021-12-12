@@ -15,6 +15,11 @@ function AppWrapper (props) {
 
 	// preserve user state on reloads.
 	useEffect(() => {
+		const token = getToken()
+		const deserialized = deserializeJWT(token)
+
+		console.log(token, deserialized)
+
 		try {
 			setUserData(deserializeJWT(getToken()))
 		} catch (e) {
