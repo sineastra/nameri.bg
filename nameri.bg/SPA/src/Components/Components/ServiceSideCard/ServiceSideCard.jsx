@@ -6,33 +6,39 @@ import UserRatingHeading from "../UserRatingHeading/UserRatingHeading.jsx"
 
 const ServiceSideCard = ({ listing }) => {
 	const reviewsForDisplay = listing.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
-	console.log(listing, reviewsForDisplay)
 
 	return (
 		<div className={ styles.mainFlexContainer }>
 
 			<div className={ `${ styles.userInfo } ${ styles.mainFlexInnerContainer }` }>
 				<div className={ styles.mainHeadingOuterWrapper }>
-					<UserRatingHeading user={ listing.user } showVotes={ true }/>
+					<UserRatingHeading
+						user={ listing.user }
+						showVotes={ true }
+						profileImgClassName={ styles.profileImgClass }
+						headingClassName={ styles.userNames }
+						ratingBoxWrapper={styles.ratingBoxWrapper}
+						wrapperClassName={styles.userWrapper}
+					/>
 				</div>
 				<div className={ styles.userInfoBtnsWrapper }>
-					<button className={ `${ styles.styledBtn } ${ styles.ratingBtn }` }>
+					<button className={ styles.styledBtn  }>
 						Оцени
 					</button>
-					<button className={ `${ styles.styledBtn } ${ styles.contactBtn }` }>
+					<button className={ styles.styledBtn  }>
 						Щепсели
 					</button>
 				</div>
 			</div>
 
-			<div className={ `${ styles.pricesInfoWrapper } ${ styles.mainFlexInnerContainer }` }>
+			<div className={ `${ styles.pricesInfoWrapper }` }>
 				<h1 className={ styles.pricesWrapperHeading }>Колко ще ми струва: </h1>
 				<div className={ styles.pricesInfoOuter }>
 					<div className={ styles.pricesInfoInner }>
 						<ul>
 							{ listing.prices.map((price, i) => (
-								<li className={ styles.priceItem } key={ i }>{ price.text } - <span
-									className={ styles.priceItemBold }>{ price.price }</span> { isNaN(price.price) ? '' : 'лв.' }
+								<li className={ styles.priceItem } key={ i }>{ price } лв.
+									{/*<span className={ styles.priceItemBold }>{ price }</span> { isNaN(price.price) ? '' : 'лв.' }*/ }
 								</li>
 							)) }
 						</ul>

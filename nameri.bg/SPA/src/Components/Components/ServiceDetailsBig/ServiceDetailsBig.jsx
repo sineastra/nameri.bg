@@ -15,9 +15,10 @@ const ServiceDetailsBig = (props) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await listingsServices.getListingDetails(params.id)
+
 			setData({
 				listing: result.listing,
-				similarListings: result.similar,
+				similarListings: result.similar.slice(0, 3),
 			})
 		}
 
@@ -26,7 +27,7 @@ const ServiceDetailsBig = (props) => {
 
 	return (
 		data.listing
-			? <>
+			? <section className={styles.outerSection}>
 				<section className={ styles.mainSection }>
 					<section className={ styles.carouselSection }>
 						<Carousel data={ data.listing.images } imgsPerSlide={ 3 }/>
@@ -46,11 +47,13 @@ const ServiceDetailsBig = (props) => {
 				</section>
 
 				<section className={ styles.similarServices }>
-					{ data.similarListings.map(x => (
-						<ListingCard listing={ x } user={ x.user } className={ styles.similarService } key={ x._id }/>
+					{ data.similarListings.map(listing => (
+						<ListingCard
+							listing={ listing } user={ listing.user } className={ styles.similarService }
+							key={ listing._id }/>
 					)) }
 				</section>
-			</>
+			</section>
 			: null
 	)
 }

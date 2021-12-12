@@ -54,14 +54,14 @@ const Carousel = ({ data, imgsPerSlide = 3 }) => {
 		<div className={ styles.mainWrapper }>
 
 			<div className={ styles.mainImgWrapper }>
-				<img src={ data[activeImgIndx].img } alt="Main Service" className={ styles.mainImg }/>
+				<img src={ data[activeImgIndx] } alt="Main Service" className={ styles.mainImg }/>
 			</div>
 
 			<section className={ styles.slidersOuterWrapper }>
 				<span className={ `${ styles.navArrow } ${ styles.leftArrow }` } onClick={ goPrevSlide }>&lt;</span>
 
-				{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/ }
 				<div className={ styles.carouselWrapper } ref={ sliderRef }>
+					{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/ }
 					{ slideArray.map(slideData => (
 						<CarouselSingleSlider
 							slideData={ slideData }

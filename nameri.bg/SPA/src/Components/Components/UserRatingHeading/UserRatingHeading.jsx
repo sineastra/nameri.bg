@@ -8,19 +8,21 @@ const UserRatingHeading = ({
 	                           wrapperClassName = "",
 	                           profileImgClassName = "",
 	                           headingClassName = "",
+	                           ratingBox = "",
+	                           ratingBoxWrapper = "",
                            }) => {
 
 	return (
 		<div className={ `${ styles.userInfoHeadings } ${ wrapperClassName }` }>
 			<div className={ styles.imageWrapper }>
-				<img src={ user.profileImg } alt="ProfilePage"
+				<img src={ user.profileImg || "/profile.svg" } alt="ProfilePage"
 				     className={ `${ styles.profileImg } ${ profileImgClassName }` }/>
 			</div>
 			<div className={ `${ styles.userFullName } ${ headingClassName }` }>
 				{ user.nameAndSurname }
 			</div>
-			<div>
-				<RatingBox { ...{ user, showVotes } }/>
+			<div className={ ratingBoxWrapper }>
+				<RatingBox user={ user } showVotes={ showVotes } className={ ratingBox }/>
 			</div>
 		</div>
 	)

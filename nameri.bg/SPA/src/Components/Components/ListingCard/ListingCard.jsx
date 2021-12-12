@@ -5,8 +5,6 @@ import { Link } from "react-router-dom"
 const ListingCard = ({ className, listing, user }) => {
 	const profileImg = listing.user.profileImg === "" ? "profile.svg" : listing.user.profileImg
 
-	console.log(profileImg)
-
 	return (
 
 		<div className={ `${ styles.outerWrapper } ${ className }` }>
@@ -20,7 +18,7 @@ const ListingCard = ({ className, listing, user }) => {
 			<div className={ styles.profileInfoWrapper }>
 				<Link to={ `/profile/${ user._id }` } className={ styles.profileImageWrapper }>
 					<img src={ `/${ profileImg }` } alt="" className={ styles.profilePic }/>
-					<div className={ styles.comfortaa }>{ user.nameAndSurname }</div>
+					<div className={ `${ styles.comfortaa } ${ styles.nameAndSurname }` }>{ user.nameAndSurname }</div>
 				</Link>
 				<div className={ styles.priceE }>{ listing.prices[0] } лв.</div>
 			</div>

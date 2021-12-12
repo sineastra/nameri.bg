@@ -16,6 +16,7 @@ const listingsServices = {
         })
             .populate("user")
             .populate("reviews")
+            .populate("town")
             .exec(),
     getUserListings: async userId => {
         const result = await ListingModel.find({ user: userId }).exec()

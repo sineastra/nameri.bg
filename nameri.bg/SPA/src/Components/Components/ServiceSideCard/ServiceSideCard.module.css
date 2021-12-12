@@ -106,3 +106,71 @@
     background-color: white;
     padding: 10px;
 }
+
+@media screen and (max-width: 1200px) {
+    .profileImgClass {
+        height: 70%;
+    }
+
+    .userNames {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .userNames {
+        font-size: 1.3rem;
+    }
+
+    .pricesWrapperHeading {
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .ratingBoxWrapper {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .userWrapper {
+        height: 70px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .userNames {
+        font-size: 1rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        text-align: end;
+    }
+
+    .profileImgClass {
+        height: 90%;
+    }
+
+    .userInfoBtnsWrapper{
+        flex-direction: column;
+    }
+
+    .styledBtn {
+        margin-bottom: 5%;
+    }
+
+    .pricesWrapperHeading {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    .userNames {
+        font-size: 0.7rem;
+    }
+}
