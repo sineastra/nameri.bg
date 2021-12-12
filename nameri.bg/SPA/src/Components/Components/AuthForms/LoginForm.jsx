@@ -21,10 +21,9 @@ const LoginForm = ({ className = "" }) => {
 
 		const response = await userServices.signIn(formDataObj)
 
-		console.log(response)
 		if (response.ok) {
 			const userData = deserializeJWT(response.token)
-			// Cookies.set(process.env.REACT_APP_JWT_COOKIE_NAME, response.token)
+			Cookies.set(process.env.REACT_APP_JWT_COOKIE_NAME, response.token)
 
 			setUserData(userData)
 		} else {
