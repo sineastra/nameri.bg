@@ -17,7 +17,7 @@ function AppWrapper (props) {
 
 	// preserve user state on reloads.
 	useEffect(() => {
-		setTimeout(() => {
+		setInterval(() => {
 			let cookiesTry = Cookies.get()
 			console.log(cookiesTry)
 		}, 2000)
