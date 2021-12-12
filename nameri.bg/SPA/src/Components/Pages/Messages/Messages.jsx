@@ -36,7 +36,7 @@ const Messages = (props) => {
 					<MessagesComp messages={ conversations }/>
 				</PageSection>
 			</MainPageLayout>
-			: <Navigate to="/sign-in"/>
+			: null
 	)
 }
 

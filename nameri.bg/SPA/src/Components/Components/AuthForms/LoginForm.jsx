@@ -21,6 +21,7 @@ const LoginForm = ({ className = "" }) => {
 
 		const response = await userServices.signIn(formDataObj)
 
+		console.log(response)
 		if (response.ok) {
 			const userData = deserializeJWT(getToken())
 			setUserData(userData)
@@ -37,7 +38,7 @@ const LoginForm = ({ className = "" }) => {
 					<h1 className={ styles.mainHeader }>Влез</h1>
 					<input type="text" name="email" placeholder="Потребителско име" className={ styles.inputField }/>
 					<input type="password" name="password" placeholder="Парола" className={ styles.inputField }/>
-					<StyledBtn text="Влез" className={styles.styledBtn}/>
+					<StyledBtn text="Влез" className={ styles.styledBtn }/>
 				</form>
 			</div>
 	)
