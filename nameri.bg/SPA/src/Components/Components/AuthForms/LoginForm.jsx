@@ -23,7 +23,8 @@ const LoginForm = ({ className = "" }) => {
 
 		console.log(response)
 		if (response.ok) {
-			const userData = deserializeJWT(getToken())
+			const userData = deserializeJWT(response.token)
+
 			setUserData(userData)
 		} else {
 			setError(`Error: ${ e.message }`)
