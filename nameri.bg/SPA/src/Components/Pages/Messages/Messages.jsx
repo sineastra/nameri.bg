@@ -17,6 +17,8 @@ const Messages = (props) => {
 	const [user, _] = useContext(UserContext)
 	const [conversations, setConversations] = useState([])
 
+	console.log(user)
+
 	useEffect(() => {
 		const fetchData = async () => {
 			const data = await userServices.getAllUserMessages(user._id)
