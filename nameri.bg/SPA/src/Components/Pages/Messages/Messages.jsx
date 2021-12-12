@@ -11,13 +11,15 @@ const PageSection = styled.section`
   height: 90vh;
   width: 100%;
   margin-top: 5%;
+
+  @media screen and (max-width: 800px) {
+    height: auto;
+  }
 `
 
 const Messages = (props) => {
 	const [user, _] = useContext(UserContext)
 	const [conversations, setConversations] = useState([])
-
-	console.log(user)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -27,13 +29,12 @@ const Messages = (props) => {
 		}
 
 		if (user) {
-			console.log('user')
 			fetchData()
 		}
 	}, [user])
 
 	return (
-		user
+		user && conversations
 			? <MainPageLayout>
 				<PageSection>
 					<MessagesComp messages={ conversations }/>

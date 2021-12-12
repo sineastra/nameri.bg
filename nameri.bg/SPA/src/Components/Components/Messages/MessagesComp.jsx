@@ -2,23 +2,41 @@ import styles from "./MessagesComp.module.css"
 import MsgBigChat from "../MsgBigChat/MsgBigChat.jsx"
 import MsgSmallCard from "../MsgSmallCard/MsgSmallCard.jsx"
 import { useState } from "react"
+import { FaSadTear } from "react-icons/fa"
+import { IconContext } from "react-icons"
 
 
 const MessagesSide = ({ messages, changeMsg }) => {
+	const messagesExist = messages.length > 0
+
 	return (
-		<aside>
-			{ messages.map(msg => (
-				<MsgSmallCard { ...{ key: msg._id, messageData: msg, changeMsg } } />
-			)) }
+		<aside className={ styles.asideChat }>
+			<div className={ styles.asideInnerChat }>
+				{ messagesExist
+					? <>
+						<div className={ styles.innerBoxText }>Входяща кутия</div>
+						{ messages.map(msg =>
+							<MsgSmallCard key={ msg._id } messageData={ msg }
+							              changeMsg={ changeMsg }/>) }
+					</>
+					: <div className={ styles.noMessagesDiv }>
+						Нямаш съобщения в кутията
+						<IconContext.Provider value={ { className: styles.sadIcon } }>
+							<FaSadTear/>
+						</IconContext.Provider>
+					</div> }
+			</div>
 		</aside>
 	)
 }
 
 const MessagesComp = ({ messages }) => {
-	const [pickedMsg, pickMsg] = useState(messages[0])
+	const [pickedMsg, pickMsg] = useState(null)
 
-	const changeMsg = id => {
-		pickMsg(messages[id])
+	const changeMsg = _id => {
+		const temp = messages.find(x => x._id === _id)
+
+		pickMsg(temp)
 	}
 
 	return (

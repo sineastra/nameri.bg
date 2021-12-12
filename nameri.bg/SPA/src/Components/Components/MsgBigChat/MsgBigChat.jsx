@@ -4,17 +4,14 @@ import { IconContext } from "react-icons"
 import uid from "../../../helpers/uniqueIDGenerator.js"
 
 
-const EmptyMsgs = ({ className = '' }) => {
+const PickedMsg = ({ className = '' }) => {
 
 	return (
-		<div className={ `${ styles.mainWrapper } ${ className }` }>
+		<div className={ `${ styles.mainWrapper } ${ styles.mainWrapperEmpty } ${ className }` }>
 			<div className={ `${ styles.innerWrapper } ${ styles.innerWrapperEmpty }` }>
 				<div className={ styles.noPostWrapper }>
-					<IconContext.Provider value={ { size: '2.5em', color: "darkred" } }>
+					<IconContext.Provider value={ { className: styles.mailIcon } }>
 						<AiOutlineMail/>
-						<h2>
-							Нямаш съобщения в кутията.
-						</h2>
 					</IconContext.Provider>
 				</div>
 			</div>
@@ -22,7 +19,7 @@ const EmptyMsgs = ({ className = '' }) => {
 	)
 }
 
-const NonEmptyMsgs = ({ data, className = '' }) => {
+const NonPickedMsg = ({ data, className = '' }) => {
 	const participants = data.participants.map(x => x.nameAndSurname).join(",")
 
 	const defineMsgClassName = (userId, messageSenderId) => {
@@ -31,7 +28,7 @@ const NonEmptyMsgs = ({ data, className = '' }) => {
 	}
 
 	return (
-		<div className={ `${ styles.mainWrapper } ${ className }` }>
+		<div className={ `${ styles.mainWrapper } ${ styles.mainWrapperNonEmpty } ${ className }` }>
 			<div className={ styles.innerWrapper }>
 				<div className={ styles.userNameHeader }>
 					{ participants }
@@ -52,7 +49,7 @@ const NonEmptyMsgs = ({ data, className = '' }) => {
 }
 
 const MsgBigChat = ({ data, className = '' }) => {
-	return data ? <NonEmptyMsgs { ...{ data, className } }/> : <EmptyMsgs { ...{ className } }/>
+	return data ? <NonPickedMsg { ...{ data, className } }/> : <PickedMsg { ...{ className } }/>
 
 }
 

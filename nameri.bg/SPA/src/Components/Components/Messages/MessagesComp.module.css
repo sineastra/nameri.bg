@@ -20,8 +20,81 @@
 
 .bigCont {
     width: 60%;
+    height: 50vh;
 }
 
 .smallCont {
     width: 35%;
+    height: 50vh;
+}
+
+.asideChat {
+    background-color: #ff7200;
+    padding: 2%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.asideInnerChat {
+    border-radius: 10px;
+    background-color: #f3f3f3;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.noMessagesDiv {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.sadIcon {
+    color: green;
+    font-size: 4rem;
+    margin-top: 10%;
+}
+
+.innerBoxText {
+    width: 100%;
+    font-family: 'Balsamiq Sans', cursive;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 5%;
+}
+
+@media screen and (max-width: 1200px) {
+    .outerWrapper {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mainWrapper {
+        flex-direction: column;
+    }
+
+    .bigCont, .smallCont {
+        width: 100%;
+        height: 30vh;
+        margin-bottom: 5%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sadIcon {
+        font-size: 2rem;
+    }
+
+    .noMessagesDiv {
+        font-size: 1rem;
+    }
 }
