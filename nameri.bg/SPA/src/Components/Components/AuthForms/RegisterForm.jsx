@@ -1,12 +1,12 @@
 import styles from "./AuthForms.module.css"
 import StyledBtn from "../StyledLinkBtn/StyledBtn.jsx"
-import ErrorContext from "../../../Contexts/ErrorContext.jsx"
+import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import userServices from "../../../services/userServices.js"
 import { useContext } from "react"
 import { Navigate } from "react-router-dom"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import getToken from "../../../helpers/getToken.js"
-import UserContext from "../../../Contexts/UserContext.jsx"
+import UserContext from "../../Contexts/UserContext.jsx"
 
 
 const RegisterForm = ({ className }) => {

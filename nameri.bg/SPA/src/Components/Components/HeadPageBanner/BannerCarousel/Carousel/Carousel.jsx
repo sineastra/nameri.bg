@@ -9,8 +9,9 @@ import banner2 from "../../../../../assets/images/hero-instance-4--desktop.webp"
 import banner3 from "../../../../../assets/images/hero-instance-5--desktop.webp"
 import NavDot from "../NavDot/NavDot.jsx"
 import listingsServices from "../../../../../services/listingsServices.js"
-import ErrorContext from "../../../../../Contexts/ErrorContext.jsx"
+import ErrorContext from "../../../../Contexts/ErrorContext.jsx"
 import { useNavigate } from "react-router-dom"
+import HomePageContext from "../../../../Contexts/HomePageContext.jsx"
 
 
 const StyledNavDot = styled(NavDot)`
@@ -34,51 +35,37 @@ const NavDotsInnerCont = styled.ul`
 `
 
 const Carousel = ({ className }) => {
-	const navigate = useNavigate()
 	const [activeId, setActiveId] = useState(0)
-	const [carouselData, setCarouselData] = useState([])
+	const [contextData] = useContext(HomePageContext)
+	const carouselData = contextData.listings
 
-	useEffect(async () => {
-		try {
-			const listingData = await listingsServices.getBest(2)
-
-			setCarouselData(listingData)
-			setActiveId(listingData[0]._id)
-		} catch (e) {
-			navigate("/error", {
-				state: {
-					statusCode: e.statusCode,
-					status: e.status,
-				},
-			})
+	useEffect(() => {
+		if (carouselData) {
+			setActiveId(carouselData[0]._id)
 		}
-
-	}, [])
+	}, [carouselData])
 
 	return (
-		<section className={ className }>
-			{ carouselData.map(listing =>
-				<Slide
+		carouselData
+			? <section className={ className }>
+				{ carouselData.map(listing => <Slide
 					listing={ listing }
 					key={ listing._id }
 					activeId={ activeId }
-				/>)
-			}
-			<NavDotsContainer>
-				<NavDotsInnerCont>
-					{ carouselData.map((listing) => (
-						<StyledLi>
+				/>) }
+				<NavDotsContainer>
+					<NavDotsInnerCont>
+						{ carouselData.map((listing) => (<StyledLi key={ listing._id }>
 							<StyledNavDot
-								key={ listing._id }
 								id={ listing._id }
 								activeId={ activeId }
 								changeId={ setActiveId }
 							/>
-						</StyledLi>
-					)) }
-				</NavDotsInnerCont>
-			</NavDotsContainer>
-		</section>
+						</StyledLi>)) }
+					</NavDotsInnerCont>
+				</NavDotsContainer>
+			</section>
+			: null
 	)
 }
 

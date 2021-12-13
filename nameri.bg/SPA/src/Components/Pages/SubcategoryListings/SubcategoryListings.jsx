@@ -5,7 +5,7 @@ import CategoriesPagesHeader from "../../Components/CategoriesPagesHeader/Catego
 import StyledBtn from "../../Components/StyledLinkBtn/StyledBtn.jsx"
 import { useEffect, useState } from "react"
 import categoriesService from "../../../services/categoriesService.js"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 
 const SubcategoryListings = () => {
@@ -16,8 +16,6 @@ const SubcategoryListings = () => {
 		// TODO: this is for refactoring into custom Hook
 		const fetchData = async () => {
 			const result = await categoriesService.getSubCatListings(params.id)
-
-			console.log(result)
 
 			setSubcategory(result)
 		}

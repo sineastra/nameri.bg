@@ -117,29 +117,32 @@ const StyledUserSectionDiv = styled.div`
 const Slide = ({ listing, activeId }) => {
 	const profileImg = listing.user.profileImg === "" ? "profile.svg" : listing.user.profileImg
 
-	return (<ContainerSection active={ activeId === listing._id }>
-		<ImageSection>
-			<StyledCarouselImg src={ listing.mainImg } alt="Service Front Image"/>
-		</ImageSection>
-		<UserProfileSection>
-			<UserLink to={ `/profile/${ listing.user._id }` }>
-				<StyledProfileImg src={ `/${ profileImg }` } alt="User Profile Image"/>
-				<StyledUserSectionDiv>
-					<ListingsNumberHeader>{ listing.user.listings.length } обяви</ListingsNumberHeader>
-				</StyledUserSectionDiv>
-				<StyledUserSectionDiv>
-					<UserNames>{ listing.user.nameAndSurname }</UserNames>
-				</StyledUserSectionDiv>
-				<StyledUserSectionDiv>
-					<StyledIconProvider>
-						<StyledFaStar/>
-					</StyledIconProvider>
-					<StyledSpanVotes>{ listing.user.rating }</StyledSpanVotes>
-					<StyledSpanVotes> ({ listing.user.reviews.length } votes)</StyledSpanVotes>
-				</StyledUserSectionDiv>
-			</UserLink>
-		</UserProfileSection>
-	</ContainerSection>)
+	return (
+		<ContainerSection active={ activeId === listing._id }>
+			<ImageSection>
+				<StyledCarouselImg src={ listing.mainImg } alt="Service Front Image"
+				                   onLoad={ () => console.log('loaded') }/>
+			</ImageSection>
+			<UserProfileSection>
+				<UserLink to={ `/profile/${ listing.user._id }` }>
+					<StyledProfileImg src={ `/${ profileImg }` } alt="User Profile Image"/>
+					<StyledUserSectionDiv>
+						<ListingsNumberHeader>{ listing.user.listings.length } обяви</ListingsNumberHeader>
+					</StyledUserSectionDiv>
+					<StyledUserSectionDiv>
+						<UserNames>{ listing.user.nameAndSurname }</UserNames>
+					</StyledUserSectionDiv>
+					<StyledUserSectionDiv>
+						<StyledIconProvider>
+							<StyledFaStar/>
+						</StyledIconProvider>
+						<StyledSpanVotes>{ listing.user.rating }</StyledSpanVotes>
+						<StyledSpanVotes> ({ listing.user.reviews.length } votes)</StyledSpanVotes>
+					</StyledUserSectionDiv>
+				</UserLink>
+			</UserProfileSection>
+		</ContainerSection>
+	)
 }
 
 export default Slide

@@ -3,33 +3,45 @@ import HeadPageBanner from "../../Components/HeadPageBanner/HeadPageBanner/HeadP
 import SiteAdvertBanner from "../../Components/SiteAdvertBanner/SiteAdvertBanner.jsx"
 import PopularCategories from "../../Components/PopularCategories/PopularCategories/PopularCategories.jsx"
 import CategoriesList from "../../Components/CategoriesList/CategoriesList/CategoriesList.jsx"
-import { Suspense } from "react"
+import { useEffect, useState } from "react"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
+import { useNavigate } from "react-router-dom"
+import listingsServices from "../../../services/listingsServices.js"
+import categoriesService from "../../../services/categoriesService.js"
+import useFetch from "../../../hooks/useFetch.jsx"
+import HomePageContext from "../../Contexts/HomePageContext.jsx"
 
 
 const HomePage = () => {
+	const [homePageContext, setHomePageContext] = useState({})
+
+	const fetchData = async () => {
+		const [listings, popularCategories, subCategories] = await Promise.all([
+			listingsServices.getBest(2),
+			categoriesService.getPopular(8),
+			categoriesService.getWithMostSubCats(2),
+		])
+
+		setHomePageContext({ ...homePageContext, listings, popularCategories, subCategories })
+	}
+
+	const { isLoadingData } = useFetch(fetchData)
 
 	return (
-		<Suspense fallback={ <Spinner/> }>
+		isLoadingData
+			? <Spinner/>
+			: <HomePageContext.Provider value={ [homePageContext, setHomePageContext] }>
+				<MainPageLayout>
+					<HeadPageBanner/>
 
-			<MainPageLayout>
-				<HeadPageBanner/>
+					<main>
+						<PopularCategories/>
+						<CategoriesList/>
+					</main>
 
-				<main>
-					{/*START OF POPULAR CATEGORIES SECTION*/ }
-					<PopularCategories/>
-					{/*END OF POPULAR CATEGORIES SECTION*/ }
-
-					{/* START OF SMALL CATEGORIES SECTION*/ }
-					<CategoriesList/>
-					{/* END OF SMALL CATEGORIES SECTION*/ }
-				</main>
-
-				{/*START OF SITE ADVERT BANNER SECTION*/ }
-				<SiteAdvertBanner/>
-				{/*END OF SITE ADVERT BANNER SECTION*/ }
-			</MainPageLayout>
-		</Suspense>
+					<SiteAdvertBanner/>
+				</MainPageLayout>
+			</HomePageContext.Provider>
 	)
 }
 

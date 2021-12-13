@@ -3,7 +3,7 @@ import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayou
 import CustomInputFile from "../../Components/CustomInputFile/CustomInputFile.jsx"
 import { useContext, useEffect, useRef, useState } from "react"
 import userServices from "../../../services/userServices.js"
-import UserContext from "../../../Contexts/UserContext.jsx"
+import UserContext from "../../Contexts/UserContext.jsx"
 import { Navigate, useNavigate } from "react-router-dom"
 
 

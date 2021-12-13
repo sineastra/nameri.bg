@@ -2,7 +2,7 @@ import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayou
 import styled from "styled-components"
 import { useContext, useEffect, useState } from "react"
 import userServices from "../../../services/userServices.js"
-import UserContext from "../../../Contexts/UserContext.jsx"
+import UserContext from "../../Contexts/UserContext.jsx"
 import styles from "./Messages.module.css"
 import MsgBigChat from "../../Components/MsgBigChat/MsgBigChat.jsx"
 import MsgConversations from "../../Components/MsgConversations/MsgConversations.jsx"

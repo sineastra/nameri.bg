@@ -1,40 +1,38 @@
 import styles from "./CategoriesList.module.css"
 import SingleListCategory from "../SingleListCategory/SingleListCategory.jsx"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import categoriesService from "../../../../services/categoriesService.js"
+import HomePageContext from "../../../Contexts/HomePageContext.jsx"
 
 
-const CategoriesList = () => {
-	const [subCats, setSubCats] = useState([])
-
-	useEffect(async () => {
-		// TODO: this is for refactoring into custom Hook
-		const data = await categoriesService.getWithMostSubCats(2)
-
-		setSubCats(data)
-	}, [])
+const CategoriesList = (props) => {
+	const [contextData] = useContext(HomePageContext)
+	console.log(contextData)
+	const subCategories = contextData.subCategories
 
 	return (
-		<section className={ styles.randomCategoriesCont }>
-			<div className={ styles.randomCatsInnerCont }>
-				{ subCats.map(category => (
-					<div className={ styles.randomCatsSingleCont }>
-						<h1 className={ styles.mainHeader }>{ category.name }</h1>
-						<div className={ styles.innerRandom } key={ category._id }>
-							{ category.subcategories.map(subCat => (
-								<SingleListCategory
-									key={ subCat._id }
-									_id={ subCat._id }
-									name={ subCat.name }
-									listings={ subCat.listings }
-									className={ styles.singleCat }
-								/>))
-							}
+		subCategories
+			? <section className={ styles.randomCategoriesCont }>
+				<div className={ styles.randomCatsInnerCont }>
+					{ subCategories.map(category => (
+						<div className={ styles.randomCatsSingleCont } key={ category._id }>
+							<h1 className={ styles.mainHeader }>{ category.name }</h1>
+							<div className={ styles.innerRandom }>
+								{ category.subcategories.map(subCat => (
+									<SingleListCategory
+										key={ subCat._id }
+										_id={ subCat._id }
+										name={ subCat.name }
+										listings={ subCat.listings }
+										className={ styles.singleCat }
+									/>))
+								}
+							</div>
 						</div>
-					</div>
-				)) }
-			</div>
-		</section>
+					)) }
+				</div>
+			</section>
+			: null
 	)
 }
 

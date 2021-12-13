@@ -1,8 +1,8 @@
 import styles from "./AppWrapper.module.css"
 import AppRouter from "../Router/AppRouter.jsx"
 import { useEffect, useState } from "react"
-import ErrorContext from "../../../Contexts/ErrorContext.jsx"
-import UserContext from "../../../Contexts/UserContext.jsx"
+import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import UserContext from "../../Contexts/UserContext.jsx"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import getToken from "../../../helpers/getToken.js"
 import Cookies from "js-cookie"
@@ -16,11 +16,9 @@ function AppWrapper (props) {
 
 	// preserve user state on reloads.
 	useEffect(() => {
-		console.log(Cookies.get())
 		try {
 			setUserData(deserializeJWT(getToken()))
 		} catch (e) {
-			console.log(e)
 			setUserData(null)
 		}
 	}, [])

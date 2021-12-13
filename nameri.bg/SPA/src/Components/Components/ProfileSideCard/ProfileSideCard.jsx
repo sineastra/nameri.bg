@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import RatingBox from "../RatingBox/RatingBox.jsx"
 import { useContext } from "react"
-import UserContext from "../../../Contexts/UserContext.jsx"
+import UserContext from "../../Contexts/UserContext.jsx"
 
 
 const ContactsInfo = ({ user }) => {
