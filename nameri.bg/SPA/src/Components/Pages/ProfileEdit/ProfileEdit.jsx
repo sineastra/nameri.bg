@@ -38,8 +38,7 @@ const DetailsArticle = () => {
 }
 
 const ProfileEdit = () => {
-	const skippedInitialEffect = useRef(false)
-	const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+	const [loggedInUser, _] = useContext(UserContext)
 	const [userData, setUserData] = useState({})
 	const [validFormData, setValidFormData] = useState(false)
 	const [errors, setErrors] = useState({})
@@ -52,20 +51,18 @@ const ProfileEdit = () => {
 			setUserData(fetchedUser)
 		}
 
-		if (skippedInitialEffect.current === false) {
-			skippedInitialEffect.current = true
-		} else {
+		if (loggedInUser) {
 			fetchData()
 		}
 	}, [loggedInUser])
 
 	useEffect(() => {
 		//TODO: implement post request logic
-		if (validFormData) {
-			navigate("/")
-		} else {
-			console.log('invalid')
-		}
+		// if (validFormData) {
+		// 	navigate("/")
+		// } else {
+		// 	console.log('invalid')
+		// }
 	}, [validFormData])
 
 	const validateForm = (formData) => {
@@ -100,8 +97,10 @@ const ProfileEdit = () => {
 		validateForm(formDataObj)
 	}
 
+	console.log(loggedInUser)
+
 	return (
-		skippedInitialEffect !== false ?
+		loggedInUser !== undefined ?
 			loggedInUser !== null ?
 				<MainPageLayout>
 

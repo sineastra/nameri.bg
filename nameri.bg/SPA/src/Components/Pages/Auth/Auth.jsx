@@ -12,30 +12,34 @@ const Auth = ({ authType }) => {
 	const miscText = authType === 'login' ? "Все още нямаш профил в платформата?" : "Вече имаш профил?"
 	const linkHref = authType === 'login' ? '/sign-up' : '/sign-in'
 
-	return (<MainPageLayout>
-		<div className={ `${ styles.outerWrapper } ${ authType === 'login' ? styles.shortMain : styles.longMain }` }>
-			<section className={ styles.mainWrapper }>
+	return (
+		<MainPageLayout>
+			<div
+				className={ `${ styles.outerWrapper } ${ authType === 'login' ? styles.shortMain : styles.longMain }` }>
+				<section className={ styles.mainWrapper }>
 
-				<section className={ styles.headerSectionOuter }>
-					<div className={ styles.headerSectionInner }>
-						<h1 className={ styles.header }>{ actionText }</h1>
-						<span>
+					<section className={ styles.headerSectionOuter }>
+						<div className={ styles.headerSectionInner }>
+							<h1 className={ styles.header }>{ actionText }</h1>
+							<span>
 							<span className={ styles.miscText }>{ miscText } | </span>
 							<Link to={ linkHref } className={ styles.redirectLink }>{ redirectText }</Link>
+							</span>
+						</div>
+						<Benefits authType={ authType }/>
+					</section>
 
-					</span>
-					</div>
-					<Benefits authType={ authType }/>
+					<section className={ styles.authFieldsSection }>
+						{ authType === 'login'
+							? <LoginForm className={ styles.formClassName }/>
+							: <RegisterForm className={ styles.formClassName }/>
+						}
+					</section>
+
 				</section>
-
-				<section className={ styles.authFieldsSection }>
-					{ authType === 'login' ? <LoginForm className={ styles.formClassName }/> :
-						<RegisterForm className={ styles.formClassName }/> }
-				</section>
-
-			</section>
-		</div>
-	</MainPageLayout>)
+			</div>
+		</MainPageLayout>
+	)
 }
 
 export default Auth

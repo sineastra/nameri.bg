@@ -1,0 +1,45 @@
+.outerWrapper {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.mainWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.mainHeader {
+    width: 100%;
+    font-family: 'Balsamiq Sans', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+
+.bigCont {
+    width: 60%;
+}
+
+.smallCont {
+    width: 35%;
+}
+
+@media screen and (max-width: 1200px) {
+    .outerWrapper {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mainWrapper {
+        flex-direction: column;
+    }
+
+    .bigCont, .smallCont {
+        width: 100%;
+        margin-bottom: 5%;
+    }
+}

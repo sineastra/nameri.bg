@@ -1,10 +1,11 @@
-import MessagesComp from "../../Components/Messages/MessagesComp.jsx"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styled from "styled-components"
 import { useContext, useEffect, useState } from "react"
 import userServices from "../../../services/userServices.js"
 import UserContext from "../../../Contexts/UserContext.jsx"
-import { Navigate } from "react-router-dom"
+import styles from "./Messages.module.css"
+import MsgBigChat from "../../Components/MsgBigChat/MsgBigChat.jsx"
+import MsgConversations from "../../Components/MsgConversations/MsgConversations.jsx"
 
 
 const PageSection = styled.section`
@@ -19,13 +20,14 @@ const PageSection = styled.section`
 
 const Messages = (props) => {
 	const [user, _] = useContext(UserContext)
-	const [conversations, setConversations] = useState([])
+	const [messages, setMessages] = useState([])
+	const [pickedMsg, pickMsg] = useState(null)
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const data = await userServices.getAllUserMessages(user._id)
 
-			setConversations(data.conversations)
+			setMessages(data.conversations)
 		}
 
 		if (user) {
@@ -33,11 +35,29 @@ const Messages = (props) => {
 		}
 	}, [user])
 
+	const changeMsg = _id => {
+		const temp = messages.find(x => x._id === _id)
+
+		pickMsg(temp)
+	}
+
 	return (
-		user && conversations
+		user && messages
 			? <MainPageLayout>
 				<PageSection>
-					<MessagesComp messages={ conversations }/>
+					<div className={ styles.outerWrapper }>
+						<div className={ styles.mainHeader }>
+							<h1>Съобщения</h1>
+						</div>
+						<div className={ styles.mainWrapper }>
+							<section className={ styles.bigCont }>
+								<MsgBigChat data={ pickedMsg }/>
+							</section>
+							<section className={ styles.smallCont }>
+								<MsgConversations { ...{ messages, changeMsg } } />
+							</section>
+						</div>
+					</div>
 				</PageSection>
 			</MainPageLayout>
 			: null

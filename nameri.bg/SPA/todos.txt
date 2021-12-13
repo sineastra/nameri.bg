@@ -4,7 +4,8 @@ TODO: abstract what u can, where you can.
 TODO: Add Edit Listing functionality after main things are done.
 TODO: check why the footer sometimes go upside
 TODO: make some fancy buttons
-
+TODO: Lazy loading
+TODO: Suspense
 
 TODO: add credits section:
 
