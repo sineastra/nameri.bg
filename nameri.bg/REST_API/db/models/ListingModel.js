@@ -4,7 +4,7 @@ const ListingSchema = new mongoose.Schema({
     heading: { type: String, required: true },
     prices: [{ type: String }],
     images: [{ type: String }],
-    mainImg: { type: String },
+    mainImg: { type: String, required: true, default: "" },
     tags: [{ type: String }],
     premiumType: { type: Number, required: true, default: 0 },
     reviews: [{ type: String, ref: "Review", required: true, default: [] }],

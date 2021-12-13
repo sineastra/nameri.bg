@@ -43,3 +43,30 @@
 .categContainer:hover:after {
     opacity: 0;
 }
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.imgLoader {
+    position: relative;
+    height: 30vh;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+@media screen and (max-width: 1700px) {
+    .imgLoader {
+        height: 23vh;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .imgLoader {
+        height: 45vh;
+    }
+}

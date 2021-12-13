@@ -1,13 +1,11 @@
 import styles from "./CategoriesList.module.css"
 import SingleListCategory from "../SingleListCategory/SingleListCategory.jsx"
-import { useContext, useEffect, useState } from "react"
-import categoriesService from "../../../../services/categoriesService.js"
+import { useContext } from "react"
 import HomePageContext from "../../../Contexts/HomePageContext.jsx"
 
 
 const CategoriesList = (props) => {
 	const [contextData] = useContext(HomePageContext)
-	console.log(contextData)
 	const subCategories = contextData.subCategories
 
 	return (

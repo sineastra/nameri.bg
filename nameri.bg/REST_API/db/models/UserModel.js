@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, required: true },
     nameAndSurname: { type: String, required: true },
     hashedPassword: { type: String, required: true },
-    profileImg: { type: String },
+    profileImg: { type: String, required: true, default: "" },
     listings: [{ type: "ObjectId", ref: "Listing", default: [] }],
     reviews: [{ type: "ObjectId", ref: "Review", default: [] }],
     rating: { type: Number, required: true },

@@ -5,7 +5,7 @@ const CircleDot = styled.div`
   border-radius: 20px;
   width: 30px;
   height: 10px;
-  background: ${ props => props.active ? '#ff7200;' : 'lightgrey' };
+  background: ${ props => props.active ? '#ff7200' : 'lightgray' };
   cursor: pointer;
 
   &:hover {
@@ -13,7 +13,9 @@ const CircleDot = styled.div`
   }`
 
 const NavDot = ({ changeId, activeId, id }) => {
-	return <CircleDot onClick={ () => changeId(id) } acive={ activeId === id }/>
+	const active = activeId === id
+
+	return <CircleDot onClick={ () => changeId(id) } active={ active }/>
 }
 
 export default NavDot

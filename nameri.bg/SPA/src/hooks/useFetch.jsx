@@ -8,7 +8,7 @@ const useFetch = (fetchData) => {
 
 	useEffect(() => {
 		try {
-			fetchData().then(setIsLoadingData(false))
+			fetchData().then(() => setIsLoadingData(false))
 		} catch (e) {
 			navigate("/error", {
 				state: {
