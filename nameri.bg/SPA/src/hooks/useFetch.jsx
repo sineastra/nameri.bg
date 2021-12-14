@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 
-const useFetch = (fetchData) => {
+const useFetch = (fetchData, deps = []) => {
 	const navigate = useNavigate()
 	const [isLoadingData, setIsLoadingData] = useState(true)
 
@@ -16,7 +16,7 @@ const useFetch = (fetchData) => {
 				},
 			})
 		}
-	}, [])
+	}, deps)
 
 	return { isLoadingData }
 }

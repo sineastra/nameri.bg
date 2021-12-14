@@ -2,26 +2,27 @@ import CategoriesPagesHeader from "../../Components/CategoriesPagesHeader/Catego
 import CategoryCard from "../../Components/CategoryCard/CategoryCard.jsx"
 import styles from "./CategoryPage.module.css"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import categoriesService from "../../../services/categoriesService.js"
+import useFetch from "../../../hooks/useFetch.jsx"
+import Spinner from "../../Components/Spinner/Spinner.jsx"
 
 
 const CategoriesPage = (props) => {
 	const [categories, setCategories] = useState()
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await categoriesService.getAll()
+	const fetchData = async () => {
+		const data = await categoriesService.getAll()
 
-			setCategories(data)
-		}
+		setCategories(data)
+	}
 
-		fetchData()
-	}, [])
+	const { isLoadingData } = useFetch(fetchData)
 
 	return (
-		categories ?
-			<MainPageLayout>
+		isLoadingData ?
+			<Spinner/>
+			: <MainPageLayout>
 				<section className={ styles.outerSection }>
 					<div className={ styles.innerSection }>
 						<CategoriesPagesHeader categoryName={ "Всички Категории" }/>
@@ -40,7 +41,6 @@ const CategoriesPage = (props) => {
 					</div>
 				</section>
 			</MainPageLayout>
-			: null
 	)
 }
 

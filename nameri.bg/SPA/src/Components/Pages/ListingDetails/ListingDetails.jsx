@@ -1,33 +1,34 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
 import listingsServices from "../../../services/listingsServices.js"
 import styles from "./ListingDetails.module.css"
 import Carousel from "../../Components/Carousel/Carousel.jsx"
 import ListingSideCard from "../../Components/ListingSideCard/ListingSideCard.jsx"
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
+import useFetch from "../../../hooks/useFetch.jsx"
+import Spinner from "../../Components/Spinner/Spinner.jsx"
 
 
 const ListingDetails = (props) => {
 	const [data, setData] = useState({ listing: null, similarListings: null })
 	const params = useParams()
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const result = await listingsServices.getListingDetails(params.id)
+	const fetchData = async () => {
+		const result = await listingsServices.getListingDetails(params.id)
 
-			setData({
-				listing: result.listing,
-				similarListings: result.similar.slice(0, 3),
-			})
-		}
+		setData({
+			listing: result.listing,
+			similarListings: result.similar.slice(0, 3),
+		})
+	}
 
-		fetchData()
-	}, [])
+	const { isLoadingData } = useFetch(fetchData)
 
 	return (
-		data.listing
-			? < MainPageLayout>
+		isLoadingData
+			? <Spinner/>
+			: < MainPageLayout>
 				<section className={ styles.outerSection }>
 					<h1 className={ styles.mainHeader }>{ data.listing.heading }</h1>
 					<section className={ styles.mainSection }>
@@ -57,7 +58,6 @@ const ListingDetails = (props) => {
 					</section>
 				</section>
 			</MainPageLayout>
-			: null
 	)
 }
 

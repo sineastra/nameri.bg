@@ -3,27 +3,28 @@ import styles from "./Profile.module.css"
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
 import ProfileSideCard from "../../Components/ProfileSideCard/ProfileSideCard.jsx"
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import userServices from "../../../services/userServices.js"
+import useFetch from "../../../hooks/useFetch.jsx"
+import Spinner from "../../Components/Spinner/Spinner.jsx"
 
 
 const Profile = () => {
 	const params = useParams()
 	const [userData, setUserData] = useState(null)
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await userServices.getUserForProfile(params.id)
+	const fetchData = async () => {
+		const data = await userServices.getUserForProfile(params.id)
 
-			setUserData(data)
-		}
+		setUserData(data)
+	}
 
-		fetchData()
-	}, [])
+	const { isLoadingData } = useFetch(fetchData)
 
 	return (
-		userData
-			? <MainPageLayout>
+		isLoadingData
+			? <Spinner/>
+			: <MainPageLayout>
 				<div className={ styles.mainWrapper }>
 					<div className={ styles.innerWrapper }>
 						<section className={ styles.listingsSection }>
@@ -41,7 +42,6 @@ const Profile = () => {
 					</div>
 				</div>
 			</MainPageLayout>
-			: null
 	)
 }
 

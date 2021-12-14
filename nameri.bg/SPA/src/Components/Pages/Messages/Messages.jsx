@@ -6,6 +6,8 @@ import UserContext from "../../Contexts/UserContext.jsx"
 import styles from "./Messages.module.css"
 import MsgBigChat from "../../Components/MsgBigChat/MsgBigChat.jsx"
 import MsgConversations from "../../Components/MsgConversations/MsgConversations.jsx"
+import useFetch from "../../../hooks/useFetch.jsx"
+import Spinner from "../../Components/Spinner/Spinner.jsx"
 
 
 const PageSection = styled.section`
@@ -18,17 +20,11 @@ const Messages = (props) => {
 	const [messages, setMessages] = useState([])
 	const [pickedMsg, pickMsg] = useState(null)
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const data = await userServices.getAllUserMessages(user._id)
+	const fetchData = async () => {
+		const data = await userServices.getAllUserMessages(user._id)
 
-			setMessages(data.conversations)
-		}
-
-		if (user) {
-			fetchData()
-		}
-	}, [user])
+		setMessages(data.conversations)
+	}
 
 	const changeMsg = _id => {
 		const temp = messages.find(x => x._id === _id)
@@ -36,9 +32,12 @@ const Messages = (props) => {
 		pickMsg(temp)
 	}
 
+	const { isLoadingData } = useFetch(fetchData)
+
 	return (
-		user && messages
-			? <MainPageLayout>
+		isLoadingData
+			? <Spinner/>
+			: <MainPageLayout>
 				<PageSection>
 					<div className={ styles.outerWrapper }>
 						<div className={ styles.mainHeader }>
@@ -55,7 +54,7 @@ const Messages = (props) => {
 					</div>
 				</PageSection>
 			</MainPageLayout>
-			: null
+
 	)
 }
 

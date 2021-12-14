@@ -2,49 +2,39 @@ import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayou
 import CategoriesPagesHeader from "../../Components/CategoriesPagesHeader/CategoriesPagesHeader.jsx"
 import SubcategoryCard from "../../Components/SubcategoryCard/SubcategoryCard.jsx"
 import styles from "./Subcategories.module.css"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import categoriesService from "../../../services/categoriesService.js"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import useFetch from "../../../hooks/useFetch.jsx"
+import Spinner from "../../Components/Spinner/Spinner.jsx"
 
 
 const Subcategories = (props) => {
-	const [category, setCategory] = useState()
+	const [category, setCategory] = useState({})
 	const params = useParams()
-	const navigate = useNavigate()
 
-	useEffect(() => {
-		// TODO: this is for refactoring into custom Hook
-		const fetchData = async () => {
-			try {
-				const result = await categoriesService.getSubCategories(params.id)
+	const fetchData = async () => {
+		const result = await categoriesService.getSubCategories(params.id)
 
-				setCategory(result)
-			} catch (e) {
-				navigate("/error", {
-					state: {
-						statusCode: e.statusCode,
-						status: e.status,
-					},
-				})
-			}
-		}
+		setCategory(result)
+	}
 
-		fetchData()
-	}, [params])
+	const { isLoadingData } = useFetch(fetchData)
 
 	return (
-		category
-			? <MainPageLayout>
+		isLoadingData
+			? <Spinner/>
+			: <MainPageLayout>
 				<div className={ styles.mainWrapper }>
 					<CategoriesPagesHeader categoryName={ category.name }/>
 					<section className={ styles.subCatsInner }>
 						{ category.subcategories.map(subCategory => (
 							<div className={ styles.subCatCardWrapper } key={ subCategory._id }>
-								<Link to={ `/categories/subcategories/${ subCategory._id }` } className={styles.link}>
+								<Link to={ `/categories/subcategories/${ subCategory._id }` } className={ styles.link }>
 									<SubcategoryCard
 										categoryName={ subCategory.name }
 										subCatsCount={ subCategory.listings.length }
-										className={styles.subCategoryCard}
+										className={ styles.subCategoryCard }
 									/>
 								</Link>
 							</div>
@@ -52,8 +42,6 @@ const Subcategories = (props) => {
 					</section>
 				</div>
 			</MainPageLayout>
-			: null
-
 	)
 }
 
