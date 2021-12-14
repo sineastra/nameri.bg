@@ -1,10 +1,12 @@
 .outerWrapper {
     width: 80%;
     margin-left: 10%;
+    margin-bottom: 10%;
 }
 
 .mainWrapper {
     width: 100%;
+    height: 60vh;
     display: flex;
     justify-content: space-around;
     padding: 2%;
@@ -36,6 +38,7 @@
 @media screen and (max-width: 800px) {
     .mainWrapper {
         flex-direction: column;
+        height: auto;
     }
 
     .bigCont, .smallCont {

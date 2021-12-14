@@ -12,16 +12,19 @@
     padding-bottom: 5%;
 }
 
-.servicesSection {
+.listingsSection {
     width: 60%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
-.serviceCard {
-    width: 40%;
+div.listingCard {
+    width: 35%;
+    height: 30vh;
 }
 
 .profileSideCardWrapper {
@@ -30,26 +33,48 @@
 }
 
 @media screen and (max-width: 1400px) {
-    .serviceCard {
-        width: 60%;
+    div.listingCard {
+        width: 80%;
+        height: 50vh;
     }
 }
 
 @media screen and (max-width: 1200px) {
-    .servicesSection {
-        width: 40%;
+    .mainWrapper {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .innerWrapper {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+
+    .listingsSection {
+        width: 55%;
     }
 
     .profileSideCardWrapper {
-        width: 50%;
+        width: 40%;
     }
 
-    .serviceCard {
-        width: 100%;
+    div.listingCard {
+        width: 70%;
+        height: 40vh;
     }
 }
 
 @media screen and (max-width: 800px) {
+    .mainWrapper {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .innerWrapper {
+        width: 90%;
+        margin-left: 5%;
+    }
+
     .innerWrapper {
         flex-direction: column;
     }
@@ -60,9 +85,26 @@
         margin-bottom: 7%;
     }
 
-    .servicesSection {
+    .listingsSection {
         order: 1;
         width: 100%;
         margin-bottom: 5%;
+    }
+
+    div.listingCard {
+        width: 80%;
+        height: 50vh;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    div.listingCard {
+        width: 70%;
+        height: 25vh;
+    }
+
+    .innerWrapper {
+        width: 100%;
+        margin-left: 0;
     }
 }

@@ -1,6 +1,7 @@
 import styles from "./Carousel.module.css"
 import { useRef, useState } from "react"
 import CarouselSingleSlider from "./CarouselSingleSlider/CarouselSingleSlider.jsx"
+import ImageLoadingPlaceholder from "../ImageLoadingPlaceholder/ImageLoadingPlaceholder.jsx"
 
 
 const createSlidesArr = (data, imgsPerSlide) => {
@@ -30,6 +31,7 @@ const createSlidesArr = (data, imgsPerSlide) => {
 }
 
 const Carousel = ({ data, imgsPerSlide = 3 }) => {
+	const [imgLoaded, setImgLoaded] = useState(false)
 	const [activeImgIndx, setActiveImgIndx] = useState(0)
 	const slideArray = createSlidesArr(data, imgsPerSlide)
 	const sliderRef = useRef(null)
@@ -53,9 +55,17 @@ const Carousel = ({ data, imgsPerSlide = 3 }) => {
 	return (
 		<div className={ styles.mainWrapper }>
 
-			<div className={ styles.mainImgWrapper }>
-				<img src={ data[activeImgIndx] } alt="Main Service" className={ styles.mainImg }/>
+			<div className={ imgLoaded ? `${ styles.mainImgWrapper } ${ styles.show }` : styles.hide }>
+				<img
+					src={ data[activeImgIndx] }
+					alt="Main Service"
+					className={ styles.mainImg }
+					onLoad={ () => setImgLoaded(true) }
+					onError={ () => setImgLoaded(false) }
+				/>
 			</div>
+			<ImageLoadingPlaceholder
+				outerClassName={ imgLoaded ? styles.hide : `${ styles.show } ${ styles.mainImgWrapper } ${ styles.mainImgLoader }` }/>
 
 			<section className={ styles.slidersOuterWrapper }>
 				<span className={ `${ styles.navArrow } ${ styles.leftArrow }` } onClick={ goPrevSlide }>&lt;</span>

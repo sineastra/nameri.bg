@@ -9,13 +9,8 @@ import MsgConversations from "../../Components/MsgConversations/MsgConversations
 
 
 const PageSection = styled.section`
-  height: 90vh;
   width: 100%;
   margin-top: 5%;
-
-  @media screen and (max-width: 800px) {
-    height: auto;
-  }
 `
 
 const Messages = (props) => {

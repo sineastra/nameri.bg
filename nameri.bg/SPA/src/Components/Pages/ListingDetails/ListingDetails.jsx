@@ -11,7 +11,6 @@ import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
 const ListingDetails = (props) => {
 	const [data, setData] = useState({ listing: null, similarListings: null })
 	const params = useParams()
-	const navigate = useNavigate()
 
 	useEffect(() => {
 		const fetchData = async () => {

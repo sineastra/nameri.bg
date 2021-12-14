@@ -26,12 +26,12 @@ const Profile = () => {
 			? <MainPageLayout>
 				<div className={ styles.mainWrapper }>
 					<div className={ styles.innerWrapper }>
-						<section className={ styles.servicesSection }>
+						<section className={ styles.listingsSection }>
 							{ userData.listings.map(listing => (
 								<ListingCard
 									listing={ listing }
 									user={ userData }
-									className={ styles.serviceCard }
+									className={ styles.listingCard }
 								/>))
 							}
 						</section>

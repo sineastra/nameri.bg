@@ -1,4 +1,5 @@
 import styles from "./CarouselSingleSlider.module.css"
+import CarouselSingleImgSlider from "../CarouselSingleImgSlider/CarouselSingleImgSlider.jsx"
 
 
 const CarouselSingleSlider = ({ slideData, setActiveImgIndx, className }) => {
@@ -7,11 +8,7 @@ const CarouselSingleSlider = ({ slideData, setActiveImgIndx, className }) => {
 	return (
 		<div className={ `${ styles.slidersInnerWrapper } ${ className }` }>
 			{ slideData.map((x, i) => (
-				<div id={ x } key={ x } onClick={ () => setActiveImgIndx(i) }
-				     className={ styles.sliderSingleImgContainer }>
-					<img src={ x } alt="" className={ styles.sliderSingleImg }/>
-				</div>
-			)) }
+				<CarouselSingleImgSlider key={ x } id={ x } onClick={ () => setActiveImgIndx(i) }/>)) }
 		</div>
 	)
 }
