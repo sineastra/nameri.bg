@@ -11,6 +11,10 @@ h2 {
     margin-bottom: 5px;
 }
 
+div.iconLoader {
+    padding-top: 0;
+}
+
 .joinedSubs {
     color: grey;
     height: 40%;
@@ -39,4 +43,12 @@ h2 {
     transition: all 0.5s ease;
     box-shadow: 0px 17px 40px -13px #000000;
     border: 1px solid #f6f6f6;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
 }

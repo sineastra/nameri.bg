@@ -1,37 +1,27 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styles from "./AddListing.module.css"
 import CustomInputFile from "../../Components/CustomInputFile/CustomInputFile.jsx"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import categoriesService from "../../../services/categoriesService.js"
 import townsServices from "../../../services/townsServices.js"
+import useFetch from "../../../hooks/useFetch.jsx"
+import { addListingFormValidator } from "../../../helpers/formValidators.js"
 
 
 const AddListing = () => {
 	const [data, setData] = useState({ towns: null, categories: null })
-	const [validFormData, setValidFormData] = useState(null)
 	const [errors, setErrors] = useState({})
 	const [isChecked, setIsChecked] = useState(false)
 	const navigate = useNavigate()
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const [categories, towns] = await Promise.all([categoriesService.getAll(), townsServices.getAll()])
+	const fetchData = async () => {
+		const [categories, towns] = await Promise.all([categoriesService.getAll(), townsServices.getAll()])
 
-			setData({ categories, towns })
-		}
+		setData({ categories, towns })
+	}
 
-		fetchData()
-	}, [])
-
-	useEffect(() => {
-		// TODO: to send the request once the file uploading logic is created for the CLOUD storaging on express.
-		// TODO: there is one unnecessary rerender (validFormData). Just check the data and send the fetch, dont use useEffect.
-		if (validFormData !== null) {
-			navigate("/")
-			// this is just for testing, delete the if after creating the logic
-		}
-	}, [validFormData])
+	const { isLoading } = useFetch(fetchData)
 
 	const submitHandler = (e) => {
 		e.preventDefault()
@@ -39,34 +29,17 @@ const AddListing = () => {
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
 
-		formValidation(formDataObj)
+		const result = addListingFormValidator(formDataObj)
+
+		if (result.valid) {
+			//TODO make post request to express
+		} else {
+			setErrors(result.errors)
+		}
 	}
 
 	const handleCheckBox = (e) => {
 		setIsChecked(!!e.target.checked)
-	}
-
-	const formValidation = (formData) => {
-		const resultObj = {}
-
-		// every check returns true if there is error, false if there is none.
-		const validationObj = {
-			categorySelect: (value) => value === "Избери категория",
-			townSelect: (value) => value === "Избери град",
-			imagesUpload: () => false,
-			price: (value) => isNaN(value) || value === '' || value < 0,
-			priceNegotiation: (value) => Boolean(value),
-			listingDescription: (value) => value.length < 10,
-			listingHeading: value => value.length < 5,
-		}
-
-		Object.entries(formData).forEach(field => {
-			resultObj[field[0]] = validationObj[field[0]](field[1])
-		})
-
-		resultObj.price = (Boolean(resultObj.priceNegotiation) === resultObj.price)
-
-		Object.entries(resultObj).every(([key, value]) => value === false) ? setValidFormData(formData) : setErrors(resultObj)
 	}
 
 	return (

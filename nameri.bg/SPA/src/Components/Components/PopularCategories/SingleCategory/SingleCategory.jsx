@@ -18,10 +18,7 @@ const SingleCategory = ({ _id, img, name, className }) => {
 					className={ styles.image }
 					src={ img }
 					alt="Popular Category Image"
-					onLoad={ () => {
-						setTimeout(() => setImgLoaded(true), 5000)
-
-					} }
+					onLoad={ () => setImgLoaded(true) }
 				/>
 				<h3 className={ styles.categHeading }>{ name }</h3>
 			</Link>
