@@ -99,3 +99,15 @@
         margin-top: 5%;
     }
 }
+
+.show {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+.imgLoader{
+    padding-top: 0;
+}
