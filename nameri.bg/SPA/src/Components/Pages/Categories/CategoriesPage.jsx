@@ -2,32 +2,23 @@ import CategoriesPagesHeader from "../../Components/CategoriesPagesHeader/Catego
 import CategoryCard from "../../Components/CategoryCard/CategoryCard.jsx"
 import styles from "./CategoryPage.module.css"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import { useState } from "react"
 import categoriesService from "../../../services/categoriesService.js"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 
 
 const CategoriesPage = (props) => {
-	const [categories, setCategories] = useState()
-
-	const fetchData = async () => {
-		const data = await categoriesService.getAll()
-
-		setCategories(data)
-	}
-
-	const { isLoadingData } = useFetch(fetchData)
+	const { isLoadingData, data } = useFetch(() => categoriesService.getAll())
 
 	return (
-		isLoadingData ?
-			<Spinner/>
+		isLoadingData
+			? <Spinner/>
 			: <MainPageLayout>
 				<section className={ styles.outerSection }>
 					<div className={ styles.innerSection }>
 						<CategoriesPagesHeader categoryName={ "Всички Категории" }/>
 						<section className={ styles.cardsWrapper }>
-							{ categories?.map(category => (
+							{ data?.map(category => (
 								<CategoryCard
 									key={ category._id }
 									_id={ category._id }

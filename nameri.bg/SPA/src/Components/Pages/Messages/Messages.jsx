@@ -1,6 +1,6 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styled from "styled-components"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import userServices from "../../../services/userServices.js"
 import UserContext from "../../Contexts/UserContext.jsx"
 import styles from "./Messages.module.css"
@@ -17,22 +17,14 @@ const PageSection = styled.section`
 
 const Messages = (props) => {
 	const [user, _] = useContext(UserContext)
-	const [messages, setMessages] = useState([])
-	const [pickedMsg, pickMsg] = useState(null)
-
-	const fetchData = async () => {
-		const data = await userServices.getAllUserMessages(user._id)
-
-		setMessages(data.conversations)
-	}
+	const { isLoadingData, data } = useFetch(() => userServices.getAllUserMessages(user._id, user))
+	const [conversation, pickConversation] = useState(null)
 
 	const changeMsg = _id => {
-		const temp = messages.find(x => x._id === _id)
+		const temp = data.conversations.find(x => x._id === _id)
 
-		pickMsg(temp)
+		pickConversation(temp)
 	}
-
-	const { isLoadingData } = useFetch(fetchData)
 
 	return (
 		isLoadingData
@@ -45,10 +37,10 @@ const Messages = (props) => {
 						</div>
 						<div className={ styles.mainWrapper }>
 							<section className={ styles.bigCont }>
-								<MsgBigChat data={ pickedMsg }/>
+								<MsgBigChat data={ conversation }/>
 							</section>
 							<section className={ styles.smallCont }>
-								<MsgConversations { ...{ messages, changeMsg } } />
+								<MsgConversations messages={ data.conversations } changeMsg={ changeMsg }/>
 							</section>
 						</div>
 					</div>

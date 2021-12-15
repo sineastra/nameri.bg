@@ -41,16 +41,8 @@ const DetailsArticle = () => {
 
 const ProfileEdit = () => {
 	const [loggedInUser, _] = useContext(UserContext)
-	const [userData, setUserData] = useState({})
 	const [errors, setErrors] = useState({})
-
-	const fetchData = async () => {
-		const fetchedUser = await userServices.getUserForProfile(loggedInUser._id)
-
-		setUserData(fetchedUser)
-	}
-
-	const { isLoadingData } = useFetch(fetchData)
+	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(loggedInUser._id, loggedInUser))
 
 	const submitForm = (e) => {
 		e.preventDefault()
@@ -79,7 +71,7 @@ const ProfileEdit = () => {
 
 							{/*Name Input Section*/ }
 							<input type="text" placeholder="Име и фамилия" name="nameAndSurname"
-							       defaultValue={ userData.nameAndSurname }
+							       defaultValue={ data.nameAndSurname }
 							       className={ errors.nameAndSurname ? styles.invalidInput : '' }/>
 							{ errors.nameAndSurname &&
 								<div className={ styles.errorElement }>
@@ -91,7 +83,7 @@ const ProfileEdit = () => {
 								{/*Phone Section*/ }
 								<input type="text" placeholder="Телефон" name="phone"
 								       className={ `${ styles.halfInput } ${ errors.phone ? styles.invalidInput : '' }` }
-								       defaultValue={ userData.phone }/>
+								       defaultValue={ data.phone }/>
 								{ errors.phone &&
 									<div className={ styles.errorElement }>
 										Телефона тряба да започва с +359 или с 0 и да е 9 символа след това (Валиден
@@ -102,7 +94,7 @@ const ProfileEdit = () => {
 								{/*Website Section*/ }
 								<input type="text" placeholder="Уебсайт" name="website"
 								       className={ `${ styles.halfInput } ${ errors.website ? styles.invalidInput : '' }` }
-								       defaultValue={ userData.website }/>
+								       defaultValue={ data.website }/>
 								{ errors.website &&
 									<div className={ styles.errorElement }>
 										Валиден уеб сайт, моля.
@@ -112,7 +104,7 @@ const ProfileEdit = () => {
 								{/*Email Section*/ }
 								<input type="text" placeholder="Имейл" name="email"
 								       className={ `${ styles.halfInput } ${ errors.email ? styles.invalidInput : '' }` }
-								       defaultValue={ userData.email }/>
+								       defaultValue={ data.email }/>
 								{ errors.email &&
 									<div className={ styles.errorElement }>
 										Невалиден имейл.
@@ -122,7 +114,7 @@ const ProfileEdit = () => {
 								{/*Address Section*/ }
 								<input type="text" placeholder="Адрес" name="address"
 								       className={ `${ styles.halfInput } ${ errors.address ? styles.invalidInput : '' }` }
-								       defaultValue={ userData.address }/>
+								       defaultValue={ data.address }/>
 								{ errors.address &&
 									<div className={ styles.errorElement }>
 										Адреса трябва да е поне 5 символа.
@@ -132,11 +124,11 @@ const ProfileEdit = () => {
 
 							{/*Skills Section*/ }
 							<input type="text" name="skills" placeholder="Умения"
-							       defaultValue={ userData.skills?.join(', ') }/>
+							       defaultValue={ data.skills?.join(', ') }/>
 
 							{/*About me TextArea*/ }
 							<textarea name="about" id="aboutTextarea" placeholder="За мен..."
-							          className={ styles.textArea } defaultValue={ userData.about }/>
+							          className={ styles.textArea } defaultValue={ data.about }/>
 
 							{/*Pics Upload*/ }
 							<CustomInputFile className={ styles.customInput }/>

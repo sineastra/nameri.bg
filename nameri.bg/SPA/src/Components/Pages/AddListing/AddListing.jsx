@@ -12,22 +12,20 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 import Tag from "../../Components/Tag/Tag.jsx"
 
 
+const fetchData = async () => {
+	const [categories, towns] = await Promise.all([categoriesService.getAll(), townsServices.getAll()])
+
+	return { categories, towns }
+}
+
 const AddListing = () => {
-	const [data, setData] = useState({ towns: null, categories: null })
+	const { isLoadingData, data } = useFetch(fetchData)
 	const [subCats, setSubCats] = useState([])
 	const [tags, setTags] = useState([])
 	const [images, setImages] = useState([])
 	const [errors, setErrors] = useState({})
 	const [isChecked, setIsChecked] = useState(false)
 	const navigate = useNavigate()
-
-	const fetchData = async () => {
-		const [categories, towns] = await Promise.all([categoriesService.getAll(), townsServices.getAll()])
-
-		setData({ categories, towns })
-	}
-
-	const { isLoadingData } = useFetch(fetchData)
 
 	const clearError = (error) => {
 		setErrors(oldErrors => ({ ...oldErrors, [error]: true }))

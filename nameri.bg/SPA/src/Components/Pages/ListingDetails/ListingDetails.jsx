@@ -1,5 +1,4 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import { useState } from "react"
 import { useParams } from "react-router-dom"
 import listingsServices from "../../../services/listingsServices.js"
 import styles from "./ListingDetails.module.css"
@@ -10,25 +9,19 @@ import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 
 
-const ListingDetails = (props) => {
-	const [data, setData] = useState({ listing: null, similarListings: null })
-	const params = useParams()
+const fetchData = async (id) => {
+	const result = await listingsServices.getListingDetails(id)
+	const images = result.listing.images.length === 0 ? [] : result.listing.images
 
-	const fetchData = async () => {
-		const result = await listingsServices.getListingDetails(params.id)
-
-		setData({
-			listing: {
-				...result.listing,
-				images: result.listing.images.length === 0
-					? ['/Default-cover.svg']
-					: result.listing.images,
-			},
-			similarListings: result.similar.slice(0, 3),
-		})
+	return {
+		listing: { ...result.listing, images },
+		similarListings: result.similar.slice(0, 3),
 	}
+}
 
-	const { isLoadingData } = useFetch(fetchData)
+const ListingDetails = (props) => {
+	const params = useParams()
+	const { isLoadingData, data } = useFetch(() => fetchData(params.id), params)
 
 	return (
 		isLoadingData

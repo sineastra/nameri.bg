@@ -34,7 +34,7 @@ const abstractGetRequest = async (url) => {
 	})
 }
 
-const formDatafileUploadPostRequest = async (url, data) => {
+const abstractFormDataPostRequest = async (url, data) => {
 	return new Promise((resolve, reject) => {
 
 		const body = {
@@ -56,4 +56,5 @@ const formDatafileUploadPostRequest = async (url, data) => {
 	})
 }
 
-export { abstractFetch, abstractGetRequest, formDatafileUploadPostRequest }
+
+export { abstractFetch, abstractGetRequest, abstractFormDataPostRequest }
