@@ -1,0 +1,19 @@
+.tagElement {
+    background: #ff7200;
+    color: white;
+    margin-right: 2%;
+    box-sizing: border-box;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+
+}
+
+.closeBtn {
+    padding-left: 10px;
+    cursor: pointer;
+}

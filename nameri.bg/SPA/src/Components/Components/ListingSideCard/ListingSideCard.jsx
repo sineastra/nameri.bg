@@ -17,16 +17,16 @@ const ListingSideCard = ({ listing }) => {
 						showVotes={ true }
 						profileImgClassName={ styles.profileImgClass }
 						headingClassName={ styles.userNames }
-						ratingBoxWrapper={styles.ratingBoxWrapper}
-						wrapperClassName={styles.userWrapper}
+						ratingBoxWrapper={ styles.ratingBoxWrapper }
+						wrapperClassName={ styles.userWrapper }
 					/>
 				</div>
 				<div className={ styles.userInfoBtnsWrapper }>
-					<button className={ styles.styledBtn  }>
+					<button className={ styles.styledBtn }>
 						Оцени
 					</button>
-					<button className={ styles.styledBtn  }>
-						Щепсели
+					<button className={ styles.styledBtn }>
+						Щепсели (Контакти)
 					</button>
 				</div>
 			</div>
@@ -35,13 +35,9 @@ const ListingSideCard = ({ listing }) => {
 				<h1 className={ styles.pricesWrapperHeading }>Колко ще ми струва: </h1>
 				<div className={ styles.pricesInfoOuter }>
 					<div className={ styles.pricesInfoInner }>
-						<ul>
-							{ listing.prices.map((price, i) => (
-								<li className={ styles.priceItem } key={ i }>{ price } лв.
-									{/*<span className={ styles.priceItemBold }>{ price }</span> { isNaN(price.price) ? '' : 'лв.' }*/ }
-								</li>
-							)) }
-						</ul>
+						<div className={ styles.priceItem }>{ listing.price } лв.
+							{/*<span className={ styles.priceItemBold }>{ price }</span> { isNaN(price.price) ? '' : 'лв.' }*/ }
+						</div>
 					</div>
 				</div>
 			</div>

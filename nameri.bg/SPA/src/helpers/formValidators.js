@@ -3,22 +3,27 @@ const addListingFormValidator = (formData) => {
 
 	// every check returns true if there is error, false if there is none.
 	const validationObj = {
-		categorySelect: (value) => value === "Избери категория",
-		townSelect: (value) => value === "Избери град",
-		imagesUpload: () => false,
-		price: (value) => isNaN(value) || value === '' || value < 0,
-		priceNegotiation: (value) => Boolean(value),
-		listingDescription: (value) => value.length < 10,
-		listingHeading: value => value.length < 5,
+		category: (value) => value !== "Избери категория",
+		subcategory: (value) => value !== "Избери подкатегория",
+		town: (value) => value !== "Избери град",
+		// images: (images) => images.some(x => x.type !== 'image/jpeg' || x.type !== 'image/jpg' || x.type !== 'image/png'),
+		images: () => true,
+		price: (value) => !isNaN(value) && value !== '' && value >= 0,
+		priceNegotiation: (value) => value === 'on',
+		details: (value) => value.length >= 10,
+		heading: value => value.length >= 5,
+		tags: value => value.length >= 2,
+		files: () => true,
 	}
 
 	Object.entries(formData).forEach(field => {
 		resultObj[field[0]] = validationObj[field[0]](field[1])
 	})
 
-	resultObj.price = (Boolean(resultObj.priceNegotiation) === resultObj.price)
+	resultObj.price = resultObj.price || !!resultObj.priceNegotiation
+	resultObj.subcategory = !((resultObj.category === true) && (resultObj.subcategory === false))
 
-	return Object.entries(resultObj).every(([key, value]) => value === false)
+	return Object.entries(resultObj).every(([key, value]) => value === true)
 		? { valid: true, data: resultObj }
 		: { valid: false, data: resultObj }
 }

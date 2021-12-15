@@ -93,13 +93,27 @@ const signUp = async (req, res, next) => {
     }
 }
 
-router.post("/sign-in", signIn)
-router.post("/sign-up", signUp, signIn)
+router.post(
+    "/sign-in",
+    body("email").isEmail().withMessage("Must be a valid Email"),
+    signIn
+)
+
+router.post(
+    "/sign-up",
+    body("nameAndSurname").isLength({ min: 1 }).withMessage("Names are required"),
+    body("email").isEmail().withMessage("Not a valid email!"),
+    body("password")
+        .isLength({ min: 6 })
+        .withMessage("Password must be at least 6 symbols!")
+        .custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
+        .withMessage("Passwords do not match!"),
+    signUp,
+    signIn
+)
 
 router.get("/:id/messages", async (req, res) => {
-    console.log("I AM IN THE REQUEST FOR THE MESSAGES.")
     const userId = req.params.id
-    console.log(req.params)
     const dbService = req => req.dbServices.userServices.getAllUserMessages(userId)
 
     await abstractGetRequest(req, res, dbService)

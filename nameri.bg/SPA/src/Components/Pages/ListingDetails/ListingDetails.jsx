@@ -18,7 +18,12 @@ const ListingDetails = (props) => {
 		const result = await listingsServices.getListingDetails(params.id)
 
 		setData({
-			listing: result.listing,
+			listing: {
+				...result.listing,
+				images: result.listing.images.length === 0
+					? ['/Default-cover.svg']
+					: result.listing.images,
+			},
 			similarListings: result.similar.slice(0, 3),
 		})
 	}
@@ -33,7 +38,7 @@ const ListingDetails = (props) => {
 					<h1 className={ styles.mainHeader }>{ data.listing.heading }</h1>
 					<section className={ styles.mainSection }>
 						<section className={ styles.carouselSection }>
-							<Carousel data={ data.listing.images } imgsPerSlide={ 3 }/>
+							<Carousel imgData={ data.listing.images } imgsPerSlide={ 3 }/>
 						</section>
 						<section className={ styles.sideSection }>
 							<ListingSideCard listing={ data.listing }/>

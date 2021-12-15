@@ -30,10 +30,10 @@ const createSlidesArr = (data, imgsPerSlide) => {
 	return slideArr
 }
 
-const Carousel = ({ data, imgsPerSlide = 3 }) => {
+const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 	const [activeImgIndx, setActiveImgIndx] = useState(0)
-	const slideArray = createSlidesArr(data, imgsPerSlide)
+	const slideArray = createSlidesArr(imgData, imgsPerSlide)
 	const sliderRef = useRef(null)
 
 	const goNextSlide = () => {
@@ -57,7 +57,7 @@ const Carousel = ({ data, imgsPerSlide = 3 }) => {
 
 			<div className={ imgLoaded ? `${ styles.mainImgWrapper } ${ styles.show }` : styles.hide }>
 				<img
-					src={ data[activeImgIndx] }
+					src={ imgData[activeImgIndx] }
 					alt="Main Service"
 					className={ styles.mainImg }
 					onLoad={ () => setImgLoaded(true) }

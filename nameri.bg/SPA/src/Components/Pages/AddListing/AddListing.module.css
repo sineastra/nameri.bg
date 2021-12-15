@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 110vh;
+    /*height: 110vh;*/
     margin-bottom: 5%;
     margin-top: 3%;
     border-radius: 0 100px 20px 100px;
@@ -53,16 +53,21 @@ input, textarea, select {
 textarea {
     resize: none;
     height: 80%;
-    margin-bottom: 0;
 }
 
 .textareaWrapper {
     width: 90%;
-    height: 100%;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 3%;
+}
+
+.tagsInputWrapper {
+    width: 100%;
+    margin-bottom: 5%;
 }
 
 .halfInput {
@@ -73,7 +78,7 @@ textarea {
 .categorySelect {
     padding: 0 0 0 20px;
     width: 90%;
-    margin-bottom: 3%;
+    margin-bottom: 5%;
 }
 
 .submitBtn {
@@ -85,6 +90,7 @@ textarea {
 
 .headingWrapper {
     width: 100%;
+    margin-bottom: 3%;
     text-align: center;
 }
 
@@ -111,6 +117,8 @@ textarea {
     display: flex;
     width: 50%;
     justify-content: space-between;
+    margin-top: 4%;
+    margin-left: 3%;
 }
 
 .checkBoxLabel {
@@ -124,6 +132,28 @@ textarea {
 
 .customFileInput {
     margin-bottom: 5%;
+}
+
+
+.tagsDiv {
+    width: 100%;
+    margin-top: 2%;
+    padding-left: 1%;
+    font-family: 'Bellota Text', cursive;
+    font-weight: 300;
+    font-style: italic;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.showTagsDiv {
+    height: 27px;
+    transition: all 0.5s ease;
+}
+
+.hideTagsDiv {
+    height: 0;
+    transition: all 0.5s ease;
 }
 
 @media screen and (max-width: 800px) {

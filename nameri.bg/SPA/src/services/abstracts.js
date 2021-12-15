@@ -34,4 +34,26 @@ const abstractGetRequest = async (url) => {
 	})
 }
 
-export { abstractFetch, abstractGetRequest }
+const formDatafileUploadPostRequest = async (url, data) => {
+	return new Promise((resolve, reject) => {
+
+		const body = {
+			method: "POST",
+			headers: {
+				'Access-Control-Allow-Origin': process.env.REACT_APP_ORIGIN,
+			},
+			credentials: 'include',
+			body: data,
+		}
+
+		abstractFetch(url, body).then(response => {
+			if (!response.ok) {
+				reject({ response })
+			}
+
+			resolve(response)
+		}).catch(e => reject({ status: e.status, statusCode: e.statusCode }))
+	})
+}
+
+export { abstractFetch, abstractGetRequest, formDatafileUploadPostRequest }
