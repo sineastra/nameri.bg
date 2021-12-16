@@ -115,6 +115,12 @@ router.put(
 		}
 	},
 )
+router.get("/search", async (req, res) => {
+	const criteria = req.query.search
+	const dbService = req => req.dbServices.listingsServices.searchListings(criteria)
+
+	await abstractGetRequest(req, res, dbService)
+})
 
 router.get("/:id", async (req, res) => {
 	const dbService = (req) => req.dbServices.listingsServices.getListing(req.params.id)

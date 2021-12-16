@@ -10,7 +10,6 @@ const processFormData = require("../middlewares/processFormData.js")
 const signIn = async (req, res) => {
 	const errors = validationResult(req)
 
-	console.log(req.body)
 	if (errors.isEmpty()) {
 		const user = await req.dbServices.userServices.getByEmail(req.body.email)
 
@@ -210,5 +209,12 @@ router.put('/edit/:id',
 		}
 	},
 )
+
+router.get("/search", async (req, res) => {
+	const criteria = req.query.search
+	const dbService = req => req.dbServices.userServices.searchUsers(criteria)
+
+	await abstractGetRequest(req, res, dbService)
+})
 
 module.exports = router

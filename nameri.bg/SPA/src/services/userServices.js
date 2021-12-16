@@ -11,5 +11,6 @@ const userServices = {
 	getSingleMessage: async (messageId) => await abstractGetRequest(`/user/message/${ messageId }`),
 	getUserForProfile: async (userId) => await abstractGetRequest(`/user/profile/${ userId }`),
 	editProfile: async (userId, formData) => await abstractFormDataRequest(`/user/edit/${ userId }`, formData, "PUT"),
+	search: async (search) => await abstractGetRequest(`/user/search?search=${ search }`),
 }
 export default userServices

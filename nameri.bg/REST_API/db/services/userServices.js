@@ -26,6 +26,10 @@ const userServices = {
 			.exec(),
 	getById: async (_id) => await UserModel.findById(_id).exec(),
 	updateById: async (_id, newUserData) => await UserModel.findByIdAndUpdate(_id, newUserData),
+	searchUsers: async (criteria) => await UserModel.find({}).or([
+		{ email: { $regex: criteria, $options: 'i' } },
+		{ nameAndSurname: { $regex: criteria, $options: 'i' } },
+	]).exec(),
 }
 
 module.exports = userServices

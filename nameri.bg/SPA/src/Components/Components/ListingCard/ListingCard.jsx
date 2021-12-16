@@ -4,13 +4,13 @@ import ImageLoadingPlaceholder from "../ImageLoadingPlaceholder/ImageLoadingPlac
 import { useState } from "react"
 
 
-const ListingCard = ({ className, listing, user }) => {
+const ListingCard = ({ className, headingClassName, listing }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
-	const profileImg = user.profileImg === "" ? "/profile.svg" : user.profileImg
+	const profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
 
 	return (
 		<>
-			<div className={ `${ styles.outerWrapper } ${ className } ${ imgLoaded ? styles.show : styles.hide }` }>
+			<div className={ `${ styles.wrapper } ${ className } ${ imgLoaded ? styles.show : styles.hide }` }>
 				<Link to={ `/details/${ listing._id }` } className={ styles.imageWrapper }>
 					<img
 						src={ listing.mainImg }
@@ -23,18 +23,20 @@ const ListingCard = ({ className, listing, user }) => {
 						{ listing.town.name }
 					</div>
 				</Link>
-				<Link to={ `/details/${ listing._id }` } className={ styles.listingHeading }>{ listing.heading }</Link>
+				<Link to={ `/details/${ listing._id }` }
+				      className={ `${ styles.listingHeading } ${ headingClassName }` }>{ listing.heading }</Link>
 				<div className={ styles.profileInfoWrapper }>
-					<Link to={ `/profile/${ user._id }` } className={ styles.profileImageWrapper }>
+					<Link to={ `/profile/${ listing.user._id }` } className={ styles.profileImageWrapper }>
 						<img src={ profileImg } alt="" className={ styles.profilePic }/>
 						<div
-							className={ `${ styles.comfortaa } ${ styles.nameAndSurname }` }>{ user.nameAndSurname }</div>
+							className={ `${ styles.comfortaa } ${ styles.nameAndSurname }` }>{ listing.user.nameAndSurname }</div>
 					</Link>
-					<div className={ styles.priceE }>{ listing.prices[0] } лв.</div>
+					<div
+						className={ styles.priceE }>{ listing.price == 0 ? 'По договаряне' : `${ listing.price } лв.` }</div>
 				</div>
 			</div>
 			<ImageLoadingPlaceholder
-				outerClassName={ imgLoaded ? styles.hide : `${ styles.show } ${ styles.imgLoader } ${ styles.outerWrapper } ${ className }` }/>
+				outerClassName={ imgLoaded ? styles.hide : `${ styles.show } ${ styles.imgLoader } ${ styles.wrapper } ${ className }` }/>
 		</>
 	)
 }

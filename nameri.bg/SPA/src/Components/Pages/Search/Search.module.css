@@ -1,0 +1,185 @@
+.wrapper {
+    width: 90%;
+    border-top: 1px solid lightgray;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 0px 25px 10px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 25px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-around;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    margin-top: 3%;
+    min-height: 80vh;
+}
+
+
+.contentSection {
+    width: 45%;
+}
+
+.listingsSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.usersSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.userLink {
+    width: 90%;
+    border-bottom: 2px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    padding: 4% 2% 2%;
+    transition: all 0.5s ease;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin-bottom: 5%;
+}
+
+.userLink:hover {
+
+    border-bottom: 2px solid transparent;
+    transition: all 0.5s ease;
+    -webkit-box-shadow: 0px 17px 40px -13px #000000;
+    box-shadow: 0px 17px 40px -13px #000000;
+    transform: scale(1.01);
+}
+
+.userLinkInnerDiv {
+    width: 95%;
+    display: flex;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    align-items: center;
+}
+
+.smallDivsWrapper {
+    display: flex;
+}
+
+.smallInnerDiv {
+    max-width: 45%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 3%;
+    font-family: 'Comfortaa', cursive;
+}
+
+.colorSpan {
+    color: #ff7200;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.aboutDiv {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    font-family: 'Comfortaa', cursive;
+}
+
+.header {
+    align-self: center;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 700;
+    font-size: 1.6rem;
+    background: #ff7200;
+    color: white;
+}
+
+.nameHeader {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+}
+
+div.listingCard {
+    width: 35%;
+    height: 33vh;
+}
+
+.innerListingsDiv {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+h1, h4 {
+    margin: 0;
+}
+
+@media screen and (max-width: 1600px){
+    div.listingCard {
+        width: 70%;
+        height: 50vh;
+        max-width: 100%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    a.listingCardHeading {
+        font-size: 1.4rem;
+    }
+
+    .listingCardHeading {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    div.listingCard {
+        width: 80%;
+        height: 45vh;
+    }
+
+    a.listingCardHeading {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    div.listingCard {
+        height: 35vh;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contentSection {
+        width: 95%;
+    }
+
+    div.listingCard {
+        height: 65vh;
+    }
+
+    .header {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    div.listingCard {
+        height: 55vh;
+    }
+}

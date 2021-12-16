@@ -31,9 +31,20 @@ const listingsServices = {
 			.populate("town")
 			.exec(),
 	getUserListings: async userId =>
-		await ListingModel.find({ user: userId }).exec(),
+		await ListingModel.find({ user: userId }).populate("user").exec(),
 	addNew: async (listing) => await new ListingModel(listing).save(),
 	updateListing: async (listing, listingId) => await ListingModel.findByIdAndUpdate(listingId, listing),
+	searchListings: async (criteria) => {
+		const regex = new RegExp(criteria, "i")
+		
+		return await ListingModel.find({}).or([
+			{ heading: { $regex: criteria, $options: 'i' } },
+			{ tags: { $in: [regex] } },
+			{ details: { $regex: criteria, $options: 'i' } },
+		])
+			.populate("user")
+			.exec()
+	},
 }
 
 module.exports = listingsServices

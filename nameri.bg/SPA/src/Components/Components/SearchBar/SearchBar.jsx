@@ -1,6 +1,6 @@
 import styles from "./SearchBar.module.css"
 import { FaSearch } from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { IconContext } from "react-icons"
 
 
@@ -20,7 +20,12 @@ function SearchBar ({ placeholder }) {
 
 	return (
 		<form className={ styles.searchContainer } onSubmit={ submitSearch }>
-			<input type="search" placeholder={ placeholder } className={ styles.searchInput } name="search"/>
+			<input
+				type="search"
+				placeholder={ placeholder }
+				className={ styles.searchInput }
+				name="search"
+			/>
 			<button className={ `${ styles.searchBtn }` }>
 				<IconContext.Provider value={ { className: styles.iconClassName } }>
 					<FaSearch/>

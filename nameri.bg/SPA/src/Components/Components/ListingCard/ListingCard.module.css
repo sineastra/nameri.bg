@@ -10,7 +10,7 @@
     position: relative;
 }
 
-.outerWrapper {
+.wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,7 +23,7 @@
     border: 1px solid transparent;
 }
 
-.outerWrapper:hover {
+.wrapper:hover {
     transform: translate(0, -10px);
     transition: all 0.5s ease;
     box-shadow: 0 17px 40px -13px #000000;
@@ -84,10 +84,6 @@
     .townDiv {
         font-size: 0.7rem;
         padding: 5px;
-    }
-
-    .listingHeading {
-        font-size: 0.8rem;
     }
 
     .nameAndSurname {

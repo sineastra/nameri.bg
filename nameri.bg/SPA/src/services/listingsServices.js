@@ -8,6 +8,7 @@ const listingsServices = {
 	getUserListings: async (userId) => abstractGetRequest(`/listings/user/${ userId }`),
 	createNewListing: async (formData) => abstractFormDataRequest('/listings/add', formData, "POST"),
 	updateListing: async (listingId, formData) => abstractFormDataRequest(`/listings/edit/${ listingId }`, formData, "PUT"),
+	search: async (search) => abstractGetRequest(`/listings/search?search=${ search }`),
 }
 
 export default listingsServices

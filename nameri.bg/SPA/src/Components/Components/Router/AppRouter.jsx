@@ -13,6 +13,7 @@ const ListingDetails = lazy(() => import("../../Pages/ListingDetails/ListingDeta
 const Profile = lazy(() => import("../../Pages/Profile/Profile.jsx"))
 const ProfileEdit = lazy(() => import("../../Pages/ProfileEdit/ProfileEdit.jsx"))
 const Auth = lazy(() => import("../../Pages/Auth/Auth.jsx"))
+const Search = lazy(() => import("../../Pages/Search/Search.jsx"))
 const ErrorPage = lazy(() => import("../../Pages/ErrorPage/ErrorPage.jsx"))
 
 const AppRouter = () => {
@@ -31,6 +32,7 @@ const AppRouter = () => {
 				<Route path="/details/:id" element={ <ListingDetails/> }/>
 				<Route path="/profile/:id" element={ <Profile/> }/>
 				<Route path="/profile/edit" element={ <ProfileEdit/> }/>
+				<Route path="/search" element={ <Search/> }/>
 				<Route path="/error" element={ <ErrorPage/> }/>
 			</Routes>
 		</Suspense>
