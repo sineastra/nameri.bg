@@ -29,12 +29,13 @@
     display: none;
 }
 
-.halfInputWrapper {
+.halfInputOuterWrapper {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 
 .smallerWrapper20 {
     height: 20%;
@@ -45,16 +46,21 @@
     width: 100%;
     box-sizing: border-box;
     height: 10vh;
+    margin-bottom: 3%;
 }
 
 input, textarea {
-    margin-bottom: 3%;
     display: block;
     width: 100%;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid lightgray;
     box-sizing: border-box;
+}
+
+.inputWrapper {
+    width: 100%;
+    margin-bottom: 3%;
 }
 
 .smallerWrapper {
@@ -69,6 +75,7 @@ input, textarea {
 
 .halfInput {
     width: 45%;
+    margin-bottom: 3%;
 }
 
 .customInput {
@@ -119,6 +126,11 @@ input, textarea {
 
 .errorElement {
     color: red;
+    margin-top: 1%;
+}
+
+.skillsInputWrapper {
+    margin-bottom: 3%;
 }
 
 @media screen and (max-width: 800px) {

@@ -22,3 +22,4 @@
 /SPA/yarn-debug.log*
 /SPA/yarn-error.log*
 /REST_API/node_modules/
+/REST_API/uploads/

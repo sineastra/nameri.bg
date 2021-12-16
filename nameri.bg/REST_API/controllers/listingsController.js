@@ -1,21 +1,8 @@
 const router = require("express").Router()
 const { abstractGetRequest } = require("./abstractRequests")
 const { body, validationResult } = require("express-validator")
-const fs = require('fs-extra')
-const uid = require("uniqid")
-const AWS = require('aws-sdk')
-const { IncomingForm } = require("formidable")
+const uploadImages = require("../helpers/uploadFilesS3.js")
 const processFormData = require("../middlewares/processFormData.js")
-
-AWS.config.update({
-	region: "eu-central-1",
-})
-
-const s3 = new AWS.S3({
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID_SINEASTRA,
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_SINEASTRA,
-	region: "eu-central-1",
-})
 
 router.get("/best", async (req, res) => {
 	const dbService = (req, count) => req.dbServices.listingsServices.getBest(count)
@@ -45,43 +32,6 @@ router.get("/user/:id", async (req, res) => {
 
 	await abstractGetRequest(req, res, dbService)
 })
-
-const uploadImages = async imageFiles => {
-	const files = await Promise.all(imageFiles.map(async image => fs.readFile(image.filepath)))
-	const filesWithImgType = files.map((file, i) => {
-		return {
-			file,
-			imgType: imageFiles[i].mimetype.split('/')[1] || 'jpeg',
-			mimeType: imageFiles[i].mimetype,
-		}
-	})
-
-	const binaryFilesObjects = filesWithImgType.map(fileObj => {
-		return {
-			binaryFile: new Buffer.from(fileObj.file, "binary"),
-			...fileObj,
-		}
-	})
-
-	const filesParams = binaryFilesObjects.map(file => {
-		return {
-			Bucket: "nameri.bg/listings",
-			Key: `${ uid() }.${ file.imgType }`, // File name you want to save as in S3
-			Body: file.binaryFile,
-			ContentType: file.mimeType,
-			ACL: "public-read",
-		}
-	})
-
-	const promises = filesParams.map(params => {
-		return new Promise((res, rej) => {
-			s3.upload(params, (err, data) =>
-				err ? rej("Error while uploading: " + err.message) : res(data))
-		})
-	})
-
-	return await Promise.all(promises)
-}
 
 router.post(
 	"/add",
@@ -119,9 +69,11 @@ router.post(
 
 		if (errors.isEmpty()) {
 			try {
-				const responseData = await uploadImages(Object.values(req.files))
+				if (req.files && req.files.length > 0) {
+					const responseData = await uploadImages(Object.values(req.files))
 
-				images = responseData.map(x => x.Location)
+					images = responseData.map(x => x.Location)
+				}
 
 				const [town, category, subcategory] = await Promise.all([
 					req.dbServices.townsServices.getByName(req.body.town),
@@ -157,9 +109,6 @@ router.post(
 					statusCode: 503,
 					msg: 'Invalid field names or error while connection to the Database. Please wait few minutes and try again.',
 				})
-
-				console.log(e)
-				res.status(200)
 			}
 		} else {
 			res.json({ ok: false, errors })

@@ -28,6 +28,7 @@ const useFetch = (fetchData, deps = []) => {
 
 	return {
 		isLoadingData,
+		setIsLoadingData,
 		data,
 		setData,
 	}

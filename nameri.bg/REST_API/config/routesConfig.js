@@ -64,70 +64,71 @@ const routesConfig = app => {
         //     },
         // ]
 
-        const data = [
-            {
-                messages: [
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
-                    { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
-                ],
-                user: "61a6a0afed501169b4aaf66e",
-                participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
-            },
-            {
-                messages: [
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
-                    { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
-                ],
-                user: "61a6a0afed501169b4aaf66e",
-                participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
-            },
-            {
-                messages: [
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
-                    { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
-                ],
-                user: "61a6a0afed501169b4aaf66e",
-                participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
-            },
-            {
-                messages: [
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
-                    { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
-                ],
-                user: "61a6a0afed501169b4aaf66e",
-                participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
-            },
-            {
-                messages: [
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
-                    { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
-                ],
-                user: "61a6a0afed501169b4aaf66e",
-                participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
-            },
-            {
-                messages: [
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
-                    { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
-                    { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
-                ],
-                user: "61a6a0afed501169b4aaf66e",
-                participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
-            },
-        ]
+        // const data = [
+        //     {
+        //         messages: [
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
+        //             { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
+        //         ],
+        //         user: "61a6a0afed501169b4aaf66e",
+        //         participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
+        //     },
+        //     {
+        //         messages: [
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
+        //             { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
+        //         ],
+        //         user: "61a6a0afed501169b4aaf66e",
+        //         participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
+        //     },
+        //     {
+        //         messages: [
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
+        //             { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
+        //         ],
+        //         user: "61a6a0afed501169b4aaf66e",
+        //         participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
+        //     },
+        //     {
+        //         messages: [
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
+        //             { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
+        //         ],
+        //         user: "61a6a0afed501169b4aaf66e",
+        //         participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
+        //     },
+        //     {
+        //         messages: [
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
+        //             { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
+        //         ],
+        //         user: "61a6a0afed501169b4aaf66e",
+        //         participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
+        //     },
+        //     {
+        //         messages: [
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "zdr bepce" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "kasi" },
+        //             { sender: "61b5d883d8f9e2821b6ed0fb", text: "ai sa zapoznaim" },
+        //             { sender: "61a6a0afed501169b4aaf66e", text: "begi ot tuka e galosh" },
+        //         ],
+        //         user: "61a6a0afed501169b4aaf66e",
+        //         participants: ["61b5d883d8f9e2821b6ed0fb", "61a6a0afed501169b4aaf66e"],
+        //     },
+        // ]
+        //
+        // await ConversationModel.insertMany(data)
 
-        await ConversationModel.insertMany(data)
 
         res.send("server working. make requests at /api")
     })

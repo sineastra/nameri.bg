@@ -25,6 +25,7 @@ const userServices = {
 			})
 			.exec(),
 	getById: async (_id) => await UserModel.findById(_id).exec(),
+	updateById: async (_id, newUserData) => await UserModel.findByIdAndUpdate(_id, newUserData),
 }
 
 module.exports = userServices

@@ -4,7 +4,6 @@ const stringifyFetchBody = (data, method, additionalHeaders = {}) => ({
 		'Content-Type': 'application/json',
 		...additionalHeaders,
 	},
-	credentials: 'include',
 	body: JSON.stringify(data),
 })
 

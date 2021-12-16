@@ -7,8 +7,6 @@ import ImageLoadingPlaceholder from "../../ImageLoadingPlaceholder/ImageLoadingP
 const SingleCategory = ({ _id, img, name, className }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 
-	console.log(img)
-
 	return (
 		<>
 			<Link

@@ -3,132 +3,212 @@ const bcrypt = require("bcrypt")
 const router = require("express").Router()
 const { body, validationResult } = require("express-validator")
 const { abstractGetRequest } = require("./abstractRequests")
+const uploadImages = require("../helpers/uploadFilesS3.js")
+const { createJWTToken, attachCookie } = require("../helpers/createJWTToken.js")
+const processFormData = require("../middlewares/processFormData.js")
 
 const signIn = async (req, res) => {
-    const errors = validationResult(req)
+	const errors = validationResult(req)
 
-    if (errors.isEmpty()) {
-        const user = await req.dbServices.userServices.getByEmail(req.body.email)
+	console.log(req.body)
+	if (errors.isEmpty()) {
+		const user = await req.dbServices.userServices.getByEmail(req.body.email)
 
-        if (user && (await bcrypt.compare(req.body.password, user.hashedPassword))) {
-            const token = jwt.sign(
-                {
-                    _id: user._id,
-                    email: user.email,
-                    nameAndSurname: user.nameAndSurname,
-                },
-                process.env.TOKEN_SECRET
-            )
+		if (user && (await bcrypt.compare(req.body.password, user.hashedPassword))) {
+			const token = createJWTToken(user)
 
-            const cookie = res.cookie(process.env.COOKIE_NAME, token, {
-                sameSite: "none",
-                secure: true,
-            })
+			attachCookie(token, res)
 
-            res.json({ ok: true, status: 200, statusCode: "OK", token })
-        } else {
-            res.status(401).json({
-                ok: false,
-                status: "Unauthorized",
-                statusCode: 401,
-                message: "Wrong user email and/or password.",
-            })
-        }
-    } else {
-        res.status(400).json({
-            ok: false,
-            status: "Bad request",
-            statusCode: 400,
-            ...errors,
-        })
-    }
+			res.json({ ok: true, status: 200, statusCode: "OK", token })
+		} else {
+			res.status(401).json({
+				ok: false,
+				status: "Unauthorized",
+				statusCode: 401,
+				message: "Wrong user email and/or password.",
+			})
+		}
+	} else {
+		res.status(400).json({
+			ok: false,
+			status: "Bad request",
+			statusCode: 400,
+			...errors,
+		})
+	}
 
-    //TODO: add check for already logged in user.
+	//TODO: add check for already logged in user.
 }
 
 const signUp = async (req, res, next) => {
-    const errors = validationResult(req)
+	const errors = validationResult(req)
 
-    if (errors.isEmpty()) {
-        const hashedPassword = await bcrypt.hash(req.body.password, 8)
-        const isExsiting = await req.dbServices.userServices.getByEmail(req.body.email)
+	if (errors.isEmpty()) {
+		const hashedPassword = await bcrypt.hash(req.body.password, 8)
+		const isExsiting = await req.dbServices.userServices.getByEmail(req.body.email)
 
-        if (isExsiting === null) {
-            const newUser = {
-                email: req.body.email,
-                nameAndSurname: req.body.nameAndSurname,
-                hashedPassword,
-                profileImg: "",
-                listings: [],
-                reviews: [],
-                conversations: [],
-                premiumPlan: 0,
-                phone: null,
-                address: null,
-                website: null,
-                skills: [],
-                diplomasAndCertifs: [],
-                rating: 0,
-                about: "",
-            }
+		if (isExsiting === null) {
+			const newUser = {
+				email: req.body.email,
+				nameAndSurname: req.body.nameAndSurname,
+				hashedPassword,
+				profileImg: "",
+				listings: [],
+				reviews: [],
+				conversations: [],
+				premiumPlan: 0,
+				phone: null,
+				address: null,
+				website: null,
+				skills: [],
+				diplomasAndCertifs: [],
+				rating: 0,
+				about: "",
+			}
 
-            await req.dbServices.userServices.createNew(newUser)
+			await req.dbServices.userServices.createNew(newUser)
 
-            next()
-        } else {
-            res.status(409).json({
-                ok: false,
-                status: "Conflict",
-                statusCode: 409,
-                message: "Existing user. Please sign in.",
-            })
-        }
-    } else {
-        res.status(400).json({
-            ok: false,
-            status: "Bad request",
-            statusCode: 400,
-            message: errors.join("\n"),
-        })
-    }
+			next()
+		} else {
+			res.status(409).json({
+				ok: false,
+				status: "Conflict",
+				statusCode: 409,
+				message: "Existing user. Please sign in.",
+			})
+		}
+	} else {
+		res.status(400).json({
+			ok: false,
+			status: "Bad request",
+			statusCode: 400,
+			message: errors.join("\n"),
+		})
+	}
 }
 
 router.post(
-    "/sign-in",
-    body("email").isEmail().withMessage("Must be a valid Email"),
-    signIn
+	"/sign-in",
+	body("email").isEmail().withMessage("Must be a valid Email"),
+	signIn,
 )
 
 router.post(
-    "/sign-up",
-    body("nameAndSurname").isLength({ min: 1 }).withMessage("Names are required"),
-    body("email").isEmail().withMessage("Not a valid email!"),
-    body("password")
-        .isLength({ min: 6 })
-        .withMessage("Password must be at least 6 symbols!")
-        .custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
-        .withMessage("Passwords do not match!"),
-    signUp,
-    signIn
+	"/sign-up",
+	body("nameAndSurname").isLength({ min: 1 }).withMessage("Names are required"),
+	body("email").isEmail().withMessage("Not a valid email!"),
+	body("password")
+		.isLength({ min: 6 })
+		.withMessage("Password must be at least 6 symbols!")
+		.custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
+		.withMessage("Passwords do not match!"),
+	signUp,
+	signIn,
 )
 
 router.get("/:id/messages", async (req, res) => {
-    const userId = req.params.id
-    const dbService = req => req.dbServices.userServices.getAllUserMessages(userId)
+	const userId = req.params.id
+	const dbService = req => req.dbServices.userServices.getAllUserMessages(userId)
 
-    await abstractGetRequest(req, res, dbService)
+	await abstractGetRequest(req, res, dbService)
 })
 router.get("/message/:id", async (req, res) => {
-    const messageId = req.params.id
-    const dbService = req => req.dbServices.userServices.getSingleMessage(messageId)
+	const messageId = req.params.id
+	const dbService = req => req.dbServices.userServices.getSingleMessage(messageId)
 
-    await abstractGetRequest(req, res, dbService)
+	await abstractGetRequest(req, res, dbService)
 })
 router.get("/profile/:id", async (req, res) => {
-    const userId = req.params.id
-    const dbService = req => req.dbServices.userServices.getUserForProfile(userId)
+	const userId = req.params.id
+	const dbService = req => req.dbServices.userServices.getUserForProfile(userId)
 
-    await abstractGetRequest(req, res, dbService)
+	await abstractGetRequest(req, res, dbService)
 })
+
+router.post('/edit/:id',
+	processFormData,
+	body("nameAndSurname")
+		.isLength({ min: 6 })
+		.withMessage('Names must be at least 6 characters long!'),
+	body("phone")
+		.custom((value, { req }) => req.customValidators.phoneValidator(value, req))
+		.withMessage("Invalid phone."),
+	body("website")
+		.custom((value, { req }) => req.customValidators.websiteValidator(value, req))
+		.withMessage("Invalid website."),
+	body("email")
+		.isEmail()
+		.withMessage("Invalid email."),
+	body("address")
+		.custom((value, { req }) => req.customValidators.addressValidator(value, req))
+		.withMessage("Invalid address."),
+	body("password")
+		.custom((value, { req }) => req.customValidators.editPasswordValidator(value, req))
+		.withMessage("Password must be at least 6 symbols!")
+		.custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
+		.withMessage("Passwords do not match!"),
+	body("about")
+		.isLength({ min: 1 })
+		.withMessage('About section must not be empty!'),
+	async (req, res) => {
+		const errors = validationResult(req)
+		let image = ''
+
+		if (errors.isEmpty()) {
+			const profileImg = req.files.profileImg
+			let token
+
+			try {
+				if (profileImg) {
+					const [responseData] = await uploadImages([profileImg])
+					image = responseData.Location
+				}
+
+				const user = await req.dbServices.userServices.getById(req.user._id)
+				const skills = JSON.parse(req.body.skills)
+
+				const newUserData = {
+					email: req.body.email || user.email,
+					nameAndSurname: req.body.nameAndSurname || user.nameAndSurname,
+					profileImg: image,
+					listings: user.listings,
+					reviews: user.reviews,
+					rating: user.rating,
+					conversations: user.conversations,
+					premiumPlan: user.premiumPlan,
+					about: req.body.about || user.about,
+					phone: req.body.phone || user.phone,
+					address: req.body.address || user.address,
+					website: req.body.website || user.website,
+					skills: skills || user.skills,
+					diplomasAndCertifs: req.body.diplomasAndCertifs || user.diplomasAndCertifs,
+				}
+
+				if (req.body.password !== '') {
+					newUserData.hashedPassword = await bcrypt.hash(req.body.password, 8)
+				}
+
+				token = createJWTToken({ _id: user._id, ...newUserData })
+				attachCookie(token, res)
+
+				const data = await req.dbServices.userServices.updateById(req.user._id, newUserData)
+
+				console.log(data)
+
+				res.json({ ok: true, status: 'Ok', statusCode: 200, data, token })
+			} catch (e) {
+				console.log(e)
+				res.status(503).json({
+					ok: false,
+					status: 'Service Unavailable',
+					statusCode: 503,
+					msg: 'Invalid field names or error while connection to the Database. Please wait few minutes and try again.',
+				})
+			}
+		} else {
+			res.json({ ok: false, errors })
+		}
+	},
+)
 
 module.exports = router

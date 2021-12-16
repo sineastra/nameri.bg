@@ -34,7 +34,7 @@ const abstractGetRequest = async (url) => {
 	})
 }
 
-const abstractFormDataPostRequest = async (url, data) => {
+const abstractFormDataPostRequest = async (url, formData) => {
 	return new Promise((resolve, reject) => {
 
 		const body = {
@@ -43,7 +43,7 @@ const abstractFormDataPostRequest = async (url, data) => {
 				'Access-Control-Allow-Origin': process.env.REACT_APP_ORIGIN,
 			},
 			credentials: 'include',
-			body: data,
+			body: formData,
 		}
 
 		abstractFetch(url, body).then(response => {

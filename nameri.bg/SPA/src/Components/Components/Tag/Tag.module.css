@@ -4,16 +4,29 @@
     margin-right: 2%;
     box-sizing: border-box;
     height: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-
+    font-size: 1rem;
+    white-space: nowrap;
 }
 
 .closeBtn {
     padding-left: 10px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .tagElement {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .tagElement {
+        font-size: 0.7rem;
+    }
 }

@@ -10,6 +10,7 @@ import { addListingFormValidator } from "../../../helpers/formValidators.js"
 import listingsServices from "../../../services/listingsServices.js"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import Tag from "../../Components/Tag/Tag.jsx"
+import TagInput from "../../Components/TagInput/TagInput.jsx"
 
 
 const fetchData = async () => {
@@ -95,7 +96,7 @@ const AddListing = () => {
 	}
 
 	const addTag = (e) => {
-		if (e.key === " ") {
+		if (e.key === " " && e.target.value.trim() !== '') {
 			const value = e.target.value.trim()
 
 			if (tags.every(x => x !== value)) {
@@ -149,22 +150,16 @@ const AddListing = () => {
 				</div>
 				{/*End of Details Textarea*/ }
 
-				<div className={ styles.tagsInputWrapper }>
-					<input
-						type="text"
-						name="tags"
-						placeholder="Тагове (Добави със спейс)"
-						onKeyPress={ addTag }
-						autoComplete="off"
-						className={ errors.tags === false ? styles.invalidInput : '' }
-						onFocus={ () => clearError('tags') }
-					/>
-					<div
-						className={ `${ styles.tagsDiv } ${ tags.length > 0 ? styles.showTagsDiv : styles.hideTagsDiv }` }>
-						{ tags.map(x => <Tag text={ x } removeTag={ () => removeTag(x) }/>) }
-					</div>
-					{ errors.tags === false && <div className={ styles.errorElement }>Минимум 2 тага!</div> }
-				</div>
+				<TagInput
+					wrapperClassName={ styles.tagsInputWrapper }
+					inputName="tags"
+					onFocus={ () => clearError('tags') }
+					onKeyPress={ addTag }
+					data={ tags }
+					errors={ errors }
+					removeDataEntry={ removeTag }
+					inputText="Тагове (Добави със спейс)"
+				/>
 			</div>
 
 
@@ -241,6 +236,9 @@ const AddListing = () => {
 				<CustomInputFile
 					className={ `${ styles.halfInput } ${ styles.customFileInput }` }
 					onChange={ addImages }
+					inputName="images"
+					multiple={ true }
+					text="Кликни тук за да избереш една или повече снимки за обявата ти!"
 				/>
 
 				<button type="submit" name="submit" className={ styles.submitBtn }>Изпрати</button>

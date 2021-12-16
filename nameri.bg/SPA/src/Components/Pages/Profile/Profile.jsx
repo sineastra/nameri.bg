@@ -11,6 +11,9 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 const Profile = () => {
 	const params = useParams()
 	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id, params))
+	
+	console.log(params)
+	console.log(data)
 
 	return (
 		isLoadingData

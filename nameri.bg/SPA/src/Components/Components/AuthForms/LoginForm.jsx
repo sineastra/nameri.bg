@@ -7,6 +7,7 @@ import UserContext from "../../Contexts/UserContext.jsx"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import Cookies from "js-cookie"
 import { Navigate } from "react-router-dom"
+import processNewToken from "../../../helpers/processNewToken.js"
 
 
 const LoginForm = ({ className = "" }) => {
@@ -22,13 +23,12 @@ const LoginForm = ({ className = "" }) => {
 		const response = await userServices.signIn(formDataObj)
 
 		if (response.ok) {
-			const userData = deserializeJWT(response.token)
-			Cookies.set(process.env.REACT_APP_JWT_COOKIE_NAME, response.token)
-
-			setUserData(userData)
+			setUserData(processNewToken(response.token))
 		} else {
 			setError(`Error: ${ e.message }`)
 		}
+
+		//TODO: Add auth form validators
 	}
 
 	return (

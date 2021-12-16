@@ -1,0 +1,34 @@
+.tagsDiv {
+    width: 100%;
+    margin-top: 2%;
+    padding-left: 1%;
+    font-family: 'Bellota Text', cursive;
+    font-weight: 300;
+    font-style: italic;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.showTagsDiv {
+    transition: all 0.5s ease;
+}
+
+.hideTagsDiv {
+    height: 0;
+    transition: all 0.5s ease;
+}
+
+.invalidInput {
+    border: 2px solid red;
+}
+
+.errorElement {
+    color: red;
+}
+
+@media screen and (max-width: 400px) {
+    .tagsDiv {
+        flex-direction: column;
+    }
+}

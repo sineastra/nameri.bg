@@ -7,6 +7,11 @@ import UserContext from "../../Contexts/UserContext.jsx"
 import useFetch from "../../../hooks/useFetch.jsx"
 import { profileEditFormValidator } from "../../../helpers/formValidators.js"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
+import TagInput from "../../Components/TagInput/TagInput.jsx"
+import deserializeJWT from "../../../helpers/deserializeJWT.js"
+import getToken from "../../../helpers/getToken.js"
+import { useNavigate } from "react-router-dom"
+import processNewToken from "../../../helpers/processNewToken.js"
 
 
 const DetailsArticle = () => {
@@ -40,23 +45,69 @@ const DetailsArticle = () => {
 }
 
 const ProfileEdit = () => {
-	const [loggedInUser, _] = useContext(UserContext)
+	const [userData, setUserData] = useContext(UserContext)
+	const {
+		isLoadingData,
+		setIsLoadingData,
+		data,
+		setData,
+	} = useFetch(() => userServices.getUserForProfile(userData._id, userData))
+	const [profileImg, setProfileImg] = useState('')
 	const [errors, setErrors] = useState({})
-	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(loggedInUser._id, loggedInUser))
+	const navigate = useNavigate()
 
-	const submitForm = (e) => {
+	const submitForm = async (e) => {
 		e.preventDefault()
 
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
-
 		const validationResult = profileEditFormValidator(formDataObj)
 
+		formDataObj.skills = JSON.stringify(data.skills)
+		formDataObj.profileImg = profileImg
+
+		const formDataFinal = Object.entries(formDataObj).reduce((a, [key, value]) => {
+			a.append(key, value)
+
+			return a
+		}, new FormData())
+
 		if (validationResult.valid) {
-			// send data to express
+			setIsLoadingData(true)
+			const response = await userServices.editProfile(userData._id, formDataFinal)
+
+			setUserData(processNewToken(response.token))
+
+			navigate(`/profile/${ userData._id }`)
 		} else {
 			setErrors(validationResult.data)
 		}
+	}
+
+	const addSkill = (e) => {
+		if (e.key === " " && e.target.value.trim() !== '') {
+			const value = e.target.value.trim()
+
+			if (data.skills.every(x => x !== value)) {
+				setData(oldData => ({ ...oldData, skills: [...oldData.skills, value] }))
+			}
+
+			e.target.value = ''
+		}
+	}
+
+	const removeSkill = (text) => {
+		setData(oldData => ({ ...oldData, skills: oldData.skills.filter(x => x !== text) }))
+	}
+
+	const clearError = (error) => {
+		setErrors(oldErrors => ({ ...oldErrors, [error]: true }))
+	}
+
+	const addImg = (e) => {
+		const profileImg = e.target.files[0]
+
+		setProfileImg(profileImg)
 	}
 
 	return (
@@ -70,52 +121,62 @@ const ProfileEdit = () => {
 						<section className={ styles.smallerWrapper }>
 
 							{/*Name Input Section*/ }
-							<input type="text" placeholder="Име и фамилия" name="nameAndSurname"
-							       defaultValue={ data.nameAndSurname }
-							       className={ errors.nameAndSurname ? styles.invalidInput : '' }/>
-							{ errors.nameAndSurname &&
-								<div className={ styles.errorElement }>
-									Името и Фамилията трябва да са поне 6 знака.
-								</div> }
+							<div className={ styles.inputWrapper }>
+								<input type="text"
+								       placeholder="Име и фамилия"
+								       name="nameAndSurname"
+								       defaultValue={ data.nameAndSurname }
+								       className={ errors.nameAndSurname === false ? styles.invalidInput : '' }/>
+								{ errors.nameAndSurname === false &&
+									<div className={ styles.errorElement }>
+										Името и Фамилията трябва да са поне 6 знака.
+									</div> }
+							</div>
 							{/*End of Name Input Section*/ }
 
-							<div className={ styles.halfInputWrapper }>
+							<div className={ styles.halfInputOuterWrapper }>
 								{/*Phone Section*/ }
-								<input type="text" placeholder="Телефон" name="phone"
-								       className={ `${ styles.halfInput } ${ errors.phone ? styles.invalidInput : '' }` }
-								       defaultValue={ data.phone }/>
-								{ errors.phone &&
-									<div className={ styles.errorElement }>
-										Телефона тряба да започва с +359 или с 0 и да е 9 символа след това (Валиден
-										телефон за България)
-									</div> }
+								<div className={ styles.halfInput }>
+									<input type="text" placeholder="Телефон" name="phone"
+									       className={ `${ errors.phone === false ? styles.invalidInput : '' }` }
+									       defaultValue={ data.phone }/>
+									{ errors.phone === false &&
+										<div className={ styles.errorElement }>
+											Телефона тряба да започва с +359 или с 0 и да е 9 символа след това (Валиден
+											телефон за България)
+										</div> }
+								</div>
 								{/*End of Phone Section*/ }
 
 								{/*Website Section*/ }
-								<input type="text" placeholder="Уебсайт" name="website"
-								       className={ `${ styles.halfInput } ${ errors.website ? styles.invalidInput : '' }` }
-								       defaultValue={ data.website }/>
-								{ errors.website &&
-									<div className={ styles.errorElement }>
-										Валиден уеб сайт, моля.
-									</div> }
+								<div className={ styles.halfInput }>
+									<input type="text" placeholder="Уебсайт" name="website"
+									       className={ `${ errors.website === false ? styles.invalidInput : '' }` }
+									       defaultValue={ data.website }/>
+									{ errors.website === false &&
+										<div className={ styles.errorElement }>
+											Валиден уеб сайт, моля.
+										</div> }
+								</div>
 								{/*End of Website Section*/ }
 
 								{/*Email Section*/ }
-								<input type="text" placeholder="Имейл" name="email"
-								       className={ `${ styles.halfInput } ${ errors.email ? styles.invalidInput : '' }` }
-								       defaultValue={ data.email }/>
-								{ errors.email &&
-									<div className={ styles.errorElement }>
-										Невалиден имейл.
-									</div> }
+								<div className={ styles.halfInput }>
+									<input type="text" placeholder="Имейл" name="email"
+									       className={ `${ errors.email === false ? styles.invalidInput : '' }` }
+									       defaultValue={ data.email }/>
+									{ errors.email === false &&
+										<div className={ styles.errorElement }>
+											Невалиден имейл.
+										</div> }
+								</div>
 								{/*End of Email Section*/ }
 
 								{/*Address Section*/ }
 								<input type="text" placeholder="Адрес" name="address"
-								       className={ `${ styles.halfInput } ${ errors.address ? styles.invalidInput : '' }` }
+								       className={ `${ styles.halfInput } ${ errors.address === false ? styles.invalidInput : '' }` }
 								       defaultValue={ data.address }/>
-								{ errors.address &&
+								{ errors.address === false &&
 									<div className={ styles.errorElement }>
 										Адреса трябва да е поне 5 символа.
 									</div> }
@@ -123,40 +184,64 @@ const ProfileEdit = () => {
 							</div>
 
 							{/*Skills Section*/ }
-							<input type="text" name="skills" placeholder="Умения"
-							       defaultValue={ data.skills?.join(', ') }/>
+							<TagInput
+								wrapperClassName={ styles.skillsInputWrapper }
+								inputName="skills"
+								onFocus={ () => clearError('skills') }
+								onKeyPress={ addSkill }
+								data={ data.skills }
+								errors={ errors }
+								removeDataEntry={ removeSkill }
+								inputText="Умения (Добави със спейс)"
+							/>
+							{/*<input type="text" name="skills" placeholder="Умения"*/ }
+							{/*       defaultValue={ data.skills?.join(', ') }/>*/ }
 
 							{/*About me TextArea*/ }
 							<textarea name="about" id="aboutTextarea" placeholder="За мен..."
 							          className={ styles.textArea } defaultValue={ data.about }/>
 
 							{/*Pics Upload*/ }
-							<CustomInputFile className={ styles.customInput }/>
+							<CustomInputFile
+								className={ styles.customInput }
+								inputName="profileImg"
+								text="Качи нова профилна снимка"
+								onChange={ addImg }
+							/>
 
 							{/*New Password Section*/ }
 							<div>
 								<h1>Промени парола</h1>
-								<div className={ styles.halfInputWrapper }>
+								<div className={ styles.halfInputOuterWrapper }>
 
 									{/*First Input*/ }
-									<input type="password"
-									       className={ `${ styles.halfInput } ${ errors.password ? styles.invalidInput : '' }` }
-									       name="password"
-									       placeholder="Нова Парола"/>
-									{ errors.password &&
-										<div className={ styles.errorElement }>
-											Паролата трябва да е поне 5 символа.
-										</div> }
+									<div className={ styles.halfInput }>
+										<input type="password"
+										       className={ `${ errors.password === false ? styles.invalidInput : '' }` }
+										       name="password"
+										       placeholder="Нова Парола"
+										       autoComplete="one-time-code"
+										/>
+										{ errors.password === false &&
+											<div className={ styles.errorElement }>
+												Паролата трябва да е поне 6 символа.
+											</div> }
+									</div>
 
 									{/*Second Input*/ }
-									<input type="password"
-									       className={ `${ styles.halfInput } ${ errors.repeatPassword ? styles.invalidInput : '' }` }
-									       name="repeatPassword"
-									       placeholder="Повтори Нова Парола"/>
-									{ errors.repeatPassword &&
-										<div className={ styles.errorElement }>
-											Паролите не съвпадат.
-										</div> }
+									<div className={ styles.halfInput }>
+										<input type="password"
+										       className={ `${ errors.repeatPassword === false ? styles.invalidInput : '' }` }
+										       name="repeatPassword"
+										       placeholder="Повтори Нова Парола"
+										       autoComplete="one-time-code"
+										/>
+										{ errors.repeatPassword === false &&
+											<div className={ styles.errorElement }>
+												Паролите не съвпадат.
+											</div>
+										}
+									</div>
 								</div>
 							</div>
 							{/*End of New Password Section*/ }
