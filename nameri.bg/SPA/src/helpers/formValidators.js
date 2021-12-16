@@ -9,18 +9,16 @@ const addListingFormValidator = (formData) => {
 		// images: (images) => images.some(x => x.type !== 'image/jpeg' || x.type !== 'image/jpg' || x.type !== 'image/png'),
 		images: () => true,
 		price: (value) => !isNaN(value) && value !== '' && value >= 0,
-		priceNegotiation: (value) => value === 'on',
 		details: (value) => value.length >= 10,
 		heading: value => value.length >= 5,
 		tags: value => value.length >= 2,
 		files: () => true,
 	}
 
-	Object.entries(formData).forEach(field => {
+	Object.entries(formData).filter(([key, _]) => key !== 'priceNegotiation').forEach(field => {
 		resultObj[field[0]] = validationObj[field[0]](field[1])
 	})
 
-	resultObj.price = resultObj.price || !!resultObj.priceNegotiation
 	resultObj.subcategory = !((resultObj.category === true) && (resultObj.subcategory === false))
 
 	return Object.entries(resultObj).every(([key, value]) => value === true)

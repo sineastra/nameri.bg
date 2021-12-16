@@ -1,4 +1,4 @@
-import { abstractGetRequest, abstractFormDataPostRequest } from "./abstracts.js"
+import { abstractGetRequest, abstractFormDataRequest } from "./abstracts.js"
 
 
 const listingsServices = {
@@ -6,7 +6,8 @@ const listingsServices = {
 	getListing: async (_id) => abstractGetRequest(`/listings/${ _id }`),
 	getListingDetails: async (_id) => abstractGetRequest(`/listings/details/${ _id }`),
 	getUserListings: async (userId) => abstractGetRequest(`/listings/user/${ userId }`),
-	createNewListing: async (formData) => abstractFormDataPostRequest('/listings/add', formData),
+	createNewListing: async (formData) => abstractFormDataRequest('/listings/add', formData, "POST"),
+	updateListing: async (listingId, formData) => abstractFormDataRequest(`/listings/edit/${ listingId }`, formData, "PUT"),
 }
 
 export default listingsServices

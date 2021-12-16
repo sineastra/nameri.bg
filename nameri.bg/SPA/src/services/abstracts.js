@@ -34,11 +34,11 @@ const abstractGetRequest = async (url) => {
 	})
 }
 
-const abstractFormDataPostRequest = async (url, formData) => {
+const abstractFormDataRequest = async (url, formData, method) => {
 	return new Promise((resolve, reject) => {
 
 		const body = {
-			method: "POST",
+			method,
 			headers: {
 				'Access-Control-Allow-Origin': process.env.REACT_APP_ORIGIN,
 			},
@@ -56,5 +56,4 @@ const abstractFormDataPostRequest = async (url, formData) => {
 	})
 }
 
-
-export { abstractFetch, abstractGetRequest, abstractFormDataPostRequest }
+export { abstractFetch, abstractGetRequest, abstractFormDataRequest }

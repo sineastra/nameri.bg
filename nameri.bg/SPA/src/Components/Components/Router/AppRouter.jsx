@@ -7,7 +7,7 @@ const HomePage = lazy(() => import("../../Pages/HomePage/HomePage.jsx"))
 const CategoriesPage = lazy(() => import("../../Pages/Categories/CategoriesPage.jsx"))
 const Subcategories = lazy(() => import("../../Pages/Subcategories/Subcategories.jsx"))
 const SubcategoryListings = lazy(() => import("../../Pages/SubcategoryListings/SubcategoryListings.jsx"))
-const AddListing = lazy(() => import("../../Pages/AddListing/AddListing.jsx"))
+const ListingForm = lazy(() => import("../../Pages/ListingFormPage/ListingFormPage.jsx"))
 const Messages = lazy(() => import("../../Pages/Messages/Messages.jsx"))
 const ListingDetails = lazy(() => import("../../Pages/ListingDetails/ListingDetails.jsx"))
 const Profile = lazy(() => import("../../Pages/Profile/Profile.jsx"))
@@ -25,7 +25,8 @@ const AppRouter = () => {
 				<Route path="/categories/subcategories/:id" element={ <SubcategoryListings/> }/>
 				<Route path="/sign-up" element={ <Auth authType={ "register" }/> }/>
 				<Route path="/sign-in" element={ <Auth authType={ "login" }/> }/>
-				<Route path="/add-listing" element={ <AddListing/> }/>
+				<Route path="/add-listing" element={ <ListingForm formType="add"/> }/>
+				<Route path="/edit-listing/:id" element={ <ListingForm formType="edit"/> }/>
 				<Route path="/messages" element={ <Messages/> }/>
 				<Route path="/details/:id" element={ <ListingDetails/> }/>
 				<Route path="/profile/:id" element={ <Profile/> }/>

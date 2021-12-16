@@ -3,6 +3,59 @@ const { abstractGetRequest } = require("./abstractRequests")
 const { body, validationResult } = require("express-validator")
 const uploadImages = require("../helpers/uploadFilesS3.js")
 const processFormData = require("../middlewares/processFormData.js")
+const { validateListing } = require("../middlewares/groupedValidations.js")
+
+const processListing = async (req, res, fetchData, listing = {}) => {
+	const errors = validationResult(req)
+	let images = listing.images || []
+
+	if (errors.isEmpty()) {
+		try {
+			if (req.files && req.files.length > 0) {
+				const responseData = await uploadImages(req.files)
+
+				images = responseData.map(x => x.Location)
+			}
+
+			const [town, category, subcategory] = await Promise.all([
+				req.dbServices.townsServices.getByName(req.body.town),
+				req.dbServices.categoriesServices.getCategoryByName(req.body.category),
+				req.dbServices.categoriesServices.getSubcategoryByName(req.body.subcategory),
+			])
+			const mainImg = images[0] || ''
+			const tags = JSON.parse(req.body.tags)
+
+			const listingData = {
+				heading: req.body.heading,
+				price: req.body.price,
+				images,
+				mainImg,
+				tags: tags,
+				premiumType: listing.premiumType || 0,
+				reviews: listing.reviews || [],
+				rating: listing.rating || 0,
+				details: req.body.details,
+				town: town._id,
+				category: category._id,
+				subcategory: subcategory._id,
+				user: req.user._id,
+			}
+
+			const data = await fetchData(listingData, listing._id)
+
+			res.json({ ok: true, status: 'ok', statusCode: 200, data })
+		} catch (e) {
+			res.status(503).json({
+				ok: false,
+				status: 'Service Unavailable',
+				statusCode: 503,
+				msg: 'Invalid field names or error while connection to the Database. Please wait few minutes and try again.',
+			})
+		}
+	} else {
+		res.json({ ok: false, errors })
+	}
+}
 
 router.get("/best", async (req, res) => {
 	const dbService = (req, count) => req.dbServices.listingsServices.getBest(count)
@@ -36,85 +89,38 @@ router.get("/user/:id", async (req, res) => {
 router.post(
 	"/add",
 	processFormData,
-	body("category")
-		.isLength({ min: 1 })
-		.withMessage("Category is required")
-		.custom((value, { req }) => req.customValidators.doCategoryExists(value, req))
-		.withMessage("Not a valid category!"),
-	body("subcategory")
-		.isLength({ min: 1 })
-		.withMessage("Subcategory is required")
-		.custom((value, { req }) => req.customValidators.doSubCategoryExists(value, req))
-		.withMessage("Not a valid subcategory!"),
-	body("town")
-		.isLength({ min: 1 })
-		.withMessage("Town is required")
-		.custom((value, { req }) => req.customValidators.doTownExists(value, req))
-		.withMessage("Not a valid town!"),
-	body("price")
-		.isInt({ min: 0 })
-		.withMessage("Must be a number or 0 - for negotiation price"),
-	body("details")
-		.isLength({ min: 10 })
-		.withMessage("Description must be at least 10 symbols long."),
-	body("heading")
-		.isLength({ min: 5 })
-		.withMessage("Heading must be at least 5 symbols long."),
-	body("tags")
-		.isLength({ min: 2 })
-		.withMessage("Must have at least 2 tags!"),
+	validateListing(),
 	async (req, res) => {
-		const errors = validationResult(req)
-		let images = []
+		const fetchData = async (listing) =>
+			await req.dbServices.listingsServices.addNew(listing)
 
-		if (errors.isEmpty()) {
-			try {
-				if (req.files && req.files.length > 0) {
-					const responseData = await uploadImages(Object.values(req.files))
+		await processListing(req, res, fetchData)
 
-					images = responseData.map(x => x.Location)
-				}
+	},
+)
 
-				const [town, category, subcategory] = await Promise.all([
-					req.dbServices.townsServices.getByName(req.body.town),
-					req.dbServices.categoriesServices.getCategoryByName(req.body.category),
-					req.dbServices.categoriesServices.getSubcategoryByName(req.body.subcategory),
-				])
-				const mainImg = images[0] || ''
+router.put(
+	"/edit/:id",
+	processFormData,
+	validateListing(),
+	async (req, res) => {
+		try {
+			const listing = await req.dbServices.listingsServices.getListing(req.params.id)
+			const fetchData = async (listing, id) =>
+				await req.dbServices.listingsServices.updateListing(listing, id)
 
-				const newListing = {
-					heading: req.body.heading,
-					price: req.body.price,
-					images,
-					mainImg,
-					tags: req.body.tags,
-					premiumType: 0,
-					reviews: [],
-					rating: 0,
-					details: req.body.details,
-					town: town._id,
-					category: category._id,
-					subcategory: subcategory._id,
-					user: req.user._id,
-					timeCreated: Date.now(),
-				}
-
-				const data = await req.dbServices.listingsServices.addNew(newListing)
-
-				res.json({ ok: true, status: 'Created', statusCode: 201, data })
-			} catch (e) {
-				res.status(503).json({
-					ok: false,
-					status: 'Service Unavailable',
-					statusCode: 503,
-					msg: 'Invalid field names or error while connection to the Database. Please wait few minutes and try again.',
-				})
-			}
-		} else {
-			res.json({ ok: false, errors })
+			await processListing(req, res, fetchData, listing)
+		} catch (e) {
+			res.json({ status: "Not Found", statusCode: 404, msg: "Invalid listing ID", ok: false })
 		}
 	},
 )
+
+router.get("/:id", async (req, res) => {
+	const dbService = (req) => req.dbServices.listingsServices.getListing(req.params.id)
+
+	await abstractGetRequest(req, res, dbService)
+})
 
 module.exports = router
 

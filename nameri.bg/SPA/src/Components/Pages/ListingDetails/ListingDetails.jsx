@@ -21,7 +21,7 @@ const fetchData = async (id) => {
 
 const ListingDetails = (props) => {
 	const params = useParams()
-	const { isLoadingData, data } = useFetch(() => fetchData(params.id), params)
+	const { isLoadingData, data } = useFetch(() => fetchData(params.id))
 
 	return (
 		isLoadingData

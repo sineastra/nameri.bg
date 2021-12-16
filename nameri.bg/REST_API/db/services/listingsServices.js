@@ -9,7 +9,19 @@ const listingsServices = {
 			.limit(count)
 			.exec(),
 	getListing: async _id =>
-		await ListingModel.findById(_id).populate("user").populate("reviews").exec(),
+		await ListingModel
+			.findById(_id)
+			.populate("user")
+			.populate("reviews")
+			.populate({
+				path: "category",
+				populate: {
+					path: "subcategories",
+				},
+			})
+			.populate('subcategory')
+			.populate("town")
+			.exec(),
 	getSimilar: async (tags, listingId) =>
 		await ListingModel.find({
 			$and: [{ _id: { $ne: listingId } }, { tags: { $in: tags } }],
@@ -18,12 +30,10 @@ const listingsServices = {
 			.populate("reviews")
 			.populate("town")
 			.exec(),
-	getUserListings: async userId => {
-		const result = await ListingModel.find({ user: userId }).exec()
-
-		return result
-	},
+	getUserListings: async userId =>
+		await ListingModel.find({ user: userId }).exec(),
 	addNew: async (listing) => await new ListingModel(listing).save(),
+	updateListing: async (listing, listingId) => await ListingModel.findByIdAndUpdate(listingId, listing),
 }
 
 module.exports = listingsServices

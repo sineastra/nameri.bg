@@ -125,7 +125,7 @@ router.get("/profile/:id", async (req, res) => {
 	await abstractGetRequest(req, res, dbService)
 })
 
-router.post('/edit/:id',
+router.put('/edit/:id',
 	processFormData,
 	body("nameAndSurname")
 		.isLength({ min: 6 })
