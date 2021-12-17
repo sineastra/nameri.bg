@@ -21,7 +21,7 @@ const fetchData = async (id) => {
 
 const ListingDetails = (props) => {
 	const params = useParams()
-	const { isLoadingData, data } = useFetch(() => fetchData(params.id))
+	const { isLoadingData, data, setData } = useFetch(() => fetchData(params.id))
 
 	return (
 		isLoadingData
@@ -34,7 +34,7 @@ const ListingDetails = (props) => {
 							<Carousel imgData={ data.listing.images } imgsPerSlide={ 3 }/>
 						</section>
 						<section className={ styles.sideSection }>
-							<ListingSideCard listing={ data.listing }/>
+							<ListingSideCard listing={ data.listing } setData={ setData }/>
 						</section>
 					</section>
 

@@ -1,0 +1,12 @@
+.filledIcon {
+    cursor: pointer;
+    color: #ff7200;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.emptyIcon {
+    cursor: pointer;
+    color: lightgray;
+    transition: all 0.3s ease;
+}

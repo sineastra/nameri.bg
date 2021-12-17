@@ -236,7 +236,7 @@ router.post("/send-message/:id", async (req, res) => {
 			conversation.messages.push(newMsg)
 
 			await conversation.save()
-			
+
 			res.json({ ok: true, status: "ok", statusCode: 200, data: conversation })
 		} else {
 			const [user, receiver] = await Promise.all([
@@ -265,6 +265,34 @@ router.post("/send-message/:id", async (req, res) => {
 	} catch (e) {
 		res.status(400).json({ status: "Bad request", statusCode: 400, ok: false, msg: e })
 	}
+})
+
+router.post("/:id/add-review", async (req, res) => {
+	const dbService = async (req) => {
+		console.log(req.params)
+
+		const data = {
+			text: req.body.reviewText || '',
+			rating: Number(req.body.reviewRating),
+			user: req.params.id,
+			reviewCreator: req.user._id,
+		}
+
+		console.log('here')
+		const [newReview, user] = await Promise.all([
+			req.dbServices.userServices.createNewReview(data),
+			req.dbServices.userServices.getById(req.params.id),
+		])
+
+		user.reviews.push(newReview._id)
+		await user.save()
+
+		const listing = await req.dbServices.listingsServices.getListingWithUserReviews(req.query.listingId)
+
+		return listing
+	}
+
+	await abstractGetRequest(req, res, dbService)
 })
 
 module.exports = router

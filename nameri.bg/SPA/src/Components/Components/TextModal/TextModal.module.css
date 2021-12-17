@@ -52,6 +52,8 @@
     border-bottom-right-radius: 20px;
     text-align: center;
     font-family: 'Balsamiq Sans', cursive;
+    font-size: 1em;
+    margin-top: 0;
 }
 
 .smallHeader {
@@ -59,10 +61,7 @@
     margin: 0 0 10px;
     color: black;
     font-family: 'Bellota Text', cursive;
-}
-
-.userNameSpan {
-    font-family: 'Nunito', sans-serif;
+    font-size: 0.7em;
 }
 
 .submitBtn {
@@ -83,4 +82,10 @@
     border-bottom-left-radius: 20px;
     border-top-right-radius: 20px;
     cursor: pointer;
+}
+
+.hiddenModal {
+    height: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }

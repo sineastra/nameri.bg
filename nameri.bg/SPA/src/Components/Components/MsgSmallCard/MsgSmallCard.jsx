@@ -4,7 +4,7 @@ import styles from "./MsgSmallCard.module.css"
 const MsgSmallCard = ({ messageData, changeMsg }) => {
 	const lastMsg = messageData.messages[messageData.messages.length - 1].text
 	const participants = messageData.participants
-		.filter(x => x._id === messageData.user._id)
+		.filter(x => x._id !== messageData.user._id)
 		.map(x => x.nameAndSurname)
 		.join(",")
 

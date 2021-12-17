@@ -7,11 +7,14 @@ const userServices = {
 		await abstractFetch(`/user/sign-in`, stringifyFetchBody(formData, "POST")),
 	signUp: async (formData) =>
 		await abstractFetch(`/user/sign-up`, stringifyFetchBody(formData, "POST")),
+	sendMessage: async (receiverId, formData) =>
+		await abstractFetch(`/user/send-message/${ receiverId }`, stringifyFetchBody(formData, "POST")),
+	addReview: async (reviewData, targetUserId, listingId) =>
+		await abstractFetch(`/user/${ targetUserId }/add-review?listingId=${ listingId }`, stringifyFetchBody(reviewData, "POST")),
 	getAllUserMessages: async (userId) => await abstractGetRequest(`/user/${ userId }/messages`),
 	getSingleMessage: async (messageId) => await abstractGetRequest(`/user/message/${ messageId }`),
 	getUserForProfile: async (userId) => await abstractGetRequest(`/user/profile/${ userId }`),
 	editProfile: async (userId, formData) => await abstractFormDataRequest(`/user/edit/${ userId }`, formData, "PUT"),
 	search: async (search) => await abstractGetRequest(`/user/search?search=${ search }`),
-	sendMessage: async (receiverId, formData) => await abstractFetch(`/user/send-message/${ receiverId }`, stringifyFetchBody(formData, "POST")),
 }
 export default userServices

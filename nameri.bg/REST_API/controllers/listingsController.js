@@ -67,7 +67,7 @@ router.get("/details/:id", async (req, res) => {
 	const _id = req.params.id
 
 	const dbService = async req => {
-		const listing = await req.dbServices.listingsServices.getListing(_id)
+		const listing = await req.dbServices.listingsServices.getListingWithUserReviews(_id)
 		const similar = await req.dbServices.listingsServices.getSimilar(
 			listing.tags,
 			listing._id,
@@ -105,7 +105,7 @@ router.put(
 	validateListing(),
 	async (req, res) => {
 		try {
-			const listing = await req.dbServices.listingsServices.getListing(req.params.id)
+			const listing = await req.dbServices.listingsServices.getListingWithUserReviews(req.params.id)
 			const fetchData = async (listing, id) =>
 				await req.dbServices.listingsServices.updateListing(listing, id)
 
@@ -123,7 +123,7 @@ router.get("/search", async (req, res) => {
 })
 
 router.get("/:id", async (req, res) => {
-	const dbService = (req) => req.dbServices.listingsServices.getListing(req.params.id)
+	const dbService = (req) => req.dbServices.listingsServices.getListingWithUserReviews(req.params.id)
 
 	await abstractGetRequest(req, res, dbService)
 })

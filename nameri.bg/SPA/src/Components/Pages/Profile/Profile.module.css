@@ -32,18 +32,19 @@ div.listingCard {
     width: 35%;
 }
 
-div.visibleModal {
+div.messageModal {
     height: 80vh;
     opacity: 1;
-    transition: all 0.2s ease;
+    transition: opacity 0.3s ease;
 }
 
-div.hiddenModal {
-    height: 0;
-    opacity: 0;
-    transition: all 0.2s ease;
+.userNameSpan {
+    font-family: 'Nunito', sans-serif;
 }
 
+.modalWrapper {
+    font-size: 2em;
+}
 
 @media screen and (max-width: 1400px) {
     div.listingCard {

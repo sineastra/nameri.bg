@@ -8,11 +8,15 @@ const listingsServices = {
 			.sort({ rating: "desc" })
 			.limit(count)
 			.exec(),
-	getListing: async _id =>
+	getListingWithUserReviews: async _id =>
 		await ListingModel
 			.findById(_id)
-			.populate("user")
-			.populate("reviews")
+			.populate({
+				path: "user",
+				populate: {
+					path: "reviews",
+				},
+			})
 			.populate({
 				path: "category",
 				populate: {

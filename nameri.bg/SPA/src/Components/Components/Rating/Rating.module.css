@@ -1,0 +1,5 @@
+.wrapper {
+    display: flex;
+    width: 17%;
+    justify-content: space-around;
+}

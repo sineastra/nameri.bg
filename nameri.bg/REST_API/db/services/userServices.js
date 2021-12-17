@@ -1,6 +1,7 @@
 const ConversationModel = require("../models/ConversationModel")
 const UserModel = require("../models/UserModel")
 const { query } = require("express-validator")
+const ReviewModel = require("../models/ReviewModel.js")
 
 const userServices = {
 	createNew: async userData => await new UserModel(userData).save(),
@@ -31,12 +32,16 @@ const userServices = {
 		{ email: { $regex: criteria, $options: 'i' } },
 		{ nameAndSurname: { $regex: criteria, $options: 'i' } },
 	]).exec(),
+
+	//TODO: create new controllers for conversations and reviews.
 	checkExistingConversation: async (ids) => {
 		const queryArr = ids.map(x => ({ participants: x }))
 
 		return await ConversationModel.findOne({ $and: queryArr }).exec()
 	},
 	createNewConversation: async (data) => await new ConversationModel(data).save(),
+	createNewReview: async (data) => await new ReviewModel(data).save(),
+	getUserWithReviews: async (id) => await UserModel.findById(id).populate("reviews").exec()
 }
 
 module.exports = userServices

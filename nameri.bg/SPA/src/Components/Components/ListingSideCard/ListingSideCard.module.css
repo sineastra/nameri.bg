@@ -109,6 +109,16 @@
     padding: 10px;
 }
 
+.ratingModal {
+    height: 80vh;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modalWrapper {
+    font-size: 2rem;
+}
+
 @media screen and (max-width: 1200px) {
     .profileImgClass {
         height: 70%;
@@ -158,7 +168,7 @@
         height: 90%;
     }
 
-    .userInfoBtnsWrapper{
+    .userInfoBtnsWrapper {
         flex-direction: column;
     }
 

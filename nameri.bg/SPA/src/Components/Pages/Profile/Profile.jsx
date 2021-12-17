@@ -6,10 +6,15 @@ import { useParams } from "react-router-dom"
 import userServices from "../../../services/userServices.js"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
-import MessageModal from "../../Components/MessageModal/MessageModal.jsx"
+import TextModal from "../../Components/TextModal/TextModal.jsx"
 import { useContext, useState } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 
+
+const MessageSubHeader = ({ userName }) =>
+	<>
+		Съобщение до: <span className={ styles.userNameSpan }>{ userName }</span>
+	</>
 
 const Profile = () => {
 	const params = useParams()
@@ -17,13 +22,7 @@ const Profile = () => {
 	const [errors, setErrors] = useContext(ErrorContext)
 	const [modalVisible, setModalVisible] = useState(false)
 
-	const closeModal = () =>
-		setModalVisible(false)
-
-	const openModal = () =>
-		setModalVisible(true)
-
-	const onSubmitModal = async (e) => {
+	const sendMsg = async (e) => {
 		e.preventDefault()
 
 		const formData = new FormData(e.target)
@@ -32,7 +31,7 @@ const Profile = () => {
 		const response = await userServices.sendMessage(data._id, formDataObj)
 
 		if (response.ok) {
-			closeModal()
+			setModalVisible(false)
 		} else {
 			setErrors(response.errors)
 		}
@@ -42,11 +41,16 @@ const Profile = () => {
 		isLoadingData
 			? <Spinner/>
 			: <MainPageLayout>
-				<MessageModal
-					user={ data.nameAndSurname }
-					onSubmit={ onSubmitModal }
-					closeModal={ closeModal }
-					backdropClassName={ modalVisible ? styles.visibleModal : styles.hiddenModal }
+				<TextModal
+					onSubmit={ sendMsg }
+					closeModal={ () => setModalVisible(false) }
+					subHeader={ <MessageSubHeader userName={ data.nameAndSurname }/> }
+					header={ "Напиши съобщение" }
+					placeholder="Напиши твоето съобщение..."
+					backdropClassName={ styles.messageModal }
+					visibleState={ modalVisible }
+					setVisibleState={ setModalVisible }
+					wrapperClassName={styles.modalWrapper}
 				/>
 				<div className={ styles.mainWrapper }>
 					<div className={ styles.innerWrapper }>
@@ -60,7 +64,7 @@ const Profile = () => {
 							}
 						</section>
 						<div className={ styles.profileSideCardWrapper }>
-							<ProfileSideCard user={ data } openModal={ openModal }/>
+							<ProfileSideCard user={ data } openModal={ () => setModalVisible(true) }/>
 						</div>
 					</div>
 				</div>

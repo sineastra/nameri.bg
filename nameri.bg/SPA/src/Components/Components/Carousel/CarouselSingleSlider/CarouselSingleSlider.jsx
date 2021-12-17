@@ -4,7 +4,6 @@ import CarouselSingleImgSlider from "../CarouselSingleImgSlider/CarouselSingleIm
 
 const CarouselSingleSlider = ({ slideData, setActiveImgIndx, className }) => {
 
-	console.log(slideData)
 	return (
 		<div className={ `${ styles.slidersInnerWrapper } ${ className }` }>
 			{ slideData.map((x, i) => (

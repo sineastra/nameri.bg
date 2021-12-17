@@ -1,14 +1,80 @@
 import styles from "./ListingSideCard.module.css"
-import profileImg from "../../../assets/images/profile-pic1.webp"
-import RatingBox from "../RatingBox/RatingBox.jsx"
 import UserRatingHeading from "../UserRatingHeading/UserRatingHeading.jsx"
+import { useContext, useState } from "react"
+import TextModal from "../TextModal/TextModal.jsx"
+import Rating from "../Rating/Rating.jsx"
+import userServices from "../../../services/userServices.js"
+import ErrorContext from "../../Contexts/ErrorContext.jsx"
 
 
-const ListingSideCard = ({ listing }) => {
-	const reviewsForDisplay = listing.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
+const ListingSideCard = ({ listing, setData }) => {
+	const reviewsForDisplay = listing.user.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
+	const [modalVisible, setModalVisible] = useState(false)
+	const [rating, setRating] = useState(0)
+	const [hoverRating, setHoverRating] = useState(0)
+	const [_, setErrors] = useContext(ErrorContext)
+	const ratings = [1, 2, 3, 4, 5]
+
+	const addRating = (rating) => {
+		setHoverRating(rating)
+	}
+
+	const pickRating = (rating) => {
+		setRating(rating)
+		setHoverRating(rating)
+	}
+
+	const onMouseLeave = () => {
+		if (pickRating === 0) {
+			setHoverRating(0)
+		} else {
+			setHoverRating(rating)
+		}
+	}
+
+	const closeModal = () =>
+		setModalVisible(false)
+
+	const sendReview = async (e) => {
+		e.preventDefault()
+
+		const formData = new FormData(e.target)
+		const message = formData.get('message')
+
+		const reviewData = {
+			reviewText: message,
+			reviewRating: rating,
+		}
+
+		const response = await userServices.addReview(reviewData, listing.user._id, listing._id)
+
+		if (response.ok) {
+			setData(oldData => ({ ...oldData, listing: response.data }))
+			closeModal()
+		} else {
+			setErrors({ msg: response.msg })
+		}
+	}
 
 	return (
 		<div className={ styles.mainFlexContainer }>
+			<TextModal
+				onSubmit={ sendReview }
+				closeModal={ closeModal }
+				subHeader={ <Rating
+					addRating={ addRating }
+					pickRating={ pickRating }
+					onMouseLeave={ onMouseLeave }
+					hoverRating={ hoverRating }
+					ratings={ ratings }
+				/> }
+				header="Оцени потребител"
+				placeholder="Напиши твоето ревю (Не е задължително)..."
+				backdropClassName={ styles.ratingModal }
+				setVisibleState={ setModalVisible }
+				visibleState={ modalVisible }
+				wrapperClassName={ styles.modalWrapper }
+			/>
 
 			<div className={ `${ styles.userInfo } ${ styles.mainFlexInnerContainer }` }>
 				<div className={ styles.mainHeadingOuterWrapper }>
@@ -22,7 +88,7 @@ const ListingSideCard = ({ listing }) => {
 					/>
 				</div>
 				<div className={ styles.userInfoBtnsWrapper }>
-					<button className={ styles.styledBtn }>
+					<button className={ styles.styledBtn } onClick={ () => setModalVisible(true) }>
 						Оцени
 					</button>
 					<button className={ styles.styledBtn }>
