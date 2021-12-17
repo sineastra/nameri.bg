@@ -32,6 +32,19 @@ div.listingCard {
     width: 35%;
 }
 
+div.visibleModal {
+    height: 80vh;
+    opacity: 1;
+    transition: all 0.2s ease;
+}
+
+div.hiddenModal {
+    height: 0;
+    opacity: 0;
+    transition: all 0.2s ease;
+}
+
+
 @media screen and (max-width: 1400px) {
     div.listingCard {
         width: 80%;

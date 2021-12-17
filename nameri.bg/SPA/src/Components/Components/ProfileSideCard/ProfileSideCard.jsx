@@ -55,7 +55,7 @@ const Certificate = ({ data }) => {
 	)
 }
 
-const ProfileSideCard = ({ className, user }) => {
+const ProfileSideCard = ({ className, user, openModal }) => {
 	const loggedUser = useContext(UserContext)
 	const isOwn = loggedUser && loggedUser._id === user._id
 
@@ -72,7 +72,7 @@ const ProfileSideCard = ({ className, user }) => {
 			<div className={ styles.aboutWrapper }>
 				<div className={ styles.mainHeading }>За Мен</div>
 				{ shouldSeeContacts && <ContactsInfo user={ user }/> }
-				<button>Съобщение</button>
+				<button onClick={ openModal }>Съобщение</button>
 				<hr/>
 				<div className={ styles.about }>{ user.about }</div>
 			</div>

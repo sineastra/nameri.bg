@@ -41,7 +41,7 @@
     height: 20%;
 }
 
-.textArea {
+.textAreaWrapper {
     resize: none;
     width: 100%;
     box-sizing: border-box;

@@ -36,7 +36,7 @@ const listingsServices = {
 	updateListing: async (listing, listingId) => await ListingModel.findByIdAndUpdate(listingId, listing),
 	searchListings: async (criteria) => {
 		const regex = new RegExp(criteria, "i")
-		
+
 		return await ListingModel.find({}).or([
 			{ heading: { $regex: criteria, $options: 'i' } },
 			{ tags: { $in: [regex] } },

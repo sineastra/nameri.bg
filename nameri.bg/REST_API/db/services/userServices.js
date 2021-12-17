@@ -1,5 +1,6 @@
 const ConversationModel = require("../models/ConversationModel")
 const UserModel = require("../models/UserModel")
+const { query } = require("express-validator")
 
 const userServices = {
 	createNew: async userData => await new UserModel(userData).save(),
@@ -30,6 +31,12 @@ const userServices = {
 		{ email: { $regex: criteria, $options: 'i' } },
 		{ nameAndSurname: { $regex: criteria, $options: 'i' } },
 	]).exec(),
+	checkExistingConversation: async (ids) => {
+		const queryArr = ids.map(x => ({ participants: x }))
+
+		return await ConversationModel.findOne({ $and: queryArr }).exec()
+	},
+	createNewConversation: async (data) => await new ConversationModel(data).save(),
 }
 
 module.exports = userServices

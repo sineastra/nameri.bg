@@ -1,4 +1,3 @@
-const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const router = require("express").Router()
 const { body, validationResult } = require("express-validator")
@@ -215,6 +214,57 @@ router.get("/search", async (req, res) => {
 	const dbService = req => req.dbServices.userServices.searchUsers(criteria)
 
 	await abstractGetRequest(req, res, dbService)
+})
+
+router.post("/send-message/:id", async (req, res) => {
+	const receiverId = req.params.id
+	const userId = req.user._id
+	const msg = req.body.message
+
+	if (userId === receiverId) {
+		res.status(403).json({ status: "Forbidden", statusCode: 403, msg: "Invalid message recipient" })
+	}
+
+	try {
+		const conversation = await req.dbServices.userServices.checkExistingConversation([userId, receiverId])
+
+		if (conversation) {
+			const newMsg = {
+				sender: userId,
+				text: msg,
+			}
+			conversation.messages.push(newMsg)
+
+			await conversation.save()
+			
+			res.json({ ok: true, status: "ok", statusCode: 200, data: conversation })
+		} else {
+			const [user, receiver] = await Promise.all([
+				req.dbServices.userServices.getById(userId),
+				req.dbServices.userServices.getById(receiverId),
+			])
+
+			const data = {
+				messages: [{
+					sender: userId,
+					text: msg,
+				}],
+				participants: [userId, receiverId],
+				user: userId,
+			}
+
+			const newConversation = await req.dbServices.userServices.createNewConversation(data)
+
+			user.conversations.push(newConversation._id)
+			receiver.conversations.push(newConversation._id)
+
+			await Promise.all([user.save(), receiver.save()])
+
+			res.json({ ok: true, status: "ok", statusCode: 200, data: newConversation })
+		}
+	} catch (e) {
+		res.status(400).json({ status: "Bad request", statusCode: 400, ok: false, msg: e })
+	}
 })
 
 module.exports = router
