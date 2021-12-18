@@ -3,10 +3,13 @@ import logoImg from '../../../../assets/images/n-letter-png-transparent-images-7
 import { Link } from "react-router-dom"
 import { FaBars } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import UserContext from "../../../Contexts/UserContext.jsx"
+import UserHeader from "../../UserHeader/UserHeader.jsx"
 
 
 const Header = () => {
+	const [user, setUser] = useContext(UserContext)
 	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
 	const [windowWidth, setWindowWidth] = useState(0)
 
@@ -43,12 +46,9 @@ const Header = () => {
 					<Link to={ '/messages' } className={ styles.mainNavLink }>За Платформата</Link>
 					<Link to={ '/top-users' } className={ styles.mainNavLink }>Топ Потребители</Link>
 				</section>
-				<section className={ styles.rightNavCont }>
+				<section className={ styles.rightNavCont }>#
 					<IconContext.Provider value={ { size: '2em', color: 'lightgray' } }>
-						<div className={ styles.userNavContainer }>
-							<Link to={ '/sign-in' }
-							      className={ `${ styles.mainNavLink } ${ styles.authLink }` }>Влез</Link>
-						</div>
+						<UserHeader user={ user } className={styles.userNavContainer}/>
 						<div className={ styles.mobileNavIcon } onClick={ showSideBar }>
 							<FaBars/>
 						</div>

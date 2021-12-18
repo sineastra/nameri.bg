@@ -7,9 +7,14 @@
 .iconWrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .starIcon {
     color: orange;
     width: 60%;
+}
+
+.rating {
+    font-family: 'Nunito', sans-serif;
 }

@@ -5,11 +5,12 @@ import RatingBox from "../RatingBox/RatingBox.jsx"
 const UserRatingHeading = ({
 	                           user,
 	                           showVotes,
+	                           rating,
 	                           wrapperClassName = "",
 	                           profileImgClassName = "",
 	                           headingClassName = "",
-	                           ratingBox = "",
-	                           ratingBoxWrapper = "",
+	                           ratingBoxClassName = "",
+	                           ratingBoxWrapperClassName = "",
                            }) => {
 
 	return (
@@ -23,8 +24,8 @@ const UserRatingHeading = ({
 			<div className={ `${ styles.userFullName } ${ headingClassName }` }>
 				{ user.nameAndSurname }
 			</div>
-			<div className={ ratingBoxWrapper }>
-				<RatingBox user={ user } showVotes={ showVotes } className={ ratingBox }/>
+			<div className={ ratingBoxWrapperClassName }>
+				<RatingBox user={ user } rating={ rating } showVotes={ showVotes } className={ ratingBoxClassName }/>
 			</div>
 		</div>
 	)

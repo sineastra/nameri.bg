@@ -50,8 +50,11 @@ const ListingDetails = (props) => {
 					<section className={ styles.similarServices }>
 						{ data.similarListings.map(listing => (
 							<ListingCard
-								listing={ listing } user={ listing.user } className={ styles.similarService }
-								key={ listing._id }/>
+								listing={ listing }
+								user={ listing.user }
+								className={ styles.similarService }
+								key={ listing._id }
+							/>
 						)) }
 					</section>
 				</section>

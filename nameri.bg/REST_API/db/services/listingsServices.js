@@ -15,6 +15,9 @@ const listingsServices = {
 				path: "user",
 				populate: {
 					path: "reviews",
+					populate: {
+						path: "reviewCreator",
+					},
 				},
 			})
 			.populate({

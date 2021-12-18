@@ -3,12 +3,15 @@ import { FaStar } from "react-icons/fa"
 import { IconContext } from "react-icons"
 
 
-const RatingBox = ({ user, showVotes, className = "" }) => {
+const RatingBox = ({ user, rating, showVotes, className = "" }) => {
+	
+	console.log(user)
+
 
 	return (
 		<div className={ `${ styles.headingInnerWrapper } ${ className }` }>
 			<div className={ styles.iconWrapper }>
-				<div>{ user.rating }</div>
+				<div className={styles.rating}>{ rating }</div>
 				<IconContext.Provider value={ { className: styles.starIcon } }>
 					<FaStar/>
 				</IconContext.Provider>

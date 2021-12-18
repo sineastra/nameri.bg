@@ -15,6 +15,8 @@ const ListingSideCard = ({ listing, setData }) => {
 	const [_, setErrors] = useContext(ErrorContext)
 	const ratings = [1, 2, 3, 4, 5]
 
+	console.log(listing)
+
 	const addRating = (rating) => {
 		setHoverRating(rating)
 	}
@@ -76,14 +78,15 @@ const ListingSideCard = ({ listing, setData }) => {
 				wrapperClassName={ styles.modalWrapper }
 			/>
 
-			<div className={ `${ styles.userInfo } ${ styles.mainFlexInnerContainer }` }>
+			<div className={ `${ styles.userInfo }` }>
 				<div className={ styles.mainHeadingOuterWrapper }>
 					<UserRatingHeading
 						user={ listing.user }
+						rating={ listing.user.rating }
 						showVotes={ true }
 						profileImgClassName={ styles.profileImgClass }
 						headingClassName={ styles.userNames }
-						ratingBoxWrapper={ styles.ratingBoxWrapper }
+						ratingBoxWrapperClassName={ styles.ratingBoxWrapper }
 						wrapperClassName={ styles.userWrapper }
 					/>
 				</div>
@@ -101,29 +104,35 @@ const ListingSideCard = ({ listing, setData }) => {
 				<h1 className={ styles.pricesWrapperHeading }>Колко ще ми струва: </h1>
 				<div className={ styles.pricesInfoOuter }>
 					<div className={ styles.pricesInfoInner }>
-						<div className={ styles.priceItem }>{ listing.price } лв.
-							{/*<span className={ styles.priceItemBold }>{ price }</span> { isNaN(price.price) ? '' : 'лв.' }*/ }
-						</div>
+						<div className={ styles.priceItem }>{ listing.price } лв.</div>
 					</div>
 				</div>
 			</div>
 
-			<div className={ `${ styles.ratingsInfo }` }>
-				{ reviewsForDisplay.map(review => (
-					<div className={ styles.reviewElem } key={ review._id }>
-						<div className={ styles.reviewInnerFlexItem }>
-							<UserRatingHeading
-								user={ review.user }
-								showVotes={ false }
-								wrapperClassName={ styles.userHeadingWrapper }
-							/>
+			{ reviewsForDisplay.length > 0
+				? <div className={ `${ styles.ratingsInfo }` }>
+					{ reviewsForDisplay.map(review => (
+						<div className={ styles.reviewElem } key={ review._id }>
+							<div className={ styles.reviewInnerFlexItem }>
+								<UserRatingHeading
+									user={ review.reviewCreator }
+									rating={ review.rating }
+									showVotes={ false }
+									wrapperClassName={ styles.userHeadingWrapperReview }
+									profileImgClassName={ styles.reviewProfileImg }
+									ratingBoxWrapperClassName={styles.ratingBoxWrapperClassName}
+								/>
+							</div>
+							<div
+								className={ `${ styles.reviewInnerFlexItem } ${ styles.reviewInnerTextItem }` }><span
+								className={ styles.overflowSpan }>{ review.text }</span></div>
 						</div>
-						<div
-							className={ `${ styles.reviewInnerFlexItem } ${ styles.reviewInnerTextItem }` }><span
-							className={ styles.overflowSpan }>{ review.text }</span></div>
-					</div>
-				)) }
-			</div>
+					)) }
+				</div>
+				: <div className={ styles.emptyReviews }>
+					<h2 className={ styles.emptyReviewsHeader }>Този потребител все още няма ревюта</h2>
+				</div>
+			}
 		</div>
 	)
 }

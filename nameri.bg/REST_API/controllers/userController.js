@@ -278,13 +278,14 @@ router.post("/:id/add-review", async (req, res) => {
 			reviewCreator: req.user._id,
 		}
 
-		console.log('here')
 		const [newReview, user] = await Promise.all([
 			req.dbServices.userServices.createNewReview(data),
 			req.dbServices.userServices.getById(req.params.id),
 		])
 
 		user.reviews.push(newReview._id)
+		user.rating = Number(user.rating) + Number(newReview.rating)
+		
 		await user.save()
 
 		const listing = await req.dbServices.listingsServices.getListingWithUserReviews(req.query.listingId)

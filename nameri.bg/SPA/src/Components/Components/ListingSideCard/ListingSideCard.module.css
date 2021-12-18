@@ -37,8 +37,9 @@
 }
 
 .pricesInfoOuter {
-    background-color: aliceblue;
-    padding: 10px;
+    background-color: #ff8a33;
+    padding: 5px;
+    border-radius: 0 15px 15px 15px;
 }
 
 .pricesInfoInner {
@@ -64,6 +65,9 @@
     padding: 15px;
     border-radius: 10px;
     box-sizing: border-box;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 .reviewInnerFlexItem {
@@ -73,7 +77,7 @@
 .reviewInnerTextItem {
     font-size: 0.9em;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 
 }
 
@@ -94,12 +98,23 @@
 
 
 .reviewProfileImg {
-    width: 30%;
+    width: 30px;
+    object-fit: cover;
 }
 
 .reviewHeading {
     font-size: 1em;
 }
+
+div.userHeadingWrapperReview {
+    height: 30px;
+    width: 100%;
+}
+
+div.ratingBoxWrapperClassName {
+    width: 30px;
+}
+
 
 .ratingsInfo {
     height: 40%;
@@ -127,8 +142,23 @@ img.profileImgClass {
     object-fit: cover;
 }
 
-div.userHeadingWrapper {
+div.userHeadingWrapperMain {
     height: 300px;
+}
+
+
+.emptyReviews {
+    display: flex;
+    height: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.emptyReviewsHeader {
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
 }
 
 @media screen and (max-width: 1200px) {
@@ -150,6 +180,18 @@ div.userHeadingWrapper {
         text-align: center;
     }
 
+    .ratingsInfo {
+        height: auto;
+    }
+
+    .reviewElem {
+        margin-top: 20px;
+        height: 130px;
+    }
+
+    div.ratingBoxWrapperClassName {
+        width: 5%;
+    }
 }
 
 @media screen and (max-width: 400px) {

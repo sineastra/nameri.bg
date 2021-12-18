@@ -1,0 +1,16 @@
+.mainNavLink {
+    text-decoration: none;
+    font-size: 1.1em;
+    white-space: nowrap;
+    font-family: 'Mulish', sans-serif;
+    font-weight: bolder;
+    padding-right: 40px;
+    color: #ff7200;
+    transition: all ease 0.3s;
+    box-sizing: border-box;
+}
+
+.authLink {
+    color: black;
+    padding-right: 0;
+}
