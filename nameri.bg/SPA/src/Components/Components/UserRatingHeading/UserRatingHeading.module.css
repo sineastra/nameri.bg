@@ -7,6 +7,8 @@
 
 .imageWrapper {
     height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .profileImg {
@@ -16,7 +18,7 @@
 
 .userFullName {
     font-size: 1em;
-    align-self: flex-start;
+    align-self: center;
     font-family: 'Comfortaa', cursive;
     font-weight: bold;
 }

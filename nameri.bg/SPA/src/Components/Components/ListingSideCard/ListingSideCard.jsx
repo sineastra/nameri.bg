@@ -108,13 +108,14 @@ const ListingSideCard = ({ listing, setData }) => {
 				</div>
 			</div>
 
-			<div className={ `${ styles.ratingsInfo } ${ styles.mainFlexInnerContainer }` }>
+			<div className={ `${ styles.ratingsInfo }` }>
 				{ reviewsForDisplay.map(review => (
 					<div className={ styles.reviewElem } key={ review._id }>
 						<div className={ styles.reviewInnerFlexItem }>
 							<UserRatingHeading
 								user={ review.user }
 								showVotes={ false }
+								wrapperClassName={ styles.userHeadingWrapper }
 							/>
 						</div>
 						<div

@@ -7,6 +7,7 @@
 
 .mainHeadingOuterWrapper {
     padding-bottom: 5%;
+    height: 100px;
 }
 
 
@@ -50,6 +51,7 @@
 .pricesWrapperHeading {
     font-family: 'Comfortaa', cursive;
     font-size: 1.5em;
+    text-align: center;
 }
 
 .reviewElem {
@@ -117,6 +119,16 @@
 
 .modalWrapper {
     font-size: 2rem;
+}
+
+img.profileImgClass {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+div.userHeadingWrapper {
+    height: 300px;
 }
 
 @media screen and (max-width: 1200px) {
