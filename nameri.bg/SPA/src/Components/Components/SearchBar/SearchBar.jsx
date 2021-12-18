@@ -1,25 +1,11 @@
 import styles from "./SearchBar.module.css"
 import { FaSearch } from "react-icons/fa"
-import { Link, useNavigate } from "react-router-dom"
 import { IconContext } from "react-icons"
 
 
-function SearchBar ({ placeholder }) {
-	const navigate = useNavigate()
-
-	const submitSearch = (e) => {
-		e.preventDefault()
-
-		const formData = new FormData(e.target)
-		const formDataObj = Object.fromEntries(formData)
-
-		if (formDataObj.search !== "") {
-			navigate(`/search?search=${ formDataObj.search }`)
-		}
-	}
-
+function SearchBar ({ placeholder, onSearchSubmit }) {
 	return (
-		<form className={ styles.searchContainer } onSubmit={ submitSearch }>
+		<form className={ styles.searchContainer } onSubmit={ onSearchSubmit }>
 			<input
 				type="search"
 				placeholder={ placeholder }

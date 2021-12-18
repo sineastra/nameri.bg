@@ -34,7 +34,6 @@ const UserHeader = ({ className }) => {
 		try {
 			const response = await userServices.logout()
 
-			console.log(response)
 			if (response.ok) {
 				setUser(null)
 			}
@@ -44,9 +43,13 @@ const UserHeader = ({ className }) => {
 
 	}
 
+	const wrapperClassName = `${
+		user === null
+			? styles.guestWrapper
+			: styles.loggedInWrapper } ${ styles.wrapper } ${ className }`
+
 	return (
-		<div
-			className={ `${ user === null ? styles.guestWrapper : styles.loggedInWrapper } ${ styles.wrapper } ${ className }` }>
+		<div className={ wrapperClassName }>
 			{ user === null
 				? <Link to={ '/sign-in' }
 				        className={ `${ styles.mainNavLink } ${ styles.authLink }` }>Влез</Link>

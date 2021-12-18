@@ -33,6 +33,19 @@
     justify-content: space-between;
 }
 
+.noCatsWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+}
+
+.noCatsHeader {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+}
+
 @media screen and (max-width: 1400px) {
     .subCatCardWrapper {
         width: 30%;
@@ -60,9 +73,30 @@
 
     .subCategoryCard {
         font-size: 1.1rem;
+        height: 100px;
     }
 
     .subCategoryCard {
         padding: 30px 40px;
+    }
+
+    .subCatCardWrapper {
+        margin-bottom: 5%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .subCatCardWrapper {
+        margin-bottom: 10%;
+    }
+
+    .subCategoryCard {
+        font-size: 0.8rem;
+        padding: 15px 15px;
+        height: 70px;
+    }
+
+    .noCatsWrapper {
+        min-height: 30vh;
     }
 }
