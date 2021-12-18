@@ -2,7 +2,7 @@ import SearchBar from "../SearchBar/SearchBar.jsx"
 import styles from "./CategoriesPagesHeader.module.css"
 
 
-const CategoriesPagesHeader = ({ categoryName, className, onSubmitSearch }) => {
+const CategoriesPagesHeader = ({ categoryName, className, onSearchChange, onSearchSubmit }) => {
 
 	return (
 		<section className={ `${ styles.headingOuter } ${ className }` }>
@@ -11,7 +11,10 @@ const CategoriesPagesHeader = ({ categoryName, className, onSubmitSearch }) => {
 			</div>
 			<div className={ `${ styles.headingInner } ${ styles.headingInnerSearch }` }>
 				<div className={ styles.searchBarWrapper }>
-					<SearchBar placeholder={ "Търси категория" } onSearchSubmit={ onSubmitSearch }/>
+					<SearchBar
+						placeholder={ "Търси категория" }
+						onSearchSubmit={ onSearchSubmit }
+						onSearchChange={ onSearchChange }/>
 				</div>
 			</div>
 		</section>

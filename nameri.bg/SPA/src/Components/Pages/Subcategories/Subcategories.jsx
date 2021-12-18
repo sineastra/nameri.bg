@@ -14,12 +14,18 @@ const Subcategories = (props) => {
 	const { isLoadingData, data } = useFetch(() => categoriesService.getSubCategories(params.id, params))
 	const [filteredSubs, setFilteredSubs] = useState(null)
 
-	const onSubmitSearch = (e) => {
+	const onSearchSubmit = (e) => {
 		e.preventDefault()
 
 		const filtered = data.subcategories.filter(x => x.name.includes(e.target.value))
 
 		setFilteredSubs(filtered)
+	}
+
+	const onSearchChange = (e) => {
+		if (e.target.value === "") {
+			setFilteredSubs(data.subcategories)
+		}
 	}
 
 	useEffect(() => {
@@ -31,7 +37,11 @@ const Subcategories = (props) => {
 			? <Spinner/>
 			: <MainPageLayout>
 				<div className={ styles.mainWrapper }>
-					<CategoriesPagesHeader categoryName={ data.name } onSubmitSearch={ onSubmitSearch }/>
+					<CategoriesPagesHeader
+						categoryName={ data.name }
+						onSearchSubmit={ onSearchSubmit }
+						onSearchChange={ onSearchChange }
+					/>
 					<section className={ styles.subCatsInner }>
 						{ filteredSubs.length > 0
 							? filteredSubs.map(subCategory => (
@@ -45,8 +55,8 @@ const Subcategories = (props) => {
 									</Link>
 								</div>
 							))
-							: <div className={styles.noCatsWrapper}>
-								<h1 className={styles.noCatsHeader}>Няма открити подкатегории</h1>
+							: <div className={ styles.noCatsWrapper }>
+								<h1 className={ styles.noCatsHeader }>Няма открити подкатегории</h1>
 							</div>
 						}
 					</section>

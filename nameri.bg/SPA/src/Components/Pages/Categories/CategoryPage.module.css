@@ -23,6 +23,19 @@
     width: 80%;
 }
 
+.noCatsWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh;
+}
+
+.noCatsHeader {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+}
+
 @media screen and (max-width: 1200px) {
     .categoryCard {
         width: 40%;
@@ -40,5 +53,11 @@
 
     .categoryCard {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .noCatsWrapper {
+        min-height: 30vh;
     }
 }

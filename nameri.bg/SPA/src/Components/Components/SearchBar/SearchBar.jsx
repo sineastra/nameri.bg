@@ -3,9 +3,9 @@ import { FaSearch } from "react-icons/fa"
 import { IconContext } from "react-icons"
 
 
-function SearchBar ({ placeholder, onSearchSubmit }) {
+function SearchBar ({ placeholder, onSearchSubmit, onSearchChange }) {
 	return (
-		<form className={ styles.searchContainer } onSubmit={ onSearchSubmit }>
+		<form className={ styles.searchContainer } onSubmit={ onSearchSubmit } onChange={ onSearchChange }>
 			<input
 				type="search"
 				placeholder={ placeholder }
