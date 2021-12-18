@@ -20,8 +20,12 @@ const PopularCategories = (props) => {
 
 				<section className={ styles.popularWrapper }>
 					{ popularCategories.map(x => (
-						<SingleCategory img={ x.img } name={ x.name } key={ x._id } _id={ x._id }
-						                className={ styles.singleCategoryClass }/>
+						<SingleCategory
+							img={ x.img }
+							name={ x.name }
+							key={ x._id }
+							id={ x._id }
+							className={ styles.singleCategoryClass }/>
 					)) }
 				</section>
 

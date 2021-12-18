@@ -62,7 +62,11 @@
 
 @media screen and (max-width: 1200px) {
     .singleCat {
-        width: 100%;
+        width: 90%;
+    }
+
+    .innerRandom {
+        justify-content: center;
     }
 }
 

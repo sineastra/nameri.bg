@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     border-radius: 20px;
 }
 
@@ -33,7 +33,9 @@
 
 .profileImg {
     border-radius: 200px;
-    width: 30%;
+    width: 3.5rem;
+    height: 3.5rem;
+    object-fit: cover;
 }
 
 div.profileLoader {
@@ -61,8 +63,8 @@ div.slideLoader {
     z-index: 1;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
-    width: 35%;
-    height: 35%;
+    width: 10rem;
+    height: 9rem;
     display: flex;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -92,47 +94,54 @@ div.slideLoader {
 
 @media screen and (max-width: 600px) {
     .profileImg {
-        width: 25%;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .listingNumberHead {
-        font-size: 0.8em;
+        width: 30%;
+        height: 35%;
+        object-fit: cover;
     }
 
-    .userNames {
-        font-size: 70%;
-    }
-
-    .faStar {
-        font-size: 0.8em;
-    }
-
-    .styledSpanVotes {
-        font-size: 0.6em;
+    .userProfileSection {
+        width: 35%;
+        height: 45%;
     }
 }
 
 @media screen and (max-width: 400px) {
-    .userProfileSection {
-        width: 50%;
-        height: 50%;
+    .listingsCountWrapper {
+        display: none;
+    }
+
+    .votesWrapper {
+        display: none;
+    }
+
+    .userNamesWrapper {
+        height: 40%;
+        max-height: 40%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .userNames {
+        box-sizing: border-box;
+        font-size: 5vw;
+        font-style: normal;
     }
 }
+
 
 @media screen and (max-width: 200px) {
     .listingNumberHead, .userNames, .faStar, .styledSpanVotes {
         display: none;
     }
 
-    .userProfileSection {
-        width: 30%;
-        height: 30%;
+    .userNamesWrapper {
+        display: none;
     }
 
     .profileImg {
-        width: 90%;
-        height: 90%;
+        width: 50%;
+        height: 50%;
     }
 }

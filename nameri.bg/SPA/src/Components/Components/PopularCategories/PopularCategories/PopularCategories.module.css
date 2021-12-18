@@ -53,7 +53,7 @@
 
 @media screen and (max-width: 800px) {
     .singleCategoryClass {
-        width: 90%;
+        width: 70%;
         height: 400px;
     }
 
@@ -69,5 +69,12 @@
 
     .popularWrapper {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .singleCategoryClass {
+        width: 90%;
+        height: 200px;
     }
 }

@@ -153,4 +153,8 @@ h1, h2 {
     .mainHeading {
         font-size: 0.7em;
     }
+
+    .checkMarkText {
+        text-align: start;
+    }
 }

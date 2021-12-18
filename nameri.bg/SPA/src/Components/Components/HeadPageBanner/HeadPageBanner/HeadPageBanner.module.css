@@ -37,7 +37,7 @@
     font-family: 'Bellota Text', cursive;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
     .mainBannerSection {
         width: 45%;
     }

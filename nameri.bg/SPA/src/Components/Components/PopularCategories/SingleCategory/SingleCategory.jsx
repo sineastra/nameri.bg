@@ -4,14 +4,14 @@ import { useState } from "react"
 import ImageLoadingPlaceholder from "../../ImageLoadingPlaceholder/ImageLoadingPlaceholder.jsx"
 
 
-const SingleCategory = ({ _id, img, name, className }) => {
+const SingleCategory = ({ id, img, name, className }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 
 	return (
 		<>
 			<Link
 				className={ `${ styles.categContainer } ${ className } ${ imgLoaded ? styles.show : styles.hide }` }
-				to={ `/categories/${ _id }` }>
+				to={ `/categories/${ id }` }>
 				<img
 					className={ styles.image }
 					src={ img }

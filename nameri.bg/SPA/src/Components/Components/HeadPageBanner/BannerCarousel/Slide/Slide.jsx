@@ -24,13 +24,15 @@ const Slide = ({ listing, activeId }) => {
 	return (
 		<ContainerSection active={ activeId === listing._id }>
 			<section className={ styles.slideImageSection }>
-				<img
-					src={ listing.mainImg }
-					alt=""
-					onLoad={ () => setSlideImgLoaded(true) }
-					onError={ () => setSlideImgLoaded(false) }
-					className={ `${ styles.slideImg } ${ slideImgLoaded ? styles.show : styles.hide }` }
-				/>
+				<Link to={ `/details/${ listing._id }` }>
+					<img
+						src={ listing.mainImg }
+						alt=""
+						onLoad={ () => setSlideImgLoaded(true) }
+						onError={ () => setSlideImgLoaded(false) }
+						className={ `${ styles.slideImg } ${ slideImgLoaded ? styles.show : styles.hide }` }
+					/>
+				</Link>
 				<ImageLoadingPlaceholder
 					outerClassName={ slideImgLoaded ? styles.hide : `${ styles.show } ${ styles.slideLoader }` }/>
 			</section>
@@ -45,13 +47,13 @@ const Slide = ({ listing, activeId }) => {
 					/>
 					<ImageLoadingPlaceholder
 						outerClassName={ profileImgLoaded ? styles.hide : `${ styles.show } ${ styles.profileLoader }` }/>
-					<div className={ styles.styledUserSection }>
+					<div className={ `${ styles.styledUserSection } ${ styles.listingsCountWrapper }` }>
 						<h5 className={ styles.listingNumberHead }>{ listing.user.listings.length } обяви</h5>
 					</div>
-					<div className={ styles.styledUserSection }>
+					<div className={ `${ styles.styledUserSection } ${ styles.userNamesWrapper }` }>
 						<span className={ styles.userNames }>{ listing.user.nameAndSurname }</span>
 					</div>
-					<div className={ styles.styledUserSection }>
+					<div className={ `${ styles.styledUserSection } ${ styles.votesWrapper }` }>
 						<IconContext.Provider value={ { className: styles.faStar } }>
 							<FaStar/>
 						</IconContext.Provider>
