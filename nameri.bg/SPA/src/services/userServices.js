@@ -16,5 +16,6 @@ const userServices = {
 	getUserForProfile: async (userId) => await abstractGetRequest(`/user/profile/${ userId }`),
 	editProfile: async (userId, formData) => await abstractFormDataRequest(`/user/edit/${ userId }`, formData, "PUT"),
 	search: async (search) => await abstractGetRequest(`/user/search?search=${ search }`),
+	logout: async () => await abstractFetch(`/user/logout`),
 }
 export default userServices

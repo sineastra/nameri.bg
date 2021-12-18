@@ -9,7 +9,6 @@ import UserHeader from "../../UserHeader/UserHeader.jsx"
 
 
 const Header = () => {
-	const [user, setUser] = useContext(UserContext)
 	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
 	const [windowWidth, setWindowWidth] = useState(0)
 
@@ -46,9 +45,9 @@ const Header = () => {
 					<Link to={ '/messages' } className={ styles.mainNavLink }>За Платформата</Link>
 					<Link to={ '/top-users' } className={ styles.mainNavLink }>Топ Потребители</Link>
 				</section>
-				<section className={ styles.rightNavCont }>#
+				<section className={ styles.rightNavCont }>
 					<IconContext.Provider value={ { size: '2em', color: 'lightgray' } }>
-						<UserHeader user={ user } className={styles.userNavContainer}/>
+						<UserHeader className={ styles.userNavContainer }/>
 						<div className={ styles.mobileNavIcon } onClick={ showSideBar }>
 							<FaBars/>
 						</div>

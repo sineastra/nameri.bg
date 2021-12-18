@@ -4,8 +4,6 @@ import StyledBtn from "../StyledLinkBtn/StyledBtn.jsx"
 import userServices from "../../../services/userServices.js"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"
-import deserializeJWT from "../../../helpers/deserializeJWT.js"
-import Cookies from "js-cookie"
 import { Navigate } from "react-router-dom"
 import processNewToken from "../../../helpers/processNewToken.js"
 

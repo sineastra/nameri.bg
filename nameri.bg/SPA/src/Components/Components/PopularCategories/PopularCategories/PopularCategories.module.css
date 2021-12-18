@@ -30,7 +30,7 @@
     font-family: 'Balsamiq Sans', cursive;
 }
 
-.subHeader {
+.subHeaderWrapper {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
     font-style: italic;
@@ -63,7 +63,7 @@
         align-items: center;
     }
 
-    .subHeader {
+    .subHeaderWrapper {
         width: 90%;
     }
 

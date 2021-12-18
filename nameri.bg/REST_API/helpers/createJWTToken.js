@@ -6,6 +6,7 @@ const createJWTToken = (user) => {
 			_id: user._id,
 			email: user.email,
 			nameAndSurname: user.nameAndSurname,
+			profileImg: user.profileImg,
 		},
 		process.env.TOKEN_SECRET,
 	)

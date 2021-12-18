@@ -30,7 +30,11 @@ const abstractGetRequest = async (url) => {
 			}
 
 			resolve(response.data)
-		}).catch(e => reject({ status: e.status, statusCode: e.statusCode }))
+		}).catch(e => reject({
+			status: e.status || 'No status',
+			statusCode: e.statusCode || 'No status code',
+			msg: e,
+		}))
 	})
 }
 

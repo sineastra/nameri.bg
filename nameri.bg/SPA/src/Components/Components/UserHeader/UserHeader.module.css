@@ -10,7 +10,113 @@
     box-sizing: border-box;
 }
 
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loggedInWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.guestWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
 .authLink {
     color: black;
     padding-right: 0;
+}
+
+.loggedInUserWrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 320px;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.loggedInUserWrapper::after {
+    position: absolute;
+    bottom: -15px;
+    right: -5px;
+    border-radius: 20px;
+    content: "";
+    width: 500px;
+    height: 5px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 177, 114, 1) 50%, rgba(255, 255, 255, 1) 100%);
+}
+
+.userProfileImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.msgIconClassName {
+    font-size: 2rem;
+}
+
+.styledLink {
+    padding: 10px 15px;
+    background: white;
+    border-radius: 10px;
+    border: 3px solid #ff7200;
+    color: #ff7200;
+    font-family: 'Comfortaa', cursive;
+    transition: all 0.3s ease;
+}
+
+.styledLink:hover {
+    background: #ff7200;
+    color: white;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.subHeaderWrapper {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    z-index: 1;
+    height: 83px;
+    background: white;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.29);
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.29);
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subHeaderUl {
+    margin: 0;
+    height: 80%;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.subHeaderLink {
+    list-style: none;
+    font-family: 'Exo 2', sans-serif;
+    cursor: pointer;
+    padding: 3px 20px;
+}
+
+.subHeaderLink:hover {
+    background: #f1f1f1;
 }
