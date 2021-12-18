@@ -4,8 +4,10 @@ import styles from "./Spinner.module.css"
 const Spinner = () => {
 
 	return (
-		<div className={ styles.class3 }>
-			<div className={ styles.class2 }>
+		<div className={styles.wrapper}>
+			<div className={ styles['lds-facebook'] }>
+				<div></div>
+				<div></div>
 				<div></div>
 			</div>
 		</div>
