@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import { FaStar } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { IconContext } from "react-icons"
@@ -7,22 +6,24 @@ import styles from "./Slide.module.css"
 import ImageLoadingPlaceholder from "../../../ImageLoadingPlaceholder/ImageLoadingPlaceholder.jsx"
 
 
-const ContainerSection = styled.section`
-  position: relative;
-  transition: opacity 1s ease-in-out;
-  width: 100%;
-  opacity: ${ props => props.active ? 1 : 0 };
-  height: ${ props => props.active ? '100%' : 0 };
-  overflow: hidden;
-`
-
-const Slide = ({ listing, activeId }) => {
+const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 	const [slideImgLoaded, setSlideImgLoaded] = useState(false)
 	const [profileImgLoaded, setProfileImgLoaded] = useState(false)
 	let profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
+	let className = ''
+
+	const isActive = activeId === listing._id
+
+	if (isFirstSlide.current) {
+		className = index === 0 ? styles.firstSlide : ''
+	} else {
+		className = isActive
+			? styles.activeSlide
+			: styles.inactiveSlide
+	}
 
 	return (
-		<ContainerSection active={ activeId === listing._id }>
+		<section className={ `${ styles.slideWrapper } ${ className }` }>
 			<section className={ styles.slideImageSection }>
 				<Link to={ `/details/${ listing._id }` }>
 					<img
@@ -62,7 +63,7 @@ const Slide = ({ listing, activeId }) => {
 					</div>
 				</Link>
 			</section>
-		</ContainerSection>
+		</section>
 	)
 }
 

@@ -6,6 +6,7 @@
     align-content: center;
     background-color: #fafafa;
     height: 500px;
+    z-index: 1;
 }
 
 .mainBannerSection {
@@ -37,6 +38,15 @@
     font-family: 'Bellota Text', cursive;
 }
 
+.mainBannerCarouselSection {
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    height: 90%;
+}
+
 @media screen and (max-width: 1400px) {
     .mainBannerSection {
         width: 45%;
@@ -55,6 +65,7 @@
 
     .mainBannerCarouselSection {
         margin-top: 80px;
+        height: 450px;
     }
 
     .headingsSectionPart {

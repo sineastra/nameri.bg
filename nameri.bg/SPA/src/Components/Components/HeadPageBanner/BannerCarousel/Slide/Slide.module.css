@@ -1,3 +1,47 @@
+@keyframes slideInAnimation {
+    0% {
+        left: 102%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes slideOutAnimation {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -102%;
+        display: none;
+    }
+}
+
+section.firstSlide {
+    left: 0
+}
+
+.slideWrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 102%;
+}
+
+.activeSlide {
+    animation-name: slideInAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.inactiveSlide {
+    animation-name: slideOutAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
 .faStar {
     color: orange;
     font-size: 1em;
@@ -20,7 +64,8 @@
 .slideImageSection {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     position: relative;
 }
 
@@ -28,7 +73,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .profileImg {
