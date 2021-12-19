@@ -13,6 +13,7 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 const PageSection = styled.section`
   width: 100%;
   margin-top: 5%;
+  margin-bottom: 5%;
 `
 
 const Messages = (props) => {

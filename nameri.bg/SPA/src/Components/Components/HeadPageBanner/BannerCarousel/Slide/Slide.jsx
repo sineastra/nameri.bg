@@ -35,19 +35,21 @@ const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 					/>
 				</Link>
 				<ImageLoadingPlaceholder
-					outerClassName={ slideImgLoaded ? styles.hide : `${ styles.show } ${ styles.slideLoader }` }/>
+					outerClassName={ `${ styles.slideImg } ${ slideImgLoaded ? styles.hide : styles.show }` }/>
 			</section>
 			<section className={ styles.userProfileSection }>
 				<Link className={ styles.userLink } to={ `/profile/${ listing.user._id }` }>
-					<img
-						src={ profileImg }
-						alt=""
-						onError={ () => profileImg = "/profile.svg" }
-						onLoad={ () => setProfileImgLoaded(true) }
-						className={ styles.profileImg }
-					/>
-					<ImageLoadingPlaceholder
-						outerClassName={ profileImgLoaded ? styles.hide : `${ styles.show } ${ styles.profileLoader }` }/>
+					<div className={ styles.profileImgWrapper }>
+						<img
+							src={ profileImg }
+							alt=""
+							onError={ () => profileImg = "/profile.svg" }
+							onLoad={ () => setProfileImgLoaded(true) }
+							className={ `${ styles.profileImg } ${ slideImgLoaded ? styles.show : styles.hide }` }
+						/>
+						<ImageLoadingPlaceholder
+							outerClassName={ `${ styles.profileImg } ${ profileImgLoaded ? styles.hide : styles.show }` }/>
+					</div>
 					<div className={ `${ styles.styledUserSection } ${ styles.listingsCountWrapper }` }>
 						<h5 className={ styles.listingNumberHead }>{ listing.user.listings.length } обяви</h5>
 					</div>
