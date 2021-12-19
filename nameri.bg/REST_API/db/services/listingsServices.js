@@ -50,6 +50,7 @@ const listingsServices = {
 			{ details: { $regex: criteria, $options: 'i' } },
 		])
 			.populate("user")
+			.populate("town")
 			.exec()
 	},
 }

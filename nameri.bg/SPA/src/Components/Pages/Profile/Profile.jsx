@@ -9,6 +9,7 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TextModal from "../../Components/TextModal/TextModal.jsx"
 import { useContext, useState } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 
 
 const MessageSubHeader = ({ userName }) =>
@@ -33,7 +34,7 @@ const Profile = () => {
 		if (response.ok) {
 			setModalVisible(false)
 		} else {
-			setErrors(response.errors)
+			setErrors(extractErrorMessages(response.errors))
 		}
 	}
 
@@ -50,15 +51,14 @@ const Profile = () => {
 					backdropClassName={ styles.messageModal }
 					visibleState={ modalVisible }
 					setVisibleState={ setModalVisible }
-					wrapperClassName={styles.modalWrapper}
+					wrapperClassName={ styles.modalWrapper }
 				/>
 				<div className={ styles.mainWrapper }>
 					<div className={ styles.innerWrapper }>
 						<section className={ styles.listingsSection }>
 							{ data.listings.map(listing => (
 								<ListingCard
-									listing={ listing }
-									user={ data }
+									listing={ { ...listing, user: data } }
 									className={ styles.listingCard }
 								/>))
 							}

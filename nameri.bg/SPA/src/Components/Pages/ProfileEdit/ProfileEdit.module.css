@@ -133,6 +133,10 @@ input, textarea {
     margin-bottom: 3%;
 }
 
+.textArea {
+    margin-bottom: 5%;
+}
+
 @media screen and (max-width: 800px) {
     .mainHeader {
         font-size: 1.2rem;

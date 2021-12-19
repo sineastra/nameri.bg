@@ -52,7 +52,8 @@ const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 						<h5 className={ styles.listingNumberHead }>{ listing.user.listings.length } обяви</h5>
 					</div>
 					<div className={ `${ styles.styledUserSection } ${ styles.userNamesWrapper }` }>
-						<span className={ styles.userNames }>{ listing.user.nameAndSurname }</span>
+						<span className={ styles.userNames }
+						      title={ styles.userNames }>{ listing.user.nameAndSurname }</span>
 					</div>
 					<div className={ `${ styles.styledUserSection } ${ styles.votesWrapper }` }>
 						<IconContext.Provider value={ { className: styles.faStar } }>

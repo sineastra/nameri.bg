@@ -79,12 +79,14 @@ div.mainImgLoader {
 
 .leftArrow {
     left: 10px;
+    color: #ff7200;
 }
 
 
 .rightArrow {
-    right: 10px;
+    right: 0;
     top: 50%;
+    color: #ff7200;
     transform: translateY(-50%);
 }
 

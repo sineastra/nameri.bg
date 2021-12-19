@@ -65,7 +65,7 @@ const ProfileSideCard = ({ className, user, openModal }) => {
 		<div className={ `${ styles.mainWrapper } ${ className }` }>
 			<div className={ styles.headingWrapper }>
 				<div className={ styles.mainHeading }>{ user.nameAndSurname }</div>
-				<RatingBox user={ user } showVotes={ true }/>
+				<RatingBox user={ user } rating={ user.rating } showVotes={ true }/>
 			</div>
 			{ isOwn ? <EditProfile/> : '' }
 

@@ -21,4 +21,8 @@
     align-self: center;
     font-family: 'Comfortaa', cursive;
     font-weight: bold;
+    max-width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

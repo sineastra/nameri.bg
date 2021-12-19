@@ -15,8 +15,6 @@ const ListingSideCard = ({ listing, setData }) => {
 	const [_, setErrors] = useContext(ErrorContext)
 	const ratings = [1, 2, 3, 4, 5]
 
-	console.log(listing)
-
 	const addRating = (rating) => {
 		setHoverRating(rating)
 	}
@@ -120,7 +118,7 @@ const ListingSideCard = ({ listing, setData }) => {
 									showVotes={ false }
 									wrapperClassName={ styles.userHeadingWrapperReview }
 									profileImgClassName={ styles.reviewProfileImg }
-									ratingBoxWrapperClassName={styles.ratingBoxWrapperClassName}
+									ratingBoxWrapperClassName={ styles.ratingBoxWrapperClassName }
 								/>
 							</div>
 							<div

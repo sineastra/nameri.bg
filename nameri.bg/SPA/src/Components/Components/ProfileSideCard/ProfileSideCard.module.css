@@ -26,8 +26,12 @@ hr {
 .mainHeading {
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin: 0;
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .aboutWrapper {
@@ -104,6 +108,8 @@ hr {
 
 .about {
     font-family: 'Bellota Text', cursive;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 800px) {
