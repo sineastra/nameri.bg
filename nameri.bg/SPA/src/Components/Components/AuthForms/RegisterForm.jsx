@@ -7,10 +7,12 @@ import { Navigate } from "react-router-dom"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import getToken from "../../../helpers/getToken.js"
 import UserContext from "../../Contexts/UserContext.jsx"
+import { registerFormValidator } from "../../../helpers/formValidators.js"
+import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 
 
 const RegisterForm = ({ className }) => {
-	const [_, setError] = useContext(ErrorContext)
+	const [_, setErrors] = useContext(ErrorContext)
 	const [userData, setUserData] = useContext(UserContext)
 
 	const submitHandler = async (e) => {
@@ -18,25 +20,31 @@ const RegisterForm = ({ className }) => {
 
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
+		formDataObj.terms = formDataObj.terms || false
+		const validation = registerFormValidator(formDataObj)
+		console.log(validation)
 
-		if (formDataObj.password !== formDataObj.repeatPassword) {
-			setError('Passwords do no match')
-			return
-		}
+		if (validation.valid) {
+			const response = await userServices.signUp(formDataObj)
 
-		if (Boolean(formDataObj.checkbox) !== true) {
-			setError('You must accept the terms.')
-			return
-		}
-
-		const response = await userServices.signUp(formDataObj)
-
-		if (response.ok) {
-			const userData = deserializeJWT(getToken())
-			setUserData(userData)
+			if (response.ok) {
+				const userData = deserializeJWT(getToken())
+				setUserData(userData)
+			} else {
+				setErrors(extractErrorMessages(response.errors))
+			}
 		} else {
-			setError(`Error: ${ e.message }`)
+			const mappedErrors = Object.entries(validation.data)
+
+			setErrors(extractErrorMessages(mappedErrors, {
+				email: 'Невалиден имейл',
+				password: 'Паролата трябва да е поне 6 символа',
+				repeatPassword: 'Паролите не съвпадат',
+				terms: 'Трябва да приемеш условията за апартамента.',
+				nameAndSurname: 'Имената са задължителни.',
+			}))
 		}
+
 	}
 
 	return (
@@ -54,7 +62,7 @@ const RegisterForm = ({ className }) => {
 					<input type="password" name="repeatPassword" placeholder="Повтори парола"
 					       className={ styles.inputField }/>
 					<div className={ styles.checkBoxCont }>
-						<input type="checkbox" className={ styles.checkBox } name="checkbox"/>
+						<input type="checkbox" className={ styles.checkBox } name="terms"/>
 						<div className={ styles.checkBoxDetails }>Декларирам че съм запознат и приемам Правилата за
 							поверителност, Общите условия и Защитата на личните данни на nameri.bg ООД
 						</div>

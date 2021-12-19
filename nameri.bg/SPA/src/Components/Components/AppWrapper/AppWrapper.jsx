@@ -10,8 +10,10 @@ import getToken from "../../../helpers/getToken.js"
 let timeout = 0
 
 function AppWrapper (props) {
-	const [error, setError] = useState('')
+	const [errors, setErrors] = useState(null)
 	const [userData, setUserData] = useState()
+	
+	console.log(errors)
 
 	// preserve user state on reloads.
 	useEffect(() => {
@@ -23,24 +25,24 @@ function AppWrapper (props) {
 	}, [])
 
 	useEffect(() => {
-		if (error !== '') {
-			timeout = setTimeout(() => setError(''), 5000)
+		if (errors !== '') {
+			timeout = setTimeout(() => setErrors(''), 5000)
 		} else {
 			clearTimeout(timeout)
 		}
-	}, [error, userData])
+	}, [errors, userData])
 
 	const closeNotif = () => {
-		setError('')
+		setErrors('')
 	}
 
 	return (
 		<UserContext.Provider value={ [userData, setUserData] }>
-			<ErrorContext.Provider value={ [error, setError] }>
+			<ErrorContext.Provider value={ [errors, setErrors] }>
 
-				{ error &&
-					<div className={ styles.errorNotif }>
-						{ error }
+				{ errors && errors.length > 0 &&
+					< div className={ styles.errorNotif }>
+						{ errors.map(x => (<div>{ x }</div>)) }
 						<span className={ styles.closeBtn } onClick={ closeNotif }>X</span>
 					</div> }
 				<AppRouter/>

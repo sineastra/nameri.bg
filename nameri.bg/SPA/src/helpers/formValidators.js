@@ -1,4 +1,15 @@
-const addListingFormValidator = (formData) => {
+const basicIteration = (formDataObj, validationObj, resultObj) => {
+	Object.entries(formDataObj).forEach(([formElementName, formElementValue]) => {
+		if (validationObj[formElementName] !== undefined)
+			resultObj[formElementName] = validationObj[formElementName](formElementValue, formDataObj.password)
+	})
+
+	return Object.entries(resultObj).every(([_, value]) => value === true)
+		? { valid: true, data: resultObj }
+		: { valid: false, data: resultObj }
+}
+
+const addListingFormValidator = (formDataObj) => {
 	const resultObj = {}
 
 	// every check returns true if there is error, false if there is none.
@@ -15,7 +26,7 @@ const addListingFormValidator = (formData) => {
 		files: () => true,
 	}
 
-	Object.entries(formData).filter(([key, _]) => key !== 'priceNegotiation').forEach(field => {
+	Object.entries(formDataObj).filter(([key, _]) => key !== 'priceNegotiation').forEach(field => {
 		resultObj[field[0]] = validationObj[field[0]](field[1])
 	})
 
@@ -26,14 +37,14 @@ const addListingFormValidator = (formData) => {
 		: { valid: false, data: resultObj }
 }
 
-const profileEditFormValidator = (formData) => {
+const profileEditFormValidator = (formDataObj) => {
 	const resultObj = {}
 
 	const validationObj = {
 		nameAndSurname: (value) => value.length >= 6,
 		phone: (value) => value.length === 0 || (value.length !== 0 && !!/\+359[0-9]{9}|0[0-9]{9}/g.exec(value)),
 		website: (value) => value.length === 0 || (value.length !== 0 && !!/(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/g.exec(value)),
-		email: (value) => !!/^\S+@\S+$/g.exec(value),
+		email: emailValidator,
 		address: (value) => value.length === 0 || (value.length !== 0 && value.length >= 5),
 		password: (value) => value.length === 0 || (value.length !== 0 && value.length >= 6),
 		profileImg: () => true,
@@ -41,14 +52,27 @@ const profileEditFormValidator = (formData) => {
 		repeatPassword: (value, pass) => value === pass,
 	}
 
-	Object.entries(formData).forEach(([formElementName, formElementValue]) => {
-		if (validationObj[formElementName] !== undefined)
-			resultObj[formElementName] = validationObj[formElementName](formElementValue, formData.password)
-	})
-
-	return Object.entries(resultObj).every(([_, value]) => value === true)
-		? { valid: true, data: resultObj }
-		: { valid: false, data: resultObj }
+	return basicIteration(formDataObj, validationObj, resultObj)
 }
 
-export { addListingFormValidator, profileEditFormValidator }
+const registerFormValidator = (formDataObj) => {
+	const resultObj = {}
+
+	const validationObj = {
+		email: emailValidator,
+		password: (value) => value.length >= 6,
+		repeatPassword: (value, repeatValue) => value === repeatValue,
+		terms: (value) => !!value,
+		nameAndSurname: (value) => value.length > 0,
+	}
+
+	return basicIteration(formDataObj, validationObj, resultObj)
+}
+
+const emailValidator = (value) => {
+	return !!/^\S+@\S+$/g.exec(value)
+}
+
+//TODO: think about extracting all basicIterations into function
+
+export { addListingFormValidator, profileEditFormValidator, registerFormValidator, emailValidator }

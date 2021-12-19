@@ -6,10 +6,12 @@ import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"
 import { Navigate } from "react-router-dom"
 import processNewToken from "../../../helpers/processNewToken.js"
+import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import { emailValidator } from "../../../helpers/formValidators.js"
 
 
 const LoginForm = ({ className = "" }) => {
-	const [_, setError] = useContext(ErrorContext)
+	const [_, setErrors] = useContext(ErrorContext)
 	const [userData, setUserData] = useContext(UserContext)
 
 	const submitHandler = async (e) => {
@@ -18,15 +20,20 @@ const LoginForm = ({ className = "" }) => {
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
 
-		const response = await userServices.signIn(formDataObj)
 
-		if (response.ok) {
-			setUserData(processNewToken(response.token))
+		if (emailValidator(formDataObj.email)) {
+			const response = await userServices.signIn(formDataObj)
+			
+			console.log(response)
+
+			if (response.ok) {
+				setUserData(processNewToken(response.token))
+			} else {
+				setErrors(extractErrorMessages(response.errors))
+			}
 		} else {
-			setError(`Error: ${ e.message }`)
+			setErrors(extractErrorMessages([{ msg: 'Invalid email' }]))
 		}
-
-		//TODO: Add auth form validators
 	}
 
 	return (

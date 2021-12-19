@@ -3,7 +3,7 @@ const { abstractGetRequest } = require("./abstractRequests")
 const { body, validationResult } = require("express-validator")
 const uploadImages = require("../helpers/uploadFilesS3.js")
 const processFormData = require("../middlewares/processFormData.js")
-const { validateListing } = require("../middlewares/groupedValidations.js")
+const { validateListing } = require("../middlewares/formsValidators.js")
 
 const processListing = async (req, res, fetchData, listing = {}) => {
 	const errors = validationResult(req)

@@ -5,6 +5,7 @@ const { abstractGetRequest } = require("./abstractRequests")
 const uploadImages = require("../helpers/uploadFilesS3.js")
 const { createJWTToken, attachCookie } = require("../helpers/createJWTToken.js")
 const processFormData = require("../middlewares/processFormData.js")
+const { validateRegister, validateLogin, validateProfileEdit } = require("../middlewares/formsValidators.js")
 
 const signIn = async (req, res) => {
 	const errors = validationResult(req)
@@ -19,15 +20,15 @@ const signIn = async (req, res) => {
 
 			res.json({ ok: true, status: 200, statusCode: "OK", token })
 		} else {
-			res.status(401).json({
+			res.json({
 				ok: false,
 				status: "Unauthorized",
 				statusCode: 401,
-				message: "Wrong user email and/or password.",
+				errors: [{ msg: "Wrong user email and/or password." }],
 			})
 		}
 	} else {
-		res.status(400).json({
+		res.json({
 			ok: false,
 			status: "Bad request",
 			statusCode: 400,
@@ -72,7 +73,7 @@ const signUp = async (req, res, next) => {
 				ok: false,
 				status: "Conflict",
 				statusCode: 409,
-				message: "Existing user. Please sign in.",
+				errors: [{ msg: "Existing user. Please sign in." }],
 			})
 		}
 	} else {
@@ -80,29 +81,14 @@ const signUp = async (req, res, next) => {
 			ok: false,
 			status: "Bad request",
 			statusCode: 400,
-			message: errors.join("\n"),
+			...errors,
 		})
 	}
 }
 
-router.post(
-	"/sign-in",
-	body("email").isEmail().withMessage("Must be a valid Email"),
-	signIn,
-)
+router.post("/sign-in", validateLogin(), signIn)
 
-router.post(
-	"/sign-up",
-	body("nameAndSurname").isLength({ min: 1 }).withMessage("Names are required"),
-	body("email").isEmail().withMessage("Not a valid email!"),
-	body("password")
-		.isLength({ min: 6 })
-		.withMessage("Password must be at least 6 symbols!")
-		.custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
-		.withMessage("Passwords do not match!"),
-	signUp,
-	signIn,
-)
+router.post("/sign-up", validateRegister(), signUp, signIn)
 
 router.get("/:id/messages", async (req, res) => {
 	const userId = req.params.id
@@ -110,12 +96,14 @@ router.get("/:id/messages", async (req, res) => {
 
 	await abstractGetRequest(req, res, dbService)
 })
+
 router.get("/message/:id", async (req, res) => {
 	const messageId = req.params.id
 	const dbService = req => req.dbServices.userServices.getSingleMessage(messageId)
 
 	await abstractGetRequest(req, res, dbService)
 })
+
 router.get("/profile/:id", async (req, res) => {
 	const userId = req.params.id
 	const dbService = req => req.dbServices.userServices.getUserForProfile(userId)
@@ -125,29 +113,7 @@ router.get("/profile/:id", async (req, res) => {
 
 router.put('/edit/:id',
 	processFormData,
-	body("nameAndSurname")
-		.isLength({ min: 6 })
-		.withMessage('Names must be at least 6 characters long!'),
-	body("phone")
-		.custom((value, { req }) => req.customValidators.phoneValidator(value, req))
-		.withMessage("Invalid phone."),
-	body("website")
-		.custom((value, { req }) => req.customValidators.websiteValidator(value, req))
-		.withMessage("Invalid website."),
-	body("email")
-		.isEmail()
-		.withMessage("Invalid email."),
-	body("address")
-		.custom((value, { req }) => req.customValidators.addressValidator(value, req))
-		.withMessage("Invalid address."),
-	body("password")
-		.custom((value, { req }) => req.customValidators.editPasswordValidator(value, req))
-		.withMessage("Password must be at least 6 symbols!")
-		.custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
-		.withMessage("Passwords do not match!"),
-	body("about")
-		.isLength({ min: 1 })
-		.withMessage('About section must not be empty!'),
+	validateProfileEdit,
 	async (req, res) => {
 		const errors = validationResult(req)
 		let image = ''
@@ -298,7 +264,7 @@ router.post("/:id/add-review", async (req, res) => {
 
 router.get("/logout", (req, res) => {
 	res.clearCookie(process.env.COOKIE_NAME)
-	res.json({ ok: true  })
+	res.json({ ok: true })
 })
 
 module.exports = router
