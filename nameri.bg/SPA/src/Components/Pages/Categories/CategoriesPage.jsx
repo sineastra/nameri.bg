@@ -6,21 +6,21 @@ import categoriesService from "../../../services/categoriesService.js"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import SubcategoryCard from "../../Components/SubcategoryCard/SubcategoryCard.jsx"
 
 
 const CategoriesPage = (props) => {
 	const { isLoadingData, data } = useFetch(() => categoriesService.getAll())
 	const [filteredCats, setFilteredCats] = useState(null)
 
+	console.log(filteredCats)
+
 	//TODO: Can make this a custom hook.
 	const onSearchSubmit = (e) => {
 		e.preventDefault()
 
-		const filtered = data.filter(x =>
-			x.name.includes(e.target.value) || x.subcategories.some(y => y.name.includes(e.target.value)),
-		)
+		const filtered = data.filter(x => {
+			return x.name.includes(e.target.search.value) || x.subcategories.some(y => y.name.includes(e.target.search.value))
+		})
 
 		setFilteredCats(filtered)
 	}
@@ -48,7 +48,7 @@ const CategoriesPage = (props) => {
 						/>
 						<section className={ styles.cardsWrapper }>
 							{ filteredCats.length > 0
-								? data.map(category => (
+								? filteredCats.map(category => (
 									<CategoryCard
 										key={ category._id }
 										_id={ category._id }

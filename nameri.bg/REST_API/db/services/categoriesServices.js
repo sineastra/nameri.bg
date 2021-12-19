@@ -19,10 +19,13 @@ const categoriesServices = {
 	getSubcategories: async _id =>
 		await CategoryModel.findOne({ _id }).populate("subcategories").exec(),
 
-	getSubCatListings: async _id =>
+	getSubCatListings: async (_id, limit) =>
 		await SubcategoryModel.findOne({ _id })
 			.populate({
 				path: "listings",
+				options: {
+					limit,
+				},
 				populate: [
 					{
 						path: "user",

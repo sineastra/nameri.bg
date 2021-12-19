@@ -4,7 +4,7 @@ import ImageLoadingPlaceholder from "../ImageLoadingPlaceholder/ImageLoadingPlac
 import { useState } from "react"
 
 
-const ListingCard = ({ className, headingClassName, listing }) => {
+const ListingCard = ({ className, headingClassName, profilePicClassName, priceClassName, listing }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 	const profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
 
@@ -27,12 +27,12 @@ const ListingCard = ({ className, headingClassName, listing }) => {
 				      className={ `${ styles.listingHeading } ${ headingClassName }` }>{ listing.heading }</Link>
 				<div className={ styles.profileInfoWrapper }>
 					<Link to={ `/profile/${ listing.user._id }` } className={ styles.profileImageWrapper }>
-						<img src={ profileImg } alt="" className={ styles.profilePic }/>
+						<img src={ profileImg } alt="" className={ `${ styles.profilePic } ${ profilePicClassName }` }/>
 						<div
 							className={ `${ styles.comfortaa } ${ styles.nameAndSurname }` }>{ listing.user.nameAndSurname }</div>
 					</Link>
 					<div
-						className={ styles.priceE }>{ listing.price == 0 ? 'По договаряне' : `${ listing.price } лв.` }</div>
+						className={ `${ styles.priceE } ${ priceClassName }` }>{ listing.price == 0 ? 'По договаряне' : `${ listing.price } лв.` }</div>
 				</div>
 			</div>
 			<ImageLoadingPlaceholder

@@ -5,6 +5,7 @@ TODO: check why the footer sometimes go upside
 TODO: make some fancy buttons
 TODO: Lazy loading
 TODO: Suspense
+TODO: Check why url is updated with search query when you press the search button.
 
 TODO: add credits section:
 

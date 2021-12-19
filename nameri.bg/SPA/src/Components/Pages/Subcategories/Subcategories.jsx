@@ -17,7 +17,7 @@ const Subcategories = (props) => {
 	const onSearchSubmit = (e) => {
 		e.preventDefault()
 
-		const filtered = data.subcategories.filter(x => x.name.includes(e.target.value))
+		const filtered = data.subcategories.filter(x => x.name.contains(e.target.search.value))
 
 		setFilteredSubs(filtered)
 	}

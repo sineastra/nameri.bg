@@ -2,18 +2,21 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 
-const useFetch = (fetchData, deps = []) => {
+const useFetch = (fetchData, deps = [], partialLoading = false, setPartialLoading = null) => {
 	const navigate = useNavigate()
 	const [isLoadingData, setIsLoadingData] = useState(true)
 	const [data, setData] = useState({})
+	
+	console.log(partialLoading)
 
 	useEffect(() => {
-		setIsLoadingData(true)
+		partialLoading ? setPartialLoading(true) : setIsLoadingData(true)
+		console.log('here')
 
 		fetchData()
 			.then(fetchedData => {
 				setData(fetchedData)
-				setIsLoadingData(false)
+				partialLoading ? setPartialLoading(false) : setIsLoadingData(false)
 			})
 			.catch(e => {
 				navigate("/error", {
@@ -25,7 +28,6 @@ const useFetch = (fetchData, deps = []) => {
 			})
 
 	}, deps)
-
 	return {
 		isLoadingData,
 		setIsLoadingData,
