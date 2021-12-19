@@ -128,5 +128,4 @@
     .servicesContainer {
         grid-template-columns: repeat(auto-fill, 90%);
     }
-
 }

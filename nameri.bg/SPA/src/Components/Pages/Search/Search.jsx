@@ -8,7 +8,9 @@ import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayou
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
 
 
-const fetchData = async (search) => {
+const fetchData = async (params) => {
+	const search = params.get('search')
+
 	const [users, listings] = await Promise.all([
 		userServices.search(search),
 		listingsServices.search(search),
@@ -19,14 +21,12 @@ const fetchData = async (search) => {
 
 const Search = () => {
 	const [params, setParams] = useSearchParams()
-	const search = params.get('search')
-	const { isLoadingData, data } = useFetch(() => fetchData(search), [search])
+	const { isLoadingData, data } = useFetch(() => fetchData(params), [params])
 
 	return (
 		isLoadingData
 			? <Spinner/>
-			:
-			<MainPageLayout>
+			: <MainPageLayout>
 				<section className={ styles.wrapper }>
 					<section className={ `${ styles.contentSection } ${ styles.usersSection }` }>
 						<h1 className={ styles.header }>Потребители</h1>
@@ -50,8 +50,14 @@ const Search = () => {
 						<h1 className={ styles.header }>Обяви</h1>
 						<div className={ styles.innerListingsDiv }>
 							{ data.listings.map(x => (
-								<ListingCard listing={ x } className={ styles.listingCard }
-								             headingClassName={ styles.listingCardHeading }/>
+								<ListingCard
+									listing={ x }
+									className={ styles.listingCard }
+									headingClassName={ styles.listingCardHeading }
+									namesClassName={styles.namesClassName}
+									priceClassName={styles.priceClassName}
+									profilePicClassName={styles.listingProfilePic}
+								/>
 							)) }
 						</div>
 					</section>

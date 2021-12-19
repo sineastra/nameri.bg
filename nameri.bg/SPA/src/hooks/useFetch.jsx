@@ -6,12 +6,9 @@ const useFetch = (fetchData, deps = [], partialLoading = false, setPartialLoadin
 	const navigate = useNavigate()
 	const [isLoadingData, setIsLoadingData] = useState(true)
 	const [data, setData] = useState({})
-	
-	console.log(partialLoading)
 
 	useEffect(() => {
 		partialLoading ? setPartialLoading(true) : setIsLoadingData(true)
-		console.log('here')
 
 		fetchData()
 			.then(fetchedData => {
@@ -28,6 +25,7 @@ const useFetch = (fetchData, deps = [], partialLoading = false, setPartialLoadin
 			})
 
 	}, deps)
+
 	return {
 		isLoadingData,
 		setIsLoadingData,
