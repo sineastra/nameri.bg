@@ -59,11 +59,10 @@
 }
 
 .profilePic {
-    width: 50px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 35px;
-    margin-right: 10px;
 }
 
 .profileImageWrapper {
@@ -87,22 +86,6 @@
     overflow: hidden;
 }
 
-@media screen and (max-width: 400px) {
-    .townDiv {
-        font-size: 0.7rem;
-        padding: 5px;
-    }
-
-    .nameAndSurname {
-        font-size: 0.6rem;
-    }
-
-    .priceE {
-        text-align: end;
-        margin-top: 5%;
-    }
-}
-
 .show {
     display: flex;
 }
@@ -111,6 +94,18 @@
     display: none;
 }
 
-.imgLoader{
+.imgLoader {
     padding-top: 0;
 }
+
+@media screen and (max-width: 400px) {
+    .townDiv {
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+
+    .priceE {
+        text-align: end;
+    }
+}
+

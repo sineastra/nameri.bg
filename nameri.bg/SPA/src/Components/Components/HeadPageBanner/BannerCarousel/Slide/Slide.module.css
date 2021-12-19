@@ -153,8 +153,8 @@ div.slideLoader {
 
 @media screen and (max-width: 600px) {
     .profileImgWrapper {
-        width: 30%;
-        height: 35%;
+        width: 2.5rem;
+        height: 2.5rem;
         object-fit: cover;
     }
 
@@ -173,24 +173,12 @@ div.slideLoader {
         display: none;
     }
 
-    .userNamesWrapper {
-        height: 40%;
-        max-height: 40%;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .userProfileSection {
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 200px;
     }
 
-    .userNames {
-        box-sizing: border-box;
-        font-size: 5vw;
-        font-style: normal;
-    }
-}
-
-
-@media screen and (max-width: 200px) {
     .listingNumberHead, .userNames, .faStar, .styledSpanVotes {
         display: none;
     }
@@ -200,7 +188,7 @@ div.slideLoader {
     }
 
     .profileImgWrapper {
-        width: 50%;
-        height: 50%;
+        width: 100%;
+        height: 100%;
     }
 }

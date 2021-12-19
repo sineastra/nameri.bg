@@ -56,10 +56,11 @@ const SubcategoryListings = () => {
 	}, [data])
 
 	useEffect(() => {
-		setSearchParams({ limit: limit })
+		if (limit > 2) {
+			searchParams.set('limit', limit)
+			setSearchParams(searchParams)
+		}
 	}, [limit])
-
-	console.log(data)
 
 	return (
 		isLoadingData
@@ -74,16 +75,17 @@ const SubcategoryListings = () => {
 						{ filteredList.length > 0
 							? filteredList.map(listing => (
 								<ListingCard
-									className={ styles.customerServiceCard }
 									listing={ listing }
 									user={ listing.user }
 									key={ listing._id }
+									className={ styles.listingClassName }
 									headingClassName={ styles.listingHeading }
-									profilePicClassName={ styles.profilePicClassName }
+									profilePicClassName={ styles.listingProfilePic }
 									priceClassName={ styles.priceClassName }
+									namesClassName={ styles.namesClassName }
 								/>))
 							: <div className={ styles.noCatsWrapper }>
-								<h1 className={ styles.noCatsHeader }>Няма открити подкатегории</h1>
+								<h1 className={ styles.noCatsHeader }>Няма открити обяви</h1>
 							</div> }
 					</section>
 					{ filteredList.length > 0 && <div>

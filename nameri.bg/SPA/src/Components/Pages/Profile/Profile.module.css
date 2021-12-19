@@ -46,6 +46,14 @@ div.messageModal {
     font-size: 2em;
 }
 
+.listingProfilePic {
+    min-width: 50px;
+    min-height: 50px;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
 @media screen and (max-width: 1400px) {
     div.listingCard {
         width: 80%;
@@ -117,8 +125,27 @@ div.messageModal {
         height: 25vh;
     }
 
+    .listingProfilePic {
+        min-width: 30px;
+        min-height: 30px;
+        width: 30px;
+        height: 30px;
+    }
+
     .innerWrapper {
         width: 100%;
         margin-left: 0;
+    }
+
+    .priceClassName {
+        font-size: 0.7rem;
+    }
+
+    div.namesClassName {
+        font-size: 0.6rem;
+    }
+
+    .headingClassName {
+        font-size: 1rem;
     }
 }

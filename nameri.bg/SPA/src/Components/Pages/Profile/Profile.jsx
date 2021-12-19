@@ -60,6 +60,10 @@ const Profile = () => {
 								<ListingCard
 									listing={ { ...listing, user: data } }
 									className={ styles.listingCard }
+									profilePicClassName={ styles.listingProfilePic }
+									priceClassName={ styles.priceClassName }
+									namesClassName={ styles.namesClassName }
+									headingClassName={styles.headingClassName}
 								/>))
 							}
 						</section>

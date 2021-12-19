@@ -4,39 +4,42 @@ import ImageLoadingPlaceholder from "../ImageLoadingPlaceholder/ImageLoadingPlac
 import { useState } from "react"
 
 
-const ListingCard = ({ className, headingClassName, profilePicClassName, priceClassName, listing }) => {
+const ListingCard = ({ className, headingClassName, profilePicClassName, namesClassName, priceClassName, listing }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 	const profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
 
 	return (
 		<>
-			<div className={ `${ styles.wrapper } ${ className } ${ imgLoaded ? styles.show : styles.hide }` }>
+			<div className={ `${ styles.wrapper } ${ className }` }>
 				<Link to={ `/details/${ listing._id }` } className={ styles.imageWrapper }>
 					<img
 						src={ listing.mainImg }
 						alt="Service Main Image"
-						className={ styles.serviceImg }
+						className={ `${ styles.serviceImg } ${ imgLoaded ? styles.show : styles.hide }` }
 						onLoad={ () => setImgLoaded(true) }
 						onError={ () => setImgLoaded(false) }
 					/>
+					<ImageLoadingPlaceholder
+						outerClassName={ `${ styles.serviceImg } ${ imgLoaded ? styles.hide : styles.show }` }/>
 					<div className={ `${ styles.comfortaa } ${ styles.townDiv }` }>
 						{ listing.town.name }
 					</div>
 				</Link>
-				<Link to={ `/details/${ listing._id }` }
+				<Link to={ ` / details /${ listing._id }` }
 				      className={ `${ styles.listingHeading } ${ headingClassName }` }>{ listing.heading }</Link>
 				<div className={ styles.profileInfoWrapper }>
 					<Link to={ `/profile/${ listing.user._id }` } className={ styles.profileImageWrapper }>
-						<img src={ profileImg } alt="" className={ `${ styles.profilePic } ${ profilePicClassName }` }/>
+						<div className={ profilePicClassName }>
+							<img src={ profileImg } alt=""
+							     className={ `${ styles.profilePic }` }/>
+						</div>
 						<div
-							className={ `${ styles.comfortaa } ${ styles.nameAndSurname }` }>{ listing.user.nameAndSurname }</div>
+							className={ `${ styles.comfortaa } ${ styles.nameAndSurname } ${ namesClassName }` }>{ listing.user.nameAndSurname }</div>
 					</Link>
 					<div
 						className={ `${ styles.priceE } ${ priceClassName }` }>{ listing.price == 0 ? 'По договаряне' : `${ listing.price } лв.` }</div>
 				</div>
 			</div>
-			<ImageLoadingPlaceholder
-				outerClassName={ imgLoaded ? styles.hide : `${ styles.show } ${ styles.imgLoader } ${ styles.wrapper } ${ className }` }/>
 		</>
 	)
 }

@@ -24,6 +24,9 @@ router.get("/:id", async (req, res) => {
 router.get("/subcategories/:id", async (req, res) => {
     const _id = req.params.id
     const limit = req.query.limit || 2
+    
+    console.log(limit)
+    console.log(_id)
     const dbService = req => req.dbServices.categoriesServices.getSubCatListings(_id, limit)
 
     await abstractGetRequest(req, res, dbService)
