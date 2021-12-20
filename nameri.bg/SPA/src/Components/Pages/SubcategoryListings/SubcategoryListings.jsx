@@ -24,8 +24,10 @@ const SubcategoryListings = () => {
 	const loadMore = (e) => {
 		e.preventDefault()
 
-		setLimit(oldState => oldState + 2)
-		setLoadingPartially(true)
+		if (limit <= data.listings.length) {
+			setLimit(oldState => oldState + 2)
+			setLoadingPartially(true)
+		}
 	}
 
 	//TODO: Can make this a custom hook.
@@ -56,10 +58,10 @@ const SubcategoryListings = () => {
 	}, [data])
 
 	useEffect(() => {
-		if (limit > 2) {
-			searchParams.set('limit', limit)
-			setSearchParams(searchParams)
-		}
+
+		searchParams.set('limit', limit)
+		setSearchParams(searchParams)
+
 	}, [limit])
 
 	return (
@@ -89,7 +91,9 @@ const SubcategoryListings = () => {
 							</div> }
 					</section>
 					{ filteredList.length > 0 && <div>
-						{ loadingPartially ? <SpinnerSmall/> : <StyledBtn onClick={ loadMore } text="Зареди Още"/> }
+						{ loadingPartially
+							? <SpinnerSmall/>
+							: limit <= data.listings.length && <StyledBtn onClick={ loadMore } text="Зареди Още"/> }
 					</div> }
 				</section>
 			</MainPageLayout>
