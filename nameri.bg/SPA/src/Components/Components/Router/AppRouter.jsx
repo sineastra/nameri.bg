@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from "react-router-dom"
 import Spinner from "../Spinner/Spinner.jsx"
-import OwnershipRoute from "../../RouteGuards/OwnershipRoute.jsx"
 
 
 const HomePage = lazy(() => import("../../Pages/HomePage/HomePage.jsx"))
@@ -16,7 +15,9 @@ const ProfileEdit = lazy(() => import("../../Pages/ProfileEdit/ProfileEdit.jsx")
 const Auth = lazy(() => import("../../Pages/Auth/Auth.jsx"))
 const Search = lazy(() => import("../../Pages/Search/Search.jsx"))
 const ErrorPage = lazy(() => import("../../Pages/ErrorPage/ErrorPage.jsx"))
+const About = lazy(() => import("../../Pages/About/About.jsx"))
 const ProtectedRoute = lazy(() => import("../../RouteGuards/ProtectedRoute.jsx"))
+const OwnershipRoute = lazy(() => import("../../RouteGuards/OwnershipRoute.jsx"))
 
 const AppRouter = () => {
 	return (
@@ -31,6 +32,7 @@ const AppRouter = () => {
 				<Route path="/details/:id" element={ <ListingDetails/> }/>
 				<Route path="/profile/:id" element={ <Profile/> }/>
 				<Route path="/search" element={ <Search/> }/>
+				<Route path="/about" element={ <About/> }/>
 				{/*End of public routes*/ }
 
 				{/*Public ONLY routes*/ }

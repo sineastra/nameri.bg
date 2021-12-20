@@ -1,0 +1,88 @@
+.bannerWrapper {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.textOuterWrapper {
+    margin-bottom: 5%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: -3%;
+}
+
+.textInnerWrapper {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textBox {
+    width: 32%;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid lightgray;
+    padding: 10px 40px 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    text-align: center;
+    background: white;
+}
+
+.textHeader {
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.textParagraph {
+    font-family: 'Bellota Text', cursive;
+    font-weight: 300;
+    color: #ababab;
+}
+
+.funnyWrapper {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.funnyBtn {
+    font-size: 100px;
+    border-radius: 80px;
+    padding: 40px 80px;
+    border: 10px solid #ff7200;
+}
+
+.funnyBtn:hover {
+    border: 10px solid transparent;
+}
+
+@media screen and (max-width: 1600px) {
+    .funnyBtn {
+        font-size: 3rem;
+        padding: 1%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .textInnerWrapper {
+        flex-direction: column;
+    }
+
+    .textBox {
+        width: 100%;
+        margin-bottom: 3%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .funnyBtn {
+        font-size: 1.2rem;
+        padding: 2%;
+        border: 1px solid #ff7200;
+    }
+
+    .funnyBtn:hover {
+        border: 1px solid transparent;
+    }
+}
