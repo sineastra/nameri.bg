@@ -13,6 +13,7 @@ const UserRatingHeading = ({
 	                           ratingBoxWrapperClassName = "",
                            }) => {
 
+
 	return (
 		<div className={ `${ styles.userInfoHeadings } ${ wrapperClassName }` }>
 			<div className={ styles.imageWrapper }>

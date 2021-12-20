@@ -7,7 +7,7 @@ const processFormData = async (req, res, next) => {
 		formData.parse(req, (err, fields, files) => {
 			try {
 				req.body = fields
-				req.files = Object.values(files)
+				req.files = files
 
 				res()
 			} catch (e) {

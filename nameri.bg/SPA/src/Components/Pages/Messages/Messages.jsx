@@ -30,7 +30,7 @@ const Messages = (props) => {
 	}
 
 	useEffect(() => {
-		if (!isLoadingData && location.state.conversationId) {
+		if (!isLoadingData && location.state) {
 			changeMsg(location.state.conversationId)
 		}
 	}, [isLoadingData])

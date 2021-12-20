@@ -106,7 +106,12 @@ router.get("/message/:id", async (req, res) => {
 
 router.get("/profile/:id", async (req, res) => {
 	const userId = req.params.id
-	const dbService = req => req.dbServices.userServices.getUserForProfile(userId)
+	const dbService = async req => {
+		const data = await req.dbServices.userServices.getUserForProfile(userId)
+		console.log(data)
+
+		return data
+	}
 
 	await abstractGetRequest(req, res, dbService)
 })
@@ -120,6 +125,7 @@ router.put('/edit/:id',
 
 		if (errors.isEmpty()) {
 			const profileImg = req.files.profileImg
+			console.log(req.files)
 			let token
 
 			try {
@@ -256,28 +262,23 @@ router.post("/send-message/:id", addMsg)
 
 router.post("/:id/add-review", async (req, res) => {
 	const dbService = async (req) => {
-		console.log(req.params)
-
 		const data = {
 			text: req.body.reviewText || '',
 			rating: Number(req.body.reviewRating),
 			user: req.params.id,
 			reviewCreator: req.user._id,
 		}
-
 		const [newReview, user] = await Promise.all([
 			req.dbServices.userServices.createNewReview(data),
-			req.dbServices.userServices.getById(req.params.id),
+			req.dbServices.userServices.getByIdPopulateReviews(req.params.id),
 		])
 
-		user.reviews.push(newReview._id)
-		user.rating = Number(user.rating) + Number(newReview.rating)
+		user.rating = ((user.reviews.reduce((a, v) => a + Number(v.rating), 0) + Number(newReview.rating)) / (user.reviews.length + 1)).toFixed(2)
+		user.reviews = [...user.reviews.map(x => `${ x._id }`), `${ newReview._id }`]
 
 		await user.save()
 
-		const listing = await req.dbServices.listingsServices.getListingWithUserReviews(req.query.listingId)
-
-		return listing
+		return await req.dbServices.listingsServices.getListingWithUserReviews(req.query.listingId)
 	}
 
 	await abstractGetRequest(req, res, dbService)

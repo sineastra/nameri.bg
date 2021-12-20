@@ -4,6 +4,8 @@ import { IconContext } from "react-icons"
 
 
 const RatingBox = ({ user, rating, showVotes, className = "" }) => {
+	
+	console.log(user, rating, showVotes)
 
 	return (
 		<div className={ `${ styles.headingInnerWrapper } ${ className }` }>

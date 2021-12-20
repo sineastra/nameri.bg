@@ -91,7 +91,8 @@ const ProfileSideCard = ({ className, user, openModal }) => {
 			<div className={ styles.aboutWrapper }>
 				<div className={ styles.mainHeading }>За Мен</div>
 				<ContactsInfo user={ user }/>
-				{ !isOwn && <StyledBtn onClick={ openModal } className={ styles.styledBtn }>Съобщение</StyledBtn> }
+				{ (!isOwn && loggedUser) &&
+					<StyledBtn onClick={ openModal } className={ styles.styledBtn }>Съобщение</StyledBtn> }
 				<hr/>
 				<div className={ styles.about }>{ user.about }</div>
 			</div>

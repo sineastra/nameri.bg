@@ -40,6 +40,7 @@ const Profile = () => {
 			setErrors(extractErrorMessages(response.errors))
 		}
 	}
+	console.log(data)
 
 	return (
 		isLoadingData

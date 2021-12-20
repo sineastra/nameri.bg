@@ -11,8 +11,9 @@ const processListing = async (req, res, fetchData, listing = {}) => {
 
 	if (errors.isEmpty()) {
 		try {
-			if (req.files && req.files.length > 0) {
-				const responseData = await uploadImages(req.files)
+			const files = Object.values(req.files)
+			if (files && files.length > 0) {
+				const responseData = await uploadImages(files)
 
 				images = responseData.map(x => x.Location)
 			}

@@ -31,6 +31,7 @@ const ListingDetails = (props) => {
 		}
 	}, [data])
 
+	
 	return (
 		isLoadingData
 			? <Spinner/>

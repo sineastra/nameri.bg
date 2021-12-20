@@ -138,6 +138,8 @@ div.slideLoader {
 
 .styledSpanVotes {
     font-size: 0.8em;
+    margin-right: 3px;
+    margin-left: 1px;
 }
 
 .styledUserSection {

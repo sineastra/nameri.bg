@@ -5,15 +5,17 @@ import TextModal from "../TextModal/TextModal.jsx"
 import Rating from "../Rating/Rating.jsx"
 import userServices from "../../../services/userServices.js"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import StyledBtn from "../StyledBtn/StyledBtn.jsx"
+import { Link } from "react-router-dom"
 
 
 const ListingSideCard = ({ listing, setData }) => {
-	const reviewsForDisplay = listing.user.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
 	const [modalVisible, setModalVisible] = useState(false)
 	const [rating, setRating] = useState(0)
 	const [hoverRating, setHoverRating] = useState(0)
 	const [_, setErrors] = useContext(ErrorContext)
 	const ratings = [1, 2, 3, 4, 5]
+	const reviewsForDisplay = listing.user.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
 
 	const addRating = (rating) => {
 		setHoverRating(rating)
@@ -89,12 +91,15 @@ const ListingSideCard = ({ listing, setData }) => {
 					/>
 				</div>
 				<div className={ styles.userInfoBtnsWrapper }>
-					<button className={ styles.styledBtn } onClick={ () => setModalVisible(true) }>
+					<StyledBtn className={ `${ styles.styledBtn } ${ styles.styledBtnReverted }` }
+					           onClick={ () => setModalVisible(true) }>
 						Оцени
-					</button>
-					<button className={ styles.styledBtn }>
-						Щепсели (Контакти)
-					</button>
+					</StyledBtn>
+					<Link to={ `/profile/${ listing.user._id }` }>
+						<StyledBtn className={ styles.styledBtn }>
+							Профил на потребителя
+						</StyledBtn>
+					</Link>
 				</div>
 			</div>
 
@@ -102,14 +107,16 @@ const ListingSideCard = ({ listing, setData }) => {
 				<h1 className={ styles.pricesWrapperHeading }>Колко ще ми струва: </h1>
 				<div className={ styles.pricesInfoOuter }>
 					<div className={ styles.pricesInfoInner }>
-						<div className={ styles.priceItem }>{ listing.price } лв.</div>
+						<div
+							className={ styles.priceItem }>{ listing.price > 0 ? `${ listing.price } лв.` : 'По договаряне' }
+						</div>
 					</div>
 				</div>
 			</div>
 
 			{ reviewsForDisplay.length > 0
 				? <div className={ `${ styles.ratingsInfo }` }>
-					{ reviewsForDisplay.map(review => (
+					{ reviewsForDisplay?.map(review => (
 						<div className={ styles.reviewElem } key={ review._id }>
 							<div className={ styles.reviewInnerFlexItem }>
 								<UserRatingHeading
