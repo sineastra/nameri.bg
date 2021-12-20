@@ -33,9 +33,9 @@ const NavDotsInnerCont = styled.ul`
 `
 
 const SlidesWrapper = styled.div`
-	position: relative;
-	width: 100%;
-	height: 90%;
+  position: relative;
+  width: 100%;
+  height: 90%;
 `
 
 const Carousel = ({ className }) => {
@@ -46,14 +46,16 @@ const Carousel = ({ className }) => {
 	const isFirstSlide = useRef(true)
 
 	const changeActiveIDIdle = () => {
-		const index = carouselData.findIndex(x => x._id === activeId)
-		const newIndex = carouselData[index + 1] ? index + 1 : 0
+		if (carouselData && carouselData.length > 0) {
+			const index = carouselData.findIndex(x => x._id === activeId)
+			const newIndex = carouselData[index + 1] ? index + 1 : 0
 
-		if (isFirstSlide.current) {
-			isFirstSlide.current = false
+			if (isFirstSlide.current) {
+				isFirstSlide.current = false
+			}
+
+			setActiveId(carouselData[newIndex]._id)
 		}
-
-		setActiveId(carouselData[newIndex]._id)
 	}
 
 	useInterval(changeActiveIDIdle, timeDelay)
@@ -72,7 +74,7 @@ const Carousel = ({ className }) => {
 	}
 
 	useEffect(() => {
-		if (carouselData) {
+		if (carouselData && carouselData.length > 0) {
 			setTimeDelay(4000)
 			setActiveId(carouselData[0]._id)
 		}

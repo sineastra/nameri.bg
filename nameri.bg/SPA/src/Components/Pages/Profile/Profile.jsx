@@ -62,15 +62,17 @@ const Profile = () => {
 						<div className={ styles.listingsOuterWrapper }>
 							<h1 className={ styles.listingsHeader }>Обяви на { data.nameAndSurname }</h1>
 							<section className={ styles.listingsSection }>
-								{ data.listings.map(listing => (
-									<ListingCard
-										listing={ { ...listing, user: data } }
-										className={ styles.listingCard }
-										profilePicClassName={ styles.listingProfilePic }
-										priceClassName={ styles.priceClassName }
-										namesClassName={ styles.namesClassName }
-										headingClassName={ styles.headingClassName }
-									/>))
+								{ data.listings.length > 0
+									? data.listings.map(listing => (
+										<ListingCard
+											listing={ { ...listing, user: data } }
+											className={ styles.listingCard }
+											profilePicClassName={ styles.listingProfilePic }
+											priceClassName={ styles.priceClassName }
+											namesClassName={ styles.namesClassName }
+											headingClassName={ styles.headingClassName }
+										/>))
+									: <div className={styles.noListingsHeader}>Няма намерени обяви</div>
 								}
 							</section>
 						</div>

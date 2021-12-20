@@ -11,6 +11,12 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 import { useLocation } from "react-router-dom"
 
 
+const fetchData = async (user) => {
+	const data = await userServices.getAllUserMessages(user._id, user)
+
+	return { conversations: data.conversations, conversationId: data.conversationId }
+}
+
 const PageSection = styled.section`
   width: 100%;
   margin-top: 5%;
@@ -20,8 +26,10 @@ const PageSection = styled.section`
 const Messages = (props) => {
 	const location = useLocation()
 	const [user, _] = useContext(UserContext)
-	const { isLoadingData, data, setData } = useFetch(() => userServices.getAllUserMessages(user._id, user))
+	const { isLoadingData, data, setData } = useFetch(() => fetchData(user))
 	const [index, setIndex] = useState(null)
+
+	console.log(data)
 
 	const changeMsg = _id => {
 		const index = data.conversations.findIndex(x => x._id === _id)

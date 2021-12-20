@@ -108,7 +108,6 @@ router.get("/profile/:id", async (req, res) => {
 	const userId = req.params.id
 	const dbService = async req => {
 		const data = await req.dbServices.userServices.getUserForProfile(userId)
-		console.log(data)
 
 		return data
 	}
@@ -125,7 +124,6 @@ router.put('/edit/:id',
 
 		if (errors.isEmpty()) {
 			const profileImg = req.files.profileImg
-			console.log(req.files)
 			let token
 
 			try {
@@ -163,11 +161,8 @@ router.put('/edit/:id',
 
 				const data = await req.dbServices.userServices.updateById(req.user._id, newUserData)
 
-				console.log(data)
-
 				res.json({ ok: true, status: 'Ok', statusCode: 200, data, token })
 			} catch (e) {
-				console.log(e)
 				res.status(503).json({
 					ok: false,
 					status: 'Service Unavailable',
@@ -193,11 +188,6 @@ const addMsg = async (req, res) => {
 	const userId = req.user._id
 	const msg = req.body.message
 
-	if (userId === receiverId) {
-		res.status(403).json({ ok: false, statusText: "Forbidden", status: 403, msg: "Invalid message recipient" })
-		return
-	}
-
 	if (msg === '') {
 		res.json({ statusText: "Bad Request", status: 400, errors: [{ msg: "Message cannot be empty." }] })
 		return
@@ -214,13 +204,13 @@ const addMsg = async (req, res) => {
 			conversation.messages.push(newMsg)
 
 			await conversation.save()
-			const conversations = await req.dbServices.userServices.getAllUserMessages(userId)
+			const data = await req.dbServices.userServices.getAllUserMessages(userId)
 
 			res.json({
 				ok: true,
 				status: 200,
 				statusText: "ok",
-				data: { conversations, conversationId: conversation._id },
+				data: { conversations: data.conversations, conversationId: conversation._id },
 			})
 		} else {
 			const [user, receiver] = await Promise.all([
@@ -288,9 +278,7 @@ router.get("/is-own-listing/:id", async (req, res) => {
 	const dbService = async (req) => {
 		const user = await req.dbServices.userServices.getById(req.user._id)
 
-		const isOwn = user.listings.some(x => x === req.params.id)
-
-		return isOwn
+		return user.listings.some(x => x === req.params.id)
 	}
 
 	await abstractGetRequest(req, res, dbService)

@@ -116,7 +116,7 @@ const ListingSideCard = ({ listing, setData }) => {
 
 			{ reviewsForDisplay.length > 0
 				? <div className={ `${ styles.ratingsInfo }` }>
-					{ reviewsForDisplay?.map(review => (
+					{ reviewsForDisplay.map(review => (
 						<div className={ styles.reviewElem } key={ review._id }>
 							<div className={ styles.reviewInnerFlexItem }>
 								<UserRatingHeading

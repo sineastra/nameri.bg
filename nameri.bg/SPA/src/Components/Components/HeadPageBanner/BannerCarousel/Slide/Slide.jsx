@@ -10,6 +10,7 @@ const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 	const [slideImgLoaded, setSlideImgLoaded] = useState(false)
 	const [profileImgLoaded, setProfileImgLoaded] = useState(false)
 	let profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
+	const mainImg = listing.mainImg === "" ? "Default-cover.svg" : listing.mainImg
 	let className = ''
 
 	const isActive = activeId === listing._id
@@ -27,7 +28,7 @@ const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 			<section className={ styles.slideImageSection }>
 				<Link to={ `/details/${ listing._id }` }>
 					<img
-						src={ listing.mainImg }
+						src={ mainImg }
 						alt=""
 						onLoad={ () => setSlideImgLoaded(true) }
 						onError={ () => setSlideImgLoaded(false) }

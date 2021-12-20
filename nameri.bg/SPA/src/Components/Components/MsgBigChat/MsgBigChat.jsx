@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useContext, useEffect, useRef, useState } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import UserContext from "../../Contexts/UserContext.jsx"
 
 
 const NonPickedMsg = ({ className = '' }) => {
@@ -25,6 +26,7 @@ const NonPickedMsg = ({ className = '' }) => {
 const PickedMsg = ({ data, index, setData, className = '' }) => {
 	const navigate = useNavigate()
 	const [errors, setErrors] = useContext(ErrorContext)
+	const [user, _] = useContext(UserContext)
 	const pickedMsg = data.conversations[index]
 	const participants = pickedMsg.participants.map(x => x.nameAndSurname).join(",")
 	const lastMsg = useRef(null)
@@ -51,9 +53,8 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 				const response = await userServices.sendMessage(receiverId, { message })
 
 				if (response.ok) {
-					if (lastMsg.current !== null) {
-						setData(response.data)
-					}
+					e.target.newMsg.value = ''
+					setData(response.data)
 				} else {
 					setErrors(extractErrorMessages(response.errors))
 				}
@@ -78,7 +79,7 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 					{ pickedMsg.messages.map(message => (
 						<div className={ styles.singleMsgWrapper } key={ uid() }>
 							<div
-								className={ `${ styles.singleMsg } ${ defineMsgClassName(pickedMsg.user._id, message.sender) }` }>
+								className={ `${ styles.singleMsg } ${ defineMsgClassName(user._id, message.sender) }` }>
 								{ message.text }
 							</div>
 						</div>))

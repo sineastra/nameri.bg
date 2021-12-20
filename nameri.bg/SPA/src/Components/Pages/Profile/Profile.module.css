@@ -32,8 +32,8 @@
 }
 
 div.listingCard {
-    width: 35%;
-    height: 30vh;
+    width: 40%;
+    height: 40vh;
 }
 
 .profileSideCardWrapper {
@@ -69,10 +69,21 @@ div.messageModal {
     margin-top: 0;
 }
 
+.noListingsHeader {
+    font-family: 'Mulish', sans-serif;
+    font-size: 1.5rem;
+    align-self: center;
+}
+
 @media screen and (max-width: 1400px) {
     div.listingCard {
-        width: 80%;
+        width: 70%;
         height: 50vh;
+    }
+
+    .mainWrapper {
+        width: 90%;
+        margin-left: 5%;
     }
 }
 
@@ -85,6 +96,7 @@ div.messageModal {
     .innerWrapper {
         width: 95%;
         margin-left: 2.5%;
+        justify-content: space-evenly;
     }
 
     .listingsOuterWrapper {

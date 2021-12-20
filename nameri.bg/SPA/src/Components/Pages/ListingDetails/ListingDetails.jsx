@@ -31,7 +31,6 @@ const ListingDetails = (props) => {
 		}
 	}, [data])
 
-	
 	return (
 		isLoadingData
 			? <Spinner/>
@@ -63,6 +62,10 @@ const ListingDetails = (props) => {
 								user={ listing.user }
 								className={ styles.similarService }
 								key={ listing._id }
+								profilePicClassName={ styles.listingProfilePic }
+								priceClassName={ styles.priceClassName }
+								namesClassName={ styles.namesClassName }
+								headingClassName={ styles.listingHeading }
 							/>
 						)) }
 					</section>

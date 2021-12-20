@@ -84,6 +84,7 @@
 
 .nameAndSurname {
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .show {

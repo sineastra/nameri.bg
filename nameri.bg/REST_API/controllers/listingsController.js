@@ -42,7 +42,12 @@ const processListing = async (req, res, fetchData, listing = {}) => {
 				user: req.user._id,
 			}
 
-			const data = await fetchData(listingData, listing._id)
+			const data = await fetchData(req, listingData, listing._id)
+
+			subcategory.listings.push(data._id)
+			town.listings.push(data._id)
+
+			await Promise.all([subcategory.save(), town.save()])
 
 			res.json({ ok: true, statusText: 'ok', status: 200, data })
 		} catch (e) {
@@ -92,8 +97,16 @@ router.post(
 	processFormData,
 	validateListing(),
 	async (req, res) => {
-		const fetchData = async (listing) =>
-			await req.dbServices.listingsServices.addNew(listing)
+		const fetchData = async (req, listing) => {
+			const newListing = await req.dbServices.listingsServices.addNew(listing)
+			const user = await req.dbServices.userServices.getById(req.user._id)
+
+			user.listings.push(newListing._id)
+
+			await user.save()
+
+			return newListing
+		}
 
 		await processListing(req, res, fetchData)
 

@@ -1,13 +1,13 @@
 .categoryCard {
-    width: 20%;
+    width: 19%;
     height: 250px;
     margin-bottom: 30px;
+    margin-left: 2%;
 }
 
 .cardsWrapper {
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-content: space-evenly;
     flex-wrap: wrap;
     min-height: 40vh;
@@ -21,7 +21,7 @@
 }
 
 .innerSection {
-    width: 80%;
+    width: 90%;
 }
 
 .noCatsWrapper {
@@ -35,6 +35,16 @@
 .noCatsHeader {
     font-family: 'Comfortaa', cursive;
     text-align: center;
+}
+
+@media screen and (max-width: 1400px) {
+    .categoryCard {
+        width: 35%;
+    }
+
+    .cardsWrapper {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 1200px) {
