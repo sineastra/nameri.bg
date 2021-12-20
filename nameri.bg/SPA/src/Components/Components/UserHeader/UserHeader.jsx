@@ -1,17 +1,22 @@
 import styles from "./UserHeader.module.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { IconContext } from "react-icons"
 import { GoMail } from "react-icons/go"
 import { useContext, useEffect, useRef, useState } from "react"
 import Cookies from "js-cookie"
 import userServices from "../../../services/userServices.js"
 import UserContext from "../../Contexts/UserContext.jsx"
+import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import StyledBtn from "../StyledBtn/StyledBtn.jsx"
 
 
 const UserHeader = ({ className }) => {
 	const [user, setUser] = useContext(UserContext)
 	const [showSubheader, setShowSubHeader] = useState(false)
+	const [errors, setErrors] = useContext(ErrorContext)
 	const subHeaderRef = useRef(null)
+	const navigate = useNavigate()
 	const profileImg = user && user.profileImg !== "" ? user.profileImg : "/profile.svg"
 
 	useEffect(() => {
@@ -37,9 +42,15 @@ const UserHeader = ({ className }) => {
 			if (response.ok) {
 				Cookies.remove(process.env.REACT_APP_JWT_COOKIE_NAME)
 				setUser(null)
+			} else {
+				setErrors(extractErrorMessages(response.errors))
 			}
 		} catch (e) {
-			console.log(e)
+			navigate("/error", {
+				state: {
+					statusCode: e.statusCode, status: e.status, msg: e,
+				},
+			})
 		}
 
 	}
@@ -56,8 +67,8 @@ const UserHeader = ({ className }) => {
 				        className={ `${ styles.mainNavLink } ${ styles.authLink }` }>Влез</Link>
 				: <div className={ styles.loggedInUserWrapper }>
 					<div>
-						<Link className={ styles.styledLink } to={ "/add-listing" }>
-							Добави услуга
+						<Link to={ "/add-listing" } className={ styles.styledLink }>
+							<StyledBtn text="Добави услуга"/>
 						</Link>
 					</div>
 					<IconContext.Provider value={ { className: styles.msgIconClassName } }>

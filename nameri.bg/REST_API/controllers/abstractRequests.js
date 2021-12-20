@@ -4,12 +4,12 @@ const abstractGetRequest = async (req, res, dbService, errorObj = {}) => {
 	try {
 		const data = await dbService(req, count)
 
-		res.status(200).json({ ok: true, status: "ok", statusCode: 200, data })
+		res.status(200).json({ ok: true, statusText: "ok", status: 200, data })
 	} catch (e) {
 		res.json({
 			ok: false,
-			status: errorObj.status || "Not Found",
-			statusCode: errorObj.statusCode || 404,
+			statusText: errorObj.status || "Not Found",
+			status: errorObj.statusCode || 404,
 			message: e.message || "Something went wrong, please try again.",
 		})
 	}

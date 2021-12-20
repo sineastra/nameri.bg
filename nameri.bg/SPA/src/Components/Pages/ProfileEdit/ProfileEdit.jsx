@@ -8,8 +8,6 @@ import useFetch from "../../../hooks/useFetch.jsx"
 import { profileEditFormValidator } from "../../../helpers/formValidators.js"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TagInput from "../../Components/TagInput/TagInput.jsx"
-import deserializeJWT from "../../../helpers/deserializeJWT.js"
-import getToken from "../../../helpers/getToken.js"
 import { useNavigate } from "react-router-dom"
 import processNewToken from "../../../helpers/processNewToken.js"
 

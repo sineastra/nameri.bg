@@ -1,6 +1,6 @@
 .mainWrapper {
     width: 100%;
-    min-height: 70%;
+    min-height: 50vh;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -14,6 +14,48 @@
 
 hr {
     width: 100%;
+}
+
+.styledBtn {
+    margin-top: 20px;
+}
+
+.contactsLabel {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+
+.contactsContent {
+    font-family: 'Bellota Text', cursive;
+    color: #ff7200;
+}
+
+.contactsEmptyContent {
+    color: #bbbbbb;
+    font-family: 'Bellota Text', cursive;
+}
+
+.profileLinksWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.noSkills {
+    font-family: 'Bellota Text', cursive;
+}
+
+.profileLink {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ff7200;
+    margin-top: 10px;
+}
+
+.profileLink:hover {
+    text-decoration: underline;
 }
 
 .headingWrapper {

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import UserContext from "../Contexts/UserContext.jsx"
 import { Navigate } from "react-router-dom"
-import Spinner from "../Components/Spinner/Spinner.jsx"
 
 
 const ProtectedRoute = ({ children, type }) => {

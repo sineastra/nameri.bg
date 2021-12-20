@@ -26,7 +26,7 @@ const ListingDetails = (props) => {
 	const [images, setImages] = useState([])
 
 	useEffect(() => {
-		if (data) {
+		if (data.listing) {
 			setImages(data.listing.images.length > 0 ? data.listing.images : ['/Default-cover.svg'])
 		}
 	}, [data])

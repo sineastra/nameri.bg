@@ -1,0 +1,17 @@
+.styledBtn {
+    padding: 10px 15px;
+    background: white;
+    border-radius: 10px;
+    border: 3px solid #ff7200;
+    color: #ff7200;
+    font-family: 'Comfortaa', cursive;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.styledBtn:hover {
+    background: #ff7200;
+    color: white;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}

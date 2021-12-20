@@ -1,4 +1,4 @@
-import styles from "./StyledLinkBtn.module.css"
+import styles from "./StyledBtn.module.css"
 
 
 function StyledBtn ({ className = "", text, href = "", onClick, children }) {

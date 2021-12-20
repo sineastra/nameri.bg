@@ -43,12 +43,12 @@ const processListing = async (req, res, fetchData, listing = {}) => {
 
 			const data = await fetchData(listingData, listing._id)
 
-			res.json({ ok: true, status: 'ok', statusCode: 200, data })
+			res.json({ ok: true, statusText: 'ok', status: 200, data })
 		} catch (e) {
 			res.status(503).json({
 				ok: false,
-				status: 'Service Unavailable',
-				statusCode: 503,
+				statusText: 'Service Unavailable',
+				status: 503,
 				msg: 'Invalid field names or error while connection to the Database. Please wait few minutes and try again.',
 			})
 		}
@@ -111,7 +111,7 @@ router.put(
 
 			await processListing(req, res, fetchData, listing)
 		} catch (e) {
-			res.json({ status: "Not Found", statusCode: 404, msg: "Invalid listing ID", ok: false })
+			res.json({ statusText: "Not Found", status: 404, msg: "Invalid listing ID", ok: false })
 		}
 	},
 )
@@ -129,19 +129,5 @@ router.get("/:id", async (req, res) => {
 })
 
 module.exports = router
-
-// body("phone")
-// .isMobilePhone(["bg-BG"])
-// .withMessage("Not a valid Bulgarian phone number!"),
-// body("website").isURL().withMessage("Must be a valid website!"),
-// body("email").isEmail().withMessage("Must be a valid email!"),
-// body("address")
-// .isLength({ min: 6 })
-// .withMessage("Address must be at least 6 characters long!"),
-// body("password")
-// .isLength({ min: 6 })
-// .withMessage("Password must be at least 6 symbols!")
-// .custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
-// .withMessage("Passwords do not match!"),
 
 

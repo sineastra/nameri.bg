@@ -7,13 +7,14 @@ import { useState } from "react"
 const ListingCard = ({ className, headingClassName, profilePicClassName, namesClassName, priceClassName, listing }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 	const profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
+	const mainImg = listing.mainImg === "" ? "/Default-cover.svg" : listing.mainImg
 
 	return (
 		<>
 			<div className={ `${ styles.wrapper } ${ className }` }>
 				<Link to={ `/details/${ listing._id }` } className={ styles.imageWrapper }>
 					<img
-						src={ listing.mainImg }
+						src={ mainImg }
 						alt="Service Main Image"
 						className={ `${ styles.serviceImg } ${ imgLoaded ? styles.show : styles.hide }` }
 						onLoad={ () => setImgLoaded(true) }

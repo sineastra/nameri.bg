@@ -113,7 +113,7 @@ router.get("/profile/:id", async (req, res) => {
 
 router.put('/edit/:id',
 	processFormData,
-	validateProfileEdit,
+	validateProfileEdit(),
 	async (req, res) => {
 		const errors = validationResult(req)
 		let image = ''
@@ -188,11 +188,13 @@ const addMsg = async (req, res) => {
 	const msg = req.body.message
 
 	if (userId === receiverId) {
-		res.status(403).json({ status: "Forbidden", statusCode: 403, msg: "Invalid message recipient" })
+		res.status(403).json({ ok: false, statusText: "Forbidden", status: 403, msg: "Invalid message recipient" })
+		return
 	}
 
 	if (msg === '') {
-		res.json({ status: "Bad Request", statusCode: 400, errors: [{ msg: "Message cannot be empty." }] })
+		res.json({ statusText: "Bad Request", status: 400, errors: [{ msg: "Message cannot be empty." }] })
+		return
 	}
 
 	try {
@@ -208,7 +210,12 @@ const addMsg = async (req, res) => {
 			await conversation.save()
 			const conversations = await req.dbServices.userServices.getAllUserMessages(userId)
 
-			res.json({ ok: true, status: "ok", statusCode: 200, data: conversations })
+			res.json({
+				ok: true,
+				status: 200,
+				statusText: "ok",
+				data: { conversations, conversationId: conversation._id },
+			})
 		} else {
 			const [user, receiver] = await Promise.all([
 				req.dbServices.userServices.getById(userId),
@@ -233,14 +240,14 @@ const addMsg = async (req, res) => {
 
 			res.json({
 					ok: true,
-					status: "ok",
-					statusCode: 200,
-					data: user.conversations,
+					statusText: "ok",
+					status: 200,
+					data: { conversations: user.conversations, conversationId: newConversation._id },
 				},
 			)
 		}
 	} catch (e) {
-		res.status(400).json({ status: "Bad request", statusCode: 400, ok: false, msg: e })
+		res.status(400).json({ statusText: "Bad request", status: 400, ok: false, msg: e })
 	}
 
 }
@@ -277,15 +284,10 @@ router.post("/:id/add-review", async (req, res) => {
 })
 
 router.get("/is-own-listing/:id", async (req, res) => {
-	console.log('here')
 	const dbService = async (req) => {
 		const user = await req.dbServices.userServices.getById(req.user._id)
 
 		const isOwn = user.listings.some(x => x === req.params.id)
-
-		console.log(isOwn)
-		console.log(user.listings)
-		console.log(req.params.id)
 
 		return isOwn
 	}
@@ -295,7 +297,6 @@ router.get("/is-own-listing/:id", async (req, res) => {
 
 router.get("/logout", (req, res) => {
 	res.clearCookie(process.env.COOKIE_NAME)
-	console.log(res.cookies)
 	res.json({ ok: true })
 })
 

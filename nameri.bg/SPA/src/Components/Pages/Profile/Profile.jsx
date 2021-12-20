@@ -2,7 +2,7 @@ import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayou
 import styles from "./Profile.module.css"
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
 import ProfileSideCard from "../../Components/ProfileSideCard/ProfileSideCard.jsx"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import userServices from "../../../services/userServices.js"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
@@ -10,7 +10,6 @@ import TextModal from "../../Components/TextModal/TextModal.jsx"
 import { useContext, useState } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
-import Cookies from "js-cookie"
 
 
 const MessageSubHeader = ({ userName }) =>
@@ -20,7 +19,8 @@ const MessageSubHeader = ({ userName }) =>
 
 const Profile = () => {
 	const params = useParams()
-	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id, params))
+	const navigate = useNavigate()
+	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id), [params])
 	const [errors, setErrors] = useContext(ErrorContext)
 	const [modalVisible, setModalVisible] = useState(false)
 
@@ -29,14 +29,13 @@ const Profile = () => {
 
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
-		
-		console.log(formDataObj)
 
 		const response = await userServices.sendMessage(data._id, formDataObj)
 
 		if (response.ok) {
-			console.log(response)
 			setModalVisible(false)
+			e.target.message.value = ''
+			navigate("/messages", { state: { conversationId: response.data.conversationId } })
 		} else {
 			setErrors(extractErrorMessages(response.errors))
 		}
@@ -59,18 +58,21 @@ const Profile = () => {
 				/>
 				<div className={ styles.mainWrapper }>
 					<div className={ styles.innerWrapper }>
-						<section className={ styles.listingsSection }>
-							{ data.listings.map(listing => (
-								<ListingCard
-									listing={ { ...listing, user: data } }
-									className={ styles.listingCard }
-									profilePicClassName={ styles.listingProfilePic }
-									priceClassName={ styles.priceClassName }
-									namesClassName={ styles.namesClassName }
-									headingClassName={ styles.headingClassName }
-								/>))
-							}
-						</section>
+						<div className={ styles.listingsOuterWrapper }>
+							<h1 className={ styles.listingsHeader }>Обяви на { data.nameAndSurname }</h1>
+							<section className={ styles.listingsSection }>
+								{ data.listings.map(listing => (
+									<ListingCard
+										listing={ { ...listing, user: data } }
+										className={ styles.listingCard }
+										profilePicClassName={ styles.listingProfilePic }
+										priceClassName={ styles.priceClassName }
+										namesClassName={ styles.namesClassName }
+										headingClassName={ styles.headingClassName }
+									/>))
+								}
+							</section>
+						</div>
 						<div className={ styles.profileSideCardWrapper }>
 							<ProfileSideCard user={ data } openModal={ () => setModalVisible(true) }/>
 						</div>

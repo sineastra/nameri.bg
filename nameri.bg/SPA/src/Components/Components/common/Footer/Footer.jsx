@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import sineastraLogo from "../../../../assets/images/letter-s-between-straight-parenthesis-symbol.svg"
 import styles from './Footer.module.css'
 import { IconContext } from "react-icons"
-import StyledBtn from "../../StyledLinkBtn/StyledBtn.jsx"
+import StyledBtn from "../../StyledBtn/StyledBtn.jsx"
 
 
 const Footer = () => {

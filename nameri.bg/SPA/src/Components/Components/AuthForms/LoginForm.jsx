@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import styles from "./AuthForms.module.css"
-import StyledBtn from "../StyledLinkBtn/StyledBtn.jsx"
+import StyledBtn from "../StyledBtn/StyledBtn.jsx"
 import userServices from "../../../services/userServices.js"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"

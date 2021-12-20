@@ -1,6 +1,6 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styled from "styled-components"
-import { useContext, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import userServices from "../../../services/userServices.js"
 import UserContext from "../../Contexts/UserContext.jsx"
 import styles from "./Messages.module.css"
@@ -8,6 +8,7 @@ import MsgBigChat from "../../Components/MsgBigChat/MsgBigChat.jsx"
 import MsgConversations from "../../Components/MsgConversations/MsgConversations.jsx"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
+import { useLocation } from "react-router-dom"
 
 
 const PageSection = styled.section`
@@ -17,6 +18,7 @@ const PageSection = styled.section`
 `
 
 const Messages = (props) => {
+	const location = useLocation()
 	const [user, _] = useContext(UserContext)
 	const { isLoadingData, data, setData } = useFetch(() => userServices.getAllUserMessages(user._id, user))
 	const [index, setIndex] = useState(null)
@@ -26,6 +28,12 @@ const Messages = (props) => {
 
 		setIndex(index)
 	}
+
+	useEffect(() => {
+		if (!isLoadingData && location.state.conversationId) {
+			changeMsg(location.state.conversationId)
+		}
+	}, [isLoadingData])
 
 	return (
 		isLoadingData

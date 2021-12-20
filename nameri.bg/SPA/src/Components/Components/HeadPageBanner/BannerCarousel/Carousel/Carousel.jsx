@@ -46,14 +46,14 @@ const Carousel = ({ className }) => {
 	const isFirstSlide = useRef(true)
 
 	const changeActiveIDIdle = () => {
-		// const index = carouselData.findIndex(x => x._id === activeId)
-		// const newIndex = carouselData[index + 1] ? index + 1 : 0
-		//
-		// if (isFirstSlide.current) {
-		// 	isFirstSlide.current = false
-		// }
-		//
-		// setActiveId(carouselData[newIndex]._id)
+		const index = carouselData.findIndex(x => x._id === activeId)
+		const newIndex = carouselData[index + 1] ? index + 1 : 0
+
+		if (isFirstSlide.current) {
+			isFirstSlide.current = false
+		}
+
+		setActiveId(carouselData[newIndex]._id)
 	}
 
 	useInterval(changeActiveIDIdle, timeDelay)

@@ -15,9 +15,14 @@ const abstractFetch = async (url, body, method = "GET") => {
 		// TODO: refactor this so it can parse any type of response, not only json.
 
 		fetch(`${ baseUrl }${ url }`, predefinedBody)
-			.then(data => data.json())
+			.then(data => {
+				if (data.status >= 400) {
+					throw new Error({ status: data.status, statusText: data.statusText, msg: data.msg })
+				}
+				return data.json()
+			})
 			.then(data => resolve(data))
-			.catch(e => reject({ status: e.status, statusCode: e.statusCode }))
+			.catch(e => reject({ status: e.status, statusText: e.statusText }))
 
 	})
 }
@@ -26,13 +31,13 @@ const abstractGetRequest = async (url) => {
 	return new Promise((resolve, reject) => {
 		abstractFetch(url).then(response => {
 			if (response.data === undefined) {
-				reject({ status: response.status, statusCode: response.statusCode })
+				reject({ status: response.status, statusText: response.statusText })
 			}
 
 			resolve(response.data)
 		}).catch(e => reject({
 			status: e.status || 'No status',
-			statusCode: e.statusCode || 'No status code',
+			statusText: e.statusText || 'No status text',
 			msg: e,
 		}))
 	})
@@ -56,7 +61,7 @@ const abstractFormDataRequest = async (url, formData, method) => {
 			}
 
 			resolve(response)
-		}).catch(e => reject({ status: e.status, statusCode: e.statusCode }))
+		}).catch(e => reject({ status: e.status, statusText: e.statusText }))
 	})
 }
 
