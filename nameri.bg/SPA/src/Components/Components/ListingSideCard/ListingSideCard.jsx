@@ -91,14 +91,13 @@ const ListingSideCard = ({ listing, setData }) => {
 					/>
 				</div>
 				<div className={ styles.userInfoBtnsWrapper }>
-					<StyledBtn className={ `${ styles.styledBtn } ${ styles.styledBtnReverted }` }
-					           onClick={ () => setModalVisible(true) }>
-						Оцени
-					</StyledBtn>
-					<Link to={ `/profile/${ listing.user._id }` }>
-						<StyledBtn className={ styles.styledBtn }>
-							Профил на потребителя
-						</StyledBtn>
+					<StyledBtn
+						className={ `${ styles.styledBtn } ${ styles.styledBtnReverted }` }
+						onClick={ () => setModalVisible(true) }
+						text="Оцени"
+					/>
+					<Link to={ `/profile/${ listing.user._id }` } className={ styles.styledBtn }>
+						<StyledBtn text="Профил на потребителя"/>
 					</Link>
 				</div>
 			</div>

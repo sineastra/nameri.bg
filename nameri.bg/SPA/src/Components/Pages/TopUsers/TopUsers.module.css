@@ -1,9 +1,21 @@
 .mainWrapper {
     width: 100%;
+    min-height: 100vh;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.innerWrapper {
+    width: 90%;
+    height: 90%;
+    border-radius: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 5%;
+    -webkit-box-shadow: 0px 17px 40px -13px #000000;
+    box-shadow: 0px 17px 40px -13px #000000;
 }
 
 section.userList {

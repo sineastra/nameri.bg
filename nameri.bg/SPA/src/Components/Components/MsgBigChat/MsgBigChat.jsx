@@ -3,7 +3,7 @@ import { AiOutlineMail } from "react-icons/ai"
 import { IconContext } from "react-icons"
 import uid from "../../../helpers/uniqueIDGenerator.js"
 import userServices from "../../../services/userServices.js"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useRef, useState } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
@@ -28,8 +28,11 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 	const [errors, setErrors] = useContext(ErrorContext)
 	const [user, _] = useContext(UserContext)
 	const pickedMsg = data.conversations[index]
-	const participants = pickedMsg.participants.map(x => x.nameAndSurname).join(",")
 	const lastMsg = useRef(null)
+
+	const participants = pickedMsg.participants
+		.filter(x => x._id !== user._id)
+		.map(x => <Link to={ `/profile/${ x._id }` }>{ x.nameAndSurname }</Link>)
 
 	useEffect(() => {
 		if (lastMsg.current !== null) {
@@ -66,14 +69,16 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 				})
 			}
 		}
-
 	}
+
+	console.log(participants)
 
 	return (
 		<div className={ `${ styles.mainWrapper } ${ styles.mainWrapperNonEmpty } ${ className }` }>
 			<div className={ styles.innerWrapper }>
 				<div className={ styles.userNameHeader }>
-					{ participants }
+					<Link to={ `/profile/${ user._id }` }>Аз</Link>
+					<span>, { participants } </span>
 				</div>
 				<div className={ styles.messagesContainer }>
 					{ pickedMsg.messages.map(message => (
@@ -84,10 +89,12 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 							</div>
 						</div>))
 					}
-					<form className={ styles.newMsgForm } onSubmit={ sendNewMessage }>
-						<input className={ styles.sendMsgInput } placeholder="напиши съобщение..." name="newMsg"/>
-						<button className={ styles.sendMsgButton }>изпрати</button>
-					</form>
+					<div className={ styles.newMsgFormWrapper }>
+						<form className={ styles.newMsgForm } onSubmit={ sendNewMessage }>
+							<input className={ styles.sendMsgInput } placeholder="напиши съобщение..." name="newMsg"/>
+							<button className={ styles.sendMsgButton }>изпрати</button>
+						</form>
+					</div>
 				</div>
 				<div className={ styles.dummyDiv } ref={ lastMsg }/>
 			</div>

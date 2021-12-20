@@ -29,8 +29,6 @@ const Messages = (props) => {
 	const { isLoadingData, data, setData } = useFetch(() => fetchData(user))
 	const [index, setIndex] = useState(null)
 
-	console.log(data)
-
 	const changeMsg = _id => {
 		const index = data.conversations.findIndex(x => x._id === _id)
 

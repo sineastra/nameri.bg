@@ -95,12 +95,12 @@
     z-index: 3;
     background-color: white;
     border-left: 1px solid lightgrey;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }
 
 .hidden {
-    width: 0;
-    transition: all 0.5s ease;
+    right: -300px;
+    transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 800px) {
@@ -150,8 +150,8 @@
     }
 
     .visible {
-        width: 300px;
-        transition: all 0.5s ease;
+        right: 0;
+        transition: all 0.3s ease;
     }
 
     .mobileNavIcon {

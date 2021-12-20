@@ -11,12 +11,9 @@ import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import StyledBtn from "../StyledBtn/StyledBtn.jsx"
 
 
-const UserHeader = ({ className }) => {
-	const [user, setUser] = useContext(UserContext)
+const UserHeader = ({ className, user, logout }) => {
 	const [showSubheader, setShowSubHeader] = useState(false)
-	const [errors, setErrors] = useContext(ErrorContext)
 	const subHeaderRef = useRef(null)
-	const navigate = useNavigate()
 	const profileImg = user && user.profileImg !== "" ? user.profileImg : "/profile.png"
 
 	useEffect(() => {
@@ -33,26 +30,6 @@ const UserHeader = ({ className }) => {
 		if (subHeaderRef.current && !subHeaderRef.current.contains(e.target)) {
 			setShowSubHeader(false)
 		}
-	}
-
-	const logout = async () => {
-		try {
-			const response = await userServices.logout()
-
-			if (response.ok) {
-				Cookies.remove(process.env.REACT_APP_JWT_COOKIE_NAME)
-				setUser(null)
-			} else {
-				setErrors(extractErrorMessages(response.errors))
-			}
-		} catch (e) {
-			navigate("/error", {
-				state: {
-					statusCode: e.statusCode, status: e.status, msg: e,
-				},
-			})
-		}
-
 	}
 
 	const wrapperClassName = `${
@@ -85,6 +62,8 @@ const UserHeader = ({ className }) => {
 						/>
 						{ showSubheader &&
 							<div className={ styles.subHeaderWrapper }>
+								<div className={ styles.userNames }>Здравей, <span
+									className={ styles.userNamesSpan }>{ user.nameAndSurname }</span></div>
 								<ul className={ styles.subHeaderUl }>
 									<li className={ styles.subHeaderLinkWrapper }>
 										<Link to={ `/profile/${ user._id }` }

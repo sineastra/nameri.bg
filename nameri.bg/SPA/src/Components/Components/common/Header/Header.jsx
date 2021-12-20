@@ -1,18 +1,26 @@
 import styles from './Header.module.css'
 import logoImg from '../../../../assets/images/n-letter-png-transparent-images-76708.svg'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { FaBars } from "react-icons/fa"
 import { IconContext } from "react-icons"
 import { useContext, useEffect, useState } from "react"
-import UserContext from "../../../Contexts/UserContext.jsx"
 import UserHeader from "../../UserHeader/UserHeader.jsx"
+import SideNav from "../SideNav/SideNav.jsx"
+import UserContext from "../../../Contexts/UserContext.jsx"
+import userServices from "../../../../services/userServices.js"
+import Cookies from "js-cookie"
+import extractErrorMessages from "../../../../helpers/extractErrorMessages.js"
+import ErrorContext from "../../../Contexts/ErrorContext.jsx"
 
 
 const Header = () => {
+	const navigate = useNavigate()
+	const [errors, setErrors] = useContext(ErrorContext)
+	const [user, setUser] = useContext(UserContext)
 	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
 	const [windowWidth, setWindowWidth] = useState(0)
 
-	const showSideBar = () => {
+	const toggleSideBar = () => {
 		setSideBarVisibility(oldState => oldState === 'hidden' ? 'visible' : 'hidden')
 	}
 
@@ -24,13 +32,33 @@ const Header = () => {
 		}
 	}
 
+	const logout = async () => {
+		try {
+			const response = await userServices.logout()
+
+			if (response.ok) {
+				Cookies.remove(process.env.REACT_APP_JWT_COOKIE_NAME)
+				setUser(null)
+			} else {
+				setErrors(extractErrorMessages(response.errors))
+			}
+		} catch (e) {
+			navigate("/error", {
+				state: {
+					statusCode: e.statusCode, status: e.status, msg: e,
+				},
+			})
+		}
+
+	}
+
 	useEffect(() => {
 		window.addEventListener('resize', handleResize)
 
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
 
-	const mobileSideBarClass = windowWidth <= 800 ? styles[sideBarVisibility] : styles.hidden
+	const visibilityClassName = windowWidth <= 800 ? styles[sideBarVisibility] : styles.hidden
 
 	return (
 		<header className={ styles.header }>
@@ -47,15 +75,25 @@ const Header = () => {
 				</section>
 				<section className={ styles.rightNavCont }>
 					<IconContext.Provider value={ { size: '2em', color: 'lightgray' } }>
-						<UserHeader className={ styles.userNavContainer }/>
-						<div className={ styles.mobileNavIcon } onClick={ showSideBar }>
+						<UserHeader
+							className={ styles.userNavContainer }
+							user={ user }
+							setUser={ setUser }
+							logout={ logout }
+						/>
+						<div className={ styles.mobileNavIcon } onClick={ toggleSideBar }>
 							<FaBars/>
 						</div>
 					</IconContext.Provider>
 				</section>
 			</nav>
-			<aside className={ `${ styles.mobileNav } ${ mobileSideBarClass }` }>
-				<button onClick={ showSideBar }>CLICK ME</button>
+			<aside className={ `${ styles.mobileNav } ${ visibilityClassName }` }>
+				<SideNav
+					toggleSideBar={ toggleSideBar }
+					user={ user }
+					setUser={ setUser }
+					logout={ logout }
+				/>
 			</aside>
 		</header>
 	)

@@ -162,7 +162,12 @@ div.userHeadingWrapperMain {
     font-family: 'Comfortaa', cursive;
 }
 
+.styledBtn {
+    width: 50%;
+}
+
 .styledBtnReverted {
+    width: 30%;
     background: #ff7200;
     color: white;
     border: 3px solid #ff7200;
@@ -181,6 +186,22 @@ div.userHeadingWrapperMain {
 
     .userNames {
         font-size: 0.9rem;
+    }
+
+    .userInfoBtnsWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .styledBtn {
+        width: 70%;
+        margin-top: 3%;
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .styledBtn {
+        width: 100%;
     }
 }
 
@@ -235,9 +256,6 @@ div.userHeadingWrapperMain {
         height: 90%;
     }
 
-    .userInfoBtnsWrapper {
-        flex-direction: column;
-    }
 
     .styledBtn {
         margin-bottom: 5%;

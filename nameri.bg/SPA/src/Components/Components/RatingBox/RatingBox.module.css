@@ -7,7 +7,7 @@
 .iconWrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
 }
 
 .starIcon {
@@ -16,5 +16,9 @@
 }
 
 .rating {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Mulish', sans-serif;
+}
+
+.votesWrapper {
+    font-family: 'Mulish', sans-serif;
 }

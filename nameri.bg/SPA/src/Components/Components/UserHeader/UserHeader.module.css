@@ -79,7 +79,8 @@
     top: 50px;
     right: 0;
     z-index: 1;
-    height: 83px;
+    height: 113px;
+    padding-bottom: 5px;
     background: white;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.29);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.29);
@@ -87,7 +88,7 @@
     border: 1px solid lightgray;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .subHeaderUl {
@@ -103,7 +104,12 @@
     list-style: none;
     font-family: 'Exo 2', sans-serif;
     cursor: pointer;
-    padding: 0px 10px;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 33%;
+    display: flex;
+    align-items: center;
 }
 
 .subHeaderLinkWrapper:hover {
@@ -112,6 +118,23 @@
 
 .subHeaderLink {
     display: block;
+}
+
+.userNamesSpan {
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+.userNames {
+    padding: 5px 10px;
+    background: #ff7200;
+    font-family: 'Bellota Text', cursive;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
 }
 
 @media screen and (max-width: 800px) {

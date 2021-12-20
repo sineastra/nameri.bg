@@ -10,12 +10,12 @@ const RatingBox = ({ user, rating, showVotes, className = "" }) => {
 	return (
 		<div className={ `${ styles.headingInnerWrapper } ${ className }` }>
 			<div className={ styles.iconWrapper }>
-				<div className={ styles.rating }>{ rating }/5</div>
+				<div className={ styles.rating }>{ rating }</div>
 				<IconContext.Provider value={ { className: styles.starIcon } }>
 					<FaStar/>
 				</IconContext.Provider>
 			</div>
-			{ showVotes && <div>
+			{ showVotes && <div className={styles.votesWrapper}>
 				{ user.reviews.length } глас(а)
 			</div> }
 		</div>
