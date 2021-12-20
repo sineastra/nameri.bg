@@ -17,7 +17,7 @@ const UserRatingHeading = ({
 	return (
 		<div className={ `${ styles.userInfoHeadings } ${ wrapperClassName }` }>
 			<div className={ styles.imageWrapper }>
-				<img src={ user.profileImg || "/profile.svg" }
+				<img src={ user.profileImg || "/profile.png" }
 				     alt="Profile"
 				     className={ `${ styles.profileImg } ${ profileImgClassName }` }
 				/>

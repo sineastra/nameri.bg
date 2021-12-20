@@ -9,7 +9,7 @@ import ImageLoadingPlaceholder from "../../../ImageLoadingPlaceholder/ImageLoadi
 const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 	const [slideImgLoaded, setSlideImgLoaded] = useState(false)
 	const [profileImgLoaded, setProfileImgLoaded] = useState(false)
-	let profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
+	let profileImg = listing.user.profileImg === "" ? "/profile.png" : listing.user.profileImg
 	const mainImg = listing.mainImg === "" ? "Default-cover.svg" : listing.mainImg
 	let className = ''
 
@@ -44,7 +44,7 @@ const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 						<img
 							src={ profileImg }
 							alt=""
-							onError={ () => profileImg = "/profile.svg" }
+							onError={ () => profileImg = "/profile.png" }
 							onLoad={ () => setProfileImgLoaded(true) }
 							className={ `${ styles.profileImg } ${ slideImgLoaded ? styles.show : styles.hide }` }
 						/>

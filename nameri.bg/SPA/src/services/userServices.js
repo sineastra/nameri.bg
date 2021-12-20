@@ -18,5 +18,6 @@ const userServices = {
 	search: async (search) => await abstractGetRequest(`/user/search?search=${ search }`),
 	logout: async () => await abstractFetch(`/user/logout`),
 	checkListingOwnership: async (listingId) => await abstractGetRequest(`/user/is-own-listing/${ listingId }`),
+	getTopUsers: async (count) => await abstractGetRequest(`/user/get-top?count=${ count }`),
 }
 export default userServices

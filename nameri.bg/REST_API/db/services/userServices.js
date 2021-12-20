@@ -42,7 +42,8 @@ const userServices = {
 	},
 	createNewConversation: async (data) => await new ConversationModel(data).save(),
 	createNewReview: async (data) => await new ReviewModel(data).save(),
-	getUserWithReviews: async (id) => await UserModel.findById(id).populate("reviews").exec()
+	getUserWithReviews: async (id) => await UserModel.findById(id).populate("reviews").exec(),
+	getTop: async (count) => await UserModel.find({}).sort({ "rating": "-1" }).limit(count).exec(),
 }
 
 module.exports = userServices

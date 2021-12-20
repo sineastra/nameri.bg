@@ -9,7 +9,7 @@ const About = () => {
 	return (
 		<MainPageLayout>
 			<div className={ styles.bannerWrapper }>
-				<img src="/about-banner.jpeg" alt=""/>
+				<img src="/about-banner.jpeg" alt="" className={styles.img}/>
 			</div>
 			<div className={ styles.textOuterWrapper }>
 				<div className={ styles.textInnerWrapper }>

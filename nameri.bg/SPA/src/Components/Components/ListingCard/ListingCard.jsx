@@ -6,7 +6,7 @@ import { useState } from "react"
 
 const ListingCard = ({ className, headingClassName, profilePicClassName, namesClassName, priceClassName, listing }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
-	const profileImg = listing.user.profileImg === "" ? "/profile.svg" : listing.user.profileImg
+	const profileImg = listing.user.profileImg === "" ? "/profile.png" : listing.user.profileImg
 	const mainImg = listing.mainImg === "" ? "/Default-cover.svg" : listing.mainImg
 
 	return (

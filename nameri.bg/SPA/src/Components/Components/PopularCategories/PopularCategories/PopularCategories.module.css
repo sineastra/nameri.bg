@@ -38,7 +38,14 @@
 
 .singleCategoryClass {
     width: 23%;
+    height: 200px;
     margin-bottom: 30px;
+}
+
+@media screen and (min-width: 2400px) {
+    .singleCategoryClass {
+        height: 350px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -69,6 +76,13 @@
 
     .popularWrapper {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .singleCategoryClass {
+        width: 70%;
+        height: 300px;
     }
 }
 

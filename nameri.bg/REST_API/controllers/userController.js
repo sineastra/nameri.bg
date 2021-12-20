@@ -284,6 +284,13 @@ router.get("/is-own-listing/:id", async (req, res) => {
 	await abstractGetRequest(req, res, dbService)
 })
 
+router.get("/get-top", async (req, res) => {
+	const count = req.query.count
+	const dbService = () => req.dbServices.userServices.getTop(count)
+
+	await abstractGetRequest(req, res, dbService)
+})
+
 router.get("/logout", (req, res) => {
 	res.clearCookie(process.env.COOKIE_NAME)
 	res.json({ ok: true })

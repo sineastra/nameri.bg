@@ -18,6 +18,7 @@ const ErrorPage = lazy(() => import("../../Pages/ErrorPage/ErrorPage.jsx"))
 const About = lazy(() => import("../../Pages/About/About.jsx"))
 const ProtectedRoute = lazy(() => import("../../RouteGuards/ProtectedRoute.jsx"))
 const OwnershipRoute = lazy(() => import("../../RouteGuards/OwnershipRoute.jsx"))
+const TopUsers = lazy(() => import("../../Pages/TopUsers/TopUsers.jsx"))
 
 const AppRouter = () => {
 	return (
@@ -32,6 +33,7 @@ const AppRouter = () => {
 				<Route path="/details/:id" element={ <ListingDetails/> }/>
 				<Route path="/profile/:id" element={ <Profile/> }/>
 				<Route path="/search" element={ <Search/> }/>
+				<Route path="/top-users" element={ <TopUsers/> }/>
 				<Route path="/about" element={ <About/> }/>
 				{/*End of public routes*/ }
 

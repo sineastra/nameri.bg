@@ -12,77 +12,10 @@
     min-height: 80vh;
 }
 
-
 .listingsSection {
     display: flex;
     flex-direction: column;
     width: 50%;
-}
-
-.usersSection {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.userLink {
-    width: 90%;
-    border-bottom: 2px solid lightgray;
-    display: flex;
-    flex-direction: column;
-    padding: 4% 2% 2%;
-    transition: all 0.5s ease;
-    box-sizing: border-box;
-    border-radius: 20px;
-    margin-bottom: 5%;
-}
-
-.userLink:hover {
-
-    border-bottom: 2px solid transparent;
-    transition: all 0.5s ease;
-    -webkit-box-shadow: 0px 17px 40px -13px #000000;
-    box-shadow: 0px 17px 40px -13px #000000;
-    transform: scale(1.01);
-}
-
-.userLinkInnerDiv {
-    width: 95%;
-    display: flex;
-    margin-left: 2%;
-    margin-bottom: 2%;
-    align-items: center;
-}
-
-.smallDivsWrapper {
-    display: flex;
-}
-
-.smallInnerDiv {
-    max-width: 45%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-right: 3%;
-    font-family: 'Comfortaa', cursive;
-}
-
-.colorSpan {
-    color: #ff7200;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;
-    font-style: italic;
-}
-
-.aboutDiv {
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 2%;
-    margin-left: 2%;
-    font-family: 'Comfortaa', cursive;
 }
 
 .header {
@@ -99,11 +32,6 @@
     font-size: 1.6rem;
     background: #ff7200;
     color: white;
-}
-
-.nameHeader {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
 }
 
 div.listingCard {
@@ -197,9 +125,6 @@ h1, h4 {
         width: 100%;
     }
 
-    .usersSection {
-        align-items: center;
-    }
 }
 
 @media screen and (max-width: 400px) {

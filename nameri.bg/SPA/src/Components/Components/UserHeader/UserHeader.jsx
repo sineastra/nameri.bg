@@ -17,7 +17,7 @@ const UserHeader = ({ className }) => {
 	const [errors, setErrors] = useContext(ErrorContext)
 	const subHeaderRef = useRef(null)
 	const navigate = useNavigate()
-	const profileImg = user && user.profileImg !== "" ? user.profileImg : "/profile.svg"
+	const profileImg = user && user.profileImg !== "" ? user.profileImg : "/profile.png"
 
 	useEffect(() => {
 		document.addEventListener('click', outerClick)

@@ -1,0 +1,12 @@
+.mainWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+section.userList {
+    width: 100%;
+    align-items: center;
+}
