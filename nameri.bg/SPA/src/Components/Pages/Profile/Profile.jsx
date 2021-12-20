@@ -10,6 +10,7 @@ import TextModal from "../../Components/TextModal/TextModal.jsx"
 import { useContext, useState } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import Cookies from "js-cookie"
 
 
 const MessageSubHeader = ({ userName }) =>
@@ -28,10 +29,13 @@ const Profile = () => {
 
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
+		
+		console.log(formDataObj)
 
 		const response = await userServices.sendMessage(data._id, formDataObj)
 
 		if (response.ok) {
+			console.log(response)
 			setModalVisible(false)
 		} else {
 			setErrors(extractErrorMessages(response.errors))
@@ -63,7 +67,7 @@ const Profile = () => {
 									profilePicClassName={ styles.listingProfilePic }
 									priceClassName={ styles.priceClassName }
 									namesClassName={ styles.namesClassName }
-									headingClassName={styles.headingClassName}
+									headingClassName={ styles.headingClassName }
 								/>))
 							}
 						</section>

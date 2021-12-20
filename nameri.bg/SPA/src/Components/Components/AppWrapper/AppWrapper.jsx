@@ -12,8 +12,6 @@ let timeout = 0
 function AppWrapper (props) {
 	const [errors, setErrors] = useState(null)
 	const [userData, setUserData] = useState()
-	
-	console.log(errors)
 
 	// preserve user state on reloads.
 	useEffect(() => {

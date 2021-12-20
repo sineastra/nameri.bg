@@ -1,18 +1,21 @@
 .wrapper {
     width: 100%;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    align-content: center;
 }
 
 .lds-facebook {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+    position: relative;
+    width: 80px;
+    height: 80px;
 }
 
 .lds-facebook div {
-    display: inline-block;
+    display: block;
     position: absolute;
     left: 8px;
     width: 16px;

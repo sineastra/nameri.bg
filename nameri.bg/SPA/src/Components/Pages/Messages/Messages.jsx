@@ -1,6 +1,6 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styled from "styled-components"
-import { useContext, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import userServices from "../../../services/userServices.js"
 import UserContext from "../../Contexts/UserContext.jsx"
 import styles from "./Messages.module.css"
@@ -18,13 +18,13 @@ const PageSection = styled.section`
 
 const Messages = (props) => {
 	const [user, _] = useContext(UserContext)
-	const { isLoadingData, data } = useFetch(() => userServices.getAllUserMessages(user._id, user))
-	const [conversation, pickConversation] = useState(null)
+	const { isLoadingData, data, setData } = useFetch(() => userServices.getAllUserMessages(user._id, user))
+	const [index, setIndex] = useState(null)
 
 	const changeMsg = _id => {
-		const temp = data.conversations.find(x => x._id === _id)
+		const index = data.conversations.findIndex(x => x._id === _id)
 
-		pickConversation(temp)
+		setIndex(index)
 	}
 
 	return (
@@ -38,7 +38,10 @@ const Messages = (props) => {
 						</div>
 						<div className={ styles.mainWrapper }>
 							<section className={ styles.bigCont }>
-								<MsgBigChat data={ conversation }/>
+								<MsgBigChat
+									data={ data }
+									index={ index } setData={ setData }
+								/>
 							</section>
 							<section className={ styles.smallCont }>
 								<MsgConversations messages={ data.conversations } changeMsg={ changeMsg }/>

@@ -1,13 +1,13 @@
 const baseUrl = `${ process.env.REACT_APP_REST_API_ADDRESS }/api`
 
-const abstractFetch = async (url, body) => {
+const abstractFetch = async (url, body, method = "GET") => {
 	let predefinedBody = {
-		method: "GET",
+		method,
 		headers: {
 			'Content-Type': 'application/json',
 			'Access-Control-Allow-Origin': process.env.REACT_APP_ORIGIN,
 		},
-		withCredentials: true,
+		credentials: 'include',
 	}
 	predefinedBody = Object.assign(predefinedBody, body || {})
 

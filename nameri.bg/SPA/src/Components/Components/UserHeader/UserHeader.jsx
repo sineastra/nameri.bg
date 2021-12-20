@@ -35,6 +35,7 @@ const UserHeader = ({ className }) => {
 			const response = await userServices.logout()
 
 			if (response.ok) {
+				Cookies.remove(process.env.REACT_APP_JWT_COOKIE_NAME)
 				setUser(null)
 			}
 		} catch (e) {

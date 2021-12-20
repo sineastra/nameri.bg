@@ -182,13 +182,17 @@ router.get("/search", async (req, res) => {
 	await abstractGetRequest(req, res, dbService)
 })
 
-router.post("/send-message/:id", async (req, res) => {
+const addMsg = async (req, res) => {
 	const receiverId = req.params.id
 	const userId = req.user._id
 	const msg = req.body.message
 
 	if (userId === receiverId) {
 		res.status(403).json({ status: "Forbidden", statusCode: 403, msg: "Invalid message recipient" })
+	}
+
+	if (msg === '') {
+		res.json({ status: "Bad Request", statusCode: 400, errors: [{ msg: "Message cannot be empty." }] })
 	}
 
 	try {
@@ -202,8 +206,9 @@ router.post("/send-message/:id", async (req, res) => {
 			conversation.messages.push(newMsg)
 
 			await conversation.save()
+			const conversations = await req.dbServices.userServices.getAllUserMessages(userId)
 
-			res.json({ ok: true, status: "ok", statusCode: 200, data: conversation })
+			res.json({ ok: true, status: "ok", statusCode: 200, data: conversations })
 		} else {
 			const [user, receiver] = await Promise.all([
 				req.dbServices.userServices.getById(userId),
@@ -226,12 +231,21 @@ router.post("/send-message/:id", async (req, res) => {
 
 			await Promise.all([user.save(), receiver.save()])
 
-			res.json({ ok: true, status: "ok", statusCode: 200, data: newConversation })
+			res.json({
+					ok: true,
+					status: "ok",
+					statusCode: 200,
+					data: user.conversations,
+				},
+			)
 		}
 	} catch (e) {
 		res.status(400).json({ status: "Bad request", statusCode: 400, ok: false, msg: e })
 	}
-})
+
+}
+
+router.post("/send-message/:id", addMsg)
 
 router.post("/:id/add-review", async (req, res) => {
 	const dbService = async (req) => {
@@ -264,6 +278,7 @@ router.post("/:id/add-review", async (req, res) => {
 
 router.get("/logout", (req, res) => {
 	res.clearCookie(process.env.COOKIE_NAME)
+	console.log(res.cookies)
 	res.json({ ok: true })
 })
 
