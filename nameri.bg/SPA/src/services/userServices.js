@@ -17,5 +17,6 @@ const userServices = {
 	editProfile: async (userId, formData) => await abstractFormDataRequest(`/user/edit/${ userId }`, formData, "PUT"),
 	search: async (search) => await abstractGetRequest(`/user/search?search=${ search }`),
 	logout: async () => await abstractFetch(`/user/logout`),
+	checkListingOwnership: async (listingId) => await abstractGetRequest(`/user/is-own-listing/${ listingId }`),
 }
 export default userServices

@@ -75,13 +75,15 @@ const UserHeader = ({ className }) => {
 						{ showSubheader &&
 							<div className={ styles.subHeaderWrapper }>
 								<ul className={ styles.subHeaderUl }>
-									<li className={ styles.subHeaderLink }>
-										<Link to={ `/profile/${ user._id }` }>Профил</Link>
+									<li className={ styles.subHeaderLinkWrapper }>
+										<Link to={ `/profile/${ user._id }` }
+										      className={ styles.subHeaderLink }>Профил</Link>
 									</li>
-									<li className={ styles.subHeaderLink }>
-										<Link to={ `/profile/edit` }>Редактирай профил</Link>
+									<li className={ styles.subHeaderLinkWrapper }>
+										<Link to={ `/profile/edit` } className={ styles.subHeaderLink }>Редактирай
+											профил</Link>
 									</li>
-									<li className={ styles.subHeaderLink } onClick={ logout }>Излез</li>
+									<li className={ styles.subHeaderLinkWrapper } onClick={ logout }>Излез</li>
 								</ul>
 							</div>
 						}

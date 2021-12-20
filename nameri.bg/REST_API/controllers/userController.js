@@ -276,6 +276,23 @@ router.post("/:id/add-review", async (req, res) => {
 	await abstractGetRequest(req, res, dbService)
 })
 
+router.get("/is-own-listing/:id", async (req, res) => {
+	console.log('here')
+	const dbService = async (req) => {
+		const user = await req.dbServices.userServices.getById(req.user._id)
+
+		const isOwn = user.listings.some(x => x === req.params.id)
+
+		console.log(isOwn)
+		console.log(user.listings)
+		console.log(req.params.id)
+
+		return isOwn
+	}
+
+	await abstractGetRequest(req, res, dbService)
+})
+
 router.get("/logout", (req, res) => {
 	res.clearCookie(process.env.COOKIE_NAME)
 	console.log(res.cookies)

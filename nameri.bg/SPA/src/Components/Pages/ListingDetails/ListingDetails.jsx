@@ -7,6 +7,7 @@ import ListingSideCard from "../../Components/ListingSideCard/ListingSideCard.js
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
+import { useEffect, useState } from "react"
 
 
 const fetchData = async (id) => {
@@ -22,6 +23,13 @@ const fetchData = async (id) => {
 const ListingDetails = (props) => {
 	const params = useParams()
 	const { isLoadingData, data, setData } = useFetch(() => fetchData(params.id))
+	const [images, setImages] = useState([])
+
+	useEffect(() => {
+		if (data) {
+			setImages(data.listing.images.length > 0 ? data.listing.images : ['/Default-cover.svg'])
+		}
+	}, [data])
 
 	return (
 		isLoadingData
@@ -31,7 +39,7 @@ const ListingDetails = (props) => {
 					<h1 className={ styles.mainHeader }>{ data.listing.heading }</h1>
 					<section className={ styles.mainSection }>
 						<section className={ styles.carouselSection }>
-							<Carousel imgData={ data.listing.images } imgsPerSlide={ 3 }/>
+							<Carousel imgData={ images } imgsPerSlide={ 3 }/>
 						</section>
 						<section className={ styles.sideSection }>
 							<ListingSideCard listing={ data.listing } setData={ setData }/>

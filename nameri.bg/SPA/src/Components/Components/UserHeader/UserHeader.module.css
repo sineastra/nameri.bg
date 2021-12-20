@@ -110,15 +110,19 @@
     justify-content: space-evenly;
 }
 
-.subHeaderLink {
+.subHeaderLinkWrapper {
     list-style: none;
     font-family: 'Exo 2', sans-serif;
     cursor: pointer;
-    padding: 3px 20px;
+    padding: 0px 10px;
 }
 
-.subHeaderLink:hover {
+.subHeaderLinkWrapper:hover {
     background: #f1f1f1;
+}
+
+.subHeaderLink {
+    display: block;
 }
 
 @media screen and (max-width: 800px) {

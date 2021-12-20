@@ -16,6 +16,7 @@ const useFetch = (fetchData, deps = [], partialLoading = false, setPartialLoadin
 				partialLoading ? setPartialLoading(false) : setIsLoadingData(false)
 			})
 			.catch(e => {
+				console.log(e)
 				navigate("/error", {
 					state: {
 						statusCode: e.statusCode, status: e.status, msg: e,

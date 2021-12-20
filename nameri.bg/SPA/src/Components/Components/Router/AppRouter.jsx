@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from "react-router-dom"
 import Spinner from "../Spinner/Spinner.jsx"
+import OwnershipRoute from "../../RouteGuards/OwnershipRoute.jsx"
 
 
 const HomePage = lazy(() => import("../../Pages/HomePage/HomePage.jsx"))
@@ -15,25 +16,65 @@ const ProfileEdit = lazy(() => import("../../Pages/ProfileEdit/ProfileEdit.jsx")
 const Auth = lazy(() => import("../../Pages/Auth/Auth.jsx"))
 const Search = lazy(() => import("../../Pages/Search/Search.jsx"))
 const ErrorPage = lazy(() => import("../../Pages/ErrorPage/ErrorPage.jsx"))
+const ProtectedRoute = lazy(() => import("../../RouteGuards/ProtectedRoute.jsx"))
 
 const AppRouter = () => {
 	return (
 		<Suspense fallback={ <Spinner/> }>
 			<Routes>
+
+				{/*Public routes*/ }
 				<Route exact path="/" element={ <HomePage/> }/>
 				<Route path="/categories" element={ <CategoriesPage/> }/>
 				<Route exact path="/categories/:id" element={ <Subcategories/> }/>
 				<Route path="/categories/subcategories/:id" element={ <SubcategoryListings/> }/>
-				<Route path="/sign-up" element={ <Auth authType={ "register" }/> }/>
-				<Route path="/sign-in" element={ <Auth authType={ "login" }/> }/>
-				<Route path="/add-listing" element={ <ListingForm formType="add"/> }/>
-				<Route path="/edit-listing/:id" element={ <ListingForm formType="edit"/> }/>
-				<Route path="/messages" element={ <Messages/> }/>
 				<Route path="/details/:id" element={ <ListingDetails/> }/>
 				<Route path="/profile/:id" element={ <Profile/> }/>
-				<Route path="/profile/edit" element={ <ProfileEdit/> }/>
 				<Route path="/search" element={ <Search/> }/>
-				<Route path="/error" element={ <ErrorPage/> }/>
+				{/*End of public routes*/ }
+
+				{/*Public ONLY routes*/ }
+				<Route path="/sign-up" element={
+					<ProtectedRoute type="public">
+						<Auth authType={ "register" }/>
+					</ProtectedRoute> }
+				/>
+				<Route path="/sign-in" element={
+					<ProtectedRoute type="public">
+						<Auth authType={ "login" }/>
+					</ProtectedRoute> }
+				/>
+				{/*End of public ONLY routes*/ }
+
+				{/*LoggedIn ONLY routes*/ }
+				<Route path="/add-listing" element={
+					<ProtectedRoute type="private">
+						<ListingForm formType="add"/>
+					</ProtectedRoute>
+				}/>
+				<Route path="/messages" element={
+					<ProtectedRoute type="private">
+						<Messages/>
+					</ProtectedRoute>
+				}/>
+				<Route path="/profile/edit" element={
+					<ProtectedRoute type="private">
+						<ProfileEdit/>
+					</ProtectedRoute>
+				}/>
+
+				{/*This one requires and that you own the item*/ }
+				<Route path="/edit-listing/:id" element={
+					<ProtectedRoute type="private">
+						<OwnershipRoute type="listing">
+							<ListingForm formType="edit"/>
+						</OwnershipRoute>
+					</ProtectedRoute>
+				}/>
+				{/*End of LoggedIn ONLY routes*/ }
+
+
+				<Route path="*" element={ <ErrorPage/> }/>
 			</Routes>
 		</Suspense>
 	)
