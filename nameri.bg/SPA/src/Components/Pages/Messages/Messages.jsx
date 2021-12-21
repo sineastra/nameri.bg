@@ -46,7 +46,7 @@ const Messages = (props) => {
 			? <Spinner/>
 			: <MainPageLayout>
 				<PageSection>
-					<div className={ styles.outerWrapper }>
+					<div className={ styles.wrapper }>
 						<div className={ styles.mainHeader }>
 							<h1>Съобщения</h1>
 						</div>
