@@ -18,12 +18,12 @@
 }
 
 .innerWrapper {
-    height: 90%;
+    height: 85%;
     width: 100%;
     background-color: white;
     border-radius: 20px;
     overflow-y: scroll;
-    padding-top: 5%;
+    margin-top: 5%;
 }
 
 .innerWrapperEmpty {
@@ -53,7 +53,7 @@ h2 {
 
 .dummyDiv {
     width: 100%;
-    margin-top: 25px;
+    margin-top: 5%;
 }
 
 .userNameHeader {
@@ -115,9 +115,7 @@ h2 {
 .newMsgForm {
     width: 100%;
     display: flex;
-    margin-top: 3%;
-    height: 10%;
-
+    height: 100%;
 }
 
 .newMsgFormWrapper {
@@ -126,14 +124,18 @@ h2 {
     left: 0;
     width: 100%;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     overflow: hidden;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .sendMsgInput {
     width: 80%;
     padding: 10px;
-    border: 1px solid lightgray;
+    border: none;
+    border-top: 1px solid lightgray;
 }
 
 .sendMsgInput:focus {
@@ -142,7 +144,7 @@ h2 {
 
 .sendMsgButton {
     width: 20%;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     border: 1px solid lightgray;
     border-left: none;
     cursor: pointer;

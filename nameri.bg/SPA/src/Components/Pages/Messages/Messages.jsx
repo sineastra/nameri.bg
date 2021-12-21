@@ -20,7 +20,7 @@ const fetchData = async (user) => {
 const PageSection = styled.section`
   width: 100%;
   margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 10%;
 `
 
 const Messages = (props) => {
