@@ -1,5 +1,5 @@
 import styles from "./Carousel.module.css"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import CarouselSingleSlider from "./CarouselSingleSlider/CarouselSingleSlider.jsx"
 import ImageLoadingPlaceholder from "../ImageLoadingPlaceholder/ImageLoadingPlaceholder.jsx"
 
@@ -32,7 +32,7 @@ const createSlidesArr = (data, imgsPerSlide) => {
 
 const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
-	const [activeImgIndx, setActiveImgIndx] = useState(0)
+	const [activeImg, setActiveImg] = useState('')
 	const slideArray = createSlidesArr(imgData, imgsPerSlide)
 	const sliderRef = useRef(null)
 
@@ -52,12 +52,24 @@ const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 		}
 	}
 
+	const changeActiveImg = (imgSrc) => {
+		const newImg = imgData.find(x => x.src === imgSrc)
+
+		setActiveImg(newImg)
+	}
+
+	useEffect(() => {
+		if (imgData) {
+			setActiveImg(imgData[0])
+		}
+	}, [imgData])
+
 	return (
 		<div className={ styles.mainWrapper }>
 
 			<div className={ imgLoaded ? `${ styles.mainImgWrapper } ${ styles.show }` : styles.hide }>
 				<img
-					src={ imgData[activeImgIndx] }
+					src={ activeImg.src }
 					alt="Main Service"
 					className={ styles.mainImg }
 					onLoad={ () => setImgLoaded(true) }
@@ -72,17 +84,13 @@ const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 
 				<div className={ styles.carouselWrapper } ref={ sliderRef }>
 					{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/ }
-					{ slideArray.map(slideData => {
-						console.log(slideData)
-
-						return (
-							<CarouselSingleSlider
-								slideData={ slideData }
-								setActiveImgIndx={ setActiveImgIndx }
-								key={ slideData[0] }
-								className={ slideData.length < 3 ? styles.nonFullSlide : '' }
-							/>)
-					})
+					{ slideArray.map(slideData => (
+						<CarouselSingleSlider
+							slideData={ slideData }
+							changeActiveImg={ changeActiveImg }
+							key={ slideData[0].src }
+							className={ slideData.length < 3 ? styles.nonFullSlide : '' }
+						/>))
 					}
 				</div>
 

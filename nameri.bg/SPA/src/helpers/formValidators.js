@@ -14,15 +14,15 @@ const addListingFormValidator = (formDataObj) => {
 
 	// every check returns true if there is error, false if there is none.
 	const validationObj = {
-		category: (value) => value !== "Избери категория",
-		subcategory: (value) => value !== "Избери подкатегория",
-		town: (value) => value !== "Избери град",
+		category: (value) => !!value && value !== "Избери категория",
+		subcategory: (value) => !!value && value !== "Избери подкатегория",
+		town: (value) => !!value && value !== "Избери град",
 		// images: (images) => images.some(x => x.type !== 'image/jpeg' || x.type !== 'image/jpg' || x.type !== 'image/png'),
 		images: () => true,
 		price: (value) => !isNaN(value) && value !== '' && value >= 0,
 		details: (value) => value.length >= 10,
 		heading: value => value.length >= 5,
-		tags: value => value.length >= 2,
+		tags: value => JSON.parse(value).length >= 2,
 		files: () => true,
 	}
 

@@ -2,12 +2,12 @@ import styles from "./CarouselSingleSlider.module.css"
 import CarouselSingleImgSlider from "../CarouselSingleImgSlider/CarouselSingleImgSlider.jsx"
 
 
-const CarouselSingleSlider = ({ slideData, setActiveImgIndx, className = "" }) => {
+const CarouselSingleSlider = ({ slideData, changeActiveImg, className = "" }) => {
 
 	return (
 		<div className={ `${ styles.slidersInnerWrapper } ${ className }` }>
-			{ slideData.map((x, i) => (
-				<CarouselSingleImgSlider key={ x } id={ x } onClick={ () => setActiveImgIndx(i) }/>)) }
+			{ slideData.map(img => (
+				<CarouselSingleImgSlider key={ img.src } src={ img.src } onClick={ () => changeActiveImg(img.src) }/>)) }
 		</div>
 	)
 }

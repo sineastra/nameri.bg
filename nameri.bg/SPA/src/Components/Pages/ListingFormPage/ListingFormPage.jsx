@@ -10,6 +10,8 @@ import { addListingFormValidator } from "../../../helpers/formValidators.js"
 import listingsServices from "../../../services/listingsServices.js"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TagInput from "../../Components/TagInput/TagInput.jsx"
+import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
 
 
 const fetchDataAdd = async () => {
@@ -62,12 +64,17 @@ const AddListing = ({ formType }) => {
 
 		const formData = new FormData(e.target)
 		const data = Object.fromEntries(formData)
+
 		let formDataWithAddedStates = {
 			...data,
+			town: data.town || '',
+			category: data.category || '',
+			subcategory: data.subcategory || '',
 			tags: JSON.stringify(tags),
 			images,
 			price: isChecked ? '0' : price,
 		}
+		console.log(formDataWithAddedStates)
 		const validationResult = addListingFormValidator(formDataWithAddedStates)
 
 		if (validationResult.valid) {
@@ -85,7 +92,6 @@ const AddListing = ({ formType }) => {
 				const response = await postData(formType, formDataFinal, params.id)
 
 				if (response.ok) {
-					console.log(response.data._id)
 					navigate(`/details/${ response.data._id }`)
 				} else {
 					setErrors(response.errors)
@@ -98,8 +104,10 @@ const AddListing = ({ formType }) => {
 				})
 			}
 		} else {
+			console.log(validationResult.data)
 			setErrors(validationResult.data)
 		}
+		setIsLoadingComponent(false)
 	}
 
 	const changeCategory = async (e) => {
@@ -236,7 +244,7 @@ const AddListing = ({ formType }) => {
 									onFocus={ () => clearError('town') }
 									defaultValue={ data.listing ? data.listing.town._id : "0" }>
 									<option value="0" disabled>-- избери град --</option>
-									{ data?.towns.map(town => (
+									{ data.towns.map(town => (
 										<option
 											defaultValue={ town._id }
 											key={ town._id }>{ town.name || "Избери град" }
@@ -290,7 +298,7 @@ const AddListing = ({ formType }) => {
 							text="Кликни тук за да избереш една или повече снимки за обявата ти!"
 						/>
 
-						<button type="submit" name="submit" className={ styles.submitBtn }>Изпрати</button>
+						<StyledBtn type="submit" name="submit" className={ styles.submitBtn }>Изпрати</StyledBtn>
 					</div>
 				</form>
 			</MainPageLayout>

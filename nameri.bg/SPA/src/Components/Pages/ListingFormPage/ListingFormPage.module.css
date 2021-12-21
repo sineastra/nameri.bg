@@ -78,10 +78,11 @@ textarea {
 .categorySelect {
     padding: 0 0 0 20px;
     width: 90%;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
+    margin-top: 2%;
 }
 
-.submitBtn {
+button.submitBtn {
     width: 25%;
     border-radius: 5px;
     padding: 10px;
@@ -132,6 +133,7 @@ textarea {
 
 .customFileInput {
     margin-bottom: 5%;
+    margin-top: 5%;
 }
 
 
@@ -162,7 +164,7 @@ textarea {
         font-size: 1.5rem;
     }
 
-    .submitBtn {
+    button.submitBtn {
         width: 100%;
         padding: 0;
         height: 40px;

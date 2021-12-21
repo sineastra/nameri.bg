@@ -7,6 +7,7 @@ TODO: Lazy loading
 TODO: Suspense
 TODO: Check why url is updated with search query when you press the search button.
 TODO: Check and fix all setError context updates and sync them with the Express responses.
+TODO: PARAMETRISE all functions which use states or etc so they can be reused.
 
 TODO: add credits section:
 

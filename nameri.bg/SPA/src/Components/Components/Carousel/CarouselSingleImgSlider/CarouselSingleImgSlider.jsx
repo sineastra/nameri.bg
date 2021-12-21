@@ -3,15 +3,15 @@ import ImageLoadingPlaceholder from "../../ImageLoadingPlaceholder/ImageLoadingP
 import { useState } from "react"
 
 
-const CarouselSingleImgSlider = ({ id, onClick }) => {
+const CarouselSingleImgSlider = ({ src, onClick }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 
 	return (
 		<>
-			<div id={ id } onClick={ onClick }
+			<div id={ src } onClick={ onClick }
 			     className={ imgLoaded ? `${ styles.sliderSingleImgContainer } ${ styles.show }` : styles.hide }>
 				<img
-					src={ id }
+					src={ src }
 					alt=""
 					className={ styles.sliderSingleImg }
 					onLoad={ () => setImgLoaded(true) }

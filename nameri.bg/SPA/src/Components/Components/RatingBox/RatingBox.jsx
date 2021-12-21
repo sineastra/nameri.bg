@@ -4,8 +4,6 @@ import { IconContext } from "react-icons"
 
 
 const RatingBox = ({ user, rating, showVotes, className = "" }) => {
-	
-	console.log(user, rating, showVotes)
 
 	return (
 		<div className={ `${ styles.headingInnerWrapper } ${ className }` }>
@@ -15,7 +13,7 @@ const RatingBox = ({ user, rating, showVotes, className = "" }) => {
 					<FaStar/>
 				</IconContext.Provider>
 			</div>
-			{ showVotes && <div className={styles.votesWrapper}>
+			{ showVotes && <div className={ styles.votesWrapper }>
 				{ user.reviews.length } глас(а)
 			</div> }
 		</div>

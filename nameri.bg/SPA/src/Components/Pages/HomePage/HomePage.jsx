@@ -12,7 +12,7 @@ import HomePageContext from "../../Contexts/HomePageContext.jsx"
 
 const fetchData = async () => {
 	let [listings, popularCategories, subCategories] = await Promise.all([
-		listingsServices.getBest(2),
+		listingsServices.getBest(5),
 		categoriesService.getPopular(8),
 		categoriesService.getWithMostSubCats(2),
 	])

@@ -93,7 +93,7 @@ const ListingSideCard = ({ listing, setData }) => {
 					/>
 				</div>
 				<div className={ styles.userInfoBtnsWrapper }>
-					{ user._id !== listing.user._id && <StyledBtn
+					{ user && user._id !== listing.user._id && <StyledBtn
 						className={ `${ styles.styledBtn } ${ styles.styledBtnReverted }` }
 						onClick={ () => setModalVisible(true) }
 						text="Оцени"

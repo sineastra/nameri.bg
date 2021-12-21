@@ -1,5 +1,5 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import { useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import listingsServices from "../../../services/listingsServices.js"
 import styles from "./ListingDetails.module.css"
 import Carousel from "../../Components/Carousel/Carousel.jsx"
@@ -7,7 +7,9 @@ import ListingSideCard from "../../Components/ListingSideCard/ListingSideCard.js
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
+import UserContext from "../../Contexts/UserContext.jsx"
 
 
 const fetchData = async (id) => {
@@ -22,12 +24,40 @@ const fetchData = async (id) => {
 
 const ListingDetails = (props) => {
 	const params = useParams()
+	const navigate = useNavigate()
 	const { isLoadingData, data, setData } = useFetch(() => fetchData(params.id))
 	const [images, setImages] = useState([])
+	const [loggedUser] = useContext(UserContext)
+
+	const deleteListing = async () => {
+		const confirm = window.confirm('Сигурен ли си че искаш да изтриеш обявата?')
+
+		if (confirm) {
+			const response = await listingsServices.deleteListing(data.listing._id)
+
+			if (response.ok) {
+				navigate("/")
+			} else {
+				navigate("/error")
+			}
+		}
+	}
 
 	useEffect(() => {
 		if (data.listing) {
-			setImages(data.listing.images.length > 0 ? data.listing.images : ['/Default-cover.svg'])
+			const images = data.listing.images.length > 0
+				? data.listing.images.map(x => {
+					const img = new Image()
+
+					img.src = x
+
+					return img
+				})
+				: ['/Default-cover.svg']
+
+			console.log(images)
+
+			setImages(images)
 		}
 	}, [data])
 
@@ -55,20 +85,37 @@ const ListingDetails = (props) => {
 						</div>
 					</section>
 
-					<section className={ styles.similarServices }>
-						{ data.similarListings.map(listing => (
-							<ListingCard
-								listing={ listing }
-								user={ listing.user }
-								className={ styles.similarService }
-								key={ listing._id }
-								profilePicClassName={ styles.listingProfilePic }
-								priceClassName={ styles.priceClassName }
-								namesClassName={ styles.namesClassName }
-								headingClassName={ styles.listingHeading }
-							/>
-						)) }
-					</section>
+					{ (loggedUser && loggedUser._id === data.listing.user._id) &&
+						<div className={ styles.listingActionsBtns }>
+							<Link to={ `/edit-listing/${ data.listing._id }` } className={ styles.editBtnLink }>
+								<StyledBtn className={ styles.editListingBtn }>Редактирай</StyledBtn>
+							</Link>
+							<StyledBtn
+								className={ styles.deleteListingBtn }
+								onClick={ deleteListing }>Изтрий обявата
+							</StyledBtn>
+						</div>
+					}
+
+
+					{ data.similarListings.length > 0
+						&& <section className={ styles.similarListingsWrapper }>
+							<h1 className={ styles.similarListingsHeader }>Подобни обяви</h1>
+							<div className={ styles.similarListings }>
+								{ data.similarListings.map(listing => (
+									<ListingCard
+										listing={ listing }
+										user={ listing.user }
+										className={ styles.similarListing }
+										key={ listing._id }
+										profilePicClassName={ styles.listingProfilePic }
+										priceClassName={ styles.priceClassName }
+										namesClassName={ styles.namesClassName }
+										headingClassName={ styles.listingHeading }
+									/>
+								)) }
+							</div>
+						</section> }
 				</section>
 			</MainPageLayout>
 	)
