@@ -55,13 +55,7 @@ const abstractFormDataRequest = async (url, formData, method) => {
 			body: formData,
 		}
 
-		abstractFetch(url, body).then(response => {
-			if (!response.ok) {
-				reject({ response })
-			}
-
-			resolve(response)
-		}).catch(e => reject({ status: e.status, statusText: e.statusText }))
+		abstractFetch(url, body).then(data => resolve(data))
 	})
 }
 

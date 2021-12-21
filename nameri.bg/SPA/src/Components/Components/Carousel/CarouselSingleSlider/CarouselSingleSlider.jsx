@@ -2,7 +2,7 @@ import styles from "./CarouselSingleSlider.module.css"
 import CarouselSingleImgSlider from "../CarouselSingleImgSlider/CarouselSingleImgSlider.jsx"
 
 
-const CarouselSingleSlider = ({ slideData, setActiveImgIndx, className }) => {
+const CarouselSingleSlider = ({ slideData, setActiveImgIndx, className = "" }) => {
 
 	return (
 		<div className={ `${ styles.slidersInnerWrapper } ${ className }` }>

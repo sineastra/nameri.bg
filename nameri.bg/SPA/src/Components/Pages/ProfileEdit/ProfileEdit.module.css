@@ -113,15 +113,15 @@ input, textarea {
     margin-top: 5%;
 }
 
-.submitBtn {
+button.submitBtn {
     padding: 10px 25px;
-    display: inline-flex;
     justify-self: center;
     align-items: center;
+    width: 30%;
 }
 
 .invalidInput {
-    border: 2px solid red;
+    border: 1px solid red;
 }
 
 .errorElement {
@@ -156,5 +156,9 @@ input, textarea {
 
     .detailsSmall {
         display: block;
+    }
+
+    button.submitBtn {
+        width: 90%;
     }
 }

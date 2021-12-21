@@ -32,7 +32,7 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 
 	const participants = pickedMsg.participants
 		.filter(x => x._id !== user._id)
-		.map(x => <Link to={ `/profile/${ x._id }` }>{ x.nameAndSurname }</Link>)
+		.map(x => <Link to={ `/profile/${ x._id }` } className={ styles.participantLink }>{ x.nameAndSurname }</Link>)
 
 	useEffect(() => {
 		if (lastMsg.current !== null) {
@@ -71,13 +71,11 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 		}
 	}
 
-	console.log(participants)
-
 	return (
 		<div className={ `${ styles.mainWrapper } ${ styles.mainWrapperNonEmpty } ${ className }` }>
 			<div className={ styles.innerWrapper }>
 				<div className={ styles.userNameHeader }>
-					<Link to={ `/profile/${ user._id }` }>Аз</Link>
+					<Link to={ `/profile/${ user._id }` } className={ styles.participantLink }>Аз</Link>
 					<span>, { participants } </span>
 				</div>
 				<div className={ styles.messagesContainer }>

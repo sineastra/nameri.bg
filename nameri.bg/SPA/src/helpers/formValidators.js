@@ -48,7 +48,7 @@ const profileEditFormValidator = (formDataObj) => {
 		address: (value) => value.length === 0 || (value.length !== 0 && value.length >= 5),
 		password: (value) => value.length === 0 || (value.length !== 0 && value.length >= 6),
 		profileImg: () => true,
-		about: (value) => value.length !== 0,
+		about: () => true,
 		repeatPassword: (value, pass) => value === pass,
 	}
 

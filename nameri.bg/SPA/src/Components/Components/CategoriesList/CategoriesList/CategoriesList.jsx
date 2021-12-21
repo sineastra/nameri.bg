@@ -2,6 +2,7 @@ import styles from "./CategoriesList.module.css"
 import SingleListCategory from "../SingleListCategory/SingleListCategory.jsx"
 import { useContext } from "react"
 import HomePageContext from "../../../Contexts/HomePageContext.jsx"
+import { Link } from "react-router-dom"
 
 
 const CategoriesList = (props) => {
@@ -14,7 +15,8 @@ const CategoriesList = (props) => {
 				<div className={ styles.randomCatsInnerCont }>
 					{ subCategories.map(category => (
 						<div className={ styles.randomCatsSingleCont } key={ category._id }>
-							<h1 className={ styles.mainHeader }>{ category.name }</h1>
+							<Link to={ `/categories/${ category._id }` }
+							      className={ styles.mainHeader }>{ category.name }</Link>
 							<div className={ styles.innerRandom }>
 								{ category.subcategories.map(subCat => (
 									<SingleListCategory

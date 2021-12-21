@@ -72,12 +72,17 @@ const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 
 				<div className={ styles.carouselWrapper } ref={ sliderRef }>
 					{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/ }
-					{ slideArray.map(slideData => (
-						<CarouselSingleSlider
-							slideData={ slideData }
-							setActiveImgIndx={ setActiveImgIndx }
-							key={ slideData[0] }
-						/>))
+					{ slideArray.map(slideData => {
+						console.log(slideData)
+
+						return (
+							<CarouselSingleSlider
+								slideData={ slideData }
+								setActiveImgIndx={ setActiveImgIndx }
+								key={ slideData[0] }
+								className={ slideData.length < 3 ? styles.nonFullSlide : '' }
+							/>)
+					})
 					}
 				</div>
 

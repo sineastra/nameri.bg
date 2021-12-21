@@ -67,7 +67,7 @@ const RegisterForm = ({ className }) => {
 							поверителност, Общите условия и Защитата на личните данни на nameri.bg ООД
 						</div>
 					</div>
-					<StyledBtn text="Регистрация"/>
+					<StyledBtn text="Регистрация" className={styles.styledBtn}/>
 				</form>
 			</div>
 		// --->

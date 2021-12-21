@@ -82,6 +82,10 @@ div.mainImgLoader {
     color: #ff7200;
 }
 
+div.nonFullSlide {
+    display: flex;
+    justify-content: flex-start;
+}
 
 .rightArrow {
     right: 0;

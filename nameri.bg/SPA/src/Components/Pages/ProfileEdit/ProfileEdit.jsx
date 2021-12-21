@@ -10,6 +10,9 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TagInput from "../../Components/TagInput/TagInput.jsx"
 import { useNavigate } from "react-router-dom"
 import processNewToken from "../../../helpers/processNewToken.js"
+import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
+import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import ErrorContext from "../../Contexts/ErrorContext.jsx"
 
 
 const DetailsArticle = () => {
@@ -51,7 +54,8 @@ const ProfileEdit = () => {
 		setData,
 	} = useFetch(() => userServices.getUserForProfile(userData._id, userData))
 	const [profileImg, setProfileImg] = useState('')
-	const [errors, setErrors] = useState({})
+	const [formDataErrors, setFormDataErrors] = useState({})
+	const [contextErrors, setContextErrors] = useContext(ErrorContext)
 	const navigate = useNavigate()
 
 	const submitForm = async (e) => {
@@ -74,11 +78,17 @@ const ProfileEdit = () => {
 			setIsLoadingData(true)
 			const response = await userServices.editProfile(userData._id, formDataFinal)
 
-			setUserData(processNewToken(response.token))
+			if (response.ok) {
+				setUserData(processNewToken(response.token))
 
-			navigate(`/profile/${ userData._id }`)
+				navigate(`/profile/${ userData._id }`)
+			} else {
+				console.log(extractErrorMessages(response.errors))
+				setContextErrors(extractErrorMessages(response.errors))
+			}
+
 		} else {
-			setErrors(validationResult.data)
+			setFormDataErrors(validationResult.data)
 		}
 	}
 
@@ -99,7 +109,7 @@ const ProfileEdit = () => {
 	}
 
 	const clearError = (error) => {
-		setErrors(oldErrors => ({ ...oldErrors, [error]: true }))
+		setFormDataErrors(oldErrors => ({ ...oldErrors, [error]: true }))
 	}
 
 	const addImg = (e) => {
@@ -112,7 +122,7 @@ const ProfileEdit = () => {
 		isLoadingData
 			? <Spinner/>
 			: <MainPageLayout>
-				<form className={ styles.mainWrapper } onSubmit={ submitForm } method="POST">
+				<form className={ styles.mainWrapper } onSubmit={ submitForm }>
 					<section className={ styles.smallerWrapper20 }>
 						<h1 className={ styles.mainHeader }>РЕДАКТИРАЙ ПРОФИЛ</h1>
 						<DetailsArticle/>
@@ -124,8 +134,9 @@ const ProfileEdit = () => {
 								       placeholder="Име и фамилия"
 								       name="nameAndSurname"
 								       defaultValue={ data.nameAndSurname }
-								       className={ errors.nameAndSurname === false ? styles.invalidInput : '' }/>
-								{ errors.nameAndSurname === false &&
+								       onFocus={ () => clearError('nameAndSurname') }
+								       className={ formDataErrors.nameAndSurname === false ? styles.invalidInput : '' }/>
+								{ formDataErrors.nameAndSurname === false &&
 									<div className={ styles.errorElement }>
 										Името и Фамилията трябва да са поне 6 знака.
 									</div> }
@@ -136,9 +147,11 @@ const ProfileEdit = () => {
 								{/*Phone Section*/ }
 								<div className={ styles.halfInput }>
 									<input type="text" placeholder="Телефон" name="phone"
-									       className={ `${ errors.phone === false ? styles.invalidInput : '' }` }
-									       defaultValue={ data.phone }/>
-									{ errors.phone === false &&
+									       className={ `${ formDataErrors.phone === false ? styles.invalidInput : '' }` }
+									       defaultValue={ data.phone ? `+359${ data.phone }` : '' }
+									       onFocus={ () => clearError('phone') }
+									/>
+									{ formDataErrors.phone === false &&
 										<div className={ styles.errorElement }>
 											Телефона тряба да започва с +359 или с 0 и да е 9 символа след това (Валиден
 											телефон за България)
@@ -149,21 +162,26 @@ const ProfileEdit = () => {
 								{/*Website Section*/ }
 								<div className={ styles.halfInput }>
 									<input type="text" placeholder="Уебсайт" name="website"
-									       className={ `${ errors.website === false ? styles.invalidInput : '' }` }
-									       defaultValue={ data.website }/>
-									{ errors.website === false &&
+									       className={ `${ formDataErrors.website === false ? styles.invalidInput : '' }` }
+									       defaultValue={ data.website }
+									       onFocus={ () => clearError('website') }/>
+									{ formDataErrors.website === false &&
 										<div className={ styles.errorElement }>
 											Валиден уеб сайт, моля.
-										</div> }
+										</div>
+									}
+
 								</div>
 								{/*End of Website Section*/ }
 
 								{/*Email Section*/ }
 								<div className={ styles.halfInput }>
 									<input type="text" placeholder="Имейл" name="email"
-									       className={ `${ errors.email === false ? styles.invalidInput : '' }` }
-									       defaultValue={ data.email }/>
-									{ errors.email === false &&
+									       className={ `${ formDataErrors.email === false ? styles.invalidInput : '' }` }
+									       defaultValue={ data.email }
+									       onFocus={ () => clearError('email') }
+									/>
+									{ formDataErrors.email === false &&
 										<div className={ styles.errorElement }>
 											Невалиден имейл.
 										</div> }
@@ -172,9 +190,11 @@ const ProfileEdit = () => {
 
 								{/*Address Section*/ }
 								<input type="text" placeholder="Адрес" name="address"
-								       className={ `${ styles.halfInput } ${ errors.address === false ? styles.invalidInput : '' }` }
-								       defaultValue={ data.address }/>
-								{ errors.address === false &&
+								       className={ `${ styles.halfInput } ${ formDataErrors.address === false ? styles.invalidInput : '' }` }
+								       defaultValue={ data.address }
+								       onFocus={ () => clearError('address') }
+								/>
+								{ formDataErrors.address === false &&
 									<div className={ styles.errorElement }>
 										Адреса трябва да е поне 5 символа.
 									</div> }
@@ -188,7 +208,7 @@ const ProfileEdit = () => {
 								onFocus={ () => clearError('skills') }
 								onKeyPress={ addSkill }
 								data={ data.skills }
-								errors={ errors }
+								errors={ formDataErrors }
 								removeDataEntry={ removeSkill }
 								inputText="Умения (Добави със спейс)"
 							/>
@@ -215,12 +235,13 @@ const ProfileEdit = () => {
 									{/*First Input*/ }
 									<div className={ styles.halfInput }>
 										<input type="password"
-										       className={ `${ errors.password === false ? styles.invalidInput : '' }` }
+										       className={ `${ formDataErrors.password === false ? styles.invalidInput : '' }` }
 										       name="password"
 										       placeholder="Нова Парола"
 										       autoComplete="one-time-code"
+										       onFocus={ () => clearError('password') }
 										/>
-										{ errors.password === false &&
+										{ formDataErrors.password === false &&
 											<div className={ styles.errorElement }>
 												Паролата трябва да е поне 6 символа.
 											</div> }
@@ -229,12 +250,13 @@ const ProfileEdit = () => {
 									{/*Second Input*/ }
 									<div className={ styles.halfInput }>
 										<input type="password"
-										       className={ `${ errors.repeatPassword === false ? styles.invalidInput : '' }` }
+										       className={ `${ formDataErrors.repeatPassword === false ? styles.invalidInput : '' }` }
 										       name="repeatPassword"
 										       placeholder="Повтори Нова Парола"
 										       autoComplete="one-time-code"
+										       onFocus={ () => clearError('repeatPassword') }
 										/>
-										{ errors.repeatPassword === false &&
+										{ formDataErrors.repeatPassword === false &&
 											<div className={ styles.errorElement }>
 												Паролите не съвпадат.
 											</div>
@@ -247,7 +269,7 @@ const ProfileEdit = () => {
 						</section>
 					</section>
 					<div className={ styles.submitBtnWrapper }>
-						<button className={ styles.submitBtn } type="submit">ЗАПАЗИ</button>
+						<StyledBtn className={ styles.submitBtn } type="submit">ЗАПАЗИ</StyledBtn>
 					</div>
 				</form>
 			</MainPageLayout>

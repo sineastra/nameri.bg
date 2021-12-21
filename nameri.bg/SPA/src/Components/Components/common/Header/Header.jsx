@@ -39,6 +39,7 @@ const Header = () => {
 			if (response.ok) {
 				Cookies.remove(process.env.REACT_APP_JWT_COOKIE_NAME)
 				setUser(null)
+				navigate("/")
 			} else {
 				setErrors(extractErrorMessages(response.errors))
 			}

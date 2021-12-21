@@ -26,6 +26,7 @@
     border: 1px solid lightgray;
     padding: 15px 15px 15px 0;
     text-indent: 20px;
+    border-radius: 5px;
 }
 
 
@@ -51,6 +52,10 @@
     width: 5%;
 }
 
+.styledBtn {
+    width: 30%;
+}
+
 
 @media screen and (max-width: 1200px) {
     .inputFieldsCont {
@@ -69,7 +74,7 @@
     }
 
     .styledBtn {
-        width: 50%;
+        width: 100%;
     }
 
     .inputFieldsCont {

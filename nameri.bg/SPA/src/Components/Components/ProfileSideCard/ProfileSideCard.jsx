@@ -12,10 +12,10 @@ const ContactsInfo = ({ user }) => {
 	return <div className={ styles.contactsInfo }>
 		<div><span className={ styles.contactsLabel }>Телефон:</span>
 			{ user.phone
-				? <span className={ styles.contactsContent }> { user.phone }</span>
+				? <span className={ styles.contactsContent }> { `+359 ${ user.phone }` }</span>
 				: <span className={ styles.contactsEmptyContent }> (няма телефон)</span> }
 		</div>
-		<div><span className={ styles.contactsLabel }>Имейл:</span>
+		<div><span className={ styles.contactsLabel }>Имейл:</span>ca
 			<span className={ styles.contactsContent }> { user.email }</span>
 
 		</div>
