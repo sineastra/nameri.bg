@@ -53,9 +53,7 @@ const ListingDetails = (props) => {
 
 					return img
 				})
-				: ['/Default-cover.svg']
-
-			console.log(images)
+				: [{ src: '/Default-cover.svg' }]
 
 			setImages(images)
 		}
@@ -87,19 +85,21 @@ const ListingDetails = (props) => {
 
 					{ (loggedUser && loggedUser._id === data.listing.user._id) &&
 						<div className={ styles.listingActionsBtns }>
-							<Link to={ `/edit-listing/${ data.listing._id }` } className={ styles.editBtnLink }>
-								<StyledBtn className={ styles.editListingBtn }>Редактирай</StyledBtn>
-							</Link>
-							<StyledBtn
-								className={ styles.deleteListingBtn }
-								onClick={ deleteListing }>Изтрий обявата
-							</StyledBtn>
+							<div className={ styles.listingActionsInner }>
+								<Link to={ `/edit-listing/${ data.listing._id }` } className={ styles.editBtnLink }>
+									<StyledBtn className={ styles.editListingBtn }>Редактирай</StyledBtn>
+								</Link>
+								<StyledBtn
+									className={ styles.deleteListingBtn }
+									onClick={ deleteListing }>Изтрий обявата
+								</StyledBtn>
+							</div>
 						</div>
 					}
 
 
 					{ data.similarListings.length > 0
-						&& <section className={ styles.similarListingsWrapper }>
+						? <section className={ styles.similarListingsWrapper }>
 							<h1 className={ styles.similarListingsHeader }>Подобни обяви</h1>
 							<div className={ styles.similarListings }>
 								{ data.similarListings.map(listing => (
@@ -115,7 +115,9 @@ const ListingDetails = (props) => {
 									/>
 								)) }
 							</div>
-						</section> }
+						</section>
+						: <h1 className={ `${ styles.mainHeader } ${ styles.noSimilarListings }` }>Няма подобни обяви</h1>
+					}
 				</section>
 			</MainPageLayout>
 	)

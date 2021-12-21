@@ -67,14 +67,13 @@ const AddListing = ({ formType }) => {
 
 		let formDataWithAddedStates = {
 			...data,
-			town: data.town || '',
-			category: data.category || '',
-			subcategory: data.subcategory || '',
+			town: data.town,
+			category: data.category,
+			subcategory: data.subcategory,
 			tags: JSON.stringify(tags),
 			images,
 			price: isChecked ? '0' : price,
 		}
-		console.log(formDataWithAddedStates)
 		const validationResult = addListingFormValidator(formDataWithAddedStates)
 
 		if (validationResult.valid) {
@@ -104,7 +103,6 @@ const AddListing = ({ formType }) => {
 				})
 			}
 		} else {
-			console.log(validationResult.data)
 			setErrors(validationResult.data)
 		}
 		setIsLoadingComponent(false)
@@ -242,12 +240,12 @@ const AddListing = ({ formType }) => {
 									name="town"
 									className={ `${ styles.halfInput } ${ errors.town === false ? styles.invalidInput : '' }` }
 									onFocus={ () => clearError('town') }
-									defaultValue={ data.listing ? data.listing.town._id : "0" }>
-									<option value="0" disabled>-- избери град --</option>
+									defaultValue={ data.listing ? data.listing.town._id : "townDefault" }>
+									<option value="townDefault" disabled>-- избери град --</option>
 									{ data.towns.map(town => (
 										<option
-											defaultValue={ town._id }
-											key={ town._id }>{ town.name || "Избери град" }
+											value={ town._id }
+											key={ town._id }>{ town.name }
 										</option>
 									)) }
 								</select>
@@ -263,10 +261,10 @@ const AddListing = ({ formType }) => {
 							className={ `${ styles.categorySelect } ${ styles.halfInput } ${ errors.category === false ? styles.invalidInput : '' }` }
 							onChange={ changeCategory }
 							onFocus={ () => clearError('category') }
-							defaultValue={ data.listing ? data.listing.category._id : "0" }>
-							<option value="0" disabled>-- избери категория --</option>
+							defaultValue={ data.listing ? data.listing.category._id : "categoryDefault" }>
+							<option value="categoryDefault" disabled>-- избери категория --</option>
 							{ data?.categories.map(category => (
-								<option defaultValue={ category._id }
+								<option value={ category._id }
 								        key={ category._id }
 								        id={ category._id }>{ category.name }
 								</option>
@@ -284,7 +282,7 @@ const AddListing = ({ formType }) => {
 							onFocus={ () => clearError('subcategory') }
 							defaultValue={ data.listing ? data.listing.subcategory._id : '' }>
 							{ subCats.map(subCat => (
-								<option defaultValue={ subCat._id } key={ subCat._id }>{ subCat.name }</option>)) }
+								<option value={ subCat._id } key={ subCat._id }>{ subCat.name }</option>)) }
 						</select>
 						{ errors.subcategory === false &&
 							<div className={ styles.errorElement }>Моля избери подкатегория... </div> }

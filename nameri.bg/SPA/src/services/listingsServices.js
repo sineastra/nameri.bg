@@ -9,7 +9,7 @@ const listingsServices = {
 	createNewListing: async (formData) => abstractFormDataRequest('/listings/add', formData, "POST"),
 	updateListing: async (listingId, formData) => abstractFormDataRequest(`/listings/edit/${ listingId }`, formData, "PUT"),
 	search: async (search) => abstractGetRequest(`/listings/search?search=${ search }`),
-	deleteListing: async (listingId) => abstractFetch(`/listings/${ listingId }`, {}, "DELETE"),
+	deleteListing: async (listingId) => abstractFetch(`/listings/delete/${ listingId }`, {}, "GET"),
 }
 
 export default listingsServices

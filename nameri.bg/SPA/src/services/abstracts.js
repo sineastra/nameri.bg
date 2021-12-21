@@ -22,7 +22,10 @@ const abstractFetch = async (url, body, method = "GET") => {
 				return data.json()
 			})
 			.then(data => resolve(data))
-			.catch(e => reject({ status: e.status, statusText: e.statusText }))
+			.catch(e => {
+				console.log(e)
+				reject({ status: e.status, statusText: e.statusText })
+			})
 
 	})
 }

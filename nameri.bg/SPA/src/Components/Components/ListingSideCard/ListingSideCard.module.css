@@ -37,9 +37,11 @@
 }
 
 .pricesInfoOuter {
-    background-color: #ff8a33;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
     padding: 5px;
-    border-radius: 0 15px 15px 15px;
+    background-color: #f6f6f6;
+    border-radius: 15px 15px 15px 15px;
 }
 
 .pricesInfoInner {
@@ -164,6 +166,7 @@ div.userHeadingWrapperMain {
 
 .styledBtn {
     width: 50%;
+    height: 50px;
 }
 
 .styledBtnReverted {
@@ -171,12 +174,17 @@ div.userHeadingWrapperMain {
     background: #ff7200;
     color: white;
     border: 3px solid #ff7200;
+    height: 50px;
 }
 
 .styledBtnReverted:hover {
     background: white;
     color: #ff7200;
     border: 3px solid #ff7200;
+}
+
+.styledBtnInner {
+    height: 50px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -199,7 +207,7 @@ div.userHeadingWrapperMain {
     }
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 1100px) {
     .styledBtn {
         width: 100%;
     }

@@ -17,6 +17,10 @@
     width: 60%;
     border: none;
     box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
 }
 
 .sideSection {
@@ -26,23 +30,28 @@
 
 .listingActionsBtns {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+   display: flex;
     justify-content: center;
-    align-items: center;
 }
 
+.listingActionsInner {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+}
 
 .deleteListingBtn {
     border-color: red;
     background: red;
     color: white;
-    width: 60%;
+    width: 40%;
+    height: 40px;
 }
 
 .editBtnLink {
-    width: 60%;
+    width: 40%;
     margin-bottom: 1%;
+    height: 40px;
 }
 
 .editListingBtn {
@@ -104,7 +113,7 @@
     flex-direction: column;
     padding-bottom: 5%;
     padding-top: 5%;
-    height: 60vh;
+    height: 65vh;
     align-items: center;
 
 }
@@ -171,6 +180,11 @@
     }
 }
 
+.noSimilarListings {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
 @media screen and (max-width: 1400px) {
     .similarListings {
         height: 50vh;
@@ -195,6 +209,10 @@
 @media screen and (max-width: 1000px) {
     div.similarListing {
         width: 32%;
+    }
+
+    .listingActionsInner {
+        width: 80%;
     }
 }
 
@@ -269,6 +287,15 @@
 
     a.listingHeading {
         font-size: 1rem;
+    }
+
+    .listingActionsInner {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .editBtnLink {
+        width: 100%;
     }
 }
 
