@@ -5,6 +5,7 @@ import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import getToken from "../../../helpers/getToken.js"
+import Cookies from "js-cookie"
 
 
 let timeout = 0
