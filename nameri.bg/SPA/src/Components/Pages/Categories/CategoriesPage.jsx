@@ -36,32 +36,34 @@ const CategoriesPage = (props) => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <section className={ styles.outerSection }>
-				<div className={ styles.innerSection }>
-					<CategoriesPagesHeader
-						categoryName={ "Всички Категории" }
-						onSearchSubmit={ onSearchSubmit }
-						onSearchChange={ onSearchChange }
-					/>
-					<section className={ styles.cardsWrapper }>
-						{ filteredCats.length > 0
-							? filteredCats.map(category => (
-								<CategoryCard
-									key={ category._id }
-									_id={ category._id }
-									categoryName={ category.name }
-									categoryIcon={ category.icon }
-									subCategories={ category.subcategories }
-									className={ styles.categoryCard }
-								/>
-							))
-							: <div className={ styles.noCatsWrapper }>
-								<h1 className={ styles.noCatsHeader }>Няма открити подкатегории</h1>
-							</div>
-						}
-					</section>
-				</div>
-			</section>
+			: <MainPageLayout>
+				<section className={ styles.outerSection }>
+					<div className={ styles.innerSection }>
+						<CategoriesPagesHeader
+							categoryName={ "Всички Категории" }
+							onSearchSubmit={ onSearchSubmit }
+							onSearchChange={ onSearchChange }
+						/>
+						<section className={ styles.cardsWrapper }>
+							{ filteredCats.length > 0
+								? filteredCats.map(category => (
+									<CategoryCard
+										key={ category._id }
+										_id={ category._id }
+										categoryName={ category.name }
+										categoryIcon={ category.icon }
+										subCategories={ category.subcategories }
+										className={ styles.categoryCard }
+									/>
+								))
+								: <div className={ styles.noCatsWrapper }>
+									<h1 className={ styles.noCatsHeader }>Няма открити подкатегории</h1>
+								</div>
+							}
+						</section>
+					</div>
+				</section>
+			</MainPageLayout>
 	)
 }
 

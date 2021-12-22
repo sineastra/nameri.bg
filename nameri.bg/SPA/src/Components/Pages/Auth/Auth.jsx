@@ -3,6 +3,7 @@ import Benefits from "../../Components/BenefitsSidebox/Benefits.jsx"
 import styles from "./Auth.module.css"
 import RegisterForm from "../../Components/AuthForms/RegisterForm.jsx"
 import { Link } from "react-router-dom"
+import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 
 
 const Auth = ({ authType }) => {
@@ -12,30 +13,32 @@ const Auth = ({ authType }) => {
 	const linkHref = authType === 'login' ? '/sign-up' : '/sign-in'
 
 	return (
-		<div
-			className={ `${ styles.wrapper } ${ authType === 'login' ? styles.shortMain : styles.longMain }` }>
-			<section className={ styles.mainWrapper }>
+		<MainPageLayout>
+			<div
+				className={ `${ styles.wrapper } ${ authType === 'login' ? styles.shortMain : styles.longMain }` }>
+				<section className={ styles.mainWrapper }>
 
-				<section className={ styles.headerSectionOuter }>
-					<div className={ styles.headerSectionInner }>
-						<h1 className={ styles.header }>{ actionText }</h1>
-						<span>
+					<section className={ styles.headerSectionOuter }>
+						<div className={ styles.headerSectionInner }>
+							<h1 className={ styles.header }>{ actionText }</h1>
+							<span>
 							<span className={ styles.miscText }>{ miscText } | </span>
 							<Link to={ linkHref } className={ styles.redirectLink }>{ redirectText }</Link>
 							</span>
-					</div>
-					<Benefits authType={ authType }/>
-				</section>
+						</div>
+						<Benefits authType={ authType }/>
+					</section>
 
-				<section className={ styles.authFieldsSection }>
-					{ authType === 'login'
-						? <LoginForm className={ styles.formClassName }/>
-						: <RegisterForm className={ styles.formClassName }/>
-					}
-				</section>
+					<section className={ styles.authFieldsSection }>
+						{ authType === 'login'
+							? <LoginForm className={ styles.formClassName }/>
+							: <RegisterForm className={ styles.formClassName }/>
+						}
+					</section>
 
-			</section>
-		</div>
+				</section>
+			</div>
+		</MainPageLayout>
 	)
 }
 

@@ -46,7 +46,8 @@ const Messages = (props) => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <PageSection>
+			: <MainPageLayout>
+				<PageSection>
 					<div className={ styles.wrapper }>
 						<div className={ styles.mainHeader }>
 							<h1>Съобщения</h1>
@@ -64,6 +65,7 @@ const Messages = (props) => {
 						</div>
 					</div>
 				</PageSection>
+			</MainPageLayout>
 	)
 }
 

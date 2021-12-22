@@ -27,14 +27,16 @@ const HomePage = () => {
 		isLoadingData
 			? <Spinner/>
 			: <HomePageContext.Provider value={ [data, setData] }>
-				<HeadPageBanner/>
+				<MainPageLayout>
+					<HeadPageBanner/>
 
-				<main>
-					<PopularCategories/>
-					<CategoriesList/>
-				</main>
+					<main>
+						<PopularCategories/>
+						<CategoriesList/>
+					</main>
 
-				<SiteAdvertBanner/>
+					<SiteAdvertBanner/>
+				</MainPageLayout>
 			</HomePageContext.Provider>
 	)
 }

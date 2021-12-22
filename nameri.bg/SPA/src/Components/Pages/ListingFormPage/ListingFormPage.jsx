@@ -35,7 +35,7 @@ const AddListing = ({ formType }) => {
 	const { isLoadingData, data } = useFetch(formType === 'edit'
 			? () => fetchDataEdit(params.id)
 			: fetchDataAdd,
-		[params, formType])
+		[formType])
 	const [isLoadingComponent, setIsLoadingComponent] = useState(true)
 	const [subCats, setSubCats] = useState([])
 	const [images, setImages] = useState([])
@@ -75,7 +75,6 @@ const AddListing = ({ formType }) => {
 		}
 		const validationResult = addListingFormValidator(formDataWithAddedStates)
 
-
 		if (validationResult.valid) {
 			try {
 				const formDataFinal = Object.entries(formDataWithAddedStates).reduce((a, [key, value]) => {
@@ -91,10 +90,8 @@ const AddListing = ({ formType }) => {
 				const response = await postData(formType, formDataFinal, params.id)
 
 				if (response.ok) {
-					setIsLoadingComponent(false)
 					navigate(`/details/${ response.data._id }`)
 				} else {
-					setIsLoadingComponent(false)
 					setErrors(response.errors)
 				}
 			} catch (e) {
@@ -107,7 +104,6 @@ const AddListing = ({ formType }) => {
 		} else {
 			setErrors(validationResult.data)
 		}
-		setIsLoadingComponent(false)
 	}
 
 	const changeCategory = async (e) => {
@@ -157,29 +153,30 @@ const AddListing = ({ formType }) => {
 	return (
 		isLoadingData || isLoadingComponent
 			? <Spinner/>
-			: <form className={ styles.mainWrapper } method="POST" onSubmit={ submitHandler }>
-				<div className={ styles.upperWrapper }>
-					<div className={ styles.headingWrapper }>
-						<h1 className={ styles.mainHeading }>
-							{ data.listing ? `Редактиране на обява:` : 'Публикуване на нова обява' }
-						</h1>
+			: <MainPageLayout>
+				<form className={ styles.mainWrapper } method="POST" onSubmit={ submitHandler }>
+					<div className={ styles.upperWrapper }>
+						<div className={ styles.headingWrapper }>
+							<h1 className={ styles.mainHeading }>
+								{ data.listing ? `Редактиране на обява:` : 'Публикуване на нова обява' }
+							</h1>
 
-						{/*Start of Heading Input*/ }
-						<input
-							type="text"
-							name="heading"
-							placeholder="Заглавие на твоята обява"
-							className={ errors.heading === false ? styles.invalidInput : '' }
-							onFocus={ () => clearError('heading') }
-							defaultValue={ data.listing ? data.listing.heading : '' }
-						/>
-						{ errors.heading === false &&
-							<div className={ styles.errorElement }>Заглавието трябва да е поне 5 символа!</div> }
-						{/*End of Heading Input*/ }
-					</div>
+							{/*Start of Heading Input*/ }
+							<input
+								type="text"
+								name="heading"
+								placeholder="Заглавие на твоята обява"
+								className={ errors.heading === false ? styles.invalidInput : '' }
+								onFocus={ () => clearError('heading') }
+								defaultValue={ data.listing ? data.listing.heading : '' }
+							/>
+							{ errors.heading === false &&
+								<div className={ styles.errorElement }>Заглавието трябва да е поне 5 символа!</div> }
+							{/*End of Heading Input*/ }
+						</div>
 
-					{/*Start of Details Textarea*/ }
-					<div className={ styles.textareaWrapper }>
+						{/*Start of Details Textarea*/ }
+						<div className={ styles.textareaWrapper }>
 							<textarea
 								name="details"
 								placeholder="Детайлно описание"
@@ -187,119 +184,120 @@ const AddListing = ({ formType }) => {
 								onFocus={ () => clearError('details') }
 								defaultValue={ data.listing ? data.listing.details : '' }
 							/>
-						{ errors.details === false &&
-							<div className={ styles.errorElement }>Описанието трябва да е поне 10 символа!</div> }
+							{ errors.details === false &&
+								<div className={ styles.errorElement }>Описанието трябва да е поне 10 символа!</div> }
+						</div>
+						{/*End of Details Textarea*/ }
+
+						<TagInput
+							wrapperClassName={ styles.tagsInputWrapper }
+							inputName="tags"
+							onFocus={ () => clearError('tags') }
+							onKeyPress={ addTag }
+							data={ tags }
+							errors={ errors }
+							removeDataEntry={ removeTag }
+							inputText="Тагове (Добави със спейс)"
+						/>
 					</div>
-					{/*End of Details Textarea*/ }
-
-					<TagInput
-						wrapperClassName={ styles.tagsInputWrapper }
-						inputName="tags"
-						onFocus={ () => clearError('tags') }
-						onKeyPress={ addTag }
-						data={ tags }
-						errors={ errors }
-						removeDataEntry={ removeTag }
-						inputText="Тагове (Добави със спейс)"
-					/>
-				</div>
 
 
-				<div className={ styles.lowerWrapper }>
-					{/*Start of Price Area*/ }
-					<div className={ styles.priceWrapper }>
-						<div className={ styles.halfInputContainer }>
-							<input
-								type="number"
-								name="price"
-								disabled={ isChecked }
-								placeholder="Цена"
-								className={ `${ styles.halfInput } ${ errors.price === false ? styles.invalidInput : '' }` }
-								onFocus={ () => clearError('price') }
-								onChange={ handlePriceChange }
-								value={ price }
-							/>
-							{ errors.price === false &&
-								<div className={ styles.errorElement }>Цената е задължителна... </div>
-							}
-							<div className={ styles.priceCheckBoxWrapper }>
-								<label htmlFor="priceNegotiation" className={ styles.checkBoxLabel }>По
-									договаряне?</label>
-								<input type="checkbox" name="priceNegotiation" id="priceNegotiation"
-								       checked={ isChecked }
-								       onChange={ handleCheckBox }
-								       onFocus={ () => clearError('price') }
-								       className={ styles.checkBoxHolder }
+					<div className={ styles.lowerWrapper }>
+						{/*Start of Price Area*/ }
+						<div className={ styles.priceWrapper }>
+							<div className={ styles.halfInputContainer }>
+								<input
+									type="number"
+									name="price"
+									disabled={ isChecked }
+									placeholder="Цена"
+									className={ `${ styles.halfInput } ${ errors.price === false ? styles.invalidInput : '' }` }
+									onFocus={ () => clearError('price') }
+									onChange={ handlePriceChange }
+									value={ price }
 								/>
+								{ errors.price === false &&
+									<div className={ styles.errorElement }>Цената е задължителна... </div>
+								}
+								<div className={ styles.priceCheckBoxWrapper }>
+									<label htmlFor="priceNegotiation" className={ styles.checkBoxLabel }>По
+										договаряне?</label>
+									<input type="checkbox" name="priceNegotiation" id="priceNegotiation"
+									       checked={ isChecked }
+									       onChange={ handleCheckBox }
+									       onFocus={ () => clearError('price') }
+									       className={ styles.checkBoxHolder }
+									/>
+								</div>
 							</div>
-						</div>
-						{/*End of Price Area*/ }
+							{/*End of Price Area*/ }
 
-						{/*Start of Town Select*/ }
-						<div className={ styles.halfInputContainer }>
-							<select
-								name="town"
-								className={ `${ styles.halfInput } ${ errors.town === false ? styles.invalidInput : '' }` }
-								onFocus={ () => clearError('town') }
-								defaultValue={ data.listing ? data.listing.town._id : "townDefault" }>
-								<option value="townDefault" disabled>-- избери град --</option>
-								{ data.towns.map(town => (
-									<option
-										value={ town._id }
-										key={ town._id }>{ town.name }
-									</option>
-								)) }
-							</select>
-							{ errors.town === false &&
-								<div className={ styles.errorElement }>Моля избери град... </div> }
+							{/*Start of Town Select*/ }
+							<div className={ styles.halfInputContainer }>
+								<select
+									name="town"
+									className={ `${ styles.halfInput } ${ errors.town === false ? styles.invalidInput : '' }` }
+									onFocus={ () => clearError('town') }
+									defaultValue={ data.listing ? data.listing.town._id : "townDefault" }>
+									<option value="townDefault" disabled>-- избери град --</option>
+									{ data.towns.map(town => (
+										<option
+											value={ town._id }
+											key={ town._id }>{ town.name }
+										</option>
+									)) }
+								</select>
+								{ errors.town === false &&
+									<div className={ styles.errorElement }>Моля избери град... </div> }
+							</div>
+							{/*End of Town Select*/ }
 						</div>
-						{/*End of Town Select*/ }
+
+						{/*Start of Category Select*/ }
+						<select
+							name="category"
+							className={ `${ styles.categorySelect } ${ styles.halfInput } ${ errors.category === false ? styles.invalidInput : '' }` }
+							onChange={ changeCategory }
+							onFocus={ () => clearError('category') }
+							defaultValue={ data.listing ? data.listing.category._id : "categoryDefault" }>
+							<option value="categoryDefault" disabled>-- избери категория --</option>
+							{ data?.categories.map(category => (
+								<option value={ category._id }
+								        key={ category._id }
+								        id={ category._id }>{ category.name }
+								</option>
+							)) }
+						</select>
+						{ errors.category === false &&
+							<div className={ styles.errorElement }>Моля избери категория... </div> }
+						{/*End of Category Select*/ }
+
+						{/*Start of Subcategory Select*/ }
+						<select
+							name="subcategory"
+							className={ `${ styles.categorySelect } ${ styles.halfInput } ${ errors.subcategory === false ? styles.invalidInput : '' }` }
+							disabled={ subCats.length === 0 }
+							onFocus={ () => clearError('subcategory') }
+							defaultValue={ data.listing ? data.listing.subcategory._id : '' }>
+							{ subCats.map(subCat => (
+								<option value={ subCat._id } key={ subCat._id }>{ subCat.name }</option>)) }
+						</select>
+						{ errors.subcategory === false &&
+							<div className={ styles.errorElement }>Моля избери подкатегория... </div> }
+						{/*End of Subcategory Select*/ }
+
+						<CustomInputFile
+							className={ `${ styles.halfInput } ${ styles.customFileInput }` }
+							onChange={ addImages }
+							inputName="images"
+							multiple={ true }
+							text="Кликни тук за да избереш една или повече снимки за обявата ти!"
+						/>
+
+						<StyledBtn type="submit" name="submit" className={ styles.submitBtn }>Изпрати</StyledBtn>
 					</div>
-
-					{/*Start of Category Select*/ }
-					<select
-						name="category"
-						className={ `${ styles.categorySelect } ${ styles.halfInput } ${ errors.category === false ? styles.invalidInput : '' }` }
-						onChange={ changeCategory }
-						onFocus={ () => clearError('category') }
-						defaultValue={ data.listing ? data.listing.category._id : "categoryDefault" }>
-						<option value="categoryDefault" disabled>-- избери категория --</option>
-						{ data?.categories.map(category => (
-							<option value={ category._id }
-							        key={ category._id }
-							        id={ category._id }>{ category.name }
-							</option>
-						)) }
-					</select>
-					{ errors.category === false &&
-						<div className={ styles.errorElement }>Моля избери категория... </div> }
-					{/*End of Category Select*/ }
-
-					{/*Start of Subcategory Select*/ }
-					<select
-						name="subcategory"
-						className={ `${ styles.categorySelect } ${ styles.halfInput } ${ errors.subcategory === false ? styles.invalidInput : '' }` }
-						disabled={ subCats.length === 0 }
-						onFocus={ () => clearError('subcategory') }
-						defaultValue={ data.listing ? data.listing.subcategory._id : '' }>
-						{ subCats.map(subCat => (
-							<option value={ subCat._id } key={ subCat._id }>{ subCat.name }</option>)) }
-					</select>
-					{ errors.subcategory === false &&
-						<div className={ styles.errorElement }>Моля избери подкатегория... </div> }
-					{/*End of Subcategory Select*/ }
-
-					<CustomInputFile
-						className={ `${ styles.halfInput } ${ styles.customFileInput }` }
-						onChange={ addImages }
-						inputName="images"
-						multiple={ true }
-						text="Кликни тук за да избереш една или повече снимки за обявата ти!"
-					/>
-
-					<StyledBtn type="submit" name="submit" className={ styles.submitBtn }>Изпрати</StyledBtn>
-				</div>
-			</form>
+				</form>
+			</MainPageLayout>
 	)
 }
 

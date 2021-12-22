@@ -44,7 +44,7 @@ const Profile = () => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <>
+			: <MainPageLayout>
 				<TextModal
 					onSubmit={ sendMsg }
 					closeModal={ () => setModalVisible(false) }
@@ -81,7 +81,7 @@ const Profile = () => {
 						</div>
 					</div>
 				</div>
-			</>
+			</MainPageLayout>
 	)
 }
 
