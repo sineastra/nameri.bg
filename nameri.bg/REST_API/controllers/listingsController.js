@@ -134,9 +134,15 @@ router.get("/search", async (req, res) => {
 })
 
 router.get("/delete/:id", async (req, res) => {
-	const dbService = () => req.dbServices.listingsServices.deleteListing(req.params.id)
-
-	await abstractDBRequest(req, res, dbService)
+	// const dbService = () => req.dbServices.listingsServices.deleteListing(req.params.id)
+	//
+	// await abstractDBRequest(req, res, dbService)
+	res.status(503).json({
+				ok: false,
+				statusText: 'Service Unavailable',
+				status: 503,
+				msg: 'asd',
+			})
 })
 
 router.get("/:id", async (req, res) => {

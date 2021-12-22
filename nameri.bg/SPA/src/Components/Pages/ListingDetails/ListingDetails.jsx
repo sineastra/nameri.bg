@@ -35,11 +35,11 @@ const ListingDetails = (props) => {
 		if (confirm) {
 			const response = await listingsServices.deleteListing(data.listing._id)
 
-			if (response.ok) {
-				navigate("/")
-			} else {
-				navigate("/error")
-			}
+			// if (response.ok) {
+			// 	navigate("/")
+			// } else {
+			// 	navigate("/error")
+			// }
 		}
 	}
 

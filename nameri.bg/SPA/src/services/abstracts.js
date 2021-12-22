@@ -12,19 +12,20 @@ const abstractFetch = async (url, body, method = "GET") => {
 	predefinedBody = Object.assign(predefinedBody, body || {})
 
 	return new Promise((resolve, reject) => {
-		// TODO: refactor this so it can parse any type of response, not only json.
+
 
 		fetch(`${ baseUrl }${ url }`, predefinedBody)
 			.then(data => {
 				if (data.status >= 400) {
 					console.log(data)
-					throw new Error({ status: data.status, statusText: data.statusText, msg: data.msg })
+					throw new Error(JSON.stringify({ status: data.status, statusText: data.statusText, msg: data.msg }))
 				}
 				return data.json()
 			})
 			.then(data => resolve(data))
 			.catch(e => {
-				reject({ status: e.status, statusText: e.statusText })
+				console.log(e)
+				reject(JSON.parse(e))
 			})
 
 	})
