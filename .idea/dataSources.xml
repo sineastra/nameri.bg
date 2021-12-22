@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="MongoDB - @cluster0.7gv2u.mongodb.net" uuid="3d674a8d-83ff-4ce0-843d-ff56b7d447cd">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0.7gv2u.mongodb.net/?authSource=admin&amp;replicaSet=atlas-kfb1t3-shard-0&amp;w=majority&amp;readPreference=primary&amp;appname=MongoDB%20Compass&amp;retryWrites=true&amp;ssl=true</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
