@@ -22,6 +22,8 @@ The goal is to connect the people and help them find the perfect professional fo
 
 Features of the platform (as is, will be updated as we add more features.)
 
+<hr/>
+
 - <i><b>Responsive Design</b></i>
 - <i><b>Home page with carousel, top listings, popular categories and categories with most subcategories</b></i>
 - <i><b>Auth (Register, Login)</b></i>
@@ -44,6 +46,8 @@ Features of the platform (as is, will be updated as we add more features.)
 - <i><b>Global and page search (some pages, acts like filter)</b></i>
 - <i><b>-</b></i>
 - <i><b>others (images placeholders when loading, funny 404 page, etc.)</b></i>
+
+<hr/>
 
 The repo includes the "<i>back-end</i>" and the "<i>front-end</i>" of the app.
 
