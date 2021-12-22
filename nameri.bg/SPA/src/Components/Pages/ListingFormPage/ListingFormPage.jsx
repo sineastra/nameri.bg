@@ -89,8 +89,6 @@ const AddListing = ({ formType }) => {
 				}, new FormData())
 
 				const response = await postData(formType, formDataFinal, params.id)
-				
-				console.log(response)
 
 				if (response.ok) {
 					setIsLoadingComponent(false)
