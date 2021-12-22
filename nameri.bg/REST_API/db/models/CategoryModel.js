@@ -4,7 +4,7 @@ const CategorySchema = new mongoose.Schema({
     name: { type: String, required: true },
     img: { type: String },
     icon: { type: String },
-    subcategories: [{ type: "ObjectId", ref: "Subcategory", required: true }],
+    subcategories: [{ type: String, ref: "Subcategory", required: true }],
 })
 
 const CategoryModel = mongoose.model("Category", CategorySchema)
