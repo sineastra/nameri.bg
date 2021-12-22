@@ -1,6 +1,6 @@
 <h2 align="center"><i>Nameri.bg </i></h3>
 <p align="center">
-      <a href="https://https://nameri-bg.vercel.app">
+      <a href="https://nameri-bg.vercel.app">
     <img src="./banner.png"/>
     <hr/>
     <img src="./categories.png"/>
