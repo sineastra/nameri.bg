@@ -62,64 +62,62 @@ const ListingDetails = (props) => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: < MainPageLayout>
-				<section className={ styles.outerSection }>
-					<h1 className={ styles.mainHeader }>{ data.listing.heading }</h1>
-					<section className={ styles.mainSection }>
-						<section className={ styles.carouselSection }>
-							<Carousel imgData={ images } imgsPerSlide={ 3 }/>
-						</section>
-						<section className={ styles.sideSection }>
-							<ListingSideCard listing={ data.listing } setData={ setData }/>
-						</section>
+			: <section className={ styles.outerSection }>
+				<h1 className={ styles.mainHeader }>{ data.listing.heading }</h1>
+				<section className={ styles.mainSection }>
+					<section className={ styles.carouselSection }>
+						<Carousel imgData={ images } imgsPerSlide={ 3 }/>
 					</section>
-
-					<section className={ styles.serviceDetails }>
-						<h1 className={ styles.detailsHeader }>Детайли за обявата</h1>
-						<div className={ styles.innerDetails }>
-							<p>
-								{ data.listing.details }
-							</p>
-						</div>
+					<section className={ styles.sideSection }>
+						<ListingSideCard listing={ data.listing } setData={ setData }/>
 					</section>
-
-					{ (loggedUser && loggedUser._id === data.listing.user._id) &&
-						<div className={ styles.listingActionsBtns }>
-							<div className={ styles.listingActionsInner }>
-								<Link to={ `/edit-listing/${ data.listing._id }` } className={ styles.editBtnLink }>
-									<StyledBtn className={ styles.editListingBtn }>Редактирай</StyledBtn>
-								</Link>
-								<StyledBtn
-									className={ styles.deleteListingBtn }
-									onClick={ deleteListing }>Изтрий обявата
-								</StyledBtn>
-							</div>
-						</div>
-					}
-
-
-					{ data.similarListings.length > 0
-						? <section className={ styles.similarListingsWrapper }>
-							<h1 className={ styles.similarListingsHeader }>Подобни обяви</h1>
-							<div className={ styles.similarListings }>
-								{ data.similarListings.map(listing => (
-									<ListingCard
-										listing={ listing }
-										user={ listing.user }
-										className={ styles.similarListing }
-										key={ listing._id }
-										profilePicClassName={ styles.listingProfilePic }
-										priceClassName={ styles.priceClassName }
-										namesClassName={ styles.namesClassName }
-										headingClassName={ styles.listingHeading }
-									/>
-								)) }
-							</div>
-						</section>
-						: <h1 className={ `${ styles.mainHeader } ${ styles.noSimilarListings }` }>Няма подобни обяви</h1>
-					}
 				</section>
-			</MainPageLayout>
+
+				<section className={ styles.serviceDetails }>
+					<h1 className={ styles.detailsHeader }>Детайли за обявата</h1>
+					<div className={ styles.innerDetails }>
+						<p>
+							{ data.listing.details }
+						</p>
+					</div>
+				</section>
+
+				{ (loggedUser && loggedUser._id === data.listing.user._id) &&
+					<div className={ styles.listingActionsBtns }>
+						<div className={ styles.listingActionsInner }>
+							<Link to={ `/edit-listing/${ data.listing._id }` } className={ styles.editBtnLink }>
+								<StyledBtn className={ styles.editListingBtn }>Редактирай</StyledBtn>
+							</Link>
+							<StyledBtn
+								className={ styles.deleteListingBtn }
+								onClick={ deleteListing }>Изтрий обявата
+							</StyledBtn>
+						</div>
+					</div>
+				}
+
+
+				{ data.similarListings.length > 0
+					? <section className={ styles.similarListingsWrapper }>
+						<h1 className={ styles.similarListingsHeader }>Подобни обяви</h1>
+						<div className={ styles.similarListings }>
+							{ data.similarListings.map(listing => (
+								<ListingCard
+									listing={ listing }
+									user={ listing.user }
+									className={ styles.similarListing }
+									key={ listing._id }
+									profilePicClassName={ styles.listingProfilePic }
+									priceClassName={ styles.priceClassName }
+									namesClassName={ styles.namesClassName }
+									headingClassName={ styles.listingHeading }
+								/>
+							)) }
+						</div>
+					</section>
+					: <h1 className={ `${ styles.mainHeader } ${ styles.noSimilarListings }` }>Няма подобни обяви</h1>
+				}
+			</section>
 	)
 }
 

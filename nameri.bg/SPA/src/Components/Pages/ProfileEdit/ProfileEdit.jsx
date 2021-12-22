@@ -120,8 +120,7 @@ const ProfileEdit = () => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <MainPageLayout>
-				<form className={ styles.mainWrapper } onSubmit={ submitForm }>
+			: <form className={ styles.mainWrapper } onSubmit={ submitForm }>
 					<section className={ styles.smallerWrapper20 }>
 						<h1 className={ styles.mainHeader }>РЕДАКТИРАЙ ПРОФИЛ</h1>
 						<DetailsArticle/>
@@ -271,7 +270,6 @@ const ProfileEdit = () => {
 						<StyledBtn className={ styles.submitBtn } type="submit">ЗАПАЗИ</StyledBtn>
 					</div>
 				</form>
-			</MainPageLayout>
 	)
 }
 

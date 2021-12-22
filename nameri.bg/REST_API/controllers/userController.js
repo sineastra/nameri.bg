@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const router = require("express").Router()
 const { body, validationResult } = require("express-validator")
-const { abstractGetRequest } = require("./abstractRequests")
+const { abstractDBRequest } = require("../helpers/abstractRequests.js")
 const uploadImages = require("../helpers/uploadFilesS3.js")
 const { createJWTToken, attachCookie } = require("../helpers/createJWTToken.js")
 const processFormData = require("../middlewares/processFormData.js")
@@ -56,9 +56,9 @@ const signUp = async (req, res, next) => {
 				reviews: [],
 				conversations: [],
 				premiumPlan: 0,
-				phone: null,
-				address: null,
-				website: null,
+				phone: '',
+				address: '',
+				website: '',
 				skills: [],
 				diplomasAndCertifs: [],
 				rating: 0,
@@ -94,14 +94,14 @@ router.get("/:id/messages", async (req, res) => {
 	const userId = req.params.id
 	const dbService = req => req.dbServices.userServices.getAllUserMessages(userId)
 
-	await abstractGetRequest(req, res, dbService)
+	await abstractDBRequest(req, res, dbService)
 })
 
 router.get("/message/:id", async (req, res) => {
 	const messageId = req.params.id
 	const dbService = req => req.dbServices.userServices.getSingleMessage(messageId)
 
-	await abstractGetRequest(req, res, dbService)
+	await abstractDBRequest(req, res, dbService)
 })
 
 router.get("/profile/:id", async (req, res) => {
@@ -112,7 +112,7 @@ router.get("/profile/:id", async (req, res) => {
 		return data
 	}
 
-	await abstractGetRequest(req, res, dbService)
+	await abstractDBRequest(req, res, dbService)
 })
 
 router.put('/edit/:id',
@@ -127,29 +127,46 @@ router.put('/edit/:id',
 			let token
 
 			try {
+				const user = await req.dbServices.userServices.getById(req.user._id)
+
 				if (profileImg) {
 					const [responseData] = await uploadImages([profileImg])
 					image = responseData.Location
+				} else {
+					image = user.profileImg ? user.profileImg : ''
 				}
 
-				const user = await req.dbServices.userServices.getById(req.user._id)
 				const skills = JSON.parse(req.body.skills)
+				const phone = req.body.phone[0] === '+' ? req.body.phone.slice(4) : req.body.phone.slice(1)
+
+				if (req.body.email !== user.email) {
+					const emailTaken = await req.dbServices.userServices.getByEmail(req.body.email)
+
+					if (emailTaken) {
+						res.json({
+							ok: false,
+							status: 409,
+							statusText: "Conflict",
+							errors: [{ msg: 'Email already taken.' }],
+						})
+					}
+				}
 
 				const newUserData = {
-					email: req.body.email || user.email,
-					nameAndSurname: req.body.nameAndSurname || user.nameAndSurname,
+					email: req.body.email,
+					nameAndSurname: req.body.nameAndSurname,
 					profileImg: image,
 					listings: user.listings,
 					reviews: user.reviews,
 					rating: user.rating,
 					conversations: user.conversations,
 					premiumPlan: user.premiumPlan,
-					about: req.body.about || user.about,
-					phone: req.body.phone || user.phone,
-					address: req.body.address || user.address,
-					website: req.body.website || user.website,
-					skills: skills || user.skills,
-					diplomasAndCertifs: req.body.diplomasAndCertifs || user.diplomasAndCertifs,
+					about: req.body.about,
+					phone: phone,
+					address: req.body.address,
+					website: req.body.website,
+					skills: skills,
+					diplomasAndCertifs: req.body.diplomasAndCertifs,
 				}
 
 				if (req.body.password !== '') {
@@ -171,7 +188,7 @@ router.put('/edit/:id',
 				})
 			}
 		} else {
-			res.json({ ok: false, errors })
+			res.json({ ok: false, ...errors })
 		}
 	},
 )
@@ -180,7 +197,7 @@ router.get("/search", async (req, res) => {
 	const criteria = req.query.search
 	const dbService = req => req.dbServices.userServices.searchUsers(criteria)
 
-	await abstractGetRequest(req, res, dbService)
+	await abstractDBRequest(req, res, dbService)
 })
 
 const addMsg = async (req, res) => {
@@ -251,27 +268,47 @@ const addMsg = async (req, res) => {
 router.post("/send-message/:id", addMsg)
 
 router.post("/:id/add-review", async (req, res) => {
+
+	//TODO: Add check if the user reviewed is the same as the user logged, throw error.
 	const dbService = async (req) => {
-		const data = {
+		const newReview = {
 			text: req.body.reviewText || '',
 			rating: Number(req.body.reviewRating),
 			user: req.params.id,
 			reviewCreator: req.user._id,
 		}
-		const [newReview, user] = await Promise.all([
-			req.dbServices.userServices.createNewReview(data),
-			req.dbServices.userServices.getByIdPopulateReviews(req.params.id),
-		])
+		const user = await req.dbServices.userServices.getByIdPopulateReviews(req.params.id)
+		const isExistingReview = user.reviews.some(x => x.reviewCreator === req.user._id)
+		const review = isExistingReview
+			? await req.dbServices.userServices.getReviewByCreator(req.user._id)
+			: await req.dbServices.userServices.createNewReview(newReview)
 
-		user.rating = ((user.reviews.reduce((a, v) => a + Number(v.rating), 0) + Number(newReview.rating)) / (user.reviews.length + 1)).toFixed(2)
-		user.reviews = [...user.reviews.map(x => `${ x._id }`), `${ newReview._id }`]
+		const ratingsSum = user.reviews.filter(x => x.reviewCreator !== req.user._id).reduce((a, v) => a + v.rating, 0)
+		const newRatingsLength = (user.reviews.length + (isExistingReview ? 0 : 1))
 
-		await user.save()
+		user.rating = ((ratingsSum + newReview.rating) / newRatingsLength).toFixed(2)
 
-		return await req.dbServices.listingsServices.getListingWithUserReviews(req.query.listingId)
+		if (isExistingReview) {
+			const [, , listing] = await Promise.all([
+				req.dbServices.userServices.updateReview(review._id, newReview),
+				user.save(),
+				req.dbServices.listingsServices.getListingWithUserReviews(req.query.listingId),
+			])
+
+			return listing
+		} else {
+			user.reviews = [...user.reviews.map(x => `${ x._id }`), `${ review._id }`]
+
+			const [, listing] = await Promise.all([
+				user.save(),
+				req.dbServices.listingsServices.getListingWithUserReviews(req.query.listingId),
+			])
+
+			return listing
+		}
 	}
 
-	await abstractGetRequest(req, res, dbService)
+	await abstractDBRequest(req, res, dbService)
 })
 
 router.get("/is-own-listing/:id", async (req, res) => {
@@ -281,14 +318,14 @@ router.get("/is-own-listing/:id", async (req, res) => {
 		return user.listings.some(x => x === req.params.id)
 	}
 
-	await abstractGetRequest(req, res, dbService)
+	await abstractDBRequest(req, res, dbService)
 })
 
 router.get("/get-top", async (req, res) => {
 	const count = req.query.count
 	const dbService = () => req.dbServices.userServices.getTop(count)
 
-	await abstractGetRequest(req, res, dbService)
+	await abstractDBRequest(req, res, dbService)
 })
 
 router.get("/logout", (req, res) => {

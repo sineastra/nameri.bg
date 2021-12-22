@@ -12,13 +12,12 @@ const TopUsers = () => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <MainPageLayout>
-				<div className={ styles.mainWrapper }>
+			: <div className={ styles.mainWrapper }>
 					<div className={ styles.innerWrapper }>
 						<UsersList users={ data } className={ styles.userList } heading="Топ Потребители"/>
 					</div>
 				</div>
-			</MainPageLayout>
+
 	)
 }
 

@@ -35,8 +35,7 @@ const Subcategories = (props) => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <MainPageLayout>
-				<div className={ styles.mainWrapper }>
+			: <div className={ styles.mainWrapper }>
 					<CategoriesPagesHeader
 						categoryName={ data.name }
 						onSearchSubmit={ onSearchSubmit }
@@ -61,7 +60,7 @@ const Subcategories = (props) => {
 						}
 					</section>
 				</div>
-			</MainPageLayout>
+
 	)
 }
 

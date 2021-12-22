@@ -1,10 +1,10 @@
 const router = require("express").Router()
-const { abstractGetRequest } = require("./abstractRequests")
+const {  abstractDBRequest } = require("../helpers/abstractRequests.js")
 
 router.get("/", async (req, res) => {
     const dbService = req => req.dbServices.townsServices.getAll()
 
-    await abstractGetRequest(req, res, dbService)
+    await abstractDBRequest(req, res, dbService)
 })
 
 module.exports = router

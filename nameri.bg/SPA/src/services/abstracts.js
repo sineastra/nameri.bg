@@ -17,13 +17,13 @@ const abstractFetch = async (url, body, method = "GET") => {
 		fetch(`${ baseUrl }${ url }`, predefinedBody)
 			.then(data => {
 				if (data.status >= 400) {
+					console.log(data)
 					throw new Error({ status: data.status, statusText: data.statusText, msg: data.msg })
 				}
 				return data.json()
 			})
 			.then(data => resolve(data))
 			.catch(e => {
-				console.log(e)
 				reject({ status: e.status, statusText: e.statusText })
 			})
 

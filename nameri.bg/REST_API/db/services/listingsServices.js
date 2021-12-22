@@ -1,4 +1,7 @@
 const ListingModel = require("../models/ListingModel")
+const UserModel = require("../models/UserModel.js")
+const SubcategoryModel = require("../models/SubcategoryModel.js")
+const TownModel = require("../models/TownModel.js")
 
 const listingsServices = {
 	getBest: async count =>
@@ -40,7 +43,7 @@ const listingsServices = {
 	getUserListings: async userId =>
 		await ListingModel.find({ user: userId }).populate("user").exec(),
 	addNew: async (listing) => await new ListingModel(listing).save(),
-	updateListing: async (listing, listingId) => await ListingModel.findByIdAndUpdate(listingId, listing),
+	updateListing: async (listing, listingId) => await ListingModel.findOneAndUpdate({ _id: listingId }, listing).exec(),
 	searchListings: async (criteria) => {
 		const regex = new RegExp(criteria, "i")
 
@@ -52,6 +55,17 @@ const listingsServices = {
 			.populate("user")
 			.populate("town")
 			.exec()
+	},
+	deleteListing: async (listingId) => {
+		const listing = await ListingModel.findOneAndRemove({ "_id": listingId }).exec()
+		await UserModel
+			.findOneAndUpdate({ listings: { $in: [listingId] } }, { $pull: { listings: listingId } }).exec()
+		await SubcategoryModel
+			.findOneAndUpdate({ listings: { $in: [listingId] } }, { $pull: { listings: listingId } }).exec()
+		await TownModel
+			.findOneAndUpdate({ listings: { $in: [listingId] } }, { $pull: { listings: listingId } }).exec()
+
+		return listing
 	},
 }
 

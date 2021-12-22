@@ -11,7 +11,7 @@ const categoriesServices = {
 
 	getWithMostSubs: async count =>
 		await CategoryModel.find({})
-			.sort({ subcategories: -1 })
+			.sort({ subcategories: 1 })
 			.limit(count)
 			.populate("subcategories")
 			.exec(),
@@ -42,8 +42,8 @@ const categoriesServices = {
 	getAll: async () => await CategoryModel.find({}).populate("subcategories").exec(),
 	getAllCategoryNames: async () => await CategoryModel.find({}).select("name -_id").exec(),
 	getAllSubCategoryNames: async () => await SubcategoryModel.find({}).select("name -_id").exec(),
-	getCategoryByName: async (name) => await CategoryModel.findOne({ name: name }).exec(),
-	getSubcategoryByName: async (name) => await SubcategoryModel.findOne({ name: name }).exec(),
+	getById: async (_id) => await CategoryModel.findById(_id).exec(),
+	getSubcategoryById: async (_id) => await SubcategoryModel.findById(_id).exec(),
 }
 
 module.exports = categoriesServices

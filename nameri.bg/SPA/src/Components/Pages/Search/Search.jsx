@@ -27,8 +27,7 @@ const Search = () => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <MainPageLayout>
-				<section className={ styles.wrapper }>
+			: <section className={ styles.wrapper }>
 					<UsersList className={ styles.contentSection } users={ data.users } heading="Потребители"/>
 					<section className={ `${ styles.contentSection } ${ styles.listingsSection }` }>
 						<h1 className={ styles.header }>Обяви</h1>
@@ -47,7 +46,7 @@ const Search = () => {
 						</div>
 					</section>
 				</section>
-			</MainPageLayout>
+
 	)
 }
 

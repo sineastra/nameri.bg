@@ -1,4 +1,4 @@
-const abstractGetRequest = async (req, res, dbService, errorObj = {}) => {
+const abstractDBRequest = async (req, res, dbService, errorObj = {}) => {
 	const count = Number(req.query.count) || 0
 
 	try {
@@ -15,4 +15,4 @@ const abstractGetRequest = async (req, res, dbService, errorObj = {}) => {
 	}
 }
 
-module.exports = { abstractGetRequest }
+module.exports = { abstractDBRequest }

@@ -1,12 +1,11 @@
 import styles from "./About.module.css"
-import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
 
 
 const About = () => {
 
 	return (
-		<MainPageLayout>
+		<div style={ { minHeight: '70vh' } }>
 			<div className={ styles.bannerWrapper }>
 				<img src="/about-banner.jpeg" alt="" className={ styles.img }/>
 			</div>
@@ -37,7 +36,7 @@ const About = () => {
 					<StyledBtn className={ styles.funnyBtn }>НАТИСНИ ТУК ЗА ПАРИ</StyledBtn>
 				</a>
 			</div>
-		</MainPageLayout>
+		</div>
 	)
 }
 

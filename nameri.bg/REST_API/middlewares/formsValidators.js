@@ -3,22 +3,13 @@ const { body } = require("express-validator")
 const validateListing = () => [
 	body("category")
 		.isLength({ min: 1 })
-		.withMessage("Category is required")
-		.custom((value, { req }) => req.customValidators.doCategoryExists(value, req))
-		.withMessage("Not a valid category!"),
+		.withMessage("Category is required"),
 	body("subcategory")
 		.isLength({ min: 1 })
-		.withMessage("Subcategory is required")
-		.custom((value, { req }) => req.customValidators.doSubCategoryExists(value, req))
-		.withMessage("Not a valid subcategory!"),
+		.withMessage("Subcategory is required"),
 	body("town")
 		.isLength({ min: 1 })
-		.withMessage("Town is required")
-		.custom((value, { req }) => req.customValidators.doTownExists(value, req))
-		.withMessage("Not a valid town!"),
-	body("price")
-		.isInt({ min: 0 })
-		.withMessage("Must be a number or 0 - for negotiation price"),
+		.withMessage("Town is required"),
 	body("details")
 		.isLength({ min: 10 })
 		.withMessage("Description must be at least 10 symbols long."),
@@ -65,9 +56,6 @@ const validateProfileEdit = () => [
 		.withMessage("Password must be at least 6 symbols!")
 		.custom((value, { req }) => req.customValidators.doPasswordsMatch(value, req))
 		.withMessage("Passwords do not match!"),
-	body("about")
-		.isLength({ min: 1 })
-		.withMessage('About section must not be empty!'),
 ]
 
 module.exports = {

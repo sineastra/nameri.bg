@@ -68,8 +68,7 @@ const SubcategoryListings = () => {
 	return (
 		isLoadingData
 			? <Spinner/>
-			: <MainPageLayout>
-				<section className={ styles.mainWrapper }>
+			: <section className={ styles.mainWrapper }>
 					<CategoriesPagesHeader
 						categoryName={ data.name }
 						onSearchSubmit={ onSearchSubmit }
@@ -97,7 +96,6 @@ const SubcategoryListings = () => {
 							: limit <= data.listings.length && <StyledBtn onClick={ loadMore } text="Зареди Още"/> }
 					</div> }
 				</section>
-			</MainPageLayout>
 	)
 }
 
