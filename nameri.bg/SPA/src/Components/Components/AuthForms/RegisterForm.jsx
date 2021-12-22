@@ -9,6 +9,7 @@ import getToken from "../../../helpers/getToken.js"
 import UserContext from "../../Contexts/UserContext.jsx"
 import { registerFormValidator } from "../../../helpers/formValidators.js"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import processNewToken from "../../../helpers/processNewToken.js"
 
 
 const RegisterForm = ({ className }) => {
@@ -28,8 +29,7 @@ const RegisterForm = ({ className }) => {
 			const response = await userServices.signUp(formDataObj)
 
 			if (response.ok) {
-				const userData = deserializeJWT(getToken())
-				setUserData(userData)
+				setUserData(processNewToken(response.token))
 			} else {
 				setErrors(extractErrorMessages(response.errors))
 			}
