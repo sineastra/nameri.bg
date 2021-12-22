@@ -1,6 +1,6 @@
 <h2 align="center"><i>Nameri.bg </i></h3>
 <p align="center">
-      <a href="https://https://nameri-bg.vercel.app">
+      <a href="https://nameri-bg.vercel.app">
     <img src="./banner.png"/>
     <hr/>
     <img src="./categories.png"/>
@@ -22,6 +22,7 @@ The goal is to connect the people and help them find the perfect professional fo
 
 Features of the platform (as is, will be updated as we add more features.)
 
+- <i><b>Responsive Design</b></i>
 - <i><b>Home page with carousel, top listings, popular categories and categories with most subcategories</b></i>
 - <i><b>Auth (Register, Login)</b></i>
 - <i><b>-</b></i>
