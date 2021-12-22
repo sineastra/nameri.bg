@@ -29,7 +29,7 @@ Features of the platform (as is, will be updated as we add more features.)
 - <i><b>Auth (Register, Login)</b></i>
 - <i><b>-</b></i>
 - <i><b>Create listing</b></i>
-- <i><b>Update listing (only only)</b></i>
+- <i><b>Update listing (owner only)</b></i>
 - <i><b>Delete listing (owner only)</b></i>
 - <i><b>Listing details with carousel</b></i>
 - <i><b>Similar listings functionality</b></i>
@@ -52,7 +52,7 @@ Features of the platform (as is, will be updated as we add more features.)
 The repo includes the "<i>back-end</i>" and the "<i>front-end</i>" of the app.
 
 
-The React JS SPA app is written from <b>scratch</b> with absolute minimal dependencies besides the one which come with the Create-React-App.
+The React JS SPA app is written from <b>scratch</b> with absolute minimal dependencies besides the ones which come with the Create-React-App.
 Those are:
 
 - React Router v6
