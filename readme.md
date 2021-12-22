@@ -59,4 +59,4 @@ Those are:
 
 The REST API is written on Express JS
 
-Hosted at <a href="https://nameri-bg.vercel.app/"/>https://nameri-bg.vercel.app
+<h2>Hosted at <a href="https://nameri-bg.vercel.app/"/>https://nameri-bg.vercel.app</h2>
