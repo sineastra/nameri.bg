@@ -187,6 +187,11 @@ div.userHeadingWrapperMain {
     height: 50px;
 }
 
+.userReviewHeadingClass {
+    width: 70%;
+    max-height: 70%;
+}
+
 @media screen and (max-width: 1200px) {
     .profileImgClass {
         height: 70%;
@@ -231,9 +236,6 @@ div.userHeadingWrapperMain {
         height: 130px;
     }
 
-    div.ratingBoxWrapperClassName {
-        width: 5%;
-    }
 }
 
 @media screen and (max-width: 400px) {

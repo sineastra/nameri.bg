@@ -11,7 +11,7 @@ import { emailValidator } from "../../../helpers/formValidators.js"
 
 
 const LoginForm = ({ className = "" }) => {
-	const [_, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(ErrorContext)
 	const [userData, setUserData] = useContext(UserContext)
 
 	const submitHandler = async (e) => {
@@ -20,11 +20,8 @@ const LoginForm = ({ className = "" }) => {
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
 
-
 		if (emailValidator(formDataObj.email)) {
 			const response = await userServices.signIn(formDataObj)
-			
-			console.log(response)
 
 			if (response.ok) {
 				setUserData(processNewToken(response.token))

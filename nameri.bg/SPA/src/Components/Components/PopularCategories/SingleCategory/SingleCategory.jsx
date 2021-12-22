@@ -15,7 +15,7 @@ const SingleCategory = ({ id, img, name, className }) => {
 				<img
 					className={ styles.image }
 					src={ img }
-					alt="Popular Category Image"
+					alt="popular category"
 					onLoad={ () => setImgLoaded(true) }
 				/>
 				<h3 className={ styles.categHeading }>{ name }</h3>

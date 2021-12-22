@@ -12,7 +12,7 @@ import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 
 
 const RegisterForm = ({ className }) => {
-	const [_, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(ErrorContext)
 	const [userData, setUserData] = useContext(UserContext)
 
 	const submitHandler = async (e) => {
@@ -20,9 +20,9 @@ const RegisterForm = ({ className }) => {
 
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
-		formDataObj.terms = formDataObj.terms || false
+
+		formDataObj.terms = !!formDataObj.terms
 		const validation = registerFormValidator(formDataObj)
-		console.log(validation)
 
 		if (validation.valid) {
 			const response = await userServices.signUp(formDataObj)
@@ -67,7 +67,7 @@ const RegisterForm = ({ className }) => {
 							поверителност, Общите условия и Защитата на личните данни на nameri.bg ООД
 						</div>
 					</div>
-					<StyledBtn text="Регистрация" className={styles.styledBtn}/>
+					<StyledBtn text="Регистрация" className={ styles.styledBtn }/>
 				</form>
 			</div>
 		// --->

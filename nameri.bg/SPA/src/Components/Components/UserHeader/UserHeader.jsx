@@ -1,13 +1,8 @@
 import styles from "./UserHeader.module.css"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { IconContext } from "react-icons"
 import { GoMail } from "react-icons/go"
-import { useContext, useEffect, useRef, useState } from "react"
-import Cookies from "js-cookie"
-import userServices from "../../../services/userServices.js"
-import UserContext from "../../Contexts/UserContext.jsx"
-import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
-import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import { useEffect, useRef, useState } from "react"
 import StyledBtn from "../StyledBtn/StyledBtn.jsx"
 
 

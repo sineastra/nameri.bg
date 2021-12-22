@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import useFetch from "../../../hooks/useFetch.jsx"
 import userServices from "../../../services/userServices.js"
 import listingsServices from "../../../services/listingsServices.js"
@@ -21,7 +21,7 @@ const fetchData = async (params) => {
 }
 
 const Search = () => {
-	const [params, setParams] = useSearchParams()
+	const [params] = useSearchParams()
 	const { isLoadingData, data } = useFetch(() => fetchData(params), [params])
 
 	return (

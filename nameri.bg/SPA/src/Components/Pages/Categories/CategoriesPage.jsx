@@ -12,8 +12,6 @@ const CategoriesPage = (props) => {
 	const { isLoadingData, data } = useFetch(() => categoriesService.getAll())
 	const [filteredCats, setFilteredCats] = useState(null)
 
-	console.log(filteredCats)
-
 	//TODO: Can make this a custom hook.
 	const onSearchSubmit = (e) => {
 		e.preventDefault()

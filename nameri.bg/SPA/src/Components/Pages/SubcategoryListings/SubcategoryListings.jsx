@@ -62,6 +62,7 @@ const SubcategoryListings = () => {
 		searchParams.set('limit', limit)
 		setSearchParams(searchParams, { replace: true })
 
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [limit])
 
 	return (

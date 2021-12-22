@@ -22,7 +22,7 @@ const NavDotsContainer = styled.div`
 
 const NavDotsInnerCont = styled.ul`
   display: inline-flex;
-  width: 20%;
+  width: 40%;
   justify-content: space-around;
   padding: 0;
 

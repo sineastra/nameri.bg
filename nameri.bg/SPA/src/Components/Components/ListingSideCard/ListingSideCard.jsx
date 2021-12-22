@@ -15,7 +15,7 @@ const ListingSideCard = ({ listing, setData }) => {
 	const [rating, setRating] = useState(0)
 	const [hoverRating, setHoverRating] = useState(0)
 	const [user] = useContext(UserContext)
-	const [_, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(ErrorContext)
 	const isOwnProfile = user && user._id !== listing.user._id
 	const ratings = [1, 2, 3, 4, 5]
 	const reviewsForDisplay = listing.user.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
@@ -129,6 +129,7 @@ const ListingSideCard = ({ listing, setData }) => {
 									wrapperClassName={ styles.userHeadingWrapperReview }
 									profileImgClassName={ styles.reviewProfileImg }
 									ratingBoxWrapperClassName={ styles.ratingBoxWrapperClassName }
+									headingClassName={styles.userReviewHeadingClass}
 								/>
 							</div>
 							<div

@@ -1,6 +1,5 @@
 import styles from "./Benefits.module.css"
 import { FaCheck } from "react-icons/fa"
-import { IconContext } from "react-icons"
 
 
 const Benefits = ({ className = "", authType }) => {
@@ -20,8 +19,8 @@ const Benefits = ({ className = "", authType }) => {
 		<div className={ `${ className } ${ styles.mainWrapper }` }>
 			<h1 className={ styles.header }>{ benefitsHeaderText }</h1>
 			<div className={ styles.benefitsWrapper }>
-				{ benefitsArr.map(x => (
-					<div className={ styles.benefitDiv }>
+				{ benefitsArr.map((x, i) => (
+					<div className={ styles.benefitDiv } key={ i }>
 						<div className={ styles.iconWrapper }>
 							<FaCheck/>
 						</div>

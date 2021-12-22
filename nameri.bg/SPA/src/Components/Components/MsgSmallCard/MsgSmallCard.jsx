@@ -1,10 +1,13 @@
 import styles from "./MsgSmallCard.module.css"
+import { useContext } from "react"
+import UserContext from "../../Contexts/UserContext.jsx"
 
 
 const MsgSmallCard = ({ messageData, changeMsg }) => {
 	const lastMsg = messageData.messages[messageData.messages.length - 1].text
+	const [user] = useContext(UserContext)
 	const participants = messageData.participants
-		.filter(x => x._id !== messageData.user._id)
+		.filter(x => x._id !== user._id)
 		.map(x => x.nameAndSurname)
 		.join(",")
 

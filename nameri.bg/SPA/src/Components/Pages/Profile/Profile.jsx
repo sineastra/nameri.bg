@@ -21,7 +21,7 @@ const Profile = () => {
 	const params = useParams()
 	const navigate = useNavigate()
 	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id), [params])
-	const [errors, setErrors] = useContext(ErrorContext)
+	const [, setContextErrors] = useContext(ErrorContext)
 	const [modalVisible, setModalVisible] = useState(false)
 
 	const sendMsg = async (e) => {
@@ -37,10 +37,9 @@ const Profile = () => {
 			e.target.message.value = ''
 			navigate("/messages", { state: { conversationId: response.data.conversationId } })
 		} else {
-			setErrors(extractErrorMessages(response.errors))
+			setContextErrors(extractErrorMessages(response.errors))
 		}
 	}
-	console.log(data)
 
 	return (
 		isLoadingData
@@ -72,7 +71,7 @@ const Profile = () => {
 											namesClassName={ styles.namesClassName }
 											headingClassName={ styles.headingClassName }
 										/>))
-									: <div className={styles.noListingsHeader}>Няма намерени обяви</div>
+									: <div className={ styles.noListingsHeader }>Няма намерени обяви</div>
 								}
 							</section>
 						</div>

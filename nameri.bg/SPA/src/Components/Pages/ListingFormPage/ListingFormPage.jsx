@@ -10,7 +10,6 @@ import { addListingFormValidator } from "../../../helpers/formValidators.js"
 import listingsServices from "../../../services/listingsServices.js"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TagInput from "../../Components/TagInput/TagInput.jsx"
-import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
 
 
@@ -50,8 +49,8 @@ const AddListing = ({ formType }) => {
 		if (data.listing) {
 			setSubCats(data.listing.category.subcategories)
 			setImages(data.listing.images)
-			setIsChecked(data.listing.price == 0)
-			setPrice(data.listing.price != 0 ? data.listing.price : '')
+			setIsChecked(data.listing.price === 0)
+			setPrice(data.listing.price !== 0 ? data.listing.price : '')
 			setTags(data.listing.tags)
 		}
 

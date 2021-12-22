@@ -1,10 +1,9 @@
 import styles from "./MsgBigChat.module.css"
 import { AiOutlineMail } from "react-icons/ai"
 import { IconContext } from "react-icons"
-import uid from "../../../helpers/uniqueIDGenerator.js"
 import userServices from "../../../services/userServices.js"
 import { Link, useNavigate } from "react-router-dom"
-import { useContext, useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 import UserContext from "../../Contexts/UserContext.jsx"
@@ -25,14 +24,17 @@ const NonPickedMsg = ({ className = '' }) => {
 
 const PickedMsg = ({ data, index, setData, className = '' }) => {
 	const navigate = useNavigate()
-	const [errors, setErrors] = useContext(ErrorContext)
-	const [user, _] = useContext(UserContext)
+	const [, setErrors] = useContext(ErrorContext)
+	const [user] = useContext(UserContext)
 	const pickedMsg = data.conversations[index]
 	const lastMsg = useRef(null)
 
 	const participants = pickedMsg.participants
 		.filter(x => x._id !== user._id)
-		.map(x => <Link to={ `/profile/${ x._id }` } className={ styles.participantLink }>{ x.nameAndSurname }</Link>)
+		.map(x =>
+			<Link to={ `/profile/${ x._id }` } className={ styles.participantLink }
+			      key={ x._id }>{ x.nameAndSurname }</Link>,
+		)
 
 	useEffect(() => {
 		if (lastMsg.current !== null) {
@@ -80,7 +82,7 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 				</div>
 				<div className={ styles.messagesContainer }>
 					{ pickedMsg.messages.map(message => (
-						<div className={ styles.singleMsgWrapper } key={ uid() }>
+						<div className={ styles.singleMsgWrapper } key={ message._id }>
 							<div
 								className={ `${ styles.singleMsg } ${ defineMsgClassName(user._id, message.sender) }` }>
 								{ message.text }

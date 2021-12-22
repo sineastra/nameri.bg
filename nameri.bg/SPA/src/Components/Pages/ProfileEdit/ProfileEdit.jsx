@@ -55,7 +55,7 @@ const ProfileEdit = () => {
 	} = useFetch(() => userServices.getUserForProfile(userData._id, userData))
 	const [profileImg, setProfileImg] = useState('')
 	const [formDataErrors, setFormDataErrors] = useState({})
-	const [contextErrors, setContextErrors] = useContext(ErrorContext)
+	const [, setContextErrors] = useContext(ErrorContext)
 	const navigate = useNavigate()
 
 	const submitForm = async (e) => {
@@ -83,7 +83,6 @@ const ProfileEdit = () => {
 
 				navigate(`/profile/${ userData._id }`)
 			} else {
-				console.log(extractErrorMessages(response.errors))
 				setContextErrors(extractErrorMessages(response.errors))
 			}
 
@@ -135,7 +134,7 @@ const ProfileEdit = () => {
 								       name="nameAndSurname"
 								       defaultValue={ data.nameAndSurname }
 								       onFocus={ () => clearError('nameAndSurname') }
-								       className={ formDataErrors.nameAndSurname === false ? styles.invalidInput : '' }/>
+								       className={ `${styles.inputStyles} ${formDataErrors.nameAndSurname === false ? styles.invalidInput : ''}` }/>
 								{ formDataErrors.nameAndSurname === false &&
 									<div className={ styles.errorElement }>
 										Името и Фамилията трябва да са поне 6 знака.
@@ -147,7 +146,7 @@ const ProfileEdit = () => {
 								{/*Phone Section*/ }
 								<div className={ styles.halfInput }>
 									<input type="text" placeholder="Телефон" name="phone"
-									       className={ `${ formDataErrors.phone === false ? styles.invalidInput : '' }` }
+									       className={ `${styles.inputStyles} ${ formDataErrors.phone === false ? styles.invalidInput : '' }` }
 									       defaultValue={ data.phone ? `+359${ data.phone }` : '' }
 									       onFocus={ () => clearError('phone') }
 									/>
@@ -162,7 +161,7 @@ const ProfileEdit = () => {
 								{/*Website Section*/ }
 								<div className={ styles.halfInput }>
 									<input type="text" placeholder="Уебсайт" name="website"
-									       className={ `${ formDataErrors.website === false ? styles.invalidInput : '' }` }
+									       className={ `${styles.inputStyles} ${ formDataErrors.website === false ? styles.invalidInput : '' }` }
 									       defaultValue={ data.website }
 									       onFocus={ () => clearError('website') }/>
 									{ formDataErrors.website === false &&
@@ -177,7 +176,7 @@ const ProfileEdit = () => {
 								{/*Email Section*/ }
 								<div className={ styles.halfInput }>
 									<input type="text" placeholder="Имейл" name="email"
-									       className={ `${ formDataErrors.email === false ? styles.invalidInput : '' }` }
+									       className={ `${styles.inputStyles} ${ formDataErrors.email === false ? styles.invalidInput : '' }` }
 									       defaultValue={ data.email }
 									       onFocus={ () => clearError('email') }
 									/>
@@ -190,7 +189,7 @@ const ProfileEdit = () => {
 
 								{/*Address Section*/ }
 								<input type="text" placeholder="Адрес" name="address"
-								       className={ `${ styles.halfInput } ${ formDataErrors.address === false ? styles.invalidInput : '' }` }
+								       className={ `${styles.inputStyles} ${ styles.halfInput } ${ formDataErrors.address === false ? styles.invalidInput : '' }` }
 								       defaultValue={ data.address }
 								       onFocus={ () => clearError('address') }
 								/>
@@ -229,13 +228,13 @@ const ProfileEdit = () => {
 
 							{/*New Password Section*/ }
 							<div>
-								<h1>Промени парола</h1>
+								<h1 className={styles.changePasswordHeader}>Промени парола</h1>
 								<div className={ styles.halfInputOuterWrapper }>
 
 									{/*First Input*/ }
 									<div className={ styles.halfInput }>
 										<input type="password"
-										       className={ `${ formDataErrors.password === false ? styles.invalidInput : '' }` }
+										       className={ `${styles.inputStyles} ${ formDataErrors.password === false ? styles.invalidInput : '' }` }
 										       name="password"
 										       placeholder="Нова Парола"
 										       autoComplete="one-time-code"
@@ -250,7 +249,7 @@ const ProfileEdit = () => {
 									{/*Second Input*/ }
 									<div className={ styles.halfInput }>
 										<input type="password"
-										       className={ `${ formDataErrors.repeatPassword === false ? styles.invalidInput : '' }` }
+										       className={ `${styles.inputStyles} ${ formDataErrors.repeatPassword === false ? styles.invalidInput : '' }` }
 										       name="repeatPassword"
 										       placeholder="Повтори Нова Парола"
 										       autoComplete="one-time-code"

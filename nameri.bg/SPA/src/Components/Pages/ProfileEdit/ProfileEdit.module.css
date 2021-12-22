@@ -137,6 +137,13 @@ button.submitBtn {
     margin-bottom: 5%;
 }
 
+.changePasswordHeader {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
 @media screen and (max-width: 800px) {
     .mainHeader {
         font-size: 1.2rem;

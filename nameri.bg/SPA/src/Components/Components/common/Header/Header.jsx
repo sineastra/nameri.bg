@@ -15,7 +15,7 @@ import ErrorContext from "../../../Contexts/ErrorContext.jsx"
 
 const Header = () => {
 	const navigate = useNavigate()
-	const [errors, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(ErrorContext)
 	const [user, setUser] = useContext(UserContext)
 	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
 	const [windowWidth, setWindowWidth] = useState(0)

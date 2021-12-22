@@ -135,6 +135,8 @@ h2 {
     width: 80%;
     padding: 10px;
     border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     border-top: 1px solid lightgray;
 }
 

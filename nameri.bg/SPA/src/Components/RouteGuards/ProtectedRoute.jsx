@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 
 
 const ProtectedRoute = ({ children, type }) => {
-	const [user, _] = useContext(UserContext)
+	const [user] = useContext(UserContext)
 	const [isLoading, setIsLoading] = useState(true)
 	const typesConditions = {
 		'private': () => user ? children : <Navigate to="/sign-in"/>,

@@ -9,8 +9,6 @@ import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayou
 const TopUsers = () => {
 	const { isLoadingData, data } = useFetch(() => userServices.getTopUsers(20))
 
-	console.log(data)
-
 	return (
 		isLoadingData
 			? <Spinner/>

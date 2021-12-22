@@ -1,7 +1,6 @@
 import styles from "./About.module.css"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
-import { Link } from "react-router-dom"
 
 
 const About = () => {
@@ -9,7 +8,7 @@ const About = () => {
 	return (
 		<MainPageLayout>
 			<div className={ styles.bannerWrapper }>
-				<img src="/about-banner.jpeg" alt="" className={styles.img}/>
+				<img src="/about-banner.jpeg" alt="" className={ styles.img }/>
 			</div>
 			<div className={ styles.textOuterWrapper }>
 				<div className={ styles.textInnerWrapper }>

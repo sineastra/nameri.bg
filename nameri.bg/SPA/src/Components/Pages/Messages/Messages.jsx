@@ -1,6 +1,6 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styled from "styled-components"
-import { useContext, useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import userServices from "../../../services/userServices.js"
 import UserContext from "../../Contexts/UserContext.jsx"
 import styles from "./Messages.module.css"
@@ -25,7 +25,7 @@ const PageSection = styled.section`
 
 const Messages = (props) => {
 	const location = useLocation()
-	const [user, _] = useContext(UserContext)
+	const [user] = useContext(UserContext)
 	const { isLoadingData, data, setData } = useFetch(() => fetchData(user))
 	const [index, setIndex] = useState(null)
 
@@ -39,7 +39,9 @@ const Messages = (props) => {
 		if (!isLoadingData && location.state) {
 			changeMsg(location.state.conversationId)
 		}
-	}, [isLoadingData])
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoadingData, location.state])
 
 	return (
 		isLoadingData

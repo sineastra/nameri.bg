@@ -55,26 +55,28 @@ const SingleSkill = ({ skillName, title }) => {
 	)
 }
 
-const Certificate = ({ data }) => {
+//TODO. add this when implementing certificates. IF
 
-	return (
-		<div key={ data.heading + data.institution } className={ styles.singleCertifInnerWrapper }>
-			<div className={ styles.certifEntryWrapper }>
-				<div className={ styles.certifSingleRow }>Име на сертификат:</div>
-				<div className={ `${ styles.bolderNunito } ${ styles.certifSingleRow }` }>{ data.heading }</div>
-			</div>
-			<div className={ styles.certifEntryWrapper }>
-				<div className={ styles.certifSingleRow }>Институция:</div>
-				<div className={ `${ styles.bolderNunito } ${ styles.certifSingleRow }` }>{ data.institution }</div>
-			</div>
-			<div className={ styles.certifEntryWrapper }>
-				<div className={ styles.certifSingleRow }>Датa от-до:</div>
-				<div
-					className={ `${ styles.bolderNunito } ${ styles.certifSingleRow }` }>{ data.from } - { data.to }</div>
-			</div>
-		</div>
-	)
-}
+// const Certificate = ({ data }) => {
+//
+// 	return (
+// 		<div key={ data.heading + data.institution } className={ styles.singleCertifInnerWrapper }>
+// 			<div className={ styles.certifEntryWrapper }>
+// 				<div className={ styles.certifSingleRow }>Име на сертификат:</div>
+// 				<div className={ `${ styles.bolderNunito } ${ styles.certifSingleRow }` }>{ data.heading }</div>
+// 			</div>
+// 			<div className={ styles.certifEntryWrapper }>
+// 				<div className={ styles.certifSingleRow }>Институция:</div>
+// 				<div className={ `${ styles.bolderNunito } ${ styles.certifSingleRow }` }>{ data.institution }</div>
+// 			</div>
+// 			<div className={ styles.certifEntryWrapper }>
+// 				<div className={ styles.certifSingleRow }>Датa от-до:</div>
+// 				<div
+// 					className={ `${ styles.bolderNunito } ${ styles.certifSingleRow }` }>{ data.from } - { data.to }</div>
+// 			</div>
+// 		</div>
+// 	)
+// }
 
 const ProfileSideCard = ({ className, user, openModal }) => {
 	const [loggedUser] = useContext(UserContext)

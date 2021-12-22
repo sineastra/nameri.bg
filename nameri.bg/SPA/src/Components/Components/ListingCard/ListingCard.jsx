@@ -15,7 +15,7 @@ const ListingCard = ({ className, headingClassName, profilePicClassName, namesCl
 				<Link to={ `/details/${ listing._id }` } className={ styles.imageWrapper }>
 					<img
 						src={ mainImg }
-						alt="Service Main Image"
+						alt="listing main"
 						className={ `${ styles.serviceImg } ${ imgLoaded ? styles.show : styles.hide }` }
 						onLoad={ () => setImgLoaded(true) }
 						onError={ () => setImgLoaded(false) }
@@ -26,7 +26,7 @@ const ListingCard = ({ className, headingClassName, profilePicClassName, namesCl
 						{ listing.town.name }
 					</div>
 				</Link>
-				<Link to={ ` / details /${ listing._id }` }
+				<Link to={ `/details/${ listing._id }` }
 				      className={ `${ styles.listingHeading } ${ headingClassName }` }>{ listing.heading }</Link>
 				<div className={ styles.profileInfoWrapper }>
 					<Link to={ `/profile/${ listing.user._id }` } className={ styles.profileImageWrapper }>
@@ -38,7 +38,7 @@ const ListingCard = ({ className, headingClassName, profilePicClassName, namesCl
 							className={ `${ styles.comfortaa } ${ styles.nameAndSurname } ${ namesClassName }` }>{ listing.user.nameAndSurname }</div>
 					</Link>
 					<div
-						className={ `${ styles.priceE } ${ priceClassName }` }>{ listing.price == 0 ? 'По договаряне' : `${ listing.price } лв.` }</div>
+						className={ `${ styles.priceE } ${ priceClassName }` }>{ listing.price === 0 ? 'По договаряне' : `${ listing.price } лв.` }</div>
 				</div>
 			</div>
 		</>

@@ -15,7 +15,7 @@ const CategoryCard = ({ _id, className, categoryIcon, categoryName, subCategorie
 				<div>
 					<img
 						src={ categoryIcon }
-						alt="Category Image"
+						alt="category"
 						className={ iconLoaded ? `${ styles.categoryIcon } ${ styles.show }` : styles.hide }
 						onLoad={ () => setIconLoaded(true) }
 						onError={ () => setIconLoaded(false) }
