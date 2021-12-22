@@ -11,7 +11,7 @@ import { useEffect, useState } from "react"
 
 const Subcategories = (props) => {
 	const params = useParams()
-	const { isLoadingData, data } = useFetch(() => categoriesService.getSubCategories(params.id), [params])
+	const { isLoadingData, data } = useFetch(() => categoriesService.getSubCategories(params.id), [params.id])
 	const [filteredSubs, setFilteredSubs] = useState(null)
 
 	const onSearchSubmit = (e) => {

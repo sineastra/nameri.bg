@@ -20,7 +20,7 @@ const MessageSubHeader = ({ userName }) =>
 const Profile = () => {
 	const params = useParams()
 	const navigate = useNavigate()
-	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id), [params])
+	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id), [params.id])
 	const [, setContextErrors] = useContext(ErrorContext)
 	const [modalVisible, setModalVisible] = useState(false)
 

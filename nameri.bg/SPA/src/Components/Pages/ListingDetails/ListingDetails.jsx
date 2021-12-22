@@ -25,7 +25,7 @@ const fetchData = async (id) => {
 const ListingDetails = (props) => {
 	const params = useParams()
 	const navigate = useNavigate()
-	const { isLoadingData, data, setData } = useFetch(() => fetchData(params.id), [params])
+	const { isLoadingData, data, setData } = useFetch(() => fetchData(params.id), [params.id])
 	const [images, setImages] = useState([])
 	const [loggedUser] = useContext(UserContext)
 
