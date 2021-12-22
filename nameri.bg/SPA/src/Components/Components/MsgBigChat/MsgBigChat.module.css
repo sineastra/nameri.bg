@@ -4,6 +4,8 @@
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .mainWrapperEmpty {
@@ -89,20 +91,23 @@ h2 {
 
 .singleMsg {
     display: inline-block;
+    font-family: 'Bellota Text', cursive;
     padding: 10px 20px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
 }
 
 .singleMsgNotOwn {
     background-color: aliceblue;
+    border: 1px solid #1d1df1;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
 }
 
 .singleMsgOwn {
     float: right;
-    background-color: blue;
+    background-color: #1d1df1;
     color: white;
+    border: 1px solid aliceblue;
     border-top-left-radius: 35px;
     border-bottom-right-radius: 35px;
 }

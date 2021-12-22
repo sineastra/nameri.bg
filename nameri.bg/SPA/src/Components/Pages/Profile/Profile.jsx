@@ -35,6 +35,7 @@ const Profile = () => {
 		if (response.ok) {
 			setModalVisible(false)
 			e.target.message.value = ''
+
 			navigate("/messages", { state: { conversationId: response.data.conversationId } })
 		} else {
 			setContextErrors(extractErrorMessages(response.errors))

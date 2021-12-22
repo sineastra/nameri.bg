@@ -23,66 +23,64 @@ const TopUsers = lazy(() => import("../../Pages/TopUsers/TopUsers.jsx"))
 
 const AppRouter = () => {
 	return (
-		<ErrorBoundary>
-			<Suspense fallback={ <Spinner/> }>
-				<Routes>
+		<Suspense fallback={ <Spinner/> }>
+			<Routes>
 
-					{/*Public routes*/ }
-					<Route exact path="/" element={ <HomePage/> }/>
-					<Route path="/categories" element={ <CategoriesPage/> }/>
-					<Route exact path="/categories/:id" element={ <Subcategories/> }/>
-					<Route path="/categories/subcategories/:id" element={ <SubcategoryListings/> }/>
-					<Route path="/details/:id" element={ <ListingDetails/> }/>
-					<Route path="/profile/:id" element={ <Profile/> }/>
-					<Route path="/search" element={ <Search/> }/>
-					<Route path="/top-users" element={ <TopUsers/> }/>
-					<Route path="/about" element={ <About/> }/>
-					{/*End of public routes*/ }
+				{/*Public routes*/ }
+				<Route exact path="/" element={ <HomePage/> }/>
+				<Route path="/categories" element={ <CategoriesPage/> }/>
+				<Route exact path="/categories/:id" element={ <Subcategories/> }/>
+				<Route path="/categories/subcategories/:id" element={ <SubcategoryListings/> }/>
+				<Route path="/details/:id" element={ <ListingDetails/> }/>
+				<Route path="/profile/:id" element={ <Profile/> }/>
+				<Route path="/search" element={ <Search/> }/>
+				<Route path="/top-users" element={ <TopUsers/> }/>
+				<Route path="/about" element={ <About/> }/>
+				{/*End of public routes*/ }
 
-					{/*Public ONLY routes*/ }
-					<Route path="/sign-up" element={
-						<ProtectedRoute type="public">
-							<Auth authType={ "register" }/>
-						</ProtectedRoute> }
-					/>
-					<Route path="/sign-in" element={
-						<ProtectedRoute type="public">
-							<Auth authType={ "login" }/>
-						</ProtectedRoute> }
-					/>
-					{/*End of public ONLY routes*/ }
+				{/*Public ONLY routes*/ }
+				<Route path="/sign-up" element={
+					<ProtectedRoute type="public">
+						<Auth authType={ "register" }/>
+					</ProtectedRoute> }
+				/>
+				<Route path="/sign-in" element={
+					<ProtectedRoute type="public">
+						<Auth authType={ "login" }/>
+					</ProtectedRoute> }
+				/>
+				{/*End of public ONLY routes*/ }
 
-					{/*LoggedIn ONLY routes*/ }
-					<Route path="/add-listing" element={
-						<ProtectedRoute type="private">
-							<ListingForm formType="add"/>
-						</ProtectedRoute>
-					}/>
-					<Route path="/messages" element={
-						<ProtectedRoute type="private">
-							<Messages/>
-						</ProtectedRoute>
-					}/>
-					<Route path="/profile/edit" element={
-						<ProtectedRoute type="private">
-							<ProfileEdit/>
-						</ProtectedRoute>
-					}/>
+				{/*LoggedIn ONLY routes*/ }
+				<Route path="/add-listing" element={
+					<ProtectedRoute type="private">
+						<ListingForm formType="add"/>
+					</ProtectedRoute>
+				}/>
+				<Route path="/messages" element={
+					<ProtectedRoute type="private">
+						<Messages/>
+					</ProtectedRoute>
+				}/>
+				<Route path="/profile/edit" element={
+					<ProtectedRoute type="private">
+						<ProfileEdit/>
+					</ProtectedRoute>
+				}/>
 
-					{/*This one requires and that you own the item*/ }
-					<Route path="/edit-listing/:id" element={
-						<ProtectedRoute type="private">
-							<OwnershipRoute type="listing">
-								<ListingForm formType="edit"/>
-							</OwnershipRoute>
-						</ProtectedRoute>
-					}/>
-					{/*End of LoggedIn ONLY routes*/ }
+				{/*This one requires and that you own the item*/ }
+				<Route path="/edit-listing/:id" element={
+					<ProtectedRoute type="private">
+						<OwnershipRoute type="listing">
+							<ListingForm formType="edit"/>
+						</OwnershipRoute>
+					</ProtectedRoute>
+				}/>
+				{/*End of LoggedIn ONLY routes*/ }
 
-					<Route path="*" element={ <ErrorPage/> }/>
-				</Routes>
-			</Suspense>
-		</ErrorBoundary>
+				<Route path="*" element={ <ErrorPage/> }/>
+			</Routes>
+		</Suspense>
 	)
 }
 

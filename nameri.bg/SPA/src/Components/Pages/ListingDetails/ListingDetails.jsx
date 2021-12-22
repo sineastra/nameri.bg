@@ -35,16 +35,16 @@ const ListingDetails = (props) => {
 		if (confirm) {
 			const response = await listingsServices.deleteListing(data.listing._id)
 
-			// if (response.ok) {
-			// 	navigate("/")
-			// } else {
-			// 	navigate("/error")
-			// }
+			if (response.ok) {
+				navigate("/")
+			} else {
+				navigate("/error")
+			}
 		}
 	}
 
 	useEffect(() => {
-		if (data.listing) {
+		if (data && data.listing) {
 			const images = data.listing.images.length > 0
 				? data.listing.images.map(x => {
 					const img = new Image()

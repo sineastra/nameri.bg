@@ -95,11 +95,7 @@ const AddListing = ({ formType }) => {
 					setErrors(response.errors)
 				}
 			} catch (e) {
-				navigate('/error', {
-					state: {
-						statusCode: e.statusCode, status: e.status, msg: e.msg,
-					},
-				})
+				navigate('/error')
 			}
 		} else {
 			setErrors(validationResult.data)
@@ -154,7 +150,7 @@ const AddListing = ({ formType }) => {
 		isLoadingData || isLoadingComponent
 			? <Spinner/>
 			: <MainPageLayout>
-				<form className={ styles.mainWrapper } method="POST" onSubmit={ submitHandler }>
+				<form className={ styles.mainWrapper } onSubmit={ submitHandler }>
 					<div className={ styles.upperWrapper }>
 						<div className={ styles.headingWrapper }>
 							<h1 className={ styles.mainHeading }>
