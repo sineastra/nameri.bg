@@ -188,15 +188,17 @@ const ProfileEdit = () => {
 								{/*End of Email Section*/ }
 
 								{/*Address Section*/ }
-								<input type="text" placeholder="Адрес" name="address"
-								       className={ `${ styles.inputStyles } ${ styles.halfInput } ${ formDataErrors.address === false ? styles.invalidInput : '' }` }
-								       defaultValue={ data.address }
-								       onFocus={ () => clearError('address') }
-								/>
-								{ formDataErrors.address === false &&
-									<div className={ styles.errorElement }>
-										Адреса трябва да е поне 5 символа.
-									</div> }
+								<div className={ styles.halfInput }>
+									<input type="text" placeholder="Адрес" name="address"
+									       className={ `${ styles.inputStyles } ${ styles.halfInput } ${ formDataErrors.address === false ? styles.invalidInput : '' }` }
+									       defaultValue={ data.address }
+									       onFocus={ () => clearError('address') }
+									/>
+									{ formDataErrors.address === false &&
+										<div className={ styles.errorElement }>
+											Адреса трябва да е поне 5 символа.
+										</div> }
+								</div>
 								{/*End of Address Section*/ }
 							</div>
 

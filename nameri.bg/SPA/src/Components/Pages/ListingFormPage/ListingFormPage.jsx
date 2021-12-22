@@ -74,6 +74,7 @@ const AddListing = ({ formType }) => {
 			price: isChecked ? 0 : price,
 		}
 		const validationResult = addListingFormValidator(formDataWithAddedStates)
+		setIsLoadingComponent(false)
 
 		if (validationResult.valid) {
 			try {
