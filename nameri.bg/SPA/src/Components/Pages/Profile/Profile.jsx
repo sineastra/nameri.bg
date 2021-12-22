@@ -64,6 +64,7 @@ const Profile = () => {
 								{ data.listings.length > 0
 									? data.listings.map(listing => (
 										<ListingCard
+											key={ listing._id }
 											listing={ { ...listing, user: data } }
 											className={ styles.listingCard }
 											profilePicClassName={ styles.listingProfilePic }

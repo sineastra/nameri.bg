@@ -37,8 +37,11 @@ const ListingSideCard = ({ listing, setData }) => {
 		}
 	}
 
-	const closeModal = () =>
+	const closeModal = () => {
 		setModalVisible(false)
+		setRating(0)
+		setHoverRating(0)
+	}
 
 	const sendReview = async (e) => {
 		e.preventDefault()
@@ -76,7 +79,6 @@ const ListingSideCard = ({ listing, setData }) => {
 				header="Оцени потребител"
 				placeholder="Напиши твоето ревю (Не е задължително)..."
 				backdropClassName={ styles.ratingModal }
-				setVisibleState={ setModalVisible }
 				visibleState={ modalVisible }
 				wrapperClassName={ styles.modalWrapper }
 			/>
@@ -129,7 +131,7 @@ const ListingSideCard = ({ listing, setData }) => {
 									wrapperClassName={ styles.userHeadingWrapperReview }
 									profileImgClassName={ styles.reviewProfileImg }
 									ratingBoxWrapperClassName={ styles.ratingBoxWrapperClassName }
-									headingClassName={styles.userReviewHeadingClass}
+									headingClassName={ styles.userReviewHeadingClass }
 								/>
 							</div>
 							<div

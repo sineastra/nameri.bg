@@ -35,7 +35,7 @@ const AddListing = ({ formType }) => {
 	const { isLoadingData, data } = useFetch(formType === 'edit'
 			? () => fetchDataEdit(params.id)
 			: fetchDataAdd,
-		[params.id, formType])
+		[params, formType])
 	const [isLoadingComponent, setIsLoadingComponent] = useState(true)
 	const [subCats, setSubCats] = useState([])
 	const [images, setImages] = useState([])
@@ -71,7 +71,7 @@ const AddListing = ({ formType }) => {
 			subcategory: data.subcategory,
 			tags: JSON.stringify(tags),
 			images,
-			price: isChecked ? '0' : price,
+			price: isChecked ? 0 : price,
 		}
 		const validationResult = addListingFormValidator(formDataWithAddedStates)
 
@@ -90,8 +90,10 @@ const AddListing = ({ formType }) => {
 				const response = await postData(formType, formDataFinal, params.id)
 
 				if (response.ok) {
+					setIsLoadingComponent(false)
 					navigate(`/details/${ response.data._id }`)
 				} else {
+					setIsLoadingComponent(false)
 					setErrors(response.errors)
 				}
 			} catch (e) {

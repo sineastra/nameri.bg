@@ -1,6 +1,8 @@
 const basicIteration = (formDataObj, validationObj, resultObj) => {
-	Object.entries(formDataObj).forEach(([formElementName, formElementValue]) => {
-		if (validationObj[formElementName] !== undefined)
+	Object.entries(formDataObj)
+		.forEach(([formElementName, formElementValue]) => {
+
+			if (validationObj[formElementName] !== undefined)
 			resultObj[formElementName] = validationObj[formElementName](formElementValue, formDataObj.password)
 	})
 
@@ -26,9 +28,9 @@ const addListingFormValidator = (formDataObj) => {
 		files: () => true,
 	}
 
-	Object.entries(formDataObj).filter(([key, _]) => key !== 'priceNegotiation').forEach(field => {
-		resultObj[field[0]] = validationObj[field[0]](field[1])
-	})
+	Object.entries(formDataObj)
+		.filter(([key, _]) => key !== 'priceNegotiation')
+		.forEach(([key, value]) => resultObj[key] = validationObj[key](value))
 
 	resultObj.subcategory = !((resultObj.category === true) && (resultObj.subcategory === false))
 

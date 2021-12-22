@@ -7,7 +7,7 @@ const UsersList = ({ users, heading, className = "" }) => {
 	return (
 		<section className={ `${ className } ${ styles.usersSection }` }>
 			<h1 className={ styles.header }>{ heading }</h1>
-			{ users.map(x => <UserList user={ x }/>) }
+			{ users.map(x => <UserList key={ x._id } user={ x }/>) }
 		</section>
 	)
 }

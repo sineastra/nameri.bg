@@ -35,6 +35,7 @@ const Search = () => {
 						<div className={ styles.innerListingsDiv }>
 							{ data.listings.map(x => (
 								<ListingCard
+									key={ x._id }
 									listing={ x }
 									className={ styles.listingCard }
 									headingClassName={ styles.listingCardHeading }

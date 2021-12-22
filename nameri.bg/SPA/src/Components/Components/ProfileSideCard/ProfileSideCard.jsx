@@ -104,7 +104,7 @@ const ProfileSideCard = ({ className, user, openModal }) => {
 				<div className={ styles.skillsInnerWrapper }>
 					{ user.skills.length > 0
 						? user.skills.map(skillName => (
-							<SingleSkill skillName={ skillName } title={ skillName }/>
+							<SingleSkill skillName={ skillName } title={ skillName } key={ skillName }/>
 						))
 						: <div className={ styles.noSkills }>Няма умения</div>
 					}
