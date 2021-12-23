@@ -1,8 +1,7 @@
 import { lazy, Suspense } from 'react'
-import { Route, Routes, useLocation, useParams } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import Spinner from "../Spinner/Spinner.jsx"
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage.jsx"
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary.jsx"
 
 
 const HomePage = lazy(() => import("../../Pages/HomePage/HomePage.jsx"))

@@ -127,11 +127,10 @@
     .rightNavCont {
         width: 150px;
         align-items: center;
-        justify-content: space-between;
     }
 
     div.userNavContainer {
-        width: 60%;
+        display: none;
     }
 
     .mainNavLink {

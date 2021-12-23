@@ -39,8 +39,8 @@ const SideNav = ({ className, toggleSideBar, user, logout }) => {
 					<Link className={ styles.navLink } to="/top-users">Топ потребители</Link>
 				</div>
 				: <div className={ styles.linksWrapper }>
-					<Link className={ styles.navLink } to="/categories">Влез</Link>
-					<Link className={ styles.navLink } to="/about">Регистрирай се</Link>
+					<Link className={ styles.navLink } to="/sign-in">Влез</Link>
+					<Link className={ styles.navLink } to="/sign-up">Регистрирай се</Link>
 				</div>
 			}
 		</div>
