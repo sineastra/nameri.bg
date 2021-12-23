@@ -158,6 +158,17 @@
     font-weight: 700;
 }
 
+.townName {
+    display: flex;
+    font-family: 'Balsamiq Sans', cursive;
+    justify-self: flex-start;
+    align-items: center;
+}
+.townNameHeader {
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
 
 @media screen and (max-width: 1600px) {
     div.priceClassName {

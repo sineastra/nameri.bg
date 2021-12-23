@@ -10,6 +10,7 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 import { useContext, useEffect, useState } from "react"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"
+import { GoLocation } from "react-icons/go"
 
 
 const fetchData = async (id) => {
@@ -84,6 +85,10 @@ const ListingDetails = (props) => {
 							<p>
 								{ data.listing.details }
 							</p>
+							<div className={ styles.townName }>
+								<GoLocation/>
+								<h4 className={styles.townNameHeader}>{ data.listing.town.name }</h4>
+							</div>
 						</div>
 					</section>
 

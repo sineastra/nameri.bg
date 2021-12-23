@@ -48,8 +48,8 @@ const AddListing = ({ formType }) => {
 		if (data.listing) {
 			setSubCats(data.listing.category.subcategories)
 			setImages(data.listing.images)
-			setIsChecked(data.listing.price === 0)
-			setPrice(data.listing.price !== 0 ? data.listing.price : '')
+			setIsChecked(data.listing.price == 0)
+			setPrice(data.listing.price != 0 ? data.listing.price : '')
 			setTags(data.listing.tags)
 		}
 
