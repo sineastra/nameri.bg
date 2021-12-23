@@ -14,6 +14,11 @@
     justify-content: center;
 }
 
+.subHeader {
+    font-family: 'Bellota Text', cursive;
+    font-size: 1.1rem;
+}
+
 .popularWrapper {
     width: 80%;
     display: flex;
@@ -28,6 +33,7 @@
 
 .mainHeader {
     font-family: 'Balsamiq Sans', cursive;
+    font-size: 2rem;
 }
 
 .subHeaderWrapper {
