@@ -23,7 +23,7 @@ router.get("/:id", async (req, res) => {
 
 router.get("/subcategories/:id", async (req, res) => {
 	const _id = req.params.id
-	const limit = req.query.limit || 2
+	const limit = req.query.limit || 3
 
 	console.log(limit)
 	console.log(_id)

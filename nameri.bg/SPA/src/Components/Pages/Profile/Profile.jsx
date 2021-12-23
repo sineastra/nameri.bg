@@ -7,7 +7,7 @@ import userServices from "../../../services/userServices.js"
 import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TextModal from "../../Components/TextModal/TextModal.jsx"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ErrorContext from "../../Contexts/ErrorContext.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 
@@ -23,6 +23,10 @@ const Profile = () => {
 	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id), [params.id])
 	const [, setContextErrors] = useContext(ErrorContext)
 	const [modalVisible, setModalVisible] = useState(false)
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [])
 
 	const sendMsg = async (e) => {
 		e.preventDefault()

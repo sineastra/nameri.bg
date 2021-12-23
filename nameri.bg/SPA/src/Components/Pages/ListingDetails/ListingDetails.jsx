@@ -44,6 +44,11 @@ const ListingDetails = (props) => {
 	}
 
 	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [])
+
+
+	useEffect(() => {
 		if (data && data.listing) {
 			const images = data.listing.images.length > 0
 				? data.listing.images.map(x => {
