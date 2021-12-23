@@ -23,6 +23,8 @@ const useFetch = (fetchData, deps = [], partialLoading = false, setPartialLoadin
 				})
 
 			})
+
+		return () => setIsLoadingData(false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, deps)
 

@@ -32,11 +32,10 @@ const postData = async (formType, formData, id) =>
 
 const AddListing = ({ formType }) => {
 	const params = useParams()
-	const { isLoadingData, data } = useFetch(formType === 'edit'
+	const { isLoadingData, setIsLoadingData, data } = useFetch(formType === 'edit'
 			? () => fetchDataEdit(params.id)
 			: fetchDataAdd,
 		[formType])
-	const [isLoadingComponent, setIsLoadingComponent] = useState(true)
 	const [subCats, setSubCats] = useState([])
 	const [images, setImages] = useState([])
 	const [tags, setTags] = useState([])
@@ -54,12 +53,12 @@ const AddListing = ({ formType }) => {
 			setTags(data.listing.tags)
 		}
 
-		setIsLoadingComponent(false)
+		return () => setIsLoadingData(false)
 	}, [data])
 
 	const submitHandler = async (e) => {
 		e.preventDefault()
-		setIsLoadingComponent(true)
+		setIsLoadingData(true)
 
 		const formData = new FormData(e.target)
 		const data = Object.fromEntries(formData)
@@ -88,7 +87,7 @@ const AddListing = ({ formType }) => {
 				}, new FormData())
 
 				const response = await postData(formType, formDataFinal, params.id)
-				setIsLoadingComponent(false)
+				setIsLoadingData(false)
 
 				if (response.ok) {
 					navigate(`/details/${ response.data._id }`)
@@ -96,9 +95,11 @@ const AddListing = ({ formType }) => {
 					setErrors(response.errors)
 				}
 			} catch (e) {
+				setIsLoadingData(false)
 				navigate('/error')
 			}
 		} else {
+			setIsLoadingData(false)
 			setErrors(validationResult.data)
 		}
 	}
@@ -148,7 +149,7 @@ const AddListing = ({ formType }) => {
 	}
 
 	return (
-		isLoadingData || isLoadingComponent
+		isLoadingData
 			? <Spinner/>
 			: <MainPageLayout>
 				<form className={ styles.mainWrapper } onSubmit={ submitHandler }>
