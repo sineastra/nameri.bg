@@ -190,7 +190,7 @@ const ProfileEdit = () => {
 								{/*Address Section*/ }
 								<div className={ styles.halfInput }>
 									<input type="text" placeholder="Адрес" name="address"
-									       className={ `${ styles.inputStyles } ${ styles.halfInput } ${ formDataErrors.address === false ? styles.invalidInput : '' }` }
+									       className={ `${ styles.inputStyles } ${ formDataErrors.address === false ? styles.invalidInput : '' }` }
 									       defaultValue={ data.address }
 									       onFocus={ () => clearError('address') }
 									/>

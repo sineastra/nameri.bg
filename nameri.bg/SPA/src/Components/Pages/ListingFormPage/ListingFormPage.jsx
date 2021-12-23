@@ -74,7 +74,6 @@ const AddListing = ({ formType }) => {
 			price: isChecked ? 0 : price,
 		}
 		const validationResult = addListingFormValidator(formDataWithAddedStates)
-		setIsLoadingComponent(false)
 
 		if (validationResult.valid) {
 			try {
@@ -89,6 +88,7 @@ const AddListing = ({ formType }) => {
 				}, new FormData())
 
 				const response = await postData(formType, formDataFinal, params.id)
+				setIsLoadingComponent(false)
 
 				if (response.ok) {
 					navigate(`/details/${ response.data._id }`)
