@@ -8,6 +8,7 @@ import listingsServices from "../../../services/listingsServices.js"
 import categoriesService from "../../../services/categoriesService.js"
 import useFetch from "../../../hooks/useFetch.jsx"
 import HomePageContext from "../../Contexts/HomePageContext.jsx"
+import { useEffect } from "react"
 
 
 const fetchData = async () => {
@@ -22,6 +23,10 @@ const fetchData = async () => {
 
 const HomePage = () => {
 	const { isLoadingData, data, setData } = useFetch(fetchData)
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [])
 
 	return (
 		isLoadingData

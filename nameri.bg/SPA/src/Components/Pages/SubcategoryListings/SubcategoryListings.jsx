@@ -14,7 +14,7 @@ import SpinnerSmall from "../../Components/SpinnerSmall/SpinnerSmall.jsx"
 const SubcategoryListings = () => {
 	const params = useParams()
 	const [searchParams, setSearchParams] = useSearchParams({})
-	const [limit, setLimit] = useState(2)
+	const [limit, setLimit] = useState(3)
 	const [loadingPartially, setLoadingPartially] = useState(false)
 	const [filteredList, setFilteredList] = useState([])
 	const {
@@ -25,7 +25,7 @@ const SubcategoryListings = () => {
 		e.preventDefault()
 
 		if (limit <= data.listings.length) {
-			setLimit(oldState => oldState + 2)
+			setLimit(oldState => oldState + 3)
 			setLoadingPartially(true)
 		}
 	}
