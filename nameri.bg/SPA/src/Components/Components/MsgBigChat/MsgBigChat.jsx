@@ -51,7 +51,9 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 		e.preventDefault()
 
 		const message = e.target.newMsg.value
-		const receiverId = pickedMsg.participants.find(x => x._id !== pickedMsg.user._id)._id
+		const receiverId = pickedMsg.participants.find(x => x._id !== user._id)._id
+
+		console.log(pickedMsg)
 
 		if (message.value !== '') {
 			try {
