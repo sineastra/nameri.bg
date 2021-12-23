@@ -21,6 +21,10 @@ const SubcategoryListings = () => {
 		isLoadingData, data,
 	} = useFetch(() => categoriesService.getSubCatListings(params.id, searchParams), [searchParams], loadingPartially, setLoadingPartially)
 
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [])
+
 	const loadMore = (e) => {
 		e.preventDefault()
 

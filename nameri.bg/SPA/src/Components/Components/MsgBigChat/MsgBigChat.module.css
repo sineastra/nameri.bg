@@ -26,7 +26,8 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     overflow-y: scroll;
-    margin-top: 5%;
+    padding-top: 2%;
+    box-sizing: border-box;
 }
 
 .innerWrapperEmpty {

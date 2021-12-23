@@ -45,8 +45,7 @@ const ListingDetails = (props) => {
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' })
-	}, [])
-
+	}, [params.id])
 
 	useEffect(() => {
 		if (data && data.listing) {

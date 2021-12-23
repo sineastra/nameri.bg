@@ -1,14 +1,15 @@
 .categoryCard {
     width: 19%;
     height: 250px;
-    margin-bottom: 30px;
+    margin-bottom: 3%;
     margin-left: 2%;
 }
 
 .cardsWrapper {
     width: 100%;
     display: flex;
-    align-content: space-evenly;
+    align-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     min-height: 40vh;
 }
@@ -23,6 +24,7 @@
 
 .innerSection {
     width: 90%;
+
 }
 
 .noCatsWrapper {
