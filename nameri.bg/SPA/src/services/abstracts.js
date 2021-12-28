@@ -12,54 +12,41 @@ const abstractFetch = async (url, body, method = "GET") => {
 	predefinedBody = Object.assign(predefinedBody, body || {})
 
 	return new Promise((resolve, reject) => {
-
-
 		fetch(`${ baseUrl }${ url }`, predefinedBody)
-			.then(data => {
-				if (data.status >= 400) {
-					throw new Error(JSON.stringify({ status: data.status, statusText: data.statusText, msg: data.msg }))
+			.then(res => res.json())
+			.then(resData => {
+				if (resData.data === undefined) {
+					const error = JSON.stringify(resData)
+
+					throw new Error(error)
 				}
-				return data.json()
+
+				resolve(resData.data)
 			})
-			.then(data => resolve(data))
 			.catch(e => {
-				console.log(e)
-				reject(JSON.parse(e))
+				reject(e)
 			})
 
 	})
 }
 
-const abstractGetRequest = async (url) => {
-	return new Promise((resolve, reject) => {
-		abstractFetch(url).then(response => {
-			if (response.data === undefined) {
-				reject({ status: response.status, statusText: response.statusText })
-			}
+const abstractFormDataRequest = (url, formData, method) => {
+	const body = {
+		body: formData,
+	}
 
-			resolve(response.data)
-		}).catch(e => reject({
-			status: e.status || 'No status',
-			statusText: e.statusText || 'No status text',
-			msg: e,
-		}))
-	})
+	return abstractFetch(url, body, method)
 }
 
-const abstractFormDataRequest = async (url, formData, method) => {
-	return new Promise((resolve, reject) => {
+const abstractPostFormRequest = (url, formData, method) => {
+	const body = {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(formData),
+	}
 
-		const body = {
-			method,
-			headers: {
-				'Access-Control-Allow-Origin': process.env.REACT_APP_ORIGIN,
-			},
-			credentials: 'include',
-			body: formData,
-		}
-
-		abstractFetch(url, body).then(data => resolve(data))
-	})
+	return abstractFetch(url, body, method)
 }
 
-export { abstractFetch, abstractGetRequest, abstractFormDataRequest }
+export { abstractFetch, abstractFormDataRequest, abstractPostFormRequest }

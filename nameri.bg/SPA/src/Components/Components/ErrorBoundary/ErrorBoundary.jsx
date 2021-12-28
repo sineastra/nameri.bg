@@ -20,6 +20,12 @@ class ErrorBoundary extends React.Component {
 		// You can also log error messages to an error reporting service here
 	}
 
+	componentDidUpdate (prevProps, prevState, snapshot) {
+		if (this.state.errorInfo) {
+			this.resetError()
+		}
+	}
+
 	triggerError (error, errorInfo) {
 		this.setState({
 			error: error,
@@ -36,8 +42,6 @@ class ErrorBoundary extends React.Component {
 
 	render () {
 		if (this.state.errorInfo) {
-
-			this.resetError()
 
 			// Error path
 			return (

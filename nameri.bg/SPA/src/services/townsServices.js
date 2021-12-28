@@ -1,9 +1,9 @@
-import { abstractGetRequest } from "./abstracts.js"
+import { abstractFetch } from "./abstracts.js"
 
 
 const townsServices = {
 	getAll: async () =>
-		await abstractGetRequest("/towns"),
+		await abstractFetch("/towns"),
 }
 
 export default townsServices
