@@ -21,21 +21,21 @@
     width: 16px;
     background: #ff7200;
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    animation-delay: var(--spinner-delay);
 }
 
 .lds-facebook div:nth-child(1) {
     left: 8px;
-    animation-delay: -0.24s;
+    animation-delay: calc(var(--spinner-delay) - 0.24s);
 }
 
 .lds-facebook div:nth-child(2) {
     left: 32px;
-    animation-delay: -0.12s;
+    animation-delay: calc(var(--spinner-delay) - 0.12s);
 }
 
 .lds-facebook div:nth-child(3) {
     left: 56px;
-    animation-delay: 0s;
 }
 
 @keyframes lds-facebook {
