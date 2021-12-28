@@ -17,7 +17,6 @@ const abstractFetch = async (url, body, method = "GET") => {
 		fetch(`${ baseUrl }${ url }`, predefinedBody)
 			.then(data => {
 				if (data.status >= 400) {
-					console.log(data)
 					throw new Error(JSON.stringify({ status: data.status, statusText: data.statusText, msg: data.msg }))
 				}
 				return data.json()
