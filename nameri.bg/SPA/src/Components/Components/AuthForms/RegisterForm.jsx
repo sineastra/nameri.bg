@@ -1,6 +1,6 @@
 import styles from "./AuthForms.module.css"
 import StyledBtn from "../StyledBtn/StyledBtn.jsx"
-import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 import userServices from "../../../services/userServices.js"
 import { useContext } from "react"
 import { Navigate } from "react-router-dom"
@@ -13,7 +13,7 @@ import processNewToken from "../../../helpers/processNewToken.js"
 
 
 const RegisterForm = ({ className }) => {
-	const [, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(SoftErrorsContext)
 	const [userData, setUserData] = useContext(UserContext)
 
 	const submitHandler = async (e) => {

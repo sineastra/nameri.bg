@@ -2,8 +2,7 @@ import { abstractFetch } from "./abstracts.js"
 
 
 const townsServices = {
-	getAll: async () =>
-		await abstractFetch("/towns"),
+	getAll: () => abstractFetch("/towns"),
 }
 
 export default townsServices

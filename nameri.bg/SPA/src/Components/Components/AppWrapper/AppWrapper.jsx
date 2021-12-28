@@ -1,17 +1,22 @@
 import styles from "./AppWrapper.module.css"
 import AppRouter from "../Router/AppRouter.jsx"
-import { useEffect, useState } from "react"
-import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import { useContext, useEffect, useState } from "react"
+import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import getToken from "../../../helpers/getToken.js"
+import _processFetch from "../../../services/_processFetch.js"
+import ErrorBoundaryContext from "../../Contexts/ErrorBoundaryContext.jsx"
+import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 
 let timeout = 0
 
 function AppWrapper (props) {
-	const [errors, setErrors] = useState(null)
+	const { setBoundaryError } = useContext(ErrorBoundaryContext)
+	const [softErrors, setSoftErrors] = useState(null)
 	const [userData, setUserData] = useState()
+	const processRequest = (service) => _processFetch(service, setBoundaryError, setSoftErrors)
 
 	// preserve user state on reloads.
 	useEffect(() => {
@@ -22,33 +27,38 @@ function AppWrapper (props) {
 		}
 	}, [])
 
+	// TODO: check if you can use useInterval custom hook here.
 	useEffect(() => {
-		if (errors !== '') {
-			timeout = setTimeout(() => setErrors(''), 5000)
+		if (softErrors !== '') {
+			timeout = setTimeout(() => setSoftErrors(''), 5000)
 		} else {
 			clearTimeout(timeout)
 		}
-	}, [errors, userData])
+	}, [softErrors, userData])
 
 	const closeNotif = () => {
-		setErrors('')
+		setSoftErrors('')
 	}
 
 	return (
+		<UtilityContext.Provider value={ { processRequest } }>
+			<UserContext.Provider value={ [userData, setUserData] }>
+				<SoftErrorsContext.Provider value={ [softErrors, setSoftErrors] }>
 
-		<UserContext.Provider value={ [userData, setUserData] }>
-			<ErrorContext.Provider value={ [errors, setErrors] }>
+					{ softErrors && softErrors.length > 0 &&
+						<div className={ styles.errorNotif }>
+							{ softErrors.map(x => (<div key={ x }>{ x }</div>)) }
+							<span className={ styles.closeBtn } onClick={ closeNotif }>X</span>
+						</div> }
+					<AppRouter/>
 
-				{ errors && errors.length > 0 &&
-					< div className={ styles.errorNotif }>
-						{ errors.map(x => (<div>{ x }</div>)) }
-						<span className={ styles.closeBtn } onClick={ closeNotif }>X</span>
-					</div> }
-				<AppRouter/>
-
-			</ErrorContext.Provider>
-		</UserContext.Provider>
+				</SoftErrorsContext.Provider>
+			</UserContext.Provider>
+		</UtilityContext.Provider>
 	)
 }
+
+// TODO: check how the user context is being set,as UseEffect gets started after the render and even worse,
+// setState is dispatched to happen some time in the future. How do the components that rely on user context not throw.
 
 export default AppWrapper

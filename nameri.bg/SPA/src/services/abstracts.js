@@ -1,6 +1,6 @@
 const baseUrl = `${ process.env.REACT_APP_REST_API_ADDRESS }/api`
 
-const abstractFetch = async (url, body, method = "GET") => {
+const abstractFetch = (url, body, method = "GET") => {
 	let predefinedBody = {
 		method,
 		headers: {
@@ -16,9 +16,7 @@ const abstractFetch = async (url, body, method = "GET") => {
 			.then(res => res.json())
 			.then(resData => {
 				if (resData.data === undefined) {
-					const error = JSON.stringify(resData)
-
-					throw new Error(error)
+					reject(resData)
 				}
 
 				resolve(resData.data)

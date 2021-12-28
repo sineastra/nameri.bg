@@ -32,6 +32,7 @@ const postData = async (formType, formData, id) =>
 
 const AddListing = ({ formType }) => {
 	const params = useParams()
+	const navigate = useNavigate()
 	const { isLoadingData, setIsLoadingData, data } = useFetch(formType === 'edit'
 			? () => fetchDataEdit(params.id)
 			: fetchDataAdd,
@@ -42,7 +43,6 @@ const AddListing = ({ formType }) => {
 	const [price, setPrice] = useState("")
 	const [isChecked, setIsChecked] = useState(false)
 	const [errors, setErrors] = useState({})
-	const navigate = useNavigate()
 
 	useEffect(() => {
 		if (data.listing) {

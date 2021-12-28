@@ -3,21 +3,17 @@ import { stringifyFetchBody } from "../helpers/stringifyFetchBody.js"
 
 //TODO: make abstractPostRequest for handling post requests that are not FormData.
 const userServices = {
-	signIn: async (formData) =>
-		await abstractPostFormRequest(`/user/sign-in`, formData, "POST"),
-	signUp: async (formData) =>
-		await abstractPostFormRequest(`/user/sign-up`, formData, "POST"),
-	sendMessage: async (receiverId, formData) =>
-		await abstractPostFormRequest(`/user/send-message/${ receiverId }`, formData, "POST"),
-	addReview: async (reviewData, targetUserId, listingId) =>
-		await abstractPostFormRequest(`/user/${ targetUserId }/add-review?listingId=${ listingId }`, reviewData, "POST"),
-	getAllUserMessages: async (userId) => await abstractFetch(`/user/${ userId }/messages`),
-	getSingleMessage: async (messageId) => await abstractFetch(`/user/message/${ messageId }`),
-	getUserForProfile: async (userId) => await abstractFetch(`/user/profile/${ userId }`),
-	editProfile: async (userId, formData) => await abstractFormDataRequest(`/user/edit/${ userId }`, formData, "PUT"),
-	search: async (search) => await abstractFetch(`/user/search?search=${ search }`),
-	logout: async () => await abstractFetch(`/user/logout`),
-	checkListingOwnership: async (listingId) => await abstractFetch(`/user/is-own-listing/${ listingId }`),
-	getTopUsers: async (count) => await abstractFetch(`/user/get-top?count=${ count }`),
+	signIn: (formData) => abstractPostFormRequest(`/user/sign-in`, formData, "POST"),
+	signUp: (formData) => abstractPostFormRequest(`/user/sign-up`, formData, "POST"),
+	sendMessage: (receiverId, formData) => abstractPostFormRequest(`/user/send-message/${ receiverId }`, formData, "POST"),
+	addReview: (reviewData, targetUserId, listingId) => abstractPostFormRequest(`/user/${ targetUserId }/add-review?listingId=${ listingId }`, reviewData, "POST"),
+	getAllUserMessages: (userId) => abstractFetch(`/user/${ userId }/messages`),
+	getSingleMessage: (messageId) => abstractFetch(`/user/message/${ messageId }`),
+	getUserForProfile: (userId) => abstractFetch(`/user/profile/${ userId }`),
+	editProfile: (userId, formData) => abstractFormDataRequest(`/user/edit/${ userId }`, formData, "PUT"),
+	search: (search) => abstractFetch(`/user/search?search=${ search }`),
+	logout: () => abstractFetch(`/user/logout`),
+	checkListingOwnership: (listingId) => abstractFetch(`/user/is-own-listing/${ listingId }`),
+	getTopUsers: (count) => abstractFetch(`/user/get-top?count=${ count }`),
 }
 export default userServices

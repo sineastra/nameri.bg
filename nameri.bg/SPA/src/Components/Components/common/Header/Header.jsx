@@ -10,12 +10,12 @@ import UserContext from "../../../Contexts/UserContext.jsx"
 import userServices from "../../../../services/userServices.js"
 import Cookies from "js-cookie"
 import extractErrorMessages from "../../../../helpers/extractErrorMessages.js"
-import ErrorContext from "../../../Contexts/ErrorContext.jsx"
+import SoftErrorsContext from "../../../Contexts/SoftErrorsContext.jsx"
 
 
 const Header = () => {
 	const navigate = useNavigate()
-	const [, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(SoftErrorsContext)
 	const [user, setUser] = useContext(UserContext)
 	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
 	const [windowWidth, setWindowWidth] = useState(0)

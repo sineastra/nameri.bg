@@ -4,7 +4,7 @@ import { useContext, useState } from "react"
 import TextModal from "../TextModal/TextModal.jsx"
 import Rating from "../Rating/Rating.jsx"
 import userServices from "../../../services/userServices.js"
-import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 import StyledBtn from "../StyledBtn/StyledBtn.jsx"
 import { Link } from "react-router-dom"
 import UserContext from "../../Contexts/UserContext.jsx"
@@ -15,7 +15,7 @@ const ListingSideCard = ({ listing, setData }) => {
 	const [rating, setRating] = useState(0)
 	const [hoverRating, setHoverRating] = useState(0)
 	const [user] = useContext(UserContext)
-	const [, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(SoftErrorsContext)
 	const isOwnProfile = user && user._id !== listing.user._id
 	const ratings = [1, 2, 3, 4, 5]
 	const reviewsForDisplay = listing.user.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)

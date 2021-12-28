@@ -1,5 +1,6 @@
 import React from "react"
-import { Navigate } from "react-router-dom"
+import ErrorBoundaryContext from "../../Contexts/ErrorBoundaryContext.jsx"
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage.jsx"
 
 
 class ErrorBoundary extends React.Component {
@@ -9,31 +10,20 @@ class ErrorBoundary extends React.Component {
 	}
 
 	componentDidCatch (error, errorInfo) {
-		console.log(error)
-		console.log(errorInfo)
-
-		// Catch errors in any components below and re-render with error message
-		this.setState({
-			error: error,
-			errorInfo: errorInfo,
-		})
-		// You can also log error messages to an error reporting service here
-	}
-
-	componentDidUpdate (prevProps, prevState, snapshot) {
-		if (this.state.errorInfo) {
-			this.resetError()
-		}
-	}
-
-	triggerError (error, errorInfo) {
 		this.setState({
 			error: error,
 			errorInfo: errorInfo,
 		})
 	}
 
-	resetError () {
+	setBoundaryError (error, errorInfo) {
+		this.setState({
+			error: error,
+			errorInfo: errorInfo,
+		})
+	}
+
+	resetBoundaryError () {
 		this.setState({
 			error: null,
 			errorInfo: null,
@@ -41,15 +31,22 @@ class ErrorBoundary extends React.Component {
 	}
 
 	render () {
-		if (this.state.errorInfo) {
 
-			// Error path
-			return (
-				<Navigate to="/error" replace={ true }/>
-			)
-		}
-		// Normally, just render children
-		return this.props.children
+		return (
+			<ErrorBoundaryContext.Provider
+				value={ {
+					error: this.state.errorInfo,
+					setBoundaryError: (error, errorInfo) => this.setBoundaryError(error, errorInfo),
+					resetBoundaryError: () => this.resetBoundaryError(),
+				} }>
+
+				{ !!this.state.errorInfo
+					? <ErrorPage/>
+					: this.props.children
+				}
+
+			</ErrorBoundaryContext.Provider>
+		)
 	}
 }
 

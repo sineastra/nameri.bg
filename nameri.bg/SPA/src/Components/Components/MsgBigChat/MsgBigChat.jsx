@@ -4,7 +4,7 @@ import { IconContext } from "react-icons"
 import userServices from "../../../services/userServices.js"
 import { Link, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useRef } from "react"
-import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 import UserContext from "../../Contexts/UserContext.jsx"
 
@@ -24,7 +24,7 @@ const NonPickedMsg = ({ className = '' }) => {
 
 const PickedMsg = ({ data, index, setData, className = '' }) => {
 	const navigate = useNavigate()
-	const [, setErrors] = useContext(ErrorContext)
+	const [, setErrors] = useContext(SoftErrorsContext)
 	const [user] = useContext(UserContext)
 	const pickedMsg = data.conversations[index]
 	const lastMsg = useRef(null)

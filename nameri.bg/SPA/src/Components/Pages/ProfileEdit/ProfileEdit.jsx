@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom"
 import processNewToken from "../../../helpers/processNewToken.js"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
-import ErrorContext from "../../Contexts/ErrorContext.jsx"
+import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 
 
 const DetailsArticle = () => {
@@ -55,7 +55,7 @@ const ProfileEdit = () => {
 	} = useFetch(() => userServices.getUserForProfile(userData._id, userData))
 	const [profileImg, setProfileImg] = useState('')
 	const [formDataErrors, setFormDataErrors] = useState({})
-	const [, setContextErrors] = useContext(ErrorContext)
+	const [, setContextErrors] = useContext(SoftErrorsContext)
 	const navigate = useNavigate()
 
 	const submitForm = async (e) => {

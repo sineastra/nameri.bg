@@ -1,5 +1,5 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import listingsServices from "../../../services/listingsServices.js"
 import styles from "./ListingDetails.module.css"
 import Carousel from "../../Components/Carousel/Carousel.jsx"
@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from "react"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"
 import { GoLocation } from "react-icons/go"
+import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 
 const fetchData = async (id) => {
@@ -25,22 +26,16 @@ const fetchData = async (id) => {
 
 const ListingDetails = (props) => {
 	const params = useParams()
-	const navigate = useNavigate()
+	const [loggedUser] = useContext(UserContext)
+	const { processRequest } = useContext(UtilityContext)
 	const { isLoadingData, data, setData } = useFetch(() => fetchData(params.id), [params.id])
 	const [images, setImages] = useState([])
-	const [loggedUser] = useContext(UserContext)
 
-	const deleteListing = async () => {
+	const deleteListing = () => {
 		const confirm = window.confirm('Сигурен ли си че искаш да изтриеш обявата?')
 
 		if (confirm) {
-			const response = await listingsServices.deleteListing(data.listing._id)
-
-			if (response.ok) {
-				navigate("/")
-			} else {
-				navigate("/error")
-			}
+			processRequest(() => listingsServices.deleteListing(data.listing._id))
 		}
 	}
 
@@ -87,7 +82,7 @@ const ListingDetails = (props) => {
 							</p>
 							<div className={ styles.townName }>
 								<GoLocation/>
-								<h4 className={styles.townNameHeader}>{ data.listing.town.name }</h4>
+								<h4 className={ styles.townNameHeader }>{ data.listing.town.name }</h4>
 							</div>
 						</div>
 					</section>
