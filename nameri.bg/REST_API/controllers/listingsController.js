@@ -9,6 +9,7 @@ const processListing = async (req, res, fetchData, listing = {}) => {
 	const errors = validationResult(req)
 	let images = listing.images || []
 
+	//TODO: Add delete files logic to AWS. Cannot store useless images.
 	if (errors.isEmpty()) {
 		try {
 			const files = Object.values(req.files)
@@ -42,8 +43,7 @@ const processListing = async (req, res, fetchData, listing = {}) => {
 
 			res.json({ ok: true, statusText: 'ok', status: 200, data })
 		} catch (e) {
-			console.log(e)
-			res.status(503).json({
+			res.json({
 				ok: false,
 				statusText: 'Service Unavailable',
 				status: 503,
@@ -51,12 +51,16 @@ const processListing = async (req, res, fetchData, listing = {}) => {
 			})
 		}
 	} else {
-		res.json({ ok: false, errors })
+		res.json({ ok: false, status: 400, statusText: 'Bad Request', softError: true, errors })
 	}
 }
 
 router.get("/best", async (req, res) => {
-	const dbService = (req, count) => req.dbServices.listingsServices.getBest(count)
+	const dbService = (req) => {
+		const count = Number(req.query.count) || 5
+
+		return req.dbServices.listingsServices.getBest(count)
+	}
 
 	await abstractDBRequest(req, res, dbService)
 })
@@ -122,7 +126,7 @@ router.put(
 
 			await processListing(req, res, fetchData, listing)
 		} catch (e) {
-			res.json({ statusText: "Not Found", status: 404, msg: e, ok: false })
+			res.json({ ok: false, statusText: "Not Found", status: 404, msg: e })
 		}
 	},
 )

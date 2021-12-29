@@ -16,7 +16,7 @@ const processFormData = async (req, res, next) => {
 		})
 	})
 
-	await parseAndFillData
+	const parseResult = await parseAndFillData
 
 	next()
 }

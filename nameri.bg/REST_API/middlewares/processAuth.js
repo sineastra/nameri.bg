@@ -12,7 +12,12 @@ const processAuth = (req, res, next) => {
 		} catch (e) {
 
 			res.clearCookie(cookieName)
-			res.status(401).json({ ok: false, message: "Unauthorized" })
+			res.json({
+				ok: false,
+				status: 401,
+				statsText: 'Unauthorized',
+				msg: "Invalid or expired user. Please sign in again.",
+			})
 
 			return false
 		}

@@ -18,12 +18,13 @@ const signIn = async (req, res) => {
 
 			attachCookie(token, res)
 
-			res.json({ ok: true, status: 200, statusCode: "OK", token })
+			res.json({ ok: true, status: 200, statusCode: "OK", data: { token } })
 		} else {
 			res.json({
 				ok: false,
 				status: "Unauthorized",
 				statusCode: 401,
+				softError: true,
 				errors: [{ msg: "Wrong user email and/or password." }],
 			})
 		}
@@ -32,7 +33,8 @@ const signIn = async (req, res) => {
 			ok: false,
 			status: "Bad request",
 			statusCode: 400,
-			...errors,
+			softError: true,
+			errors,
 		})
 	}
 
@@ -69,19 +71,21 @@ const signUp = async (req, res, next) => {
 
 			next()
 		} else {
-			res.status(409).json({
+			res.json({
 				ok: false,
 				status: "Conflict",
 				statusCode: 409,
+				softError: true,
 				errors: [{ msg: "Existing user. Please sign in." }],
 			})
 		}
 	} else {
-		res.status(400).json({
+		res.json({
 			ok: false,
 			status: "Bad request",
 			statusCode: 400,
-			...errors,
+			softError: true,
+			errors,
 		})
 	}
 }
@@ -147,6 +151,7 @@ router.put('/edit/:id',
 							ok: false,
 							status: 409,
 							statusText: "Conflict",
+							softError: true,
 							errors: [{ msg: 'Email already taken.' }],
 						})
 					}
@@ -176,19 +181,19 @@ router.put('/edit/:id',
 				token = createJWTToken({ _id: user._id, ...newUserData })
 				attachCookie(token, res)
 
-				const data = await req.dbServices.userServices.updateById(req.user._id, newUserData)
+				const updatedUser = await req.dbServices.userServices.updateById(req.user._id, newUserData)
 
-				res.json({ ok: true, status: 'Ok', statusCode: 200, data, token })
+				res.json({ ok: true, status: 'Ok', statusCode: 200, data: { user: updatedUser, token } })
 			} catch (e) {
-				res.status(503).json({
+				res.json({
 					ok: false,
 					status: 'Service Unavailable',
 					statusCode: 503,
-					msg: 'Invalid field names or error while connection to the Database. Please wait few minutes and try again.',
+					msg: 'Invalid field names or error while connection to the Database. Please wait few moments and try again.',
 				})
 			}
 		} else {
-			res.json({ ok: false, ...errors })
+			res.json({ ok: false, status: 400, statusText: "Bad Request", softError: true, errors })
 		}
 	},
 )
@@ -206,7 +211,13 @@ const addMsg = async (req, res) => {
 	const msg = req.body.message
 
 	if (msg === '') {
-		res.json({ statusText: "Bad Request", status: 400, errors: [{ msg: "Message cannot be empty." }] })
+		res.json({
+			ok: false,
+			statusText: "Bad Request",
+			status: 400,
+			softError: true,
+			errors: [{ msg: "Message cannot be empty." }],
+		})
 		return
 	}
 
@@ -260,7 +271,7 @@ const addMsg = async (req, res) => {
 			)
 		}
 	} catch (e) {
-		res.status(400).json({ statusText: "Bad request", status: 400, ok: false, msg: e })
+		res.json({ statusText: "Bad request", status: 400, ok: false, msg: e })
 	}
 
 }
@@ -322,15 +333,19 @@ router.get("/is-own-listing/:id", async (req, res) => {
 })
 
 router.get("/get-top", async (req, res) => {
-	const count = req.query.count
-	const dbService = () => req.dbServices.userServices.getTop(count)
+	const dbService = (req) => {
+		const count = req.query.count
+
+		return req.dbServices.userServices.getTop(count)
+	}
 
 	await abstractDBRequest(req, res, dbService)
 })
 
 router.get("/logout", (req, res) => {
 	res.clearCookie(process.env.COOKIE_NAME)
-	res.json({ ok: true })
+
+	res.json({ ok: true, status: 200, statusText: "ok", data: null })
 })
 
 module.exports = router
