@@ -2,13 +2,13 @@ import styles from "./ListingCard.module.css"
 import { Link } from "react-router-dom"
 import ImageLoadingPlaceholder from "../ImageLoadingPlaceholder/ImageLoadingPlaceholder.jsx"
 import { useState } from "react"
-import MainPageLayout from "../common/MainPageLayout/MainPageLayout.jsx"
 
 
 const ListingCard = ({ className, headingClassName, profilePicClassName, namesClassName, priceClassName, listing }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
-	const profileImg = listing.user.profileImg === "" ? "/profile.png" : listing.user.profileImg
+
 	const mainImg = listing.mainImg === "" ? "/Default-cover.svg" : listing.mainImg
+	const profileImg = listing.user.profileImg === "" ? "/profile.png" : listing.user.profileImg
 
 	return (
 		<div className={ `${ styles.wrapper } ${ className }` }>

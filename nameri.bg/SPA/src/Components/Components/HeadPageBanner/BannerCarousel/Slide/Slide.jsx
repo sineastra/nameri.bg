@@ -9,11 +9,12 @@ import ImageLoadingPlaceholder from "../../../ImageLoadingPlaceholder/ImageLoadi
 const Slide = ({ listing, activeId, isFirstSlide, index }) => {
 	const [slideImgLoaded, setSlideImgLoaded] = useState(false)
 	const [profileImgLoaded, setProfileImgLoaded] = useState(false)
-	let profileImg = listing.user.profileImg === "" ? "/profile.png" : listing.user.profileImg
-	const mainImg = listing.mainImg === "" ? "Default-cover.svg" : listing.mainImg
-	let className = ''
 
 	const isActive = activeId === listing._id
+	const mainImg = listing.mainImg === "" ? "Default-cover.svg" : listing.mainImg
+	let profileImg = listing.user.profileImg === "" ? "/profile.png" : listing.user.profileImg
+	let className = ''
+
 
 	if (isFirstSlide.current) {
 		className = index === 0 ? styles.firstSlide : ''

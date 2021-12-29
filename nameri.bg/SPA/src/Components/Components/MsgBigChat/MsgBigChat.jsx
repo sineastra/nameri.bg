@@ -2,11 +2,10 @@ import styles from "./MsgBigChat.module.css"
 import { AiOutlineMail } from "react-icons/ai"
 import { IconContext } from "react-icons"
 import userServices from "../../../services/userServices.js"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useContext, useEffect, useRef } from "react"
-import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
-import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 import UserContext from "../../Contexts/UserContext.jsx"
+import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 
 const NonPickedMsg = ({ className = '' }) => {
@@ -23,12 +22,12 @@ const NonPickedMsg = ({ className = '' }) => {
 }
 
 const PickedMsg = ({ data, index, setData, className = '' }) => {
-	const navigate = useNavigate()
-	const [, setErrors] = useContext(SoftErrorsContext)
-	const [user] = useContext(UserContext)
-	const pickedMsg = data.conversations[index]
 	const lastMsg = useRef(null)
+	const [user] = useContext(UserContext)
+	const { processRequest } = useContext(UtilityContext)
+	const pickedMsg = data.conversations[index]
 
+	// getting all the participants in the chat, and mapping them to LINK that leads into their profile.
 	const participants = pickedMsg.participants
 		.filter(x => x._id !== user._id)
 		.map(x =>
@@ -36,12 +35,14 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 			      key={ x._id }>{ x.nameAndSurname }</Link>,
 		)
 
+	// when last message in a chat changes, this effect here scrolls it into view.
 	useEffect(() => {
 		if (lastMsg.current !== null) {
 			lastMsg.current.scrollIntoView({ behavior: "auto", block: 'nearest', inline: 'start' })
 		}
 	}, [pickedMsg])
 
+	// this defines if it is your message or not (for different colors and placements in the chat)
 	const defineMsgClassName = (userId, messageSenderId) => {
 		return userId === messageSenderId ? styles.singleMsgOwn : styles.singleMsgNotOwn
 	}
@@ -53,24 +54,12 @@ const PickedMsg = ({ data, index, setData, className = '' }) => {
 		const message = e.target.newMsg.value
 		const receiverId = pickedMsg.participants.find(x => x._id !== user._id)._id
 
-		console.log(pickedMsg)
-
 		if (message.value !== '') {
-			try {
-				const response = await userServices.sendMessage(receiverId, { message })
+			const data = await processRequest(() => userServices.sendMessage(receiverId, { message }))
 
-				if (response.ok) {
-					e.target.newMsg.value = ''
-					setData(response.data)
-				} else {
-					setErrors(extractErrorMessages(response.errors))
-				}
-			} catch (e) {
-				navigate("/error", {
-					state: {
-						statusCode: e.statusCode, status: e.status, msg: e,
-					},
-				})
+			if (data !== undefined) {
+				e.target.newMsg.value = ''
+				setData(data)
 			}
 		}
 	}

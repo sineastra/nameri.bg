@@ -1,5 +1,6 @@
 import styles from "./CustomInputFile.module.css"
 
+// TODO: add state and logic for removing of images.
 
 const CustomInputFile = ({ className = "", onChange, inputName = "", multiple = false, text = "Избери файлове" }) => {
 	return (

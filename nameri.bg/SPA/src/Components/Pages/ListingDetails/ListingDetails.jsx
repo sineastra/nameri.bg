@@ -1,5 +1,5 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import listingsServices from "../../../services/listingsServices.js"
 import styles from "./ListingDetails.module.css"
 import Carousel from "../../Components/Carousel/Carousel.jsx"
@@ -26,16 +26,18 @@ const fetchData = async (id) => {
 
 const ListingDetails = (props) => {
 	const params = useParams()
+	const navigate = useNavigate()
 	const [loggedUser] = useContext(UserContext)
 	const { processRequest } = useContext(UtilityContext)
 	const { isLoadingData, data, setData } = useFetch(() => fetchData(params.id), [params.id])
 	const [images, setImages] = useState([])
 
-	const deleteListing = () => {
+	const deleteListing = async () => {
 		const confirm = window.confirm('Сигурен ли си че искаш да изтриеш обявата?')
 
 		if (confirm) {
-			processRequest(() => listingsServices.deleteListing(data.listing._id))
+			await processRequest(() => listingsServices.deleteListing(data.listing._id))
+			navigate(`/profile/${ loggedUser._id }`)
 		}
 	}
 

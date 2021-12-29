@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import UserContext from "../Contexts/UserContext.jsx"
 import { Navigate } from "react-router-dom"
+import Spinner from "../Components/Spinner/Spinner.jsx"
 
 
 const ProtectedRoute = ({ children, type }) => {
@@ -14,7 +15,7 @@ const ProtectedRoute = ({ children, type }) => {
 	useEffect(() => setIsLoading(false), [user])
 
 	return (
-		isLoading ? null : typesConditions[type]()
+		isLoading ? <Spinner/> : typesConditions[type]()
 	)
 }
 

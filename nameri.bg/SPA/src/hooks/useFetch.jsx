@@ -1,30 +1,24 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useContext, useEffect, useState } from "react"
+import UtilityContext from "../Components/Contexts/UtilityContext.jsx"
 
 
 const useFetch = (fetchData, deps = [], partialLoading = false, setPartialLoading = null) => {
-	const navigate = useNavigate()
+	const { processRequest } = useContext(UtilityContext)
 	const [isLoadingData, setIsLoadingData] = useState(true)
 	const [data, setData] = useState({})
 
 	useEffect(() => {
 		partialLoading ? setPartialLoading(true) : setIsLoadingData(true)
 
-		fetchData()
+		processRequest(fetchData)
 			.then(fetchedData => {
 				setData(fetchedData)
-				partialLoading ? setPartialLoading(false) : setIsLoadingData(false)
-			})
-			.catch(e => {
-				navigate("/error", {
-					state: {
-						statusCode: e.statusCode, status: e.status, msg: e,
-					},
-				})
 
+				if (fetchedData) {
+					partialLoading ? setPartialLoading(false) : setIsLoadingData(false)
+				}
 			})
 
-		return () => setIsLoadingData(false)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, deps)
 

@@ -45,7 +45,7 @@ const Carousel = ({ className }) => {
 	const carouselData = contextData.listings
 	const isFirstSlide = useRef(true)
 
-	const changeActiveIDIdle = () => {
+	const changeActiveIdIdle = () => {
 		if (carouselData && carouselData.length > 0) {
 			const index = carouselData.findIndex(x => x._id === activeId)
 			const newIndex = carouselData[index + 1] ? index + 1 : 0
@@ -58,7 +58,7 @@ const Carousel = ({ className }) => {
 		}
 	}
 
-	useInterval(changeActiveIDIdle, timeDelay)
+	useInterval(changeActiveIdIdle, timeDelay)
 
 	const changeActiveIdClick = (newId) => {
 
@@ -87,31 +87,29 @@ const Carousel = ({ className }) => {
 	}, [timeDelay])
 
 	return (
-		carouselData
-			? <section className={ className }>
-				<SlidesWrapper>
-					{ carouselData.map((listing, index) =>
-						<Slide
-							listing={ listing }
-							key={ listing._id }
+		<section className={ className }>
+			<SlidesWrapper>
+				{ carouselData.map((listing, index) =>
+					<Slide
+						listing={ listing }
+						key={ listing._id }
+						activeId={ activeId }
+						isFirstSlide={ isFirstSlide }
+						index={ index }
+					/>) }
+			</SlidesWrapper>
+			<NavDotsContainer>
+				<NavDotsInnerCont>
+					{ carouselData.map((listing) => (<StyledLi key={ listing._id }>
+						<StyledNavDot
+							id={ listing._id }
 							activeId={ activeId }
-							isFirstSlide={ isFirstSlide }
-							index={ index }
-						/>) }
-				</SlidesWrapper>
-				<NavDotsContainer>
-					<NavDotsInnerCont>
-						{ carouselData.map((listing) => (<StyledLi key={ listing._id }>
-							<StyledNavDot
-								id={ listing._id }
-								activeId={ activeId }
-								changeId={ changeActiveIdClick }
-							/>
-						</StyledLi>)) }
-					</NavDotsInnerCont>
-				</NavDotsContainer>
-			</section>
-			: null
+							changeId={ changeActiveIdClick }
+						/>
+					</StyledLi>)) }
+				</NavDotsInnerCont>
+			</NavDotsContainer>
+		</section>
 	)
 }
 

@@ -9,14 +9,13 @@ import SideNav from "../SideNav/SideNav.jsx"
 import UserContext from "../../../Contexts/UserContext.jsx"
 import userServices from "../../../../services/userServices.js"
 import Cookies from "js-cookie"
-import extractErrorMessages from "../../../../helpers/extractErrorMessages.js"
-import SoftErrorsContext from "../../../Contexts/SoftErrorsContext.jsx"
+import UtilityContext from "../../../Contexts/UtilityContext.jsx"
 
 
 const Header = () => {
 	const navigate = useNavigate()
-	const [, setErrors] = useContext(SoftErrorsContext)
 	const [user, setUser] = useContext(UserContext)
+	const { processRequest } = useContext(UtilityContext)
 	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
 	const [windowWidth, setWindowWidth] = useState(0)
 
@@ -33,24 +32,13 @@ const Header = () => {
 	}
 
 	const logout = async () => {
-		try {
-			const response = await userServices.logout()
+		const data = await processRequest(userServices.logout)
 
-			if (response.ok) {
-				Cookies.remove(process.env.REACT_APP_JWT_COOKIE_NAME)
-				setUser(null)
-				navigate("/")
-			} else {
-				setErrors(extractErrorMessages(response.errors))
-			}
-		} catch (e) {
-			navigate("/error", {
-				state: {
-					statusCode: e.statusCode, status: e.status, msg: e,
-				},
-			})
+		if (data !== undefined) {
+			Cookies.remove(process.env.REACT_APP_JWT_COOKIE_NAME)
+			setUser(null)
+			navigate("/")
 		}
-
 	}
 
 	useEffect(() => {

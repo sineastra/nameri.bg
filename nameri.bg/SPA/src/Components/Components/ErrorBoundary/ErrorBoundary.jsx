@@ -11,15 +11,15 @@ class ErrorBoundary extends React.Component {
 
 	componentDidCatch (error, errorInfo) {
 		this.setState({
-			error: error,
-			errorInfo: errorInfo,
+			error: error || 404,
+			errorInfo: errorInfo || 'Something went wrong, please try again in a few moments.',
 		})
 	}
 
 	setBoundaryError (error, errorInfo) {
 		this.setState({
-			error: error,
-			errorInfo: errorInfo,
+			error: error || 404,
+			errorInfo: errorInfo || 'Something went wrong, please try again in a few moments.',
 		})
 	}
 

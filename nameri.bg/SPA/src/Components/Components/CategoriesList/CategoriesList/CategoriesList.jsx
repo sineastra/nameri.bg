@@ -10,29 +10,27 @@ const CategoriesList = (props) => {
 	const subCategories = contextData.subCategories
 
 	return (
-		subCategories
-			? <section className={ styles.randomCategoriesCont }>
-				<div className={ styles.randomCatsInnerCont }>
-					{ subCategories.map(category => (
-						<div className={ styles.randomCatsSingleCont } key={ category._id }>
-							<Link to={ `/categories/${ category._id }` }
-							      className={ styles.mainHeader }>{ category.name }</Link>
-							<div className={ styles.innerRandom }>
-								{ category.subcategories.map(subCat => (
-									<SingleListCategory
-										key={ subCat._id }
-										_id={ subCat._id }
-										name={ subCat.name }
-										listings={ subCat.listings }
-										className={ styles.singleCat }
-									/>))
-								}
-							</div>
+		<section className={ styles.randomCategoriesCont }>
+			<div className={ styles.randomCatsInnerCont }>
+				{ subCategories.map(category => (
+					<div className={ styles.randomCatsSingleCont } key={ category._id }>
+						<Link to={ `/categories/${ category._id }` }
+						      className={ styles.mainHeader }>{ category.name }</Link>
+						<div className={ styles.innerRandom }>
+							{ category.subcategories.map(subCat => (
+								<SingleListCategory
+									key={ subCat._id }
+									_id={ subCat._id }
+									name={ subCat.name }
+									listings={ subCat.listings }
+									className={ styles.singleCat }
+								/>))
+							}
 						</div>
-					)) }
-				</div>
-			</section>
-			: null
+					</div>
+				)) }
+			</div>
+		</section>
 	)
 }
 

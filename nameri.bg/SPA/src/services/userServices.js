@@ -1,5 +1,4 @@
 import { abstractFetch, abstractFormDataRequest, abstractPostFormRequest } from "./abstracts.js"
-import { stringifyFetchBody } from "../helpers/stringifyFetchBody.js"
 
 //TODO: make abstractPostRequest for handling post requests that are not FormData.
 const userServices = {

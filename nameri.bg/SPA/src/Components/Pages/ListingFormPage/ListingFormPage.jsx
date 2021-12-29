@@ -1,7 +1,7 @@
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import styles from "./ListingFormPage.module.css"
 import CustomInputFile from "../../Components/CustomInputFile/CustomInputFile.jsx"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import categoriesService from "../../../services/categoriesService.js"
 import townsServices from "../../../services/townsServices.js"
@@ -11,6 +11,7 @@ import listingsServices from "../../../services/listingsServices.js"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TagInput from "../../Components/TagInput/TagInput.jsx"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
+import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 
 const fetchDataAdd = async () => {
@@ -33,6 +34,7 @@ const postData = async (formType, formData, id) =>
 const AddListing = ({ formType }) => {
 	const params = useParams()
 	const navigate = useNavigate()
+	const { processRequest } = useContext(UtilityContext)
 	const { isLoadingData, setIsLoadingData, data } = useFetch(formType === 'edit'
 			? () => fetchDataEdit(params.id)
 			: fetchDataAdd,
@@ -42,18 +44,16 @@ const AddListing = ({ formType }) => {
 	const [tags, setTags] = useState([])
 	const [price, setPrice] = useState("")
 	const [isChecked, setIsChecked] = useState(false)
-	const [errors, setErrors] = useState({})
+	const [validationErrors, setvalidationErrors] = useState({})
 
 	useEffect(() => {
-		if (data.listing) {
+		if (data && data.listing) {
 			setSubCats(data.listing.category.subcategories)
 			setImages(data.listing.images)
 			setIsChecked(data.listing.price == 0)
 			setPrice(data.listing.price != 0 ? data.listing.price : '')
 			setTags(data.listing.tags)
 		}
-
-		return () => setIsLoadingData(false)
 	}, [data])
 
 	const submitHandler = async (e) => {
@@ -61,13 +61,13 @@ const AddListing = ({ formType }) => {
 		setIsLoadingData(true)
 
 		const formData = new FormData(e.target)
-		const data = Object.fromEntries(formData)
+		const formDataObj = Object.fromEntries(formData)
 
 		let formDataWithAddedStates = {
-			...data,
-			town: data.town,
-			category: data.category,
-			subcategory: data.subcategory,
+			...formDataObj,
+			town: formDataObj.town,
+			category: formDataObj.category,
+			subcategory: formDataObj.subcategory,
 			tags: JSON.stringify(tags),
 			images,
 			price: isChecked ? 0 : price,
@@ -75,32 +75,29 @@ const AddListing = ({ formType }) => {
 		const validationResult = addListingFormValidator(formDataWithAddedStates)
 
 		if (validationResult.valid) {
-			try {
-				const formDataFinal = Object.entries(formDataWithAddedStates).reduce((a, [key, value]) => {
-					if (key === 'images') {
-						value.forEach((imgFile, i) => a.append('image' + i, imgFile))
-					} else {
-						a.append(key, value)
-					}
 
-					return a
-				}, new FormData())
-
-				const response = await postData(formType, formDataFinal, params.id)
-				setIsLoadingData(false)
-
-				if (response.ok) {
-					navigate(`/details/${ response.data._id }`)
+			const formDataFinal = Object.entries(formDataWithAddedStates).reduce((a, [key, value]) => {
+				if (key === 'images') {
+					value.forEach((imgFile, i) => a.append('image' + i, imgFile))
 				} else {
-					setErrors(response.errors)
+					a.append(key, value)
 				}
-			} catch (e) {
+
+				return a
+			}, new FormData())
+
+			const data = await processRequest(() => postData(formType, formDataFinal, params.id))
+
+			if (data !== undefined) {
+				navigate(`/details/${ data._id }`)
+			} else {
 				setIsLoadingData(false)
-				navigate('/error')
+				setSubCats([])
 			}
+
 		} else {
 			setIsLoadingData(false)
-			setErrors(validationResult.data)
+			setvalidationErrors(validationResult.data)
 		}
 	}
 
@@ -110,9 +107,11 @@ const AddListing = ({ formType }) => {
 		const categoryId = optionElement.getAttribute('id')
 
 		if (categoryId !== null && categoryId !== undefined) {
-			const response = await categoriesService.getSubCategories(categoryId)
+			const data = await processRequest(() => categoriesService.getSubCategories(categoryId))
 
-			setSubCats(response.subcategories)
+			if (data) {
+				setSubCats(data.subcategories)
+			}
 		} else {
 			setSubCats([])
 		}
@@ -142,7 +141,7 @@ const AddListing = ({ formType }) => {
 		setPrice(e.target.value)
 	}
 	const clearError = (error) => {
-		setErrors(oldErrors => ({ ...oldErrors, [error]: true }))
+		setvalidationErrors(oldErrors => ({ ...oldErrors, [error]: true }))
 	}
 	const handleCheckBox = (e) => {
 		setIsChecked(!!e.target.checked)
@@ -164,11 +163,11 @@ const AddListing = ({ formType }) => {
 								type="text"
 								name="heading"
 								placeholder="Заглавие на твоята обява"
-								className={ errors.heading === false ? styles.invalidInput : '' }
+								className={ validationErrors.heading === false ? styles.invalidInput : '' }
 								onFocus={ () => clearError('heading') }
 								defaultValue={ data.listing ? data.listing.heading : '' }
 							/>
-							{ errors.heading === false &&
+							{ validationErrors.heading === false &&
 								<div className={ styles.errorElement }>Заглавието трябва да е поне 5 символа!</div> }
 							{/*End of Heading Input*/ }
 						</div>
@@ -178,11 +177,11 @@ const AddListing = ({ formType }) => {
 							<textarea
 								name="details"
 								placeholder="Детайлно описание"
-								className={ errors.details === false ? styles.invalidInput : '' }
+								className={ validationErrors.details === false ? styles.invalidInput : '' }
 								onFocus={ () => clearError('details') }
 								defaultValue={ data.listing ? data.listing.details : '' }
 							/>
-							{ errors.details === false &&
+							{ validationErrors.details === false &&
 								<div className={ styles.errorElement }>Описанието трябва да е поне 10 символа!</div> }
 						</div>
 						{/*End of Details Textarea*/ }
@@ -193,7 +192,7 @@ const AddListing = ({ formType }) => {
 							onFocus={ () => clearError('tags') }
 							onKeyPress={ addTag }
 							data={ tags }
-							errors={ errors }
+							errors={ validationErrors }
 							removeDataEntry={ removeTag }
 							inputText="Тагове (Добави със спейс)"
 						/>
@@ -209,12 +208,12 @@ const AddListing = ({ formType }) => {
 									name="price"
 									disabled={ isChecked }
 									placeholder="Цена"
-									className={ `${ styles.halfInput } ${ errors.price === false ? styles.invalidInput : '' }` }
+									className={ `${ styles.halfInput } ${ validationErrors.price === false ? styles.invalidInput : '' }` }
 									onFocus={ () => clearError('price') }
 									onChange={ handlePriceChange }
 									value={ price }
 								/>
-								{ errors.price === false &&
+								{ validationErrors.price === false &&
 									<div className={ styles.errorElement }>Цената е задължителна... </div>
 								}
 								<div className={ styles.priceCheckBoxWrapper }>
@@ -234,7 +233,7 @@ const AddListing = ({ formType }) => {
 							<div className={ styles.halfInputContainer }>
 								<select
 									name="town"
-									className={ `${ styles.halfInput } ${ errors.town === false ? styles.invalidInput : '' }` }
+									className={ `${ styles.halfInput } ${ validationErrors.town === false ? styles.invalidInput : '' }` }
 									onFocus={ () => clearError('town') }
 									defaultValue={ data.listing ? data.listing.town._id : "townDefault" }>
 									<option value="townDefault" disabled>-- избери град --</option>
@@ -245,7 +244,7 @@ const AddListing = ({ formType }) => {
 										</option>
 									)) }
 								</select>
-								{ errors.town === false &&
+								{ validationErrors.town === false &&
 									<div className={ styles.errorElement }>Моля избери град... </div> }
 							</div>
 							{/*End of Town Select*/ }
@@ -254,7 +253,7 @@ const AddListing = ({ formType }) => {
 						{/*Start of Category Select*/ }
 						<select
 							name="category"
-							className={ `${ styles.categorySelect } ${ styles.halfInput } ${ errors.category === false ? styles.invalidInput : '' }` }
+							className={ `${ styles.categorySelect } ${ styles.halfInput } ${ validationErrors.category === false ? styles.invalidInput : '' }` }
 							onChange={ changeCategory }
 							onFocus={ () => clearError('category') }
 							defaultValue={ data.listing ? data.listing.category._id : "categoryDefault" }>
@@ -266,21 +265,21 @@ const AddListing = ({ formType }) => {
 								</option>
 							)) }
 						</select>
-						{ errors.category === false &&
+						{ validationErrors.category === false &&
 							<div className={ styles.errorElement }>Моля избери категория... </div> }
 						{/*End of Category Select*/ }
 
 						{/*Start of Subcategory Select*/ }
 						<select
 							name="subcategory"
-							className={ `${ styles.categorySelect } ${ styles.halfInput } ${ errors.subcategory === false ? styles.invalidInput : '' }` }
+							className={ `${ styles.categorySelect } ${ styles.halfInput } ${ validationErrors.subcategory === false ? styles.invalidInput : '' }` }
 							disabled={ subCats.length === 0 }
 							onFocus={ () => clearError('subcategory') }
 							defaultValue={ data.listing ? data.listing.subcategory._id : '' }>
 							{ subCats.map(subCat => (
 								<option value={ subCat._id } key={ subCat._id }>{ subCat.name }</option>)) }
 						</select>
-						{ errors.subcategory === false &&
+						{ validationErrors.subcategory === false &&
 							<div className={ styles.errorElement }>Моля избери подкатегория... </div> }
 						{/*End of Subcategory Select*/ }
 

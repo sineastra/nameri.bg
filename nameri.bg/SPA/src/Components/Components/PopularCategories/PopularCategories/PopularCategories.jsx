@@ -9,28 +9,24 @@ const PopularCategories = (props) => {
 	const popularCategories = contextData.popularCategories
 
 	return (
-		popularCategories
-			? <section className={ styles.popularCategoriesCont }>
+		<section className={ styles.popularCategoriesCont }>
+			<div className={ styles.headingsWrapper }>
+				<h1 className={ styles.mainHeader }>Популярни Категории</h1>
+				<p className={ styles.subHeader }>От дизайн на лого до поправка на оградата на баба ти
+					Пенка - имаме всичко!</p>
+			</div>
 
-				<div className={ styles.headingsWrapper }>
-					<h1 className={ styles.mainHeader }>Популярни Категории</h1>
-					<p className={ styles.subHeader }>От дизайн на лого до поправка на оградата на баба ти
-						Пенка - имаме всичко!</p>
-				</div>
-
-				<section className={ styles.popularWrapper }>
-					{ popularCategories.map(x => (
-						<SingleCategory
-							img={ x.img }
-							name={ x.name }
-							key={ x._id }
-							id={ x._id }
-							className={ styles.singleCategoryClass }/>
-					)) }
-				</section>
-
+			<section className={ styles.popularWrapper }>
+				{ popularCategories.map(x => (
+					<SingleCategory
+						img={ x.img }
+						name={ x.name }
+						key={ x._id }
+						id={ x._id }
+						className={ styles.singleCategoryClass }/>
+				)) }
 			</section>
-			: null
+		</section>
 	)
 }
 

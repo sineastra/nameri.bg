@@ -5,12 +5,10 @@ import { IconContext } from "react-icons"
 
 
 const MsgConversations = ({ messages, changeMsg }) => {
-	const messagesExist = messages.length > 0
-
 	return (
 		<aside className={ styles.asideChat }>
 			<div className={ styles.asideInnerChat }>
-				{ messagesExist
+				{ messages.length > 0
 					? <>
 						<div className={ styles.innerBoxText }>Входяща кутия</div>
 						{ messages.map(msg =>
@@ -22,7 +20,8 @@ const MsgConversations = ({ messages, changeMsg }) => {
 						<IconContext.Provider value={ { className: styles.sadIcon } }>
 							<FaSadTear/>
 						</IconContext.Provider>
-					</div> }
+					</div>
+				}
 			</div>
 		</aside>
 	)

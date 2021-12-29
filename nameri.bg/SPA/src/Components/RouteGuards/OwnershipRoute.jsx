@@ -3,6 +3,7 @@ import UserContext from "../Contexts/UserContext.jsx"
 import { Navigate, useParams } from "react-router-dom"
 import useFetch from "../../hooks/useFetch.jsx"
 import userServices from "../../services/userServices.js"
+import Spinner from "../Components/Spinner/Spinner.jsx"
 
 
 const OwnershipRoute = ({ children, type }) => {
@@ -15,7 +16,7 @@ const OwnershipRoute = ({ children, type }) => {
 
 	return (
 		isLoadingData
-			? null
+			? <Spinner/>
 			: data ? children : <Navigate to="/error"/>
 	)
 }

@@ -4,21 +4,24 @@ import { useContext, useState } from "react"
 import TextModal from "../TextModal/TextModal.jsx"
 import Rating from "../Rating/Rating.jsx"
 import userServices from "../../../services/userServices.js"
-import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 import StyledBtn from "../StyledBtn/StyledBtn.jsx"
 import { Link } from "react-router-dom"
 import UserContext from "../../Contexts/UserContext.jsx"
+import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 
 const ListingSideCard = ({ listing, setData }) => {
-	const [modalVisible, setModalVisible] = useState(false)
+	const [user] = useContext(UserContext)
 	const [rating, setRating] = useState(0)
 	const [hoverRating, setHoverRating] = useState(0)
-	const [user] = useContext(UserContext)
-	const [, setErrors] = useContext(SoftErrorsContext)
-	const isOwnProfile = user && user._id !== listing.user._id
+	const { processRequest } = useContext(UtilityContext)
+	const [modalVisible, setModalVisible] = useState(false)
+
 	const ratings = [1, 2, 3, 4, 5]
+	const isOwnProfile = user && user._id !== listing.user._id
 	const reviewsForDisplay = listing.user.reviews.sort((a, b) => a.rating - b.rating).slice(0, 3)
+
+	//TODO: see to make the rating its own component. It has no place here.
 
 	const addRating = (rating) => {
 		setHoverRating(rating)
@@ -29,13 +32,8 @@ const ListingSideCard = ({ listing, setData }) => {
 		setHoverRating(rating)
 	}
 
-	const onMouseLeave = () => {
-		if (pickRating === 0) {
-			setHoverRating(0)
-		} else {
-			setHoverRating(rating)
-		}
-	}
+	const onMouseLeave = () =>
+		pickRating === 0 ? setHoverRating(0) : setHoverRating(rating)
 
 	const closeModal = () => {
 		setModalVisible(false)
@@ -54,13 +52,11 @@ const ListingSideCard = ({ listing, setData }) => {
 			reviewRating: rating,
 		}
 
-		const response = await userServices.addReview(reviewData, listing.user._id, listing._id)
+		const data = await processRequest(() => userServices.addReview(reviewData, listing.user._id, listing._id))
 
-		if (response.ok) {
-			setData(oldData => ({ ...oldData, listing: response.data }))
+		if (data !== undefined) {
+			setData(oldData => ({ ...oldData, listing: data }))
 			closeModal()
-		} else {
-			setErrors({ msg: response.msg })
 		}
 	}
 

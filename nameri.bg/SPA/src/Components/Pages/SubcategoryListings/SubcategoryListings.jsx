@@ -62,7 +62,6 @@ const SubcategoryListings = () => {
 	}, [data])
 
 	useEffect(() => {
-
 		searchParams.set('limit', limit)
 		setSearchParams(searchParams, { replace: true })
 

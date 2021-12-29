@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from "react-router-dom"
+
 import Spinner from "../Spinner/Spinner.jsx"
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage.jsx"
 

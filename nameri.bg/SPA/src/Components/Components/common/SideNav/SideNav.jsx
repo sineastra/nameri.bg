@@ -6,20 +6,19 @@ import { useState } from "react"
 const SideNav = ({ className, toggleSideBar, user, logout }) => {
 	const [userNavVisibility, setUserNavVisibility] = useState(false)
 
-	const toggleUserNav = () => setUserNavVisibility(oldState => !oldState)
-
-	const addedToggleSideBar = () => {
+	const toggleUserNavVisibility = () => setUserNavVisibility(oldState => !oldState)
+	const toggleSideNavVisibility = () => {
 		setUserNavVisibility(false)
 		toggleSideBar()
 	}
 
 	return (
 		<div className={ `${ styles.sideNav } ${ className }` }>
-			<div onClick={ addedToggleSideBar } className={ styles.closeBtn }>X</div>
+			<div onClick={ toggleSideNavVisibility } className={ styles.closeBtn }>X</div>
 			{ user
 				? <div className={ styles.linksWrapper }>
 					<div className={ styles.userNavLinks }>
-						<h1 className={ styles.userNames } onClick={ toggleUserNav }>Здравей, <span
+						<h1 className={ styles.userNames } onClick={ toggleUserNavVisibility }>Здравей, <span
 							className={ styles.userNamesSpan }>{ user.nameAndSurname }</span></h1>
 						<div
 							className={ `${ userNavVisibility ? styles.show : styles.hidden } ${ styles.userNavLinksInner }` }>

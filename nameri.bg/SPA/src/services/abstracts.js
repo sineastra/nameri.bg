@@ -4,7 +4,6 @@ const abstractFetch = (url, body, method = "GET") => {
 	let predefinedBody = {
 		method,
 		headers: {
-			'Content-Type': 'application/json',
 			'Access-Control-Allow-Origin': process.env.REACT_APP_ORIGIN,
 		},
 		credentials: 'include',
@@ -18,7 +17,6 @@ const abstractFetch = (url, body, method = "GET") => {
 				if (resData.data === undefined) {
 					reject(resData)
 				}
-
 				resolve(resData.data)
 			})
 			.catch(e => {

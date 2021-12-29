@@ -13,6 +13,7 @@ import processNewToken from "../../../helpers/processNewToken.js"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
 import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
 import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
+import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 
 const DetailsArticle = () => {
@@ -53,9 +54,9 @@ const ProfileEdit = () => {
 		data,
 		setData,
 	} = useFetch(() => userServices.getUserForProfile(userData._id, userData))
+	const { processRequest } = useContext(UtilityContext)
 	const [profileImg, setProfileImg] = useState('')
 	const [formDataErrors, setFormDataErrors] = useState({})
-	const [, setContextErrors] = useContext(SoftErrorsContext)
 	const navigate = useNavigate()
 
 	const submitForm = async (e) => {
@@ -76,16 +77,15 @@ const ProfileEdit = () => {
 
 		if (validationResult.valid) {
 			setIsLoadingData(true)
-			const response = await userServices.editProfile(userData._id, formDataFinal)
+			const resData = await processRequest(() => userServices.editProfile(userData._id, formDataFinal))
 
-			if (response.ok) {
-				setUserData(processNewToken(response.token))
+			if (resData !== undefined) {
+				setUserData(processNewToken(resData.token))
 
 				navigate(`/profile/${ userData._id }`)
 			} else {
-				setContextErrors(extractErrorMessages(response.errors))
+				setIsLoadingData(false)
 			}
-
 		} else {
 			setFormDataErrors(validationResult.data)
 		}

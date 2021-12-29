@@ -1,4 +1,4 @@
-import { abstractFetch, abstractGetRequest } from "./abstracts.js"
+import { abstractFetch } from "./abstracts.js"
 
 
 const categoriesService = {

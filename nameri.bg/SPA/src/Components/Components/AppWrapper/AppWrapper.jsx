@@ -5,7 +5,7 @@ import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 import UserContext from "../../Contexts/UserContext.jsx"
 import deserializeJWT from "../../../helpers/deserializeJWT.js"
 import getToken from "../../../helpers/getToken.js"
-import _processFetch from "../../../services/_processFetch.js"
+import { _processFetch } from "../../../services/_processFetch.js"
 import ErrorBoundaryContext from "../../Contexts/ErrorBoundaryContext.jsx"
 import UtilityContext from "../../Contexts/UtilityContext.jsx"
 

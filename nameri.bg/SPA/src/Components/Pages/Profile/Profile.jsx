@@ -8,8 +8,7 @@ import useFetch from "../../../hooks/useFetch.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx"
 import TextModal from "../../Components/TextModal/TextModal.jsx"
 import { useContext, useEffect, useState } from "react"
-import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
-import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
+import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 
 const MessageSubHeader = ({ userName }) =>
@@ -20,8 +19,8 @@ const MessageSubHeader = ({ userName }) =>
 const Profile = () => {
 	const params = useParams()
 	const navigate = useNavigate()
+	const { processRequest } = useContext(UtilityContext)
 	const { isLoadingData, data } = useFetch(() => userServices.getUserForProfile(params.id), [params.id])
-	const [, setContextErrors] = useContext(SoftErrorsContext)
 	const [modalVisible, setModalVisible] = useState(false)
 
 	useEffect(() => {
@@ -34,15 +33,13 @@ const Profile = () => {
 		const formData = new FormData(e.target)
 		const formDataObj = Object.fromEntries(formData)
 
-		const response = await userServices.sendMessage(data._id, formDataObj)
+		const resData = await processRequest(() => userServices.sendMessage(data._id, formDataObj))
 
-		if (response.ok) {
+		if (resData !== undefined) {
 			setModalVisible(false)
 			e.target.message.value = ''
 
-			navigate("/messages", { state: { conversationId: response.data.conversationId } })
-		} else {
-			setContextErrors(extractErrorMessages(response.errors))
+			navigate("/messages", { state: { conversationId: resData.conversationId } })
 		}
 	}
 

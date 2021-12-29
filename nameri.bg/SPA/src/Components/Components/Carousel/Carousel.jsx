@@ -33,7 +33,7 @@ const createSlidesArr = (data, imgsPerSlide) => {
 const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 	const [activeImg, setActiveImg] = useState('')
-	const slideArray = createSlidesArr(imgData, imgsPerSlide)
+	const slidesArr = createSlidesArr(imgData, imgsPerSlide)
 	const sliderRef = useRef(null)
 
 	const goNextSlide = () => {
@@ -84,7 +84,7 @@ const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 
 				<div className={ styles.carouselWrapper } ref={ sliderRef }>
 					{/*SINGLE SLIDE WITH 3 OR MORE OR LESS IMAGES*/ }
-					{ slideArray.map(slideData => (
+					{ slidesArr.map(slideData => (
 						<CarouselSingleSlider
 							slideData={ slideData }
 							changeActiveImg={ changeActiveImg }
