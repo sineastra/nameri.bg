@@ -1,4 +1,10 @@
-<h2 align="center"><i>Nameri.bg </i></h3>
+<h1 align="center"><i>Nameri.bg </i></h1>
+
+**_<p align="center">Nameri.bg is an app for sharing listings offered by people who can for people who need. Inside the app you can find all kind of services, wherever you need a fix in your appartment or a logo for your new company.
+The goal is to connect the people and help them find the perfect professional for the job.</p>_**
+
+<hr/>
+
 <p align="center">
       <a href="https://nameri-bg.vercel.app">
     <img src="./banner.png"/>
@@ -17,19 +23,15 @@
 
 <img src="./mern_logo.png"/>
 
-Nameri.bg is an app for sharing listings offered by people who can for people who need. Inside the app you can find all kind of services, wherever you need a fix in your appartment or a logo for your new company.
-The goal is to connect the people and help them find the perfect professional for the job.
+<h1 align="center">THE WHOLE APP IS CUSTOM!</h1>
+<h3 align="center">Built from scratch -- No libraries for <i><b>THIS</b></i> and certainly no libraries for <i><b>THAT</b></i>.</h3>
 
-<h1 align="center">THE WHOLE APP IS CUSTOM, MEANING: </h1>
+<br/><br/>
 
-- <h3>CUSTOM REST API - Written from a blank index.js specifically for the project.</h3>
+- _It is good to know that almost, if not every problem in React is solved, but If you can't solve it yourself, even not as good at first, are you not working with magic?
+If so, are you a magician? Because you are probably not a developer_
 
-- <h3>CUSTOM REACT JS APP - Every component LOGIC, CSS, TRANSITIONS, ANIMATIONS and EFFECTS are created by me specifically for the project.</h3>
-
-- <h3>NO *external* libraries whatsoever.</h3>
-
-_It is good to know that almost, if not every problem in React is solved, but If you can't solve it yourself, even not as good at first, are you not working with magic?
-If so, are you a magician? Because you are probably not a developer :)_
+<hr/>
 
 __Features of the platform (as is, will be updated as we add more features.)__
 
