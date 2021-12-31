@@ -43,7 +43,6 @@ const RegisterForm = ({ className }) => {
 
 	return (
 		<div className={ `${ styles.inputsCont } ${ className }` }>
-			<h1 className={ styles.mainHeader }>Регистрация</h1>
 			<form className={ styles.inputFieldsCont } onSubmit={ submitHandler } method="POST">
 				<input type="text" name="email" placeholder="Потребителски имейл"
 				       className={ styles.inputField }/>

@@ -15,7 +15,7 @@ const Auth = ({ authType }) => {
 	return (
 		<MainPageLayout>
 			<div
-				className={ `${ styles.wrapper } ${ authType === 'login' ? styles.shortMain : styles.longMain }` }>
+				className={ `${ styles.wrapper }` }>
 				<section className={ styles.mainWrapper }>
 
 					<section className={ styles.headerSectionOuter }>

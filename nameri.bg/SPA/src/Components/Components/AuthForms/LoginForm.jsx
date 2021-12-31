@@ -33,7 +33,6 @@ const LoginForm = ({ className = "" }) => {
 	return (
 		<div className={ `${ styles.inputsCont } ${ className }` }>
 			<form className={ styles.inputFieldsCont } onSubmit={ submitHandler } method="POST">
-				<h1 className={ styles.mainHeader }>Влез</h1>
 				<input type="text" name="email" placeholder="Потребителско име" className={ styles.inputField }/>
 				<input type="password" name="password" placeholder="Парола" className={ styles.inputField }/>
 				<StyledBtn text="Влез" className={ styles.styledBtn }/>
