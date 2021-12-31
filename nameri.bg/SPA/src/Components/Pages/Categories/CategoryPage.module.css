@@ -42,25 +42,21 @@
 
 @media screen and (max-width: 1400px) {
     .categoryCard {
-        width: 35%;
+        width: 40%;
     }
 
     .cardsWrapper {
-        justify-content: center;
+        justify-content: space-around;
     }
 }
 
 @media screen and (max-width: 1200px) {
-    .categoryCard {
-        width: 40%;
-    }
-
     .innerSection {
-        width: 80%;
+        width: 90%;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .innerSection {
         width: 90%;
     }

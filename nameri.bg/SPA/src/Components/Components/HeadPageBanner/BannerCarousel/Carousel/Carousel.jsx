@@ -15,11 +15,11 @@ const StyledLi = styled.li`
   list-style: none;
   display: inline-block;
   margin-right: 1vw;
-  
+
   @media screen and (max-width: 480px) {
     margin-right: 3vw;
   }
-  
+
   @media screen and (max-width: 320px) {
     margin-right: 5vw;
   }
@@ -39,7 +39,7 @@ const NavDotsInnerCont = styled.ul`
   align-items: center;
   padding: 0;
   margin: 0;
-  
+
 `
 
 const SlidesWrapper = styled.div`
@@ -68,7 +68,7 @@ const Carousel = ({ className }) => {
 		}
 	}
 
-	// useInterval(changeActiveIdIdle, timeDelay)
+	useInterval(changeActiveIdIdle, timeDelay)
 
 	const changeActiveIdClick = (newId) => {
 
