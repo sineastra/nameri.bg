@@ -24,7 +24,7 @@ const Benefits = ({ className = "", authType }) => {
 						<div className={ styles.iconWrapper }>
 							<FaCheck/>
 						</div>
-						<div className={ styles.benefitText }>
+						<div className={ styles.benefitText } title={ x }>
 							{ x }
 						</div>
 					</div>

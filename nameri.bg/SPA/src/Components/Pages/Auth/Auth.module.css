@@ -83,6 +83,17 @@
     font-size: 1rem;
 }
 
+.miscTextCont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 .redirectLink {
     color: #ff7200;
 }
