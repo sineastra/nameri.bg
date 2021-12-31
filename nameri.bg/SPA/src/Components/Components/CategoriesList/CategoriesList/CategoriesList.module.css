@@ -68,14 +68,20 @@
     .innerRandom {
         justify-content: center;
     }
-}
 
-@media screen and (max-width: 800px) {
     .randomCatsInnerCont {
-        flex-direction: column;
-        width: 100%;
+        width: 95%;
+        padding-top: 0;
+        justify-content: space-around;
     }
 
+    .randomCatsSingleCont {
+        width: 45%;
+    }
+
+}
+
+@media screen and (max-width: 863px) {
     .randomCatsSingleCont {
         width: 100%;
         min-width: 100%;
@@ -83,15 +89,20 @@
         overflow: hidden;
     }
 
+    .randomCatsInnerCont {
+        flex-direction: column;
+        width: 100%;
+        padding-top: 0;
+    }
+
     .mainHeader {
         width: 100%;
         text-align: center;
         margin-top: 40px;
     }
-}
 
-@media screen and (max-width: 500px) {
     .mainHeader {
+        margin-top: 10px;
         white-space: initial;
     }
 }

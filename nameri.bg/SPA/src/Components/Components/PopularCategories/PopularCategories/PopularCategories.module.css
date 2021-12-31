@@ -44,7 +44,7 @@
 
 .singleCategoryClass {
     width: 23%;
-    height: 270px;
+    height: 15vw;
     margin-bottom: 30px;
 }
 
@@ -57,18 +57,38 @@
 @media screen and (max-width: 1200px) {
     .singleCategoryClass {
         width: 40%;
+        height: 25vw;
     }
 
     .popularWrapper {
-        justify-content: space-around;
+        justify-content: space-evenly;
+        width: 100%;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .singleCategoryClass {
-        width: 70%;
-        height: 400px;
+        width: 45%;
+        height: 30vw;
     }
+
+    .popularCategoriesCont {
+        margin-bottom: 30px;
+    }
+
+    .mainHeader {
+        margin-bottom: 10px;
+    }
+
+    .subHeader {
+        width: 90%;
+        margin-top: 0;
+    }
+
+    .popularWrapper {
+        justify-content: space-evenly;
+    }
+
 
     .headingsWrapper {
         display: flex;
@@ -80,21 +100,13 @@
         width: 90%;
     }
 
-    .popularWrapper {
-        width: 100%;
-    }
+
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 480px) {
     .singleCategoryClass {
-        width: 70%;
-        height: 300px;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .singleCategoryClass {
-        width: 90%;
-        height: 200px;
+        width: 85%;
+        height: 100px;
+        margin-bottom: 15px;
     }
 }

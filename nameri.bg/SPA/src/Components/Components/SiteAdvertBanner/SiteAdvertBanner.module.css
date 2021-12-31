@@ -108,11 +108,21 @@ h1, h2 {
     .headingsOuterContainer {
         width: 55%;
     }
+
+    .innerSection {
+        width: 95%;
+    }
+
+    .bannerImgCont {
+        width: 45%;
+    }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .mainSection {
         height: auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 
     .innerSection {
@@ -149,7 +159,7 @@ h1, h2 {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
     .mainHeading {
         font-size: 0.7em;
     }

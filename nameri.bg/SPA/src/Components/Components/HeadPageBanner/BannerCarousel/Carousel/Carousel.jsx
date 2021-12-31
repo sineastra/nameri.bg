@@ -7,29 +7,39 @@ import useInterval from "../../../../../hooks/useInterval.jsx"
 
 
 const StyledNavDot = styled(NavDot)`
-  display: inline-block;`
+  //display: inline-block;
+  //margin-right: 20px;
+`
 
 const StyledLi = styled.li`
   list-style: none;
   display: inline-block;
+  margin-right: 1vw;
+  
+  @media screen and (max-width: 480px) {
+    margin-right: 3vw;
+  }
+  
+  @media screen and (max-width: 320px) {
+    margin-right: 5vw;
+  }
 `
 
 const NavDotsContainer = styled.div`
   width: 100%;
+  height: 10%;
   display: flex;
   justify-content: center;
 `
 
 const NavDotsInnerCont = styled.ul`
   display: inline-flex;
-  width: 40%;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   padding: 0;
-
-  @media screen and (max-width: 400px) {
-    width: 40%;
-    justify-content: space-between;
-  }
+  margin: 0;
+  
 `
 
 const SlidesWrapper = styled.div`
@@ -58,7 +68,7 @@ const Carousel = ({ className }) => {
 		}
 	}
 
-	useInterval(changeActiveIdIdle, timeDelay)
+	// useInterval(changeActiveIdIdle, timeDelay)
 
 	const changeActiveIdClick = (newId) => {
 
