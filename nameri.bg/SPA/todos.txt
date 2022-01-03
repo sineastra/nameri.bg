@@ -1,15 +1,17 @@
-TODO: cover the error handling with PARAMS of the request undefined or null or etc.
-TODO: abstract what u can, where you can.
-TODO: Add Edit Listing functionality after main things are done.
-TODO: check why the footer sometimes go upside
-TODO: make some fancy buttons
-TODO: Lazy loading
-TODO: Suspense
-TODO: Check why url is updated with search query when you press the search button.
-TODO: Check and fix all setError context updates and sync them with the Express responses.
-TODO: PARAMETRISE all functions which use states or etc so they can be reused.
+TODO: cover the error handling with PARAMS of the request undefined or null or etc. DONE
+TODO: abstract what u can, where you can. ALWAYS CAN MORE BUT IT IS A TRADEOFF, SO DONE
+TODO: Add Edit Listing functionality after main things are done. DONE
+TODO: check why the footer sometimes go upside DONE
+TODO: make some fancy buttons DONE. kinda
+TODO: Lazy loading DONE
+TODO: Suspense DONE
+TODO: Check why url is updated with search query when you press the search button. DONE
+TODO: Check and fix all setError context updates and sync them with the Express responses. DONE
+TODO: PARAMETRISE all functions which use states or etc so they can be reused. NOT DONE.
 
-TODO: add credits section:
+
+
+// CREDITS FOR THE ICONS!
 
 icons:
     digitalMarketing Icon: <div>Icons made by <a href="" title="wanicon">wanicon</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

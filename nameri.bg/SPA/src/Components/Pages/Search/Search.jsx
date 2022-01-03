@@ -6,7 +6,7 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 import styles from "./Search.module.css"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
-import UserCard from "../../Components/UserList/UserCard.jsx"
+import UserCard from "../../Components/UserCard/UserCard.jsx"
 
 
 const fetchData = async (params) => {

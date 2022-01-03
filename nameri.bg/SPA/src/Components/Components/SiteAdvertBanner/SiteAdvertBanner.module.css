@@ -157,6 +157,10 @@ h1, h2 {
     .registerBtn {
         width: 100%;
     }
+
+    .mainSection {
+        margin-bottom: 10%;
+    }
 }
 
 @media screen and (max-width: 320px) {

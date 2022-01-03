@@ -16,7 +16,7 @@ const StyledLi = styled.li`
   display: inline-block;
   margin-right: 1vw;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 863px) {
     margin-right: 3vw;
   }
 

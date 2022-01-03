@@ -43,6 +43,11 @@
     border-bottom-right-radius: 20px;
 }
 
+.categContainerForLoader {
+    position: relative;
+    cursor: pointer;
+}
+
 .categContainer:hover:after {
     opacity: 0;
 }

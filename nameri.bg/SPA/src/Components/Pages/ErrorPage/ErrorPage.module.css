@@ -21,6 +21,15 @@
     font-size: 100px;
 }
 
+.header {
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    height: auto;
+    letter-spacing: 3px;
+    color: white;
+    margin: 0;
+}
 
 .svgWrapper {
     font-size: 40px;

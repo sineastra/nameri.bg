@@ -27,6 +27,9 @@ const SideNav = ({ className, toggleSideBar, user, logout }) => {
 							<Link
 								className={ `${ styles.userNavLinkInner }  ${ styles.navLink }` }
 								to={ `/profile/edit` }>Редактирай профил</Link>
+							<Link
+								className={ `${ styles.userNavLinkInner }  ${ styles.navLink }` }
+								to={ `/add-listing` }>Добави обява</Link>
 							<div
 								className={ `${ styles.userNavLinkInner }  ${ styles.navLink } ${ styles.lastUserLink }` }
 								onClick={ logout }>Излез

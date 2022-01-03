@@ -33,7 +33,8 @@
 
 .img {
     width: 90%;
-    height: 50%;
+    height: 7vw;
+    /*height: 90%;*/
     object-fit: cover;
     border-radius: 10%;
 }
@@ -79,4 +80,19 @@
 
 .smallDivsWrapper {
     display: flex;
+}
+
+@media screen and (max-width: 863px) {
+    .imgSection {
+        margin-right: 0;
+        width: 20%;
+    }
+
+    .img {
+        height: 10vw;
+    }
+
+    .userInfoSection {
+        width: 75%;
+    }
 }

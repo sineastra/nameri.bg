@@ -5,7 +5,7 @@ import { useRef } from "react"
 
 const Spinner = () => {
 	// On every new spinner, we recalculate the time it is now, divided by the animation time the spinner uses.
-	// This gives us the amount of time it has passed since the last tick (in my spinner a tick === 1.2seconds)
+	// This gives us the amount of time it has passed since the last tick (in my spinner an animation tick === 1.2seconds)
 	// Lets say it is 0.5s elapsed since the last tick. We then pass that delay as CSS variable to the spinner
 	// to delay the animation with so much seconds, so the animation aligns with the previous spinner animation.
 	// Done, no waterfalls.

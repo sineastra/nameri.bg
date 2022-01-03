@@ -1,6 +1,5 @@
 .mainWrapper {
     width: 100%;
-    min-height: 100vh;
     margin-bottom: 10%;
     display: flex;
     justify-content: center;
@@ -8,7 +7,6 @@
 
 .innerWrapper {
     width: 90%;
-    min-height: 100vh;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -42,4 +40,23 @@ a.userCard {
     background: #ff7200;
     color: white;
     margin-top: 0;
+}
+
+@media screen and (max-width: 863px) {
+    .usersHeader, .userCardNameHeader {
+        font-size: 3vw;
+    }
+
+    .userCard {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .innerWrapper {
+        padding-bottom: 5%;
+    }
+
+    .mainWrapper {
+        margin-top: 20%;
+    }
 }

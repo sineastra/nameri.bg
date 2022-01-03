@@ -143,15 +143,15 @@ div.messageModal {
     }
 
     div.listingCard {
-        width: 80%;
-        height: 50vh;
+        width: 70vw;
+        height: 70vw;
     }
 }
 
 @media screen and (max-width: 481px) {
     div.listingCard {
-        width: 70%;
-        height: 25vh;
+        width: 80vw;
+        height: 80vw;
     }
 
     .listingProfilePic {

@@ -1,8 +1,8 @@
-import styles from "./UserList.module.css"
+import styles from "./UserCard.module.css"
 import { Link } from "react-router-dom"
 
 
-const UserCard = ({ user, className = '' }) => {
+const UserCard = ({ user, headerClassName = "", className = '' }) => {
 	const profileImg = user.profileImg === "" ? "/profile.png" : user.profileImg
 
 	return (
@@ -12,7 +12,7 @@ const UserCard = ({ user, className = '' }) => {
 			</div>
 			<div className={ styles.userInfoSection }>
 				<div className={ styles.userLinkInnerDiv }>
-					<h1 className={ styles.nameHeader }>{ user.nameAndSurname }</h1>
+					<h1 className={ `${ styles.nameHeader } ${ headerClassName }` }>{ user.nameAndSurname }</h1>
 				</div>
 				<div className={ `${ styles.userLinkInnerDiv } ${ styles.smallDivsWrapper }` }>
 					<div className={ styles.smallInnerDiv }>Имейл: <span
