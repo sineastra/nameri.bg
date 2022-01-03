@@ -33,7 +33,7 @@ const Search = () => {
 						<div className={ styles.usersInnerWrapper }>
 							<h1 className={ styles.usersHeader }>Потребители</h1>
 							{ data.users.map(x => (
-								<div className={styles.userCardWrapper}>
+								<div className={ styles.userCardWrapper } key={ x._id }>
 									<UserCard user={ x }/>
 								</div>
 							)) }

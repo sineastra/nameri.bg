@@ -17,7 +17,7 @@ const TopUsers = () => {
 					<div className={ styles.innerWrapper }>
 						<h1 className={ styles.usersHeader }>Топ Потребители</h1>
 						{ data.map(x => (
-							<UserCard key={ x._id } user={ x } className={styles.userCard}/>
+							<UserCard key={ x._id } user={ x } className={ styles.userCard }/>
 						)) }
 					</div>
 				</div>

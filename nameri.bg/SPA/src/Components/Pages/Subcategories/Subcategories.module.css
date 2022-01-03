@@ -65,7 +65,18 @@
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px){
+    .subCatCardWrapper  {
+        width: 45%;
+        min-width: 45%;
+    }
+
+    .subCatsInner {
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 863px) {
     .subCatCardWrapper {
         width: 100%;
         min-width: 100%;
@@ -86,7 +97,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .subCatCardWrapper {
         margin-bottom: 10%;
     }

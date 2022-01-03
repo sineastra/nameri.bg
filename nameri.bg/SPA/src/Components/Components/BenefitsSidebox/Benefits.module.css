@@ -119,7 +119,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .benefitDiv {
         font-size: 0.7rem;
         overflow: hidden;

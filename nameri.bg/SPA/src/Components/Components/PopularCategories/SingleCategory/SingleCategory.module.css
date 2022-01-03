@@ -68,13 +68,13 @@
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .imgLoader {
         height: 45vh;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .categHeading {
         font-size: 1rem;
     }

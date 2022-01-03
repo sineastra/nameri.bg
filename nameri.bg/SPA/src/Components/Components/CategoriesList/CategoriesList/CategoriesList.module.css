@@ -35,9 +35,9 @@
 
 .randomCatsSingleCont {
     display: flex;
-    width: 40%;
-    min-width: 40%;
-    max-width: 40%;
+    width: 45%;
+    min-width: 45%;
+    max-width: 45%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;

@@ -19,13 +19,13 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .tagElement {
         font-size: 0.8rem;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .tagElement {
         font-size: 0.7rem;
     }

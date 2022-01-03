@@ -24,7 +24,7 @@ section.userList {
     align-items: center;
 }
 
-.userCard {
+a.userCard {
     width: 90%;
 }
 
@@ -41,4 +41,5 @@ section.userList {
     font-weight: 700;
     background: #ff7200;
     color: white;
+    margin-top: 0;
 }

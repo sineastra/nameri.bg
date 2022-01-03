@@ -103,7 +103,7 @@
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 481px) {
     .singleCategoryClass {
         width: 85%;
         height: 100px;

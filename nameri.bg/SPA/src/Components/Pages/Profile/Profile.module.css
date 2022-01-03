@@ -148,7 +148,7 @@ div.messageModal {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     div.listingCard {
         width: 70%;
         height: 25vh;
