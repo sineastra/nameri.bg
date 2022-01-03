@@ -163,13 +163,13 @@ h2 {
     text-decoration: underline;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .mailIcon {
         font-size: 5rem;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .singleMsg {
         font-size: 0.8rem;
     }

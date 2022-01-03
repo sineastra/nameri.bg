@@ -1,5 +1,5 @@
 .contentWrapper {
-    width: 90%;
+    width: 100%;
     border-bottom: 2px solid lightgray;
     padding: 4% 2% 2%;
     transition: all 0.5s ease;
@@ -20,7 +20,7 @@
 .userInfoSection {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 85%;
 }
 
 .imgSection {
@@ -33,6 +33,9 @@
 
 .img {
     width: 90%;
+    height: 7vw;
+    /*height: 90%;*/
+    object-fit: cover;
     border-radius: 10%;
 }
 
@@ -77,4 +80,19 @@
 
 .smallDivsWrapper {
     display: flex;
+}
+
+@media screen and (max-width: 863px) {
+    .imgSection {
+        margin-right: 0;
+        width: 20%;
+    }
+
+    .img {
+        height: 10vw;
+    }
+
+    .userInfoSection {
+        width: 75%;
+    }
 }

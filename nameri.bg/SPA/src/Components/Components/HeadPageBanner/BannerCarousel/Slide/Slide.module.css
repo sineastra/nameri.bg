@@ -166,7 +166,7 @@ div.slideLoader {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
     .listingsCountWrapper {
         display: none;
     }
@@ -192,5 +192,13 @@ div.slideLoader {
     .profileImgWrapper {
         width: 100%;
         height: 100%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .userProfileSection {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 200px;
     }
 }

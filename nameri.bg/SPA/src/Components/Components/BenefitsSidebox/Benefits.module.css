@@ -7,7 +7,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid lightgray;
     border-top: 1px solid lightgray;
-    padding: 0px 0px 50px;
+    padding: 0;
     background-color: rgba(218, 220, 227, 0.5);
 }
 
@@ -20,69 +20,112 @@
     border: 1px solid lightgray;
     border-radius: 20px;
     width: 30%;
-    margin-bottom: 20px;
     background-color: white;
     box-sizing: border-box;
 }
 
-.header {
+.listingsHeader {
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
     width: 80%;
     text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    margin: 0;
+    padding: 10px 15px;
+    box-sizing: border-box;
     border: 1px solid lightgray;
     border-top: 1px solid transparent;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     background-color: #ff7200;
     color: white;
-
 }
 
 .benefitText {
     margin-left: 10px;
     font-family: 'Comfortaa', cursive;
     font-weight: 400;
+    color: gray;
 }
 
 .benefitsWrapper {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .iconWrapper {
-    width: 10%;
+    width: 5%;
     color: green;
+    display: flex;
+    justify-content: center;
 }
 
 .benefitText {
     width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 2000px) {
     .benefitsWrapper {
         flex-direction: column;
+        justify-content: space-around;
+        height: 130px;
+        margin-top: 1.2vw;
+        margin-bottom: 1vw;
     }
 
     .benefitDiv {
         width: 100%;
-        height: 30px;
-        padding: 5%;
+        height: 40px;
+        margin-bottom: 5px;
         font-size: 0.85rem;
+        border-radius: 0;
+        justify-content: flex-start;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 863px) {
+    .benefitsWrapper {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 130px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .listingsHeader {
+        display: none;
+    }
+
+    .benefitDiv {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 0;
+        font-size: 0.85rem;
+        border-radius: 0;
+        justify-content: flex-start;
+    }
+
+    .iconWrapper {
+        width: 5%;
+        padding-left: 1%;
+    }
+
+    .mainWrapper {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 481px) {
     .benefitDiv {
         font-size: 0.7rem;
         overflow: hidden;
     }
 
-    .header {
+    .listingsHeader {
         font-size: 0.8rem;
         padding-left: 5%;
         padding-right: 5%;
@@ -91,7 +134,7 @@
 }
 
 @media screen and (max-width: 200px) {
-    .header {
+    .listingsHeader {
         font-size: 0.5rem;
     }
 

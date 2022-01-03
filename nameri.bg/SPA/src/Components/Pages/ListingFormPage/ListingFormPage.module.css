@@ -9,8 +9,8 @@
     justify-content: space-between;
     align-items: center;
     /*height: 110vh;*/
-    margin-bottom: 5%;
-    margin-top: 3%;
+    margin-bottom: 100px;
+    margin-top: 100px;
     border-radius: 0 100px 20px 100px;
 }
 
@@ -107,7 +107,6 @@ button.submitBtn {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 5%;
 }
 
 .halfInputContainer {
@@ -137,7 +136,12 @@ button.submitBtn {
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
+    .mainWrapper {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
     .priceWrapper {
         flex-direction: column;
     }
@@ -169,9 +173,18 @@ button.submitBtn {
         padding: 0;
         height: 40px;
     }
+
+    .halfInput {
+        width: 100%;
+    }
+
+    .customFileInput {
+        padding: 30px;
+        text-align: center;
+    }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .mainWrapper {
         border-radius: 0 50px 5px 50px;
         height: 80vh;

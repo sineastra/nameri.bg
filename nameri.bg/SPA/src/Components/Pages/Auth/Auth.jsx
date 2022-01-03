@@ -15,16 +15,16 @@ const Auth = ({ authType }) => {
 	return (
 		<MainPageLayout>
 			<div
-				className={ `${ styles.wrapper } ${ authType === 'login' ? styles.shortMain : styles.longMain }` }>
+				className={ `${ styles.wrapper }` }>
 				<section className={ styles.mainWrapper }>
 
 					<section className={ styles.headerSectionOuter }>
 						<div className={ styles.headerSectionInner }>
 							<h1 className={ styles.header }>{ actionText }</h1>
-							<span>
-							<span className={ styles.miscText }>{ miscText } | </span>
-							<Link to={ linkHref } className={ styles.redirectLink }>{ redirectText }</Link>
-							</span>
+							<div className={ styles.miscTextCont }>
+								<span className={ styles.miscText }>{ miscText } &nbsp;</span>
+								<Link to={ linkHref } className={ styles.redirectLink }>{ redirectText }</Link>
+							</div>
 						</div>
 						<Benefits authType={ authType }/>
 					</section>

@@ -52,3 +52,15 @@ div.iconLoader {
 .show {
     display: flex;
 }
+
+@media screen and (max-width: 863px) {
+    .joinedSubs{
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .outerSection {
+        justify-content: space-evenly;
+    }
+}

@@ -6,6 +6,7 @@
     margin-bottom: 100px;
 }
 
+
 .headingInner {
     width: 50%;
     font-size: 1.5rem;
@@ -21,7 +22,7 @@
     width: 60%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .headingOuter {
         flex-direction: column;
         align-items: center;
@@ -35,4 +36,15 @@
     .searchBarWrapper {
         width: 100%;
     }
+
+    .mainHeader {
+        margin-bottom: 30px;
+    }
 }
+
+@media screen and (max-width: 481px) {
+    .mainHeader {
+        font-size: 6vw;
+    }
+}
+

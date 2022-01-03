@@ -5,32 +5,36 @@
 
 .mainSection {
     width: 100%;
+    height: 65vw;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     margin-top: 5%;
     margin-bottom: 5%;
     box-sizing: border-box;
 }
 
+
 .carouselSection {
     width: 60%;
+    height: 90%;
     border: none;
     box-sizing: border-box;
     border-radius: 20px;
     padding: 20px;
-    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
-    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.6);
 }
-
 .sideSection {
     width: 35%;
+    height: 100%;
 }
 
 
 .listingActionsBtns {
     width: 100%;
-   display: flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -164,6 +168,7 @@
     justify-self: flex-start;
     align-items: center;
 }
+
 .townNameHeader {
     margin-left: 10px;
     vertical-align: middle;
@@ -202,41 +207,28 @@
     }
 
     .outerSection {
-        width: 90%;
-        margin-left: 5%;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-
-
-    div.similarListing {
-        width: 30%;
+        width: 95%;
+        margin-left: 2.5%;
     }
 
-    .similarListings {
-        height: 60vh;
+    .mainSection {
+        width: 95vw;
     }
+
 }
 
 @media screen and (max-width: 1000px) {
-    div.similarListing {
-        width: 32%;
-    }
-
-    .listingActionsInner {
-        width: 80%;
-    }
-}
-
-
-@media screen and (max-width: 800px) {
-
     .outerSection {
         width: 100%;
         margin-left: 0;
+        margin-top: 50px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+    }
+
+    .mainSection{
+        height: auto;
         align-items: center;
     }
 
@@ -250,8 +242,9 @@
     }
 
     .carouselSection {
-        width: 100%;
+        width: 85vw;
         margin-bottom: 10%;
+        height: 85vw;
     }
 
     .sideSection {
@@ -269,7 +262,8 @@
     }
 
     div.similarListing {
-        width: 50%;
+        width: 60vw;
+        height: 60vw;
         margin-top: 5%;
         margin-bottom: 5%;
     }
@@ -312,7 +306,7 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .detailsHeader {
         font-size: 0.6rem;
         padding: 1% 5% 1%;
@@ -343,5 +337,10 @@
         min-height: 30px;
         width: 30px;
         height: 30px;
+    }
+
+    div.similarListing {
+        width: 80vw;
+        height: 80vw;
     }
 }

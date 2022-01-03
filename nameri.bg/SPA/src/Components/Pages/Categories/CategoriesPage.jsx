@@ -17,7 +17,9 @@ const CategoriesPage = (props) => {
 		e.preventDefault()
 
 		const filtered = data.filter(x => {
-			return x.name.includes(e.target.search.value) || x.subcategories.some(y => y.name.includes(e.target.search.value))
+			return x.name.includes(e.target.search.value) ||
+				x.subcategories.some(y => y.name.includes(e.target.search.value)
+				)
 		})
 
 		setFilteredCats(filtered)

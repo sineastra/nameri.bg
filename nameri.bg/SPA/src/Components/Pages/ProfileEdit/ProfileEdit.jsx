@@ -11,8 +11,6 @@ import TagInput from "../../Components/TagInput/TagInput.jsx"
 import { useNavigate } from "react-router-dom"
 import processNewToken from "../../../helpers/processNewToken.js"
 import StyledBtn from "../../Components/StyledBtn/StyledBtn.jsx"
-import extractErrorMessages from "../../../helpers/extractErrorMessages.js"
-import SoftErrorsContext from "../../Contexts/SoftErrorsContext.jsx"
 import UtilityContext from "../../Contexts/UtilityContext.jsx"
 
 

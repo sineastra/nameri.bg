@@ -1,8 +1,6 @@
 .userInfo {
     display: flex;
     flex-direction: column;
-    padding-bottom: 5%;
-    height: 25%;
 }
 
 .mainHeadingOuterWrapper {
@@ -31,7 +29,6 @@
 }
 
 .pricesInfoWrapper {
-    height: 25%;
     display: flex;
     flex-direction: column;
 }
@@ -56,6 +53,7 @@
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 0;
 }
 
 .reviewElem {
@@ -63,17 +61,18 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 30%;
     background-color: rgba(211, 211, 211, 0.3);
-    padding: 15px;
+    padding: 10px 15px;
     border-radius: 10px;
+    margin-bottom: 10px;
     box-sizing: border-box;
     font-family: 'Exo 2', sans-serif;
     font-weight: 300;
 }
 
 .reviewInnerFlexItem {
-    height: 50%;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .reviewInnerTextItem {
@@ -88,6 +87,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 1vw;
+    color: grey;
+    font-style: italic;
 }
 
 .mainFlexContainer {
@@ -100,7 +102,7 @@
 
 
 .reviewProfileImg {
-    width: 30px;
+    width: 2vw;
     object-fit: cover;
 }
 
@@ -109,7 +111,7 @@
 }
 
 div.userHeadingWrapperReview {
-    height: 30px;
+    height: 2vw;
     width: 100%;
 }
 
@@ -119,13 +121,12 @@ div.ratingBoxWrapperClassName {
 
 
 .ratingsInfo {
-    height: 40%;
+    min-height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     background-color: white;
-    padding: 10px;
 }
 
 .ratingModal {
@@ -191,6 +192,17 @@ div.userHeadingWrapperMain {
     max-height: 70%;
 }
 
+@media screen and (min-width: 1200px) {
+    .ratingsInfo {
+        height: 50%;
+        justify-content: center;
+    }
+
+    .reviewElem {
+        height: 20%;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .profileImgClass {
         height: 70%;
@@ -209,6 +221,11 @@ div.userHeadingWrapperMain {
         width: 70%;
         margin-top: 3%;
     }
+
+    .pricesWrapperHeading {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 1100px) {
@@ -217,7 +234,7 @@ div.userHeadingWrapperMain {
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     .userNames {
         font-size: 1.3rem;
     }
@@ -232,12 +249,39 @@ div.userHeadingWrapperMain {
 
     .reviewElem {
         margin-top: 20px;
-        height: 130px;
+        height: 100px;
     }
 
+    .userInfo {
+        padding-bottom: 5%;
+    }
+
+    .pricesWrapperHeading {
+        margin-bottom: 3%;
+    }
+
+    .pricesInfoWrapper {
+        padding-bottom: 5%;
+    }
+
+    div.userHeadingWrapperReview {
+        height: 100%;
+    }
+
+    .reviewInnerFlexItem {
+        height: 50%;
+    }
+
+    .reviewProfileImg {
+        width: 30px;
+    }
+
+    .overflowSpan {
+        font-size: 1rem;
+    }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .ratingBoxWrapper {
         display: none;
         width: 0;
@@ -263,6 +307,10 @@ div.userHeadingWrapperMain {
 
     .profileImgClass {
         height: 90%;
+    }
+
+    .overflowSpan {
+        font-size: 0.8rem;
     }
 
 

@@ -21,7 +21,7 @@ const SingleCategory = ({ id, img, name, className }) => {
 				<h3 className={ styles.categHeading }>{ name }</h3>
 			</Link>
 			<ImageLoadingPlaceholder
-				outerClassName={ imgLoaded ? styles.hide : `${ styles.show } ${ styles.categContainer } ${ className }` }/>
+				outerClassName={ imgLoaded ? styles.hide : `${ styles.show } ${ styles.categContainerForLoader } ${ className }` }/>
 		</>
 	)
 }

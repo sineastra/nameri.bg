@@ -3,8 +3,8 @@ import styled from "styled-components"
 
 const CircleDot = styled.div`
   border-radius: 20px;
-  width: 30px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   background: ${ props => props.active ? '#ff7200' : 'lightgray' };
   cursor: pointer;
 

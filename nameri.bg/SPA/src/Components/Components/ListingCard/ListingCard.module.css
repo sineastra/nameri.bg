@@ -99,7 +99,7 @@
     padding-top: 0;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     .townDiv {
         font-size: 0.7rem;
         padding: 5px;

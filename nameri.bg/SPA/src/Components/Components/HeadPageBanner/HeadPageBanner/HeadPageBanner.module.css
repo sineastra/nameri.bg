@@ -5,7 +5,10 @@
     align-items: center;
     align-content: center;
     background-color: #fafafa;
-    height: 500px;
+    height: 540px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 20px;
     z-index: 1;
 }
 
@@ -14,11 +17,13 @@
     height: 80%;
 }
 
+
 .mainBannerHeaderSection {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    /*height: 80%;*/
 }
 
 .headingsSectionPart {
@@ -39,8 +44,8 @@
 }
 
 .mainBannerCarouselSection {
-    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
-    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     position: relative;
     overflow: hidden;
@@ -53,10 +58,11 @@
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 863px) {
     .mainBannerSection {
-        width: 80%;
+        width: 95%;
     }
+
 
     .mainBannerHeaderSection {
         text-align: center;
@@ -64,8 +70,9 @@
     }
 
     .mainBannerCarouselSection {
-        margin-top: 80px;
-        height: 450px;
+        margin-top: 40px;
+        width: 95vw;
+        height: 95vw;
     }
 
     .headingsSectionPart {
@@ -77,6 +84,8 @@
         justify-content: center;
         align-items: center;
         height: auto;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     .bigHeader {
@@ -88,11 +97,15 @@
     }
 
     .searchBarContainer {
-        margin-top: 50px;
+        margin-top: 30px;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
+    .mainBannerSection {
+        width: 90%;
+    }
+
     .bigHeader {
         font-size: 1.1em;
     }

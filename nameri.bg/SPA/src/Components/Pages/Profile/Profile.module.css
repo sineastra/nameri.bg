@@ -67,6 +67,7 @@ div.messageModal {
     font-family: 'Bellota Text', cursive;
     margin-bottom: 5%;
     margin-top: 0;
+    text-align: center;
 }
 
 .noListingsHeader {
@@ -113,10 +114,11 @@ div.messageModal {
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .mainWrapper {
         width: 90%;
         margin-left: 5%;
+        margin-top: 5%;
     }
 
     .innerWrapper {
@@ -141,15 +143,15 @@ div.messageModal {
     }
 
     div.listingCard {
-        width: 80%;
-        height: 50vh;
+        width: 70vw;
+        height: 70vw;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 481px) {
     div.listingCard {
-        width: 70%;
-        height: 25vh;
+        width: 80vw;
+        height: 80vw;
     }
 
     .listingProfilePic {
@@ -174,5 +176,9 @@ div.messageModal {
 
     .headingClassName {
         font-size: 1rem;
+    }
+
+    .listingsHeader {
+        font-size: 1.3rem;
     }
 }

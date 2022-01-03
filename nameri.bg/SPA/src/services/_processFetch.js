@@ -6,6 +6,7 @@ import extractErrorMessages from "../helpers/extractErrorMessages.js"
 // The setBoundaryError and setSoftErros are functions that respectively throw the error and display it in a Boundary
 // component or rerender the current component with error notifications (setSoftErrors)
 
+
 const _processFetch = async (service, setBoundaryError, setSoftErrors) => {
 
 	try {

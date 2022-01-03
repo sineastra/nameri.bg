@@ -26,7 +26,7 @@ const Header = () => {
 	const handleResize = () => {
 		setWindowWidth(window.innerWidth)
 
-		if (window.innerWidth > 800) {
+		if (window.innerWidth > 863) {
 			setSideBarVisibility('hidden')
 		}
 	}
@@ -47,7 +47,7 @@ const Header = () => {
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
 
-	const visibilityClassName = windowWidth <= 800 ? styles[sideBarVisibility] : styles.hidden
+	const visibilityClassName = windowWidth <= 863 ? styles[sideBarVisibility] : styles.hidden
 
 	return (
 		<header className={ styles.header }>

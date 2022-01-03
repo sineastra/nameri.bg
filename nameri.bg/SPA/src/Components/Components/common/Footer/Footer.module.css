@@ -55,7 +55,7 @@ h5 {
     font-family: 'Bellota Text', cursive;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .mainFooter {
         height: auto;
         flex-wrap: wrap;
