@@ -67,6 +67,7 @@ div.messageModal {
     font-family: 'Bellota Text', cursive;
     margin-bottom: 5%;
     margin-top: 0;
+    text-align: center;
 }
 
 .noListingsHeader {
@@ -113,10 +114,11 @@ div.messageModal {
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .mainWrapper {
         width: 90%;
         margin-left: 5%;
+        margin-top: 5%;
     }
 
     .innerWrapper {
@@ -174,5 +176,9 @@ div.messageModal {
 
     .headingClassName {
         font-size: 1rem;
+    }
+
+    .listingsHeader {
+        font-size: 1.3rem;
     }
 }
