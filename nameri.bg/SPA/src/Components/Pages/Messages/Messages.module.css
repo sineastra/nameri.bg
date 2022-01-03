@@ -34,15 +34,22 @@
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
     .mainWrapper {
         flex-direction: column;
         height: auto;
+        align-items: center;
     }
 
     .bigCont, .smallCont {
-        width: 100%;
+        width: 70%;
         margin-bottom: 5%;
         height: 50vh;
+    }
+}
+
+@media screen and (max-width: 863px) {
+    .bigCont, .smallCont {
+        width: 95%;
     }
 }
