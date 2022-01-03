@@ -6,7 +6,7 @@ import Spinner from "../../Components/Spinner/Spinner.jsx"
 import styles from "./Search.module.css"
 import MainPageLayout from "../../Components/common/MainPageLayout/MainPageLayout.jsx"
 import ListingCard from "../../Components/ListingCard/ListingCard.jsx"
-import UsersList from "../../Components/UsersList/UsersList.jsx"
+import UserCard from "../../Components/UserList/UserCard.jsx"
 
 
 const fetchData = async (params) => {
@@ -29,9 +29,18 @@ const Search = () => {
 			? <Spinner/>
 			: <MainPageLayout>
 				<section className={ styles.wrapper }>
-					<UsersList className={ styles.contentSection } users={ data.users } heading="Потребители"/>
+					<section className={ styles.contentSection }>
+						<div className={ styles.usersInnerWrapper }>
+							<h1 className={ styles.usersHeader }>Потребители</h1>
+							{ data.users.map(x => (
+								<div className={styles.userCardWrapper}>
+									<UserCard user={ x }/>
+								</div>
+							)) }
+						</div>
+					</section>
 					<section className={ `${ styles.contentSection } ${ styles.listingsSection }` }>
-						<h1 className={ styles.header }>Обяви</h1>
+						<h1 className={ styles.listingsHeader }>Обяви</h1>
 						<div className={ styles.innerListingsDiv }>
 							{ data.listings.map(x => (
 								<ListingCard

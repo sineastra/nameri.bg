@@ -8,10 +8,11 @@
 
 .innerWrapper {
     width: 90%;
-    height: 90%;
+    min-height: 100vh;
     border-radius: 30px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 5%;
     -webkit-box-shadow: 0px 17px 40px -13px #000000;
@@ -21,4 +22,23 @@
 section.userList {
     width: 100%;
     align-items: center;
+}
+
+.userCard {
+    width: 90%;
+}
+
+.usersHeader {
+    align-self: center;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 700;
+    background: #ff7200;
+    color: white;
 }

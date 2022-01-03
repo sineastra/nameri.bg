@@ -2,13 +2,13 @@ import styles from "./UserList.module.css"
 import { Link } from "react-router-dom"
 
 
-const UserList = ({ user }) => {
+const UserCard = ({ user, className = '' }) => {
 	const profileImg = user.profileImg === "" ? "/profile.png" : user.profileImg
 
 	return (
-		<Link className={ styles.contentWrapper } to={ `/profile/${ user._id }` }>
+		<Link className={ `${ styles.contentWrapper } ${ className }` } to={ `/profile/${ user._id }` }>
 			<div className={ styles.imgSection }>
-				<img src={ profileImg } alt="" className={styles.img}/>
+				<img src={ profileImg } alt="" className={ styles.img }/>
 			</div>
 			<div className={ styles.userInfoSection }>
 				<div className={ styles.userLinkInnerDiv }>
@@ -27,4 +27,4 @@ const UserList = ({ user }) => {
 	)
 }
 
-export default UserList
+export default UserCard

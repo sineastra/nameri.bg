@@ -5,20 +5,34 @@
     -webkit-box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-left: 5%;
     margin-bottom: 5%;
     margin-top: 3%;
     min-height: 80vh;
 }
 
+
+.usersInnerWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+section.contentSection {
+    width: 45%;
+}
+
+.userCardWrapper {
+    width: 100%;
+}
+
 .listingsSection {
     display: flex;
     flex-direction: column;
-    width: 50%;
 }
 
-.header {
+.listingsHeader {
     align-self: center;
     width: 50%;
     text-align: center;
@@ -29,7 +43,21 @@
     border-bottom-right-radius: 20px;
     font-family: 'Balsamiq Sans', cursive;
     font-weight: 700;
-    font-size: 1.6rem;
+    background: #ff7200;
+    color: white;
+}
+
+.usersHeader {
+    align-self: center;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 700;
     background: #ff7200;
     color: white;
 }
@@ -106,31 +134,43 @@ h1, h4 {
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .wrapper {
         flex-direction: column;
         align-items: center;
+        margin-top: 10%;
+        margin-bottom: 10%;
     }
 
-    .contentSection {
-        width: 95%;
+    .usersInnerWrapper {
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .userCardWrapper {
+        width: 90%;
+    }
+
+    section.contentSection {
+        width: 100%;
     }
 
     div.listingCard {
-        width: 400px;
-        height: 400px;
+        width: 70%;
+        height: 70vw;
+        margin-bottom: 30px;
     }
 
-    .header {
+    .listingsHeader, .usersHeader {
         width: 100%;
+        border-radius: 20px 20px 0 0;
     }
 
 }
 
 @media screen and (max-width: 400px) {
     div.listingCard {
-        width: 300px;
-        height: 300px;
+
     }
 
     .listingProfilePic {
