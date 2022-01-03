@@ -1,0 +1,14 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        align-items: center;
+    }
+}

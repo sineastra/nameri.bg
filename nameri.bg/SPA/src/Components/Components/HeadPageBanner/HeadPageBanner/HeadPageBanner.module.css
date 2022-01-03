@@ -5,7 +5,10 @@
     align-items: center;
     align-content: center;
     background-color: #fafafa;
-    height: 500px;
+    height: 540px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 20px;
     z-index: 1;
 }
 
@@ -81,6 +84,8 @@
         justify-content: center;
         align-items: center;
         height: auto;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     .bigHeader {

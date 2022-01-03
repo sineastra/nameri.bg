@@ -8,10 +8,14 @@
     transition: height 1s ease;
 }
 
+.header {
+   height: 130px;
+}
+
 .logoContainer {
-    height: 100px;
     width: 20%;
     min-width: 20%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +28,7 @@
     width: 60%;
     height: 100%;
     align-items: flex-end;
+    margin-top: 10px;
 }
 
 .rightNavCont {
@@ -33,20 +38,25 @@
     justify-content: flex-end;
     align-items: flex-end;
     width: 20%;
+    padding-bottom: 10px;
     box-sizing: border-box;
 }
 
 .mainNav {
-    height: 100px;
-    background: white;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: white;
     box-shadow: 5px -3px 15px 5px rgba(0, 0, 0, 0.5);
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px 20px 10px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.header {
+.listingsHeader {
     height: 120px;
     width: 100%;
     background-color: #fafafa;
@@ -102,20 +112,14 @@
     transition: all 0.3s ease;
 }
 
-@media screen and (max-width: 800px) {
-    .header {
+
+@media screen and (max-width: 863px) {
+    .listingsHeader {
         height: 60px;
     }
 
-    .logoContainer {
-        height: 40px;
-    }
 
     .logoLink {
-        height: 40px;
-    }
-
-    .mainNav {
         height: 40px;
     }
 
@@ -130,6 +134,10 @@
 
     div.userNavContainer {
         display: none;
+    }
+
+    .header {
+        height: 80px;
     }
 
     .mainNavLink {

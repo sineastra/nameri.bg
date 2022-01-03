@@ -24,7 +24,7 @@
     box-sizing: border-box;
 }
 
-.header {
+.listingsHeader {
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
     width: 80%;
@@ -96,7 +96,7 @@
         margin-bottom: 10px;
     }
 
-    .header {
+    .listingsHeader {
         display: none;
     }
 
@@ -125,7 +125,7 @@
         overflow: hidden;
     }
 
-    .header {
+    .listingsHeader {
         font-size: 0.8rem;
         padding-left: 5%;
         padding-right: 5%;
@@ -134,7 +134,7 @@
 }
 
 @media screen and (max-width: 200px) {
-    .header {
+    .listingsHeader {
         font-size: 0.5rem;
     }
 
