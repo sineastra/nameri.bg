@@ -29,9 +29,12 @@ const Search = () => {
 			? <Spinner/>
 			: <MainPageLayout>
 				<section className={ styles.wrapper }>
-					<UsersList className={ styles.contentSection } users={ data.users } heading="Потребители"/>
+					<section className={ styles.contentSection }>
+						<h1 className={ styles.usersHeader }>Потребители</h1>
+						<UsersList users={ data.users } heading="Потребители"/>
+					</section>
 					<section className={ `${ styles.contentSection } ${ styles.listingsSection }` }>
-						<h1 className={ styles.header }>Обяви</h1>
+						<h1 className={ styles.listingsHeader }>Обяви</h1>
 						<div className={ styles.innerListingsDiv }>
 							{ data.listings.map(x => (
 								<ListingCard

@@ -12,13 +12,16 @@
     min-height: 80vh;
 }
 
+section.contentSection {
+    width: 45%;
+}
+
 .listingsSection {
     display: flex;
     flex-direction: column;
-    width: 50%;
 }
 
-.header {
+.listingsHeader {
     align-self: center;
     width: 50%;
     text-align: center;
@@ -29,7 +32,21 @@
     border-bottom-right-radius: 20px;
     font-family: 'Balsamiq Sans', cursive;
     font-weight: 700;
-    font-size: 1.6rem;
+    background: #ff7200;
+    color: white;
+}
+
+.usersHeader {
+    align-self: center;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 5%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-family: 'Balsamiq Sans', cursive;
+    font-weight: 700;
     background: #ff7200;
     color: white;
 }
@@ -106,31 +123,32 @@ h1, h4 {
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 863px) {
     .wrapper {
         flex-direction: column;
         align-items: center;
     }
 
-    .contentSection {
-        width: 95%;
+    section.contentSection {
+        width: 100%;
     }
 
     div.listingCard {
-        width: 400px;
-        height: 400px;
+        width: 50vw;
+        height: 50vw;
     }
 
-    .header {
+    .listingsHeader, .usersHeader {
         width: 100%;
+        border-radius: 20px 20px 0 0;
     }
 
 }
 
 @media screen and (max-width: 400px) {
     div.listingCard {
-        width: 300px;
-        height: 300px;
+        width: 70%;
+        height: 70vw;
     }
 
     .listingProfilePic {
