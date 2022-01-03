@@ -5,6 +5,7 @@
 
 .mainSection {
     width: 100%;
+    height: 55vw;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -15,6 +16,7 @@
 
 .carouselSection {
     width: 60%;
+    height: 100%;
     border: none;
     box-sizing: border-box;
     border-radius: 20px;
@@ -22,12 +24,6 @@
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.6);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.6);
 }
-
-.carouselOuterClassName {
-    width: 90vw;
-    height: 90vw;
-}
-
 .sideSection {
     width: 35%;
 }
@@ -222,8 +218,14 @@
     .outerSection {
         width: 100%;
         margin-left: 0;
+        margin-top: 50px;
         display: flex;
         flex-direction: column;
+        align-items: center;
+    }
+
+    .mainSection{
+        height: auto;
         align-items: center;
     }
 
@@ -237,8 +239,9 @@
     }
 
     .carouselSection {
-        width: 100%;
+        width: 85vw;
         margin-bottom: 10%;
+        height: 85vw;
     }
 
     .sideSection {
