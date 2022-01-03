@@ -30,7 +30,7 @@ const createSlidesArr = (data, imgsPerSlide) => {
 	return slideArr
 }
 
-const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
+const Carousel = ({ className, imgData, imgsPerSlide = 3 }) => {
 	const [imgLoaded, setImgLoaded] = useState(false)
 	const [activeImg, setActiveImg] = useState('')
 	const slidesArr = createSlidesArr(imgData, imgsPerSlide)
@@ -65,7 +65,7 @@ const Carousel = ({ imgData, imgsPerSlide = 3 }) => {
 	}, [imgData])
 
 	return (
-		<div className={ styles.mainWrapper }>
+		<div className={ `${ className } ${ styles.mainWrapper }` }>
 
 			<div className={ imgLoaded ? `${ styles.mainImgWrapper } ${ styles.show }` : styles.hide }>
 				<img

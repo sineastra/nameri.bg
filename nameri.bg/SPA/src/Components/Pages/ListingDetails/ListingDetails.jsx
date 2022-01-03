@@ -69,7 +69,7 @@ const ListingDetails = (props) => {
 					<h1 className={ styles.mainHeader }>{ data.listing.heading }</h1>
 					<section className={ styles.mainSection }>
 						<section className={ styles.carouselSection }>
-							<Carousel imgData={ images } imgsPerSlide={ 3 }/>
+							<Carousel imgData={ images } imgsPerSlide={ 3 } className={styles.carouselOuterClassName}/>
 						</section>
 						<section className={ styles.sideSection }>
 							<ListingSideCard listing={ data.listing } setData={ setData }/>

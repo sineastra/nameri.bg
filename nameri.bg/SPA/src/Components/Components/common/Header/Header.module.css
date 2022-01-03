@@ -53,7 +53,6 @@
     color: black;
     display: flex;
     align-items: flex-end;
-    padding-bottom: 20px;
     transition: height 1s ease;
 }
 
