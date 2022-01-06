@@ -28,12 +28,12 @@ The goal is to connect the people and help them find the perfect professional fo
 
 <br/><br/>
 
-- _It is good to know that almost, if not every problem in React is solved, but If you can't solve it yourself, even not as good at first, are you not working with magic?
-If so, are you a magician? Because you are probably not a developer_
+- _It is good to know that almost every problem in React is solved, but If you can't solve it yourself, even not as good at first, are you not working with magic?
+If so, are you a magician?_
 
 <hr/>
 
-__Features of the platform (as is, will be updated as we add more features.)__
+__Features of the platform (as is, probably won't be updated anymore.)__
 
 <hr/>
 
@@ -70,7 +70,7 @@ Dependencies, (besides Create-React-App deps):
 - React Router v6
 - js-cookie for parsing cookies (specifically parsing JWT token cookie)
 - JWT-decode - for decoding the JWT token
-- styled-components (bonus requirement for the project assign), used for several components just to mark it as done.
+- styled-components (bonus requirement for the project assign)
 - react-icons
 
 The REST API is written with Express JS
