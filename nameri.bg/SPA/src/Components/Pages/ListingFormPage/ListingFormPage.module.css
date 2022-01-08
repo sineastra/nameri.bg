@@ -140,6 +140,11 @@ button.submitBtn {
     .mainWrapper {
         padding-top: 30px;
         padding-bottom: 30px;
+        margin-top: 50px;
+        width: 95%;
+        min-height: 80vh;
+        justify-content: space-evenly;
+        margin-left: 2.5%;
     }
 
     .priceWrapper {

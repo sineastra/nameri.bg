@@ -70,4 +70,8 @@
     .noCatsWrapper {
         min-height: 30vh;
     }
+
+    .categoryCard {
+        margin-bottom: 20px;
+    }
 }

@@ -3,6 +3,7 @@
     margin-bottom: 10%;
     display: flex;
     justify-content: center;
+    min-height: 80vh;
 }
 
 .innerWrapper {

@@ -313,14 +313,17 @@
 
 @media screen and (max-width: 481px) {
     .detailsHeader {
-        font-size: 3vw;
+        font-size: 4vw;
         padding: 1% 5% 1%;
+        width: 60%;
+        text-align: center;
     }
 
     .innerDetails {
         padding: 5px;
         padding-left: 15px;
         padding-right: 15px;
+        font-size: 1rem;
     }
 
     .mainHeader {

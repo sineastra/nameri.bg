@@ -152,6 +152,11 @@ button.submitBtn {
         font-size: 1.2rem;
     }
 
+    .mainWrapper {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+
     .details {
         font-size: 0.8rem;
     }
