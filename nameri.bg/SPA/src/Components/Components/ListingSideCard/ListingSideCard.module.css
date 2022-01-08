@@ -248,7 +248,6 @@ div.userHeadingWrapperMain {
     }
 
     .reviewElem {
-        margin-top: 20px;
         height: 100px;
     }
 
@@ -313,10 +312,6 @@ div.userHeadingWrapperMain {
         font-size: 0.8rem;
     }
 
-
-    .styledBtn {
-        margin-bottom: 5%;
-    }
 
     .pricesWrapperHeading {
         font-size: 1.1rem;

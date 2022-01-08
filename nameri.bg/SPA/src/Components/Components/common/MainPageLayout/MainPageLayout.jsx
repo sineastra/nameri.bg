@@ -4,11 +4,10 @@ import Footer from "../Footer/Footer.jsx"
 
 const MainPageLayout = ({ children }) => {
 
-
 	return (
 		<>
 			<Header/>
-			<div style={ { minHeight: '80vh' } }>
+			<div style={ { minHeight: '80vh', marginBottom: '100px' } }>
 				{ children }
 			</div>
 			<Footer/>

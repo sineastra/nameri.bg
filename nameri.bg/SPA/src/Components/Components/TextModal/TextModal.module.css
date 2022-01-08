@@ -27,6 +27,17 @@
     position: relative;
 }
 
+.header {
+    background: #ff7200;
+    width: 50%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    font-family: 'Balsamiq Sans', cursive;
+    font-size: 1em;
+    margin-top: 0;
+}
+
 .textAreaWrapper {
     width: 90%;
     height: 75%;
@@ -88,4 +99,47 @@
     height: 0;
     opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+@media screen and (max-width: 863px) {
+    .wrapper {
+        width: 95%;
+        height: 70%;
+        justify-content: space-between;
+    }
+
+    .header {
+        font-size: 0.8em;
+    }
+
+    .textAreaWrapper {
+        margin-bottom: 30px;
+    }
+
+    .closeBtn {
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 567px) {
+    .header {
+        font-size: 4vw;
+    }
+
+    .smallHeader{
+        font-size: 3.5vw;
+    }
+
+    .wrapper {
+        height: 90vw;
+    }
+
+    .textAreaWrapper {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .textArea {
+        margin-bottom: 10px;
+    }
 }

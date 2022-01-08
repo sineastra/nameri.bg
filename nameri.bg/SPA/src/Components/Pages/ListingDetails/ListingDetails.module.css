@@ -238,13 +238,13 @@
 
     .mainSection {
         flex-direction: column;
-        width: 90%;
+        width: 95%;
     }
 
     .carouselSection {
-        width: 90vw;
+        width: 95vw;
         margin-bottom: 10%;
-        height: 90vw;
+        height: 95vw;
     }
 
     .sideSection {
@@ -264,7 +264,7 @@
     div.similarListing {
         width: 60vw;
         height: 60vw;
-        margin-top: 5%;
+        /*margin-top: 5%;*/
         margin-bottom: 5%;
     }
 
@@ -304,16 +304,23 @@
     .editBtnLink {
         width: 100%;
     }
+
+    .similarListingsHeader {
+        font-size: 5vw;
+        margin-bottom: 0;
+    }
 }
 
 @media screen and (max-width: 481px) {
     .detailsHeader {
-        font-size: 0.6rem;
+        font-size: 3vw;
         padding: 1% 5% 1%;
     }
 
     .innerDetails {
         padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     .mainHeader {
