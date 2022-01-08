@@ -7,7 +7,10 @@ const MainPageLayout = ({ children }) => {
 	return (
 		<>
 			<Header/>
-			<div style={ { minHeight: '80vh', marginBottom: '100px' } }>
+			<div style={ {
+				minHeight: '80vh',
+				marginBottom: '50px',
+			} }>
 				{ children }
 			</div>
 			<Footer/>

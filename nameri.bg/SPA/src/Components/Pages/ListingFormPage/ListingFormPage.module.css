@@ -138,11 +138,11 @@ button.submitBtn {
 
 @media screen and (max-width: 863px) {
     .mainWrapper {
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding: 30px;
         margin-top: 50px;
         width: 95%;
         min-height: 80vh;
+        height: 90%;
         justify-content: space-evenly;
         margin-left: 2.5%;
     }
@@ -193,7 +193,10 @@ button.submitBtn {
     .mainWrapper {
         border-radius: 0 50px 5px 50px;
         padding-top: 5%;
-        margin-bottom: 10%;
+        padding-bottom: 5%;
+        justify-content: center;
+        min-height: auto;
+        margin-bottom: 0;
     }
 
     .textareaWrapper {
