@@ -44,6 +44,10 @@
     text-align: center;
 }
 
+a.listingHeading {
+    font-size: 1.2rem;
+}
+
 @media screen and (max-width: 1300px) {
     .servicesContainer {
         grid-template-columns: repeat(auto-fill, 400px);
@@ -82,26 +86,31 @@
     .listingClassName {
         height: 450px;
     }
+
+    .mainWrapper {
+        width: 95%;
+        margin-left: 2.5%;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .servicesContainer {
-        grid-template-columns: repeat(auto-fill, 350px);
+        grid-template-columns: repeat(auto-fill, 380px);
     }
 
     .listingClassName {
-        height: 350px;
+        height: 380px;
     }
 }
 
 @media screen and (max-width: 400px) {
     .servicesContainer {
-        grid-template-columns: repeat(auto-fill, 250px);
+        grid-template-columns: repeat(auto-fill, 280px);
         grid-gap: 20px;
     }
 
     .listingClassName {
-        height: 250px;
+        height: 280px;
     }
 
     .namesClassName {
