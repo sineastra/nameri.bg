@@ -10,6 +10,7 @@
     margin-bottom: 5%;
     margin-top: 3%;
     min-height: 80vh;
+    height: 100%;
 }
 
 
@@ -17,6 +18,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 section.contentSection {
@@ -88,6 +90,24 @@ div.listingCard {
 
 h1, h4 {
     margin: 0;
+}
+
+.noDataHeader {
+    display: inline-flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 2vw;
+    align-self: center;
+    justify-self: center;
+    width: 100%;
+}
+
+.noDataHeaderAlone {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2vw;
 }
 
 @media screen and (max-width: 1600px) {
@@ -166,6 +186,13 @@ h1, h4 {
         border-radius: 20px 20px 0 0;
     }
 
+    .contentSection {
+        min-height: 40vh;
+    }
+
+    .noDataHeader, .noDataHeaderAlone {
+        font-size: 4vw;
+    }
 }
 
 @media screen and (max-width: 481px) {

@@ -3,7 +3,7 @@ import logoImg from '../../../../assets/images/n-letter-png-transparent-images-7
 import { Link, useNavigate } from "react-router-dom"
 import { FaBars } from "react-icons/fa"
 import { IconContext } from "react-icons"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import UserHeader from "../../UserHeader/UserHeader.jsx"
 import SideNav from "../SideNav/SideNav.jsx"
 import UserContext from "../../../Contexts/UserContext.jsx"
@@ -18,6 +18,8 @@ const Header = () => {
 	const { processRequest } = useContext(UtilityContext)
 	const [sideBarVisibility, setSideBarVisibility] = useState('hidden')
 	const [windowWidth, setWindowWidth] = useState(0)
+	const headerStickyClassName = useRef('')
+	const lastScrollPosition = useRef(0)
 
 	const toggleSideBar = () => {
 		setSideBarVisibility(oldState => oldState === 'hidden' ? 'visible' : 'hidden')
@@ -44,13 +46,15 @@ const Header = () => {
 	useEffect(() => {
 		window.addEventListener('resize', handleResize)
 
-		return () => window.removeEventListener('resize', handleResize)
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
 	}, [])
 
 	const visibilityClassName = windowWidth <= 863 ? styles[sideBarVisibility] : styles.hidden
 
 	return (
-		<header className={ styles.header }>
+		<header className={ `${ styles.header }` }>
 			<nav className={ styles.mainNav }>
 				<section className={ styles.logoContainer }>
 					<Link to="/" className={ styles.logoLink }>
