@@ -101,8 +101,8 @@
 
 @media screen and (max-width: 481px) {
     .townDiv {
-        font-size: 0.7rem;
-        padding: 5px;
+        font-size: 0.9rem;
+        padding: 5px 10px;
     }
 
     .priceE {

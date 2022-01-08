@@ -96,6 +96,7 @@ a.listingHeading {
 @media screen and (max-width: 500px) {
     .servicesContainer {
         grid-template-columns: repeat(auto-fill, 380px);
+        grid-gap: 25px;
     }
 
     .listingClassName {

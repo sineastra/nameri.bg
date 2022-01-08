@@ -61,7 +61,6 @@
 
     .subCatsInner {
         justify-content: flex-start;
-        margin-left: 2%;
     }
 }
 
@@ -77,6 +76,16 @@
 }
 
 @media screen and (max-width: 863px) {
+    .mainWrapper {
+        width: 95%;
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2.5%;
+    }
+
     .subCatCardWrapper {
         width: 100%;
         min-width: 100%;
@@ -99,13 +108,7 @@
 
 @media screen and (max-width: 481px) {
     .subCatCardWrapper {
-        margin-bottom: 10%;
-    }
-
-    .subCategoryCard {
-        font-size: 0.8rem;
-        padding: 15px 15px;
-        height: 70px;
+        margin-bottom: 5%;
     }
 
     .noCatsWrapper {

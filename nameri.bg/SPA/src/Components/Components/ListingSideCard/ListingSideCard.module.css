@@ -260,7 +260,8 @@ div.userHeadingWrapperMain {
     }
 
     .pricesInfoWrapper {
-        padding-bottom: 5%;
+        padding-bottom: 100px;
+        padding-top: 50px;
     }
 
     div.userHeadingWrapperReview {
@@ -292,6 +293,11 @@ div.userHeadingWrapperMain {
         width: 100%;
         display: flex;
         justify-content: space-between;
+    }
+
+    .pricesInfoWrapper {
+        padding-bottom: 50px;
+        padding-top: 25px;
     }
 
     .userNames {

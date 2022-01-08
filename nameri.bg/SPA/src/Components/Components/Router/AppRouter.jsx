@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Route, Routes } from "react-router-dom"
 
 import Spinner from "../Spinner/Spinner.jsx"
@@ -22,6 +22,11 @@ const OwnershipRoute = lazy(() => import("../../RouteGuards/OwnershipRoute.jsx")
 const TopUsers = lazy(() => import("../../Pages/TopUsers/TopUsers.jsx"))
 
 const AppRouter = () => {
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	})
+
 	return (
 		<Suspense fallback={ <Spinner/> }>
 			<Routes>
