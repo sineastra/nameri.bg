@@ -11,6 +11,7 @@ const TagInput = ({
 	                  errors,
 	                  data,
 	                  inputText,
+	                  onChange,
                   }) => {
 
 	return (
@@ -22,6 +23,7 @@ const TagInput = ({
 				onKeyUp={ onKeyUp }
 				onFocus={ onFocus }
 				autoComplete="off"
+				onChange={ onChange }
 				className={ errors.tags === false ? styles.invalidInput : '' }
 			/>
 			<div

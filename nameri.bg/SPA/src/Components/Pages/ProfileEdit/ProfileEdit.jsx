@@ -90,8 +90,7 @@ const ProfileEdit = () => {
 	}
 
 	const addSkill = (e) => {
-		console.log(e)
-		if (e.code === "Space" && e.target.value.trim() !== '') {
+		if ((e.code === "Space" || e.nativeEvent.data === " ") && e.target.value.trim() !== '') {
 			const value = e.target.value.trim()
 
 			if (data.skills.every(x => x !== value)) {
@@ -211,6 +210,7 @@ const ProfileEdit = () => {
 								errors={ formDataErrors }
 								removeDataEntry={ removeSkill }
 								inputText="Умения (Добави със спейс)"
+								onChange={ addSkill }
 							/>
 							{/*<input type="text" name="skills" placeholder="Умения"*/ }
 							{/*       defaultValue={ data.skills?.join(', ') }/>*/ }
