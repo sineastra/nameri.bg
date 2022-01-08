@@ -19,6 +19,7 @@
     height: 70px;
     align-self: center;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .closeBtn {
