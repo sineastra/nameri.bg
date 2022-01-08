@@ -1,3 +1,6 @@
+import processNewToken from "../helpers/processNewToken.js"
+
+
 const baseUrl = `${ process.env.REACT_APP_REST_API_ADDRESS }/api`
 
 const abstractFetch = (url, body, method = "GET") => {
@@ -17,6 +20,8 @@ const abstractFetch = (url, body, method = "GET") => {
 				if (resData.data === undefined) {
 					reject(resData)
 				}
+
+				console.log(resData)
 				resolve(resData.data)
 			})
 			.catch(e => {

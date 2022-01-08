@@ -1,14 +1,25 @@
 const jwt = require("jsonwebtoken")
 
-const processAuth = (req, res, next) => {
+const processAuth = async (req, res, next) => {
 	const cookieName = process.env.COOKIE_NAME
 	const token = req.cookies[cookieName]
 
+	console.log(process.env.COOKIE_NAME)
+
 	if (token) {
 		try {
-			const userData = jwt.verify(token, process.env.TOKEN_SECRET)
+			let userData = jwt.verify(token, process.env.TOKEN_SECRET)
 
-			req.user = userData
+			const user = await req.dbServices.userServices.getById(userData._id)
+
+			const updatedUserData = Object.entries(userData).reduce((a, v) => {
+				a[v[0]] = user[v[0]] || v[1]
+
+				return a
+			}, {})
+			
+			res.token = updatedUserData
+			req.user = updatedUserData
 		} catch (e) {
 
 			res.clearCookie(cookieName)
