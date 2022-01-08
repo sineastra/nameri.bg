@@ -90,8 +90,7 @@ const ProfileEdit = () => {
 	}
 
 	const addSkill = (e) => {
-		console.log(e.charCode)
-		if (e.charCode === 32 && e.target.value.trim() !== '') {
+		if (e.code === "Space" && e.target.value.trim() !== '') {
 			const value = e.target.value.trim()
 
 			if (data.skills.every(x => x !== value)) {
