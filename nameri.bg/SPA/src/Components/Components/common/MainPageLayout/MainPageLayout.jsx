@@ -9,7 +9,6 @@ const MainPageLayout = ({ children }) => {
 			<Header/>
 			<div style={ {
 				minHeight: '80vh',
-				marginBottom: '50px',
 			} }>
 				{ children }
 			</div>

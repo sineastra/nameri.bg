@@ -3,6 +3,7 @@
     margin-left: 10%;
     min-height: 70vh;
     box-sizing: border-box;
+    margin-bottom: 7%;
 }
 
 .innerWrapper {
@@ -78,7 +79,7 @@ div.messageModal {
 @media screen and (max-width: 1400px) {
     div.listingCard {
         width: 70%;
-        height: 50vh;
+        height: 60vh;
     }
 
     .mainWrapper {
@@ -109,20 +110,20 @@ div.messageModal {
 
     div.listingCard {
         width: 70%;
-        height: 40vh;
+        height: 45vh;
     }
 }
 
 @media screen and (max-width: 863px) {
     .mainWrapper {
-        width: 90%;
-        margin-left: 5%;
+        width: 95%;
+        margin-left: 2.5%;
         margin-top: 5%;
     }
 
     .innerWrapper {
-        width: 90%;
-        margin-left: 5%;
+        width: 100%;
+        margin-left: 0;
     }
 
     .innerWrapper {

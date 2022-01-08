@@ -113,6 +113,12 @@
     }
 }
 
+@media screen and (max-width: 481px) {
+    .mainWrapper {
+        width: 95%;
+    }
+}
+
 @media screen and (max-width: 200px) {
     .miscText {
         display: none;

@@ -7,7 +7,7 @@ const About = () => {
 
 	return (
 		<MainPageLayout>
-			<div style={ { minHeight: '70vh' } }>
+			<div style={ { minHeight: '80vh', marginBottom: '50px' } }>
 				<div className={ styles.bannerWrapper }>
 					<img src="/about-banner.jpeg" alt="" className={ styles.img }/>
 				</div>
