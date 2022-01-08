@@ -5,7 +5,7 @@ import { useState } from "react"
 
 const SideNav = ({ className, toggleSideBar, user, logout }) => {
 	const [userNavVisibility, setUserNavVisibility] = useState(false)
-	const profileImg = user.profileImg && user.profileImg !== '' ? user.profileImg : "/profile.png"
+	const profileImg = user && user.profileImg && user.profileImg !== '' ? user.profileImg : "/profile.png"
 
 	const toggleUserNavVisibility = () => setUserNavVisibility(oldState => !oldState)
 	const toggleSideNavVisibility = () => {
