@@ -108,6 +108,12 @@
     transition: opacity 0.3s ease;
 }
 
+@media screen and (max-width: 1200px) {
+     .header {
+         font-size: 1.5rem;
+     }
+}
+
 @media screen and (max-width: 863px) {
     .wrapper {
         width: 95%;
