@@ -5,7 +5,7 @@ import Tag from "../Tag/Tag.jsx"
 const TagInput = ({
 	                  inputName = 'tags',
 	                  wrapperClassName = "",
-	                  onKeyPress,
+	                  onKeyUp,
 	                  onFocus,
 	                  removeDataEntry,
 	                  errors,
@@ -19,7 +19,7 @@ const TagInput = ({
 				type="text"
 				name={ inputName }
 				placeholder={ inputText }
-				onKeyPress={ onKeyPress }
+				onKeyUp={ onKeyUp }
 				onFocus={ onFocus }
 				autoComplete="off"
 				className={ errors.tags === false ? styles.invalidInput : '' }

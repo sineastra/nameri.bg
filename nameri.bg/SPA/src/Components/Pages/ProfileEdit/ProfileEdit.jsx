@@ -90,6 +90,7 @@ const ProfileEdit = () => {
 	}
 
 	const addSkill = (e) => {
+		console.log(e)
 		if (e.code === "Space" && e.target.value.trim() !== '') {
 			const value = e.target.value.trim()
 
@@ -205,7 +206,7 @@ const ProfileEdit = () => {
 								wrapperClassName={ styles.skillsInputWrapper }
 								inputName="skills"
 								onFocus={ () => clearError('skills') }
-								onKeyPress={ addSkill }
+								onKeyUp={ addSkill }
 								data={ data.skills }
 								errors={ formDataErrors }
 								removeDataEntry={ removeSkill }
