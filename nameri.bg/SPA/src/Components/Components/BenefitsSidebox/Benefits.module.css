@@ -27,8 +27,9 @@
 .header {
     font-family: 'Comfortaa', cursive;
     font-weight: 700;
-    font-size: 2rem;
-    margin: 0 0 20px;
+    /*font-size: 2rem;*/
+    margin: 10px 0 0;
+    text-align: center;
 }
 
 .listingsHeader {
