@@ -15,7 +15,7 @@ const ContactsInfo = ({ user }) => {
 				? <span className={ styles.contactsContent }> { `+359 ${ user.phone }` }</span>
 				: <span className={ styles.contactsEmptyContent }> (няма телефон)</span> }
 		</div>
-		<div><span className={ styles.contactsLabel }>Имейл:</span>ca
+		<div><span className={ styles.contactsLabel }>Имейл:</span>
 			<span className={ styles.contactsContent }> { user.email }</span>
 
 		</div>
