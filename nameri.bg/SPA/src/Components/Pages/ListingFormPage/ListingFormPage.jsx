@@ -208,7 +208,7 @@ const AddListing = ({ formType }) => {
 									name="price"
 									disabled={ isChecked }
 									placeholder="Цена"
-									className={ `${ styles.halfInput } ${ validationErrors.price === false ? styles.invalidInput : '' }` }
+									className={ `${ validationErrors.price === false ? styles.invalidInput : '' }` }
 									onFocus={ () => clearError('price') }
 									onChange={ handlePriceChange }
 									value={ price }

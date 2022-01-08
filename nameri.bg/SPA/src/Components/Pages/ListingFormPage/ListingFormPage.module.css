@@ -187,7 +187,6 @@ button.submitBtn {
 @media screen and (max-width: 481px) {
     .mainWrapper {
         border-radius: 0 50px 5px 50px;
-        height: 80vh;
         padding-top: 5%;
         margin-bottom: 10%;
     }
