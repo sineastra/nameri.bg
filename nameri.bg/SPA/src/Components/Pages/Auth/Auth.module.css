@@ -84,6 +84,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    align-items: center;
     flex-wrap: wrap;
     box-sizing: border-box;
     padding-left: 5%;
