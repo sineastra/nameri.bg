@@ -7,6 +7,20 @@
     overflow: hidden;
 }
 
+.userMetaWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profileImg {
+    border-radius: 100px;
+    width: 70px;
+    height: 70px;
+    align-self: center;
+    object-fit: cover;
+}
+
 .closeBtn {
     font-family: 'Caveat', cursive;
     font-size: 30px;
