@@ -2,7 +2,7 @@ const abstractDBRequest = async (req, res, dbService, errorObj = {}) => {
 	try {
 		const data = await dbService(req)
 
-		res.json({ ok: true, statusText: "ok", status: 200, data })
+		res.json({ ok: true, statusText: "ok", status: 200, data, token: req.newToken })
 	} catch (e) {
 		res.json({
 			ok: false,

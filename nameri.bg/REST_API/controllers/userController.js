@@ -267,6 +267,7 @@ const addMsg = async (req, res) => {
 					statusText: "ok",
 					status: 200,
 					data: { conversations: user.conversations, conversationId: newConversation._id },
+					token: req.newToken,
 				},
 			)
 		}
@@ -289,7 +290,8 @@ router.post("/:id/add-review", async (req, res) => {
 			reviewCreator: req.user._id,
 		}
 		const user = await req.dbServices.userServices.getByIdPopulateReviews(req.params.id)
-		const isExistingReview = user.reviews.some(x => x.reviewCreator === req.user._id)
+		const isExistingReview = user.reviews.some(x => x.reviewCreator === `${ req.user._id }`)
+		console.log(isExistingReview)
 		const review = isExistingReview
 			? await req.dbServices.userServices.getReviewByCreator(req.user._id)
 			: await req.dbServices.userServices.createNewReview(newReview)

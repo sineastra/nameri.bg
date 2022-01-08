@@ -41,7 +41,7 @@ const processListing = async (req, res, fetchData, listing = {}) => {
 
 			const data = await fetchData(req, listingData, listing._id)
 
-			res.json({ ok: true, statusText: 'ok', status: 200, data })
+			res.json({ ok: true, statusText: 'ok', status: 200, data, token: req.newToken })
 		} catch (e) {
 			res.json({
 				ok: false,

@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken")
+const { createJWTToken } = require("../helpers/createJWTToken.js")
 
 const processAuth = async (req, res, next) => {
 	const cookieName = process.env.COOKIE_NAME
 	const token = req.cookies[cookieName]
-
-	console.log(process.env.COOKIE_NAME)
 
 	if (token) {
 		try {
@@ -17,8 +16,8 @@ const processAuth = async (req, res, next) => {
 
 				return a
 			}, {})
-			
-			res.token = updatedUserData
+
+			req.newToken = createJWTToken(updatedUserData)
 			req.user = updatedUserData
 		} catch (e) {
 
