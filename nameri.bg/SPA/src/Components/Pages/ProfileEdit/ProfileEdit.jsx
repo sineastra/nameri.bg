@@ -90,7 +90,7 @@ const ProfileEdit = () => {
 	}
 
 	const addSkill = (e) => {
-		alert(e.code)
+		console.log(e)
 		if (e.code === "Space" && e.target.value.trim() !== '') {
 			const value = e.target.value.trim()
 
