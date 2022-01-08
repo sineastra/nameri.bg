@@ -190,11 +190,12 @@ const AddListing = ({ formType }) => {
 							wrapperClassName={ styles.tagsInputWrapper }
 							inputName="tags"
 							onFocus={ () => clearError('tags') }
-							onKeyPress={ addTag }
+							onKeyUp={ addTag }
 							data={ tags }
 							errors={ validationErrors }
 							removeDataEntry={ removeTag }
 							inputText="Тагове (Добави със спейс)"
+							onChange={ addTag }
 						/>
 					</div>
 

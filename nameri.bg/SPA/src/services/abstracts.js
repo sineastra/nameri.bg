@@ -21,7 +21,9 @@ const abstractFetch = (url, body, method = "GET") => {
 					reject(resData)
 				}
 
-				console.log(resData)
+				if (resData.token) {
+					processNewToken(resData.token)
+				}
 				resolve(resData.data)
 			})
 			.catch(e => {
