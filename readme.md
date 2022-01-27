@@ -73,6 +73,15 @@ Dependencies, (besides Create-React-App deps):
 - styled-components (bonus requirement for the project assign)
 - react-icons
 
-The REST API is written with Express JS
+The REST API is written with Express JS 
+
+<h2>Used: </h2>
+
+- AWS S3 for assets,
+- JSON Web Token for the auth,
+- Bcrypt for password hashing
+- Express Validator
+- Formidable
+- Mongoose
 
 <h2>Hosted at <a href="https://nameri-bg.vercel.app/"/>https://nameri-bg.vercel.app</h2>
