@@ -1,5 +1,3 @@
-** IMPORTANT - Heroku removed their free tier, expecting people to upgrade to a paid plan, which of course will not happen. So back ends of this app is not working (the app in general) untill I move it to new platform. **
-
 <h1 align="center"><i>Nameri.bg </i></h1>
 
 **_<p align="center">Nameri.bg is an app for sharing listings offered by people who can for people who need. Inside the app you can find all kind of services, wherever you need a fix in your appartment or a logo for your new company.
