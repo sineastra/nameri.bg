@@ -20,15 +20,17 @@ const bodyParser = require("body-parser");
 const corsOptions = {
   origin: ["http://localhost:3000", "https://nameri-bg.vercel.app"],
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+  exposedHeaders: ["Content-Length", "Authorization"],
 };
 
 const expressConfig = app => {
   app.use(express.static("static"));
+  app.options("*", cors(corsOptions));
+  app.use(cors(corsOptions));
   app.use(express.urlencoded({ extended: true, limit: "50mb" }));
   app.use(express.json({ limit: "50mb" }));
   app.use(cookieParser());
-  app.options("*", cors(corsOptions));
-  app.use(cors(corsOptions));
 };
 
 module.exports = expressConfig;
