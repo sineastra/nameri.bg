@@ -9,7 +9,7 @@ module.exports = app => {
         // connect to the connection string in the environment variables. this is async of course but we wont resolve it.
         // Instead, we have a built-in reference to the result of this async function which is
         // mongoose.connection, which we can take as a variable.
-        mongoose.connect("process.env.ATLAS_CONNECTION_STR_NAMERIBG")
+        mongoose.connect(process.env.ATLAS_CONNECTION_STR_NAMERIBG)
 
         //here
         const db = mongoose.connection
