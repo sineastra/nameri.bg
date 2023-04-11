@@ -1,7 +1,7 @@
-const express = require("express")
-const cookieParser = require("cookie-parser")
-const cors = require("cors")
-const bodyParser = require("body-parser")
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
 // first adding the folder from which express will get the static files.
 
@@ -18,17 +18,17 @@ const bodyParser = require("body-parser")
 // sixth for parsing cookies into req.cookie
 
 const corsOptions = {
-	origin: ["http://localhost:3000", "https://nameri-bg.vercel.app"],
-	credentials: true,
-}
+  origin: ["http://localhost:3000", "https://nameri-bg.vercel.app"],
+  credentials: true,
+};
 
 const expressConfig = app => {
-	app.use(express.static("static"))
-	app.options("*", cors(corsOptions))
-	app.use(cors(corsOptions))
-	app.use(express.urlencoded({ extended: true, limit: '50mb' }))
-	app.use(express.json({ limit: '50mb' }))
-	app.use(cookieParser())
-}
+  app.use(express.static("static"));
+  app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+  app.use(express.json({ limit: "50mb" }));
+  app.use(cookieParser());
+  app.options("*", cors(corsOptions));
+  app.use(cors(corsOptions));
+};
 
-module.exports = expressConfig
+module.exports = expressConfig;
